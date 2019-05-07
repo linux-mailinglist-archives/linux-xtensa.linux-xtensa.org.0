@@ -2,59 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 47DFC1570C
-	for <lists+linux-xtensa@lfdr.de>; Tue,  7 May 2019 02:44:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A21F1570D
+	for <lists+linux-xtensa@lfdr.de>; Tue,  7 May 2019 02:44:33 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id E6EE86529;
-	Tue,  7 May 2019 00:42:48 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 0E9076533;
+	Tue,  7 May 2019 00:42:50 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lj1-f194.google.com (mail-lj1-f194.google.com
- [209.85.208.194])
- by linux-xtensa.org (Postfix) with ESMTPS id D8ECC64C3
- for <linux-xtensa@linux-xtensa.org>; Tue,  7 May 2019 00:42:45 +0000 (UTC)
-Received: by mail-lj1-f194.google.com with SMTP id f23so12715155ljc.0
- for <linux-xtensa@linux-xtensa.org>; Mon, 06 May 2019 17:44:28 -0700 (PDT)
+Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
+ [209.85.167.67])
+ by linux-xtensa.org (Postfix) with ESMTPS id 7C180581A
+ for <linux-xtensa@linux-xtensa.org>; Tue,  7 May 2019 00:42:48 +0000 (UTC)
+Received: by mail-lf1-f67.google.com with SMTP id k18so10450139lfj.13
+ for <linux-xtensa@linux-xtensa.org>; Mon, 06 May 2019 17:44:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=z1eOYONJ6U6Bjdr8qZBRa4H9poRtWrKOMJIfOjXRed8=;
- b=rsQ42lqIUxbf4yuwd7AJpL2NuWjshwhkR4hYewjyQLJXOWyrl4f402BsC1g3BjBfzk
- Ek6qHCL7WrjIcfZX5MYr2/zQIz23S5ZK8htDKqPHvtNYBBggIAABZ/mws6nQ9VrMBc8u
- Ejd96oGEyN54qX310p0+pxxUrAXy3mfqKf0v9XrHzH17CuToCUEfam7VguWgyRkCvTbC
- EyD0YMKN2Lp8+EWJXkr1PKZcAuPWZnUZ/q+aRMrd+SX6XN+DKrCgTJPmVdxWmICZbeIa
- /r+9W532d5gsNGZYGzSl+aCa/+2r63vMlkVCuan0IVkQvDGM0XG4VLYkWKwuozHcFIdD
- Uj5Q==
+ bh=MyHkoBLy7k1ERbeA8m3+7Q4M7LezFOBxcFp4Gl+DC4g=;
+ b=ktKZ/IK20n4sclnX+L2iPg8NCdgE2cRjqkBsIpKTw+cyEkGw1uhsYMVfCoiMnGVnkk
+ uthqwNGXg7VGRWqvoRGUbfpXh1PSwUI7rEW0u6KpYRvTF2uZ2lokvyTtPcyVI4GOYpWa
+ AcbmyJANha2eSadGmUzoBlBtvTZghqp1NmOcImhsqM+q6FoNAfAgQkXVpgW2Z0eIyh4C
+ VxJTOOEeB64RAXU/oPVD+y7Q7EtriMIS7G6bnwIggLxnXAShMxs4ZaFldp1B7g6NyJXd
+ JydbazzCif2tDpCPBecc+iMKIZQT90fymNv5Qo+GvdDWqzAGNRJOnqZNhMjJpeMqY1PZ
+ z/zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=z1eOYONJ6U6Bjdr8qZBRa4H9poRtWrKOMJIfOjXRed8=;
- b=p0f9u1szHzu3jDgR5cWnDGxVRDKSDZTDlh9nzgS6B2d587JRFRQplRYWQ6Ux7zJa4z
- o0QojVIxd3b3zp9iFx3b08mM/G268iXEXwwMGOf7AEueYFmyeQLdkP8Pz6F0cK5kYNXT
- N6DnIgwlDFdmgmHYZEo1P5F5huqNWR0hmiBc366bnzAzypVhu1wE71mwRh9iuouTmCXF
- mA5P8w4Hzby779PLZt0Z1Gn3P+SlxOlKzsf6eNs89Ln8MxS7WgPu/h/BAsLLe4+QCMf+
- MMmYIL9e4eDZx7bScX7Cr09WzJMqsor6xthmiMGsBd8JFAR6TjrvZOrAhd+hLI2d5MaO
- Z9sA==
-X-Gm-Message-State: APjAAAXE6ucZ9KwUIn14LiI+xH1D53tF+bJjgNLX2qotFIPy77pHT0rC
- fQ7kuE4+0obEhMDOV4ekagopupix
-X-Google-Smtp-Source: APXvYqxC138sLrw0UowIFYZ90Y0OQMOqbRU6tkflsedsZlmMIIzcezWLiMqkTIEmrcc5uA7i5VKLqg==
-X-Received: by 2002:a2e:8018:: with SMTP id j24mr11900862ljg.149.1557189867476; 
- Mon, 06 May 2019 17:44:27 -0700 (PDT)
+ bh=MyHkoBLy7k1ERbeA8m3+7Q4M7LezFOBxcFp4Gl+DC4g=;
+ b=Hqk3xHIJdteh8kc5o43whkA1jJpG7dlxWXrAyJhQRxb6ydtsr1LC+hxxmPEvgx78bk
+ +bWal9LEQCX9bku9Rl2pMifqt6buQRyX7tlmr5yn3srQy6pvfaMjYbMoXkDWZKRW0I6R
+ A1skQnYB9B3bLkp2/VjND/HMPLHpoVoB3p7s51uOMCMx5ovchya59oqCFmDwuh8miszS
+ VQCPaQxWnKOqGoTCP5xD88Rk9SSay64ITs/NvvG0xcud+Dq+zN9MO5LGcJbKB2GKfFkR
+ u26WwNiFqwzp4moThwuXBwUlAQNZyH5bNSPMqG4rnzBszHsdQZ6qK3gDgqIxTIIakqtE
+ Iw7A==
+X-Gm-Message-State: APjAAAWsuzW4mi8GHSJ6i1S0qYnqnuVq0THicvk5VOub81FvEnLb86tj
+ JeWqM/MSummJGheqXFlBtqMGZ5zE
+X-Google-Smtp-Source: APXvYqzBpu9TfYg/1Y/23aH8vE5VxqDioaRViZnptGnFCEqJNoiuFFCF59hpAWvxbmzyp4EPZXAs5w==
+X-Received: by 2002:a19:e34c:: with SMTP id c12mr7941372lfk.145.1557189870000; 
+ Mon, 06 May 2019 17:44:30 -0700 (PDT)
 Received: from octofox.cadence.com
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id r8sm850003lfp.55.2019.05.06.17.44.24
+ by smtp.gmail.com with ESMTPSA id r8sm850003lfp.55.2019.05.06.17.44.27
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 06 May 2019 17:44:26 -0700 (PDT)
+ Mon, 06 May 2019 17:44:29 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Mon,  6 May 2019 17:44:03 -0700
-Message-Id: <20190507004407.6756-2-jcmvbkbc@gmail.com>
+Date: Mon,  6 May 2019 17:44:04 -0700
+Message-Id: <20190507004407.6756-3-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.11.0
 In-Reply-To: <20190507004407.6756-1-jcmvbkbc@gmail.com>
 References: <20190507004407.6756-1-jcmvbkbc@gmail.com>
 Cc: Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH 1/5] xtensa: drop ifdef __KERNEL__ from
-	kernel-only headers
+Subject: [Linux-Xtensa] [PATCH 2/5] xtensa: replace variant/core.h with
+	asm/core.h
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -73,160 +73,323 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-These headers are not exported to userspace, so they're never used
-without __KERNEL__ defined. Drop these ifdef statements.
+Introduce the header arch/xtensa/include/asm/core.h that provides
+definitions for XCHAL macros missing in older xtensa releases. Use this
+header instead of variant/core.h
 
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- arch/xtensa/include/asm/atomic.h     | 4 ----
- arch/xtensa/include/asm/bitops.h     | 4 ----
- arch/xtensa/include/asm/futex.h      | 3 ---
- arch/xtensa/include/asm/io.h         | 3 ---
- arch/xtensa/include/asm/pci-bridge.h | 3 ---
- arch/xtensa/include/asm/pci.h        | 4 ----
- arch/xtensa/include/asm/pgalloc.h    | 3 ---
- 7 files changed, 24 deletions(-)
+ arch/xtensa/boot/boot-redboot/bootstrap.S                |  2 +-
+ arch/xtensa/include/asm/asmmacro.h                       |  2 +-
+ arch/xtensa/include/asm/cache.h                          |  2 +-
+ arch/xtensa/include/asm/checksum.h                       |  2 +-
+ arch/xtensa/include/asm/coprocessor.h                    |  2 +-
+ arch/xtensa/include/asm/core.h                           | 13 +++++++++++++
+ arch/xtensa/include/asm/initialize_mmu.h                 |  4 ----
+ arch/xtensa/include/asm/irq.h                            |  2 +-
+ arch/xtensa/include/asm/processor.h                      |  2 +-
+ arch/xtensa/include/asm/ptrace.h                         |  2 +-
+ arch/xtensa/include/asm/vectors.h                        |  2 +-
+ arch/xtensa/kernel/hw_breakpoint.c                       |  2 +-
+ arch/xtensa/kernel/vmlinux.lds.S                         |  2 +-
+ arch/xtensa/lib/checksum.S                               |  2 +-
+ arch/xtensa/lib/memcopy.S                                |  2 +-
+ arch/xtensa/lib/memset.S                                 |  2 +-
+ arch/xtensa/lib/strncpy_user.S                           |  2 +-
+ arch/xtensa/lib/strnlen_user.S                           |  2 +-
+ arch/xtensa/lib/usercopy.S                               |  2 +-
+ arch/xtensa/platforms/xt2000/include/platform/hardware.h |  2 +-
+ arch/xtensa/platforms/xt2000/include/platform/serial.h   |  2 +-
+ 21 files changed, 32 insertions(+), 23 deletions(-)
+ create mode 100644 arch/xtensa/include/asm/core.h
 
-diff --git a/arch/xtensa/include/asm/atomic.h b/arch/xtensa/include/asm/atomic.h
-index 7de0149e1cf7..4e7311f58ae8 100644
---- a/arch/xtensa/include/asm/atomic.h
-+++ b/arch/xtensa/include/asm/atomic.h
-@@ -15,8 +15,6 @@
+diff --git a/arch/xtensa/boot/boot-redboot/bootstrap.S b/arch/xtensa/boot/boot-redboot/bootstrap.S
+index bbf3b4b080cd..48ba5a232d94 100644
+--- a/arch/xtensa/boot/boot-redboot/bootstrap.S
++++ b/arch/xtensa/boot/boot-redboot/bootstrap.S
+@@ -1,5 +1,5 @@
+ /* SPDX-License-Identifier: GPL-2.0 */
+-#include <variant/core.h>
++#include <asm/core.h>
+ #include <asm/regs.h>
+ #include <asm/asmmacro.h>
+ #include <asm/cacheasm.h>
+diff --git a/arch/xtensa/include/asm/asmmacro.h b/arch/xtensa/include/asm/asmmacro.h
+index 7f2ae5872151..8308a9c3abb2 100644
+--- a/arch/xtensa/include/asm/asmmacro.h
++++ b/arch/xtensa/include/asm/asmmacro.h
+@@ -11,7 +11,7 @@
+ #ifndef _XTENSA_ASMMACRO_H
+ #define _XTENSA_ASMMACRO_H
  
- #include <linux/stringify.h>
- #include <linux/types.h>
--
--#ifdef __KERNEL__
- #include <asm/processor.h>
- #include <asm/cmpxchg.h>
- #include <asm/barrier.h>
-@@ -200,6 +198,4 @@ ATOMIC_OPS(xor)
- #define atomic_cmpxchg(v, o, n) ((int)cmpxchg(&((v)->counter), (o), (n)))
- #define atomic_xchg(v, new) (xchg(&((v)->counter), new))
+-#include <variant/core.h>
++#include <asm/core.h>
  
--#endif /* __KERNEL__ */
--
- #endif /* _XTENSA_ATOMIC_H */
-diff --git a/arch/xtensa/include/asm/bitops.h b/arch/xtensa/include/asm/bitops.h
-index d3490189792b..345d28aead65 100644
---- a/arch/xtensa/include/asm/bitops.h
-+++ b/arch/xtensa/include/asm/bitops.h
-@@ -13,8 +13,6 @@
- #ifndef _XTENSA_BITOPS_H
- #define _XTENSA_BITOPS_H
+ /*
+  * Some little helpers for loops. Use zero-overhead-loops
+diff --git a/arch/xtensa/include/asm/cache.h b/arch/xtensa/include/asm/cache.h
+index d2fd932fdb4d..b21fd133ff62 100644
+--- a/arch/xtensa/include/asm/cache.h
++++ b/arch/xtensa/include/asm/cache.h
+@@ -11,7 +11,7 @@
+ #ifndef _XTENSA_CACHE_H
+ #define _XTENSA_CACHE_H
  
--#ifdef __KERNEL__
--
- #ifndef _LINUX_BITOPS_H
- #error only <linux/bitops.h> can be included directly
- #endif
-@@ -232,6 +230,4 @@ test_and_change_bit(unsigned int bit, volatile unsigned long *p)
- #include <asm-generic/bitops/lock.h>
- #include <asm-generic/bitops/sched.h>
+-#include <variant/core.h>
++#include <asm/core.h>
  
--#endif	/* __KERNEL__ */
--
- #endif	/* _XTENSA_BITOPS_H */
-diff --git a/arch/xtensa/include/asm/futex.h b/arch/xtensa/include/asm/futex.h
-index 505d09eff184..0fd58b7521aa 100644
---- a/arch/xtensa/include/asm/futex.h
-+++ b/arch/xtensa/include/asm/futex.h
-@@ -15,8 +15,6 @@
- #ifndef _ASM_XTENSA_FUTEX_H
- #define _ASM_XTENSA_FUTEX_H
+ #define L1_CACHE_SHIFT	XCHAL_DCACHE_LINEWIDTH
+ #define L1_CACHE_BYTES	XCHAL_DCACHE_LINESIZE
+diff --git a/arch/xtensa/include/asm/checksum.h b/arch/xtensa/include/asm/checksum.h
+index f302ef57973a..8b687176ad72 100644
+--- a/arch/xtensa/include/asm/checksum.h
++++ b/arch/xtensa/include/asm/checksum.h
+@@ -13,7 +13,7 @@
  
--#ifdef __KERNEL__
--
- #include <linux/futex.h>
+ #include <linux/in6.h>
  #include <linux/uaccess.h>
- #include <linux/errno.h>
-@@ -123,5 +121,4 @@ futex_atomic_cmpxchg_inatomic(u32 *uval, u32 __user *uaddr,
- 	return ret;
- }
+-#include <variant/core.h>
++#include <asm/core.h>
  
--#endif /* __KERNEL__ */
- #endif /* _ASM_XTENSA_FUTEX_H */
-diff --git a/arch/xtensa/include/asm/io.h b/arch/xtensa/include/asm/io.h
-index acc5bb2cf1c7..da3e783f896b 100644
---- a/arch/xtensa/include/asm/io.h
-+++ b/arch/xtensa/include/asm/io.h
-@@ -11,7 +11,6 @@
- #ifndef _XTENSA_IO_H
- #define _XTENSA_IO_H
+ /*
+  * computes the checksum of a memory block at buff, length len,
+diff --git a/arch/xtensa/include/asm/coprocessor.h b/arch/xtensa/include/asm/coprocessor.h
+index 6712929a27c9..0fbe2a740b8d 100644
+--- a/arch/xtensa/include/asm/coprocessor.h
++++ b/arch/xtensa/include/asm/coprocessor.h
+@@ -12,8 +12,8 @@
+ #ifndef _XTENSA_COPROCESSOR_H
+ #define _XTENSA_COPROCESSOR_H
  
--#ifdef __KERNEL__
- #include <asm/byteorder.h>
+-#include <variant/core.h>
+ #include <variant/tie.h>
++#include <asm/core.h>
+ #include <asm/types.h>
+ 
+ #ifdef __ASSEMBLY__
+diff --git a/arch/xtensa/include/asm/core.h b/arch/xtensa/include/asm/core.h
+new file mode 100644
+index 000000000000..b1f57519df49
+--- /dev/null
++++ b/arch/xtensa/include/asm/core.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/* Copyright (C) 2019 Cadence Design Systems Inc. */
++
++#ifndef _ASM_XTENSA_CORE_H
++#define _ASM_XTENSA_CORE_H
++
++#include <variant/core.h>
++
++#ifndef XCHAL_SPANNING_WAY
++#define XCHAL_SPANNING_WAY 0
++#endif
++
++#endif
+diff --git a/arch/xtensa/include/asm/initialize_mmu.h b/arch/xtensa/include/asm/initialize_mmu.h
+index 10e9852b2fb4..d719785e54f7 100644
+--- a/arch/xtensa/include/asm/initialize_mmu.h
++++ b/arch/xtensa/include/asm/initialize_mmu.h
+@@ -33,10 +33,6 @@
+ #define CA_WRITEBACK	(0x4)
+ #endif
+ 
+-#ifndef XCHAL_SPANNING_WAY
+-#define XCHAL_SPANNING_WAY 0
+-#endif
+-
+ #ifdef __ASSEMBLY__
+ 
+ #define XTENSA_HWVERSION_RC_2009_0 230000
+diff --git a/arch/xtensa/include/asm/irq.h b/arch/xtensa/include/asm/irq.h
+index 6c6ed23e0c79..0f71a51dab25 100644
+--- a/arch/xtensa/include/asm/irq.h
++++ b/arch/xtensa/include/asm/irq.h
+@@ -12,7 +12,7 @@
+ #define _XTENSA_IRQ_H
+ 
+ #include <linux/init.h>
+-#include <variant/core.h>
++#include <asm/core.h>
+ 
+ #ifdef CONFIG_PLATFORM_NR_IRQS
+ # define PLATFORM_NR_IRQS CONFIG_PLATFORM_NR_IRQS
+diff --git a/arch/xtensa/include/asm/processor.h b/arch/xtensa/include/asm/processor.h
+index 0c14018d1c26..19f6b54e358b 100644
+--- a/arch/xtensa/include/asm/processor.h
++++ b/arch/xtensa/include/asm/processor.h
+@@ -10,7 +10,7 @@
+ #ifndef _XTENSA_PROCESSOR_H
+ #define _XTENSA_PROCESSOR_H
+ 
+-#include <variant/core.h>
++#include <asm/core.h>
+ 
+ #include <linux/compiler.h>
+ #include <linux/stringify.h>
+diff --git a/arch/xtensa/include/asm/ptrace.h b/arch/xtensa/include/asm/ptrace.h
+index 62a58d2567e9..b109416dc07e 100644
+--- a/arch/xtensa/include/asm/ptrace.h
++++ b/arch/xtensa/include/asm/ptrace.h
+@@ -80,7 +80,7 @@ struct pt_regs {
+ 	unsigned long areg[16];
+ };
+ 
+-#include <variant/core.h>
++#include <asm/core.h>
+ 
+ # define arch_has_single_step()	(1)
+ # define task_pt_regs(tsk) ((struct pt_regs*) \
+diff --git a/arch/xtensa/include/asm/vectors.h b/arch/xtensa/include/asm/vectors.h
+index 7111280c8842..79fe3007919e 100644
+--- a/arch/xtensa/include/asm/vectors.h
++++ b/arch/xtensa/include/asm/vectors.h
+@@ -18,7 +18,7 @@
+ #ifndef _XTENSA_VECTORS_H
+ #define _XTENSA_VECTORS_H
+ 
+-#include <variant/core.h>
++#include <asm/core.h>
+ #include <asm/kmem_layout.h>
+ 
+ #if XCHAL_HAVE_PTP_MMU
+diff --git a/arch/xtensa/kernel/hw_breakpoint.c b/arch/xtensa/kernel/hw_breakpoint.c
+index 4f20416061fb..285fb2942b06 100644
+--- a/arch/xtensa/kernel/hw_breakpoint.c
++++ b/arch/xtensa/kernel/hw_breakpoint.c
+@@ -12,7 +12,7 @@
+ #include <linux/log2.h>
+ #include <linux/percpu.h>
+ #include <linux/perf_event.h>
+-#include <variant/core.h>
++#include <asm/core.h>
+ 
+ /* Breakpoint currently in use for each IBREAKA. */
+ static DEFINE_PER_CPU(struct perf_event *, bp_on_reg[XCHAL_NUM_IBREAK]);
+diff --git a/arch/xtensa/kernel/vmlinux.lds.S b/arch/xtensa/kernel/vmlinux.lds.S
+index b80a430453b1..943f10639a93 100644
+--- a/arch/xtensa/kernel/vmlinux.lds.S
++++ b/arch/xtensa/kernel/vmlinux.lds.S
+@@ -18,8 +18,8 @@
  #include <asm/page.h>
+ #include <asm/thread_info.h>
+ 
++#include <asm/core.h>
  #include <asm/vectors.h>
-@@ -78,8 +77,6 @@ static inline void iounmap(volatile void __iomem *addr)
+-#include <variant/core.h>
  
- #endif /* CONFIG_MMU */
+ OUTPUT_ARCH(xtensa)
+ ENTRY(_start)
+diff --git a/arch/xtensa/lib/checksum.S b/arch/xtensa/lib/checksum.S
+index 528fe0dd9339..d82c20c1fb7a 100644
+--- a/arch/xtensa/lib/checksum.S
++++ b/arch/xtensa/lib/checksum.S
+@@ -16,8 +16,8 @@
  
--#endif	/* __KERNEL__ */
--
- #include <asm-generic/io.h>
+ #include <linux/errno.h>
+ #include <linux/linkage.h>
+-#include <variant/core.h>
+ #include <asm/asmmacro.h>
++#include <asm/core.h>
  
- #endif	/* _XTENSA_IO_H */
-diff --git a/arch/xtensa/include/asm/pci-bridge.h b/arch/xtensa/include/asm/pci-bridge.h
-index 0b68c76ec1e6..405526912d9a 100644
---- a/arch/xtensa/include/asm/pci-bridge.h
-+++ b/arch/xtensa/include/asm/pci-bridge.h
-@@ -11,8 +11,6 @@
- #ifndef _XTENSA_PCI_BRIDGE_H
- #define _XTENSA_PCI_BRIDGE_H
+ /*
+  * computes a partial checksum, e.g. for TCP/UDP fragments
+diff --git a/arch/xtensa/lib/memcopy.S b/arch/xtensa/lib/memcopy.S
+index c0f6981719d6..efecfd7ed8cc 100644
+--- a/arch/xtensa/lib/memcopy.S
++++ b/arch/xtensa/lib/memcopy.S
+@@ -10,8 +10,8 @@
+  */
  
--#ifdef __KERNEL__
--
- struct device_node;
- struct pci_controller;
+ #include <linux/linkage.h>
+-#include <variant/core.h>
+ #include <asm/asmmacro.h>
++#include <asm/core.h>
  
-@@ -84,5 +82,4 @@ int early_write_config_byte(struct pci_controller*, int, int, int, u8);
- int early_write_config_word(struct pci_controller*, int, int, int, u16);
- int early_write_config_dword(struct pci_controller*, int, int, int, u32);
+ /*
+  * void *memcpy(void *dst, const void *src, size_t len);
+diff --git a/arch/xtensa/lib/memset.S b/arch/xtensa/lib/memset.S
+index 276747dec300..8632eacbdc80 100644
+--- a/arch/xtensa/lib/memset.S
++++ b/arch/xtensa/lib/memset.S
+@@ -12,8 +12,8 @@
+  */
  
--#endif	/* __KERNEL__ */
- #endif	/* _XTENSA_PCI_BRIDGE_H */
-diff --git a/arch/xtensa/include/asm/pci.h b/arch/xtensa/include/asm/pci.h
-index 883024054b05..8e2b48a268db 100644
---- a/arch/xtensa/include/asm/pci.h
-+++ b/arch/xtensa/include/asm/pci.h
-@@ -11,8 +11,6 @@
- #ifndef _XTENSA_PCI_H
- #define _XTENSA_PCI_H
+ #include <linux/linkage.h>
+-#include <variant/core.h>
+ #include <asm/asmmacro.h>
++#include <asm/core.h>
  
--#ifdef __KERNEL__
--
- /* Can be used to override the logic in pci_scan_bus for skipping
-  * already-configured bus numbers - to be used for buggy BIOSes
-  * or architectures with incomplete PCI setup by the loader
-@@ -45,8 +43,6 @@
- #define ARCH_GENERIC_PCI_MMAP_RESOURCE	1
- #define arch_can_pci_mmap_io()		1
+ /*
+  * void *memset(void *dst, int c, size_t length)
+diff --git a/arch/xtensa/lib/strncpy_user.S b/arch/xtensa/lib/strncpy_user.S
+index 5fce16b67dca..c4c6c8578d59 100644
+--- a/arch/xtensa/lib/strncpy_user.S
++++ b/arch/xtensa/lib/strncpy_user.S
+@@ -13,8 +13,8 @@
  
--#endif /* __KERNEL__ */
--
- /* Generic PCI */
- #include <asm-generic/pci.h>
+ #include <linux/errno.h>
+ #include <linux/linkage.h>
+-#include <variant/core.h>
+ #include <asm/asmmacro.h>
++#include <asm/core.h>
  
-diff --git a/arch/xtensa/include/asm/pgalloc.h b/arch/xtensa/include/asm/pgalloc.h
-index b3b388ff2f01..368284c972e7 100644
---- a/arch/xtensa/include/asm/pgalloc.h
-+++ b/arch/xtensa/include/asm/pgalloc.h
-@@ -11,8 +11,6 @@
- #ifndef _XTENSA_PGALLOC_H
- #define _XTENSA_PGALLOC_H
+ /*
+  * char *__strncpy_user(char *dst, const char *src, size_t len)
+diff --git a/arch/xtensa/lib/strnlen_user.S b/arch/xtensa/lib/strnlen_user.S
+index 0b956ce7f386..1f2ca2bb2ab3 100644
+--- a/arch/xtensa/lib/strnlen_user.S
++++ b/arch/xtensa/lib/strnlen_user.S
+@@ -12,8 +12,8 @@
+  */
  
--#ifdef __KERNEL__
--
- #include <linux/highmem.h>
- #include <linux/slab.h>
+ #include <linux/linkage.h>
+-#include <variant/core.h>
+ #include <asm/asmmacro.h>
++#include <asm/core.h>
  
-@@ -79,5 +77,4 @@ static inline void pte_free(struct mm_struct *mm, pgtable_t pte)
- }
- #define pmd_pgtable(pmd) pmd_page(pmd)
+ /*
+  * size_t __strnlen_user(const char *s, size_t len)
+diff --git a/arch/xtensa/lib/usercopy.S b/arch/xtensa/lib/usercopy.S
+index 64ab1971324f..228607e30bc2 100644
+--- a/arch/xtensa/lib/usercopy.S
++++ b/arch/xtensa/lib/usercopy.S
+@@ -54,8 +54,8 @@
+  */
  
--#endif /* __KERNEL__ */
- #endif /* _XTENSA_PGALLOC_H */
+ #include <linux/linkage.h>
+-#include <variant/core.h>
+ #include <asm/asmmacro.h>
++#include <asm/core.h>
+ 
+ 	.text
+ ENTRY(__xtensa_copy_user)
+diff --git a/arch/xtensa/platforms/xt2000/include/platform/hardware.h b/arch/xtensa/platforms/xt2000/include/platform/hardware.h
+index 8e5e0d6a81ec..9f213f573330 100644
+--- a/arch/xtensa/platforms/xt2000/include/platform/hardware.h
++++ b/arch/xtensa/platforms/xt2000/include/platform/hardware.h
+@@ -15,7 +15,7 @@
+ #ifndef _XTENSA_XT2000_HARDWARE_H
+ #define _XTENSA_XT2000_HARDWARE_H
+ 
+-#include <variant/core.h>
++#include <asm/core.h>
+ 
+ /*
+  * On-board components.
+diff --git a/arch/xtensa/platforms/xt2000/include/platform/serial.h b/arch/xtensa/platforms/xt2000/include/platform/serial.h
+index 7226cf732b47..cde804827626 100644
+--- a/arch/xtensa/platforms/xt2000/include/platform/serial.h
++++ b/arch/xtensa/platforms/xt2000/include/platform/serial.h
+@@ -11,7 +11,7 @@
+ #ifndef _XTENSA_XT2000_SERIAL_H
+ #define _XTENSA_XT2000_SERIAL_H
+ 
+-#include <variant/core.h>
++#include <asm/core.h>
+ #include <asm/io.h>
+ 
+ /*  National-Semi PC16552D DUART:  */
 -- 
 2.11.0
 
