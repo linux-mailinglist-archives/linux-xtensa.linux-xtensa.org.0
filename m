@@ -2,56 +2,56 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 2091B19F12
-	for <lists+linux-xtensa@lfdr.de>; Fri, 10 May 2019 16:24:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD92F19F85
+	for <lists+linux-xtensa@lfdr.de>; Fri, 10 May 2019 16:48:34 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 9E2B365A0;
-	Fri, 10 May 2019 14:22:25 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 8D64B6564;
+	Fri, 10 May 2019 14:46:43 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
 Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
  [209.85.167.66])
- by linux-xtensa.org (Postfix) with ESMTPS id 6CC59659E
- for <linux-xtensa@linux-xtensa.org>; Fri, 10 May 2019 14:22:24 +0000 (UTC)
-Received: by mail-lf1-f66.google.com with SMTP id h126so4283672lfh.4
- for <linux-xtensa@linux-xtensa.org>; Fri, 10 May 2019 07:24:14 -0700 (PDT)
+ by linux-xtensa.org (Postfix) with ESMTPS id A232F6546
+ for <linux-xtensa@linux-xtensa.org>; Fri, 10 May 2019 14:46:41 +0000 (UTC)
+Received: by mail-lf1-f66.google.com with SMTP id y19so4344790lfy.5
+ for <linux-xtensa@linux-xtensa.org>; Fri, 10 May 2019 07:48:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id;
- bh=rQlD7ioSp0h7pIx6Lzx8IuAt7n8Kwzx7eXyx0CKffz0=;
- b=VjGMoKRfDpe4tEp9Dvuwd56FbPLBTKaJNdKLzvUZqw7/0JvX4MKvSBriEuBW5TpwIr
- MYzRJdQRE0cj4BtXY14xCAOAUY41ZXzKXOxJjrAQ7iMUEglPo/swXrrVQLKAiNVyDr/F
- B6hZsAuA2SdMePVjihX/JVWTEUsqC4QS3GGVcFNdrXX5tRVVVPqZ/ezBfIB5RJW5vPpH
- CGgdNBNnPq0wjReDwWy2tSRhR4Bp/UM2ZcQ+5bHpmTWFvOdvgxZ5QeU4N4fQUZnUfvC4
- 15vg6x01OBfwd4Q2XHqO7p3ghhhiPJZ3j9fjkS8HA6j/5e+7VyDsTU/mUmJeGS73II/Y
- ZfXw==
+ bh=Sc/98YVrZlEbCCc7IxPerU+x2RTuZLgQB0OY0LLievc=;
+ b=VRC32qdBtW5wmolnPjJ5f9wgO2xtJ4Frox4sMi06CleyvFTI3HJEdLEVZcZGWnIPQk
+ jkAc5sIl5mREHf8pCJJmSi8sdlRFr/GVfT0zOifzDv3GatErM4U9kJuOp3L2wkvjDaQ0
+ 5NRjS53qOAheTe/AGzEwdpR8UIj9CQMJcf87XTAjuELdi69pqEFa2zuWGBhiytNrMvFI
+ zhQ21nJpsKSFqgPAj41rDlZpsYUmMVrUvWW/9OhIMwGrv0DvSya4YbapPa1qc7Gg9jR3
+ uuCLQIBCN+9R8rx7p8x+s92gqIOyeXxyWlEY7+VFxM6Y61fIh+f6tj1PRlyeZtjHeDE3
+ 4XzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=rQlD7ioSp0h7pIx6Lzx8IuAt7n8Kwzx7eXyx0CKffz0=;
- b=g99kNQ1QTorxqiSSw2hezI8D/28e6npF3K0xa/qM/FMA239V5Vm7S1uvtJCrVI+R9Z
- ynVaCJXSu/kg9rnZn/xM7utMeOXozShg9lqJYniexddESo368OXF1N4cu7eNTeLkuaqd
- JKiFoU/RkcIQYcYR090ZbAhQjkTaNSNlwquGwNlandhbWKICBjp3b7H+/CBGHPaQTvfU
- Od8pzgfi/aNQwkEpAPun/AlimVadXmL3SNElA+4J6aXV6kORPqneP+iauQuRJmakRh54
- pca0WzPagWH30tDGnNvnFZsQT4Zcuizi2u0Xw97l4cOovmsLboF4QW/pMzwuo9SxpWJg
- mWgQ==
-X-Gm-Message-State: APjAAAWNz9NrX0Bsnujl3NSDcMVMOnAeyxUf7efuqWrb/QjrE0RBlQWw
- pwVu++scpzBF9k4Ug1wVWEA=
-X-Google-Smtp-Source: APXvYqx5AIcZj7yILmvTrVXMbxicgqm6HiX+TQMWM9plhjXfFGz8FS5IoLxnQHkwFf+oyACBDl73UA==
-X-Received: by 2002:a19:e34c:: with SMTP id c12mr6182530lfk.145.1557498252785; 
- Fri, 10 May 2019 07:24:12 -0700 (PDT)
+ bh=Sc/98YVrZlEbCCc7IxPerU+x2RTuZLgQB0OY0LLievc=;
+ b=CP4BDC2nnZt+cuwbVL89cwbSiTliUtnM9sWY+I+WfLMU6xei3A1wnB7sDCOxv1jO7u
+ WrkD0U35fCXPjnTbHt9Yhola7kU/Rococru5lhJgh0cQ00bwxCe4fuZTfbdTrD7uaUvH
+ UELGBJrhkmM+poNTkSpvjUeziClcOp5V2g6pb82DdJSoXJY3YyF0lvowYAYqneyD6rB/
+ 6BcNRbLkg2zidjh6iBE1fPsmnA7PYpMykqomIKz2UO2YFDDE25F4c0COoGZcVIlJncrn
+ 9soV5WX6YFKGa2pDuYHiMIdnFOErVvOzj/6ZCa+jCZW7kL5m4wkiHgyHst9kKx/I+u4W
+ LzpQ==
+X-Gm-Message-State: APjAAAX5Fx+5slODHpVNcQu+Pj+X1Str8FPicCZky3/IzWJoxKyBlqj+
+ OMbZ32h3yHz84v0A9IN0b+L3PfpVWco=
+X-Google-Smtp-Source: APXvYqwncRV6MhgMt4ngFzl3I+XJGWXHyvBcL2X6NQGzCLRBwCDqFUnmct042/GNnhZoqD/zZRQ+mQ==
+X-Received: by 2002:a19:655a:: with SMTP id c26mr6515051lfj.97.1557499711106; 
+ Fri, 10 May 2019 07:48:31 -0700 (PDT)
 Received: from octofox.hsd1.ca.comcast.net.
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id u13sm1115181lfg.71.2019.05.10.07.24.10
+ by smtp.gmail.com with ESMTPSA id v11sm1549447lfb.68.2019.05.10.07.48.28
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 10 May 2019 07:24:12 -0700 (PDT)
+ Fri, 10 May 2019 07:48:30 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: devel@uclibc-ng.org
-Date: Fri, 10 May 2019 07:23:53 -0700
-Message-Id: <20190510142353.1977-1-jcmvbkbc@gmail.com>
+Date: Fri, 10 May 2019 07:48:14 -0700
+Message-Id: <20190510144814.19121-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.11.0
 Cc: Waldemar Brodkorb <wbx@uclibc-ng.org>, linux-xtensa@linux-xtensa.org,
  Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] preadv/pwritev: fix offset argument type
+Subject: [Linux-Xtensa] [PATCH] xtensa: don't use l32r opcode explicitly
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -70,68 +70,67 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-preadv/pwritev don't provide separate version for 64-bit wide off_t,
-and default to 32-bit wide off_t, which results in a mismatch between
-declaration and definition for user programs built with
--D_FILE_OFFSET_BITS=64.
-Make offset argument of both functions __off64_t.
-This fixes test misc/tst-preadvwritev on xtensa.
+xtensa assembler is capable of representing register loads with either
+movi + addmi, l32r or const16, depending on the core configuration.
+Don't use '.literal' and 'l32r' directly in the code, use 'movi' and let
+the assembler relax them.
 
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- include/sys/uio.h                   | 4 ++--
- libc/sysdeps/linux/common/preadv.c  | 2 +-
- libc/sysdeps/linux/common/pwritev.c | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+ libc/string/xtensa/strcmp.S | 17 +++++------------
+ 1 file changed, 5 insertions(+), 12 deletions(-)
 
-diff --git a/include/sys/uio.h b/include/sys/uio.h
-index aa766f9b1187..330426fec492 100644
---- a/include/sys/uio.h
-+++ b/include/sys/uio.h
-@@ -59,7 +59,7 @@ extern ssize_t writev (int __fd, const struct iovec *__iovec, int __count);
-    This function is a cancellation point and therefore not marked with
-    __THROW.  */
- extern ssize_t preadv (int __fd, const struct iovec *__iovec, int __count,
--		       off_t __offset) __wur;
-+		       __off64_t __offset) __wur;
+diff --git a/libc/string/xtensa/strcmp.S b/libc/string/xtensa/strcmp.S
+index a16da5da2e92..a106bee675f5 100644
+--- a/libc/string/xtensa/strcmp.S
++++ b/libc/string/xtensa/strcmp.S
+@@ -37,11 +37,6 @@
+ 	.text
+ 	.align 4
+ 	.literal_position
+-	.literal .Lmask0, MASK0
+-	.literal .Lmask1, MASK1
+-	.literal .Lmask2, MASK2
+-	.literal .Lmask3, MASK3
+-	.literal .Lmask4, MASK4
+ ENTRY (strcmp)
+ 	/* a2 = s1, a3 = s2 */
  
- /* Write data pointed by the buffers described by IOVEC, which is a
-    vector of COUNT 'struct iovec's, to file descriptor FD at the given
-@@ -71,7 +71,7 @@ extern ssize_t preadv (int __fd, const struct iovec *__iovec, int __count,
-    This function is a cancellation point and therefore not marked with
-    __THROW.  */
- extern ssize_t pwritev (int __fd, const struct iovec *__iovec, int __count,
--			off_t __offset) __wur;
-+			__off64_t __offset) __wur;
- #endif	/* Use misc.  */
+@@ -130,10 +125,9 @@ ENTRY (strcmp)
+ 	.align	4
+ #if XCHAL_HAVE_LOOPS
+ .Laligned:
+-	.begin	no-transform
+ 	movi	a11, 0
+-	l32r	a4, .Lmask0	/* mask for byte 0 */
+-	l32r	a7, .Lmask4
++	movi	a4, MASK0	/* mask for byte 0 */
++	movi	a7, MASK4
+ 	loop	a11, .Laligned_done /* Loop forever. */
  
- __END_DECLS
-diff --git a/libc/sysdeps/linux/common/preadv.c b/libc/sysdeps/linux/common/preadv.c
-index fd9dde4b999c..6a07d5df87e0 100644
---- a/libc/sysdeps/linux/common/preadv.c
-+++ b/libc/sysdeps/linux/common/preadv.c
-@@ -21,7 +21,7 @@
+ 	/* First unrolled loop body.  */
+@@ -184,10 +178,10 @@ ENTRY (strcmp)
+ 	   If not, loop over the rest of string using normal algorithm.  */
  
- #ifdef __NR_preadv
- ssize_t
--preadv (int fd, const struct iovec *vector, int count, off_t offset)
-+preadv (int fd, const struct iovec *vector, int count, __off64_t offset)
- {
-   unsigned long pos_l, pos_h;
+ 	bnone	a8, a4, .Leq	/* if byte 0 is zero */
+-	l32r	a5, .Lmask1	/* mask for byte 1 */
+-	l32r	a6, .Lmask2	/* mask for byte 2 */
++	movi	a5, MASK1	/* mask for byte 1 */
++	movi	a6, MASK2	/* mask for byte 2 */
+ 	bnone	a8, a5, .Leq	/* if byte 1 is zero */
+-	l32r	a7, .Lmask3	/* mask for byte 3 */
++	movi	a7, MASK3	/* mask for byte 3 */
+ 	bnone	a8, a6, .Leq	/* if byte 2 is zero */
+ 	bnone	a8, a7, .Leq	/* if byte 3 is zero */
+ 	addi.n	a2, a2, 4	/* advance s1 pointer */
+@@ -196,7 +190,6 @@ ENTRY (strcmp)
  
-diff --git a/libc/sysdeps/linux/common/pwritev.c b/libc/sysdeps/linux/common/pwritev.c
-index bef5bcf69b46..f07c40e6de3c 100644
---- a/libc/sysdeps/linux/common/pwritev.c
-+++ b/libc/sysdeps/linux/common/pwritev.c
-@@ -21,7 +21,7 @@
+ 	/* align (1 mod 4) */
+ 	loop	a11, .Leq	/* loop forever */
+-	.end	no-transform
  
- #ifdef __NR_pwritev
- ssize_t
--pwritev (int fd, const struct iovec *vector, int count, off_t offset)
-+pwritev (int fd, const struct iovec *vector, int count, __off64_t offset)
- {
-   unsigned long pos_l, pos_h;
- 
+ 	l32i	a8, a2, 0	/* get word from s1 */
+ 	l32i	a9, a3, 0	/* get word from s2 */
 -- 
 2.11.0
 
