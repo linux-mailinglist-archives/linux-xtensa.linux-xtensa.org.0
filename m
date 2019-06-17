@@ -2,56 +2,55 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id CD8B039529
-	for <lists+linux-xtensa@lfdr.de>; Fri,  7 Jun 2019 21:02:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF605488D5
+	for <lists+linux-xtensa@lfdr.de>; Mon, 17 Jun 2019 18:26:41 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id AC8B465C6;
-	Fri,  7 Jun 2019 18:59:13 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 1F8D06439;
+	Mon, 17 Jun 2019 16:23:31 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
- [209.85.167.67])
- by linux-xtensa.org (Postfix) with ESMTPS id 2EDF165C4
- for <linux-xtensa@linux-xtensa.org>; Fri,  7 Jun 2019 18:59:11 +0000 (UTC)
-Received: by mail-lf1-f67.google.com with SMTP id j29so2389627lfk.10
- for <linux-xtensa@linux-xtensa.org>; Fri, 07 Jun 2019 12:02:00 -0700 (PDT)
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com
+ [209.85.208.176])
+ by linux-xtensa.org (Postfix) with ESMTPS id E29BC6435
+ for <linux-xtensa@linux-xtensa.org>; Mon, 17 Jun 2019 16:23:28 +0000 (UTC)
+Received: by mail-lj1-f176.google.com with SMTP id t28so9890384lje.9
+ for <linux-xtensa@linux-xtensa.org>; Mon, 17 Jun 2019 09:26:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id;
- bh=7TSC6Lcwt0ziWmC1KdJukuudhzzptcOYMXG61hkW4JI=;
- b=FODScLNoVtC3Y/vqI6A6HAMUtssJMFzduhqVCTFGUMv1NX1ozThF2CJIwJ4xg1jjlm
- EHg5aC05/lgwzGRgG3M+hxFH1+mErHCFFwsRlICqw4JbsU0sBUb4O/JH4IdHYtMnWsfV
- /+jx7BCFGndgVxdUHPhrjY6Aa+5nQ46UZaDSwonbahxbn6ylinqZ6bFWc3dXCW2hm4NP
- le9oYV/PnbahgQSQT9Txc7AUW10pn4euHcydnfk5DYkPYwG/izRY2wPpWVE27dGUlT11
- oIpRme84lGKm1Mj05peta2xYk+dsKA2DoDBnerJBrj7a5Th4s8W+OjESvGv7XcNzRJWu
- w8tg==
+ bh=cMhUdTJNWUF5l1EUdWq5XZ4c8tusEKzWlkG1oArWgM8=;
+ b=gngLoSjuveFqJRscfnb00SI3Kagl/C5R1VUAMcR8UXXTz4g6JeQNXb/GLImPpDasJT
+ yn75Da20j/t67wHCZm5QppXoOvc1qyvkzQhUL+pfnxn3/PrvvknKAzqpQ6klqywIGCxf
+ ndm71uJnFevhK67Q+1WZImq6UMI+d/+ETrY2kgreOec+G6fg+knempJl7E+KjKjpYUmW
+ i0frIy61wDvXaC8aaJGc7MgglJo4Duv7Yq9qb/aKQy9UqOVGLVwJEt6nMQswFRxzrJKm
+ 49MfDFm2Lhvew9uDuA4x0JEmojQpuwEXPIvMvq6wZ1v+ALsuLrQ9YIUsxEW1rUY/cxAm
+ /3BA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=7TSC6Lcwt0ziWmC1KdJukuudhzzptcOYMXG61hkW4JI=;
- b=TnUwvDMdjmiWEqfPeZVVieawuA0MCf4r4sSU0bVogpxDd2TH2Ry4E60bdjH1UrLa/Q
- FsjKc6B3MEWf8nn+zU/ykGZikXXuUUa1uzZMGo0Kg6DwL/wySo8yPE5K5NQqywx+816Z
- vm0q4ciwW++xcDWHwxeOk1OTWysj3hGUEbFaFPbWVsXSLSgvXLYJqM63HIaUCiXB8VnS
- HKprOjileqvsWx9+nrSdjGkGwNuHXDj8TNqnp872rCbeRAZRiHBPFgpD6q++LNTf3OLC
- /acdds+bbEl1mr4Pc2l8l1QJTp4jYvZwq4kdQHq6ac1NWR/NgUTkAMzjy+LqfhD0qREa
- EUug==
-X-Gm-Message-State: APjAAAVmf7Zy5e0atEpgZib267Laqi3wFq3/q4Ty7Mv43aREcQsC9v60
- wF9s6SdZn3PeWVzy7ShNQXg=
-X-Google-Smtp-Source: APXvYqxBjO0yyL9+zsTgH4glhJuLGhdeouDe6vBMtMHweRdY0hKv3KnTkMJMHNbbFk/2HMZOXy1SVg==
-X-Received: by 2002:a19:4c05:: with SMTP id z5mr18847629lfa.5.1559934119797;
- Fri, 07 Jun 2019 12:01:59 -0700 (PDT)
+ bh=cMhUdTJNWUF5l1EUdWq5XZ4c8tusEKzWlkG1oArWgM8=;
+ b=YntLatvBP/SMNpkNpWluSFt85a6utXK+OTINJJU4cXaoCyRrH402v4s0A48Ek7VEVs
+ akKwVUv1lXuPaJmmcCy3VrdYuuqO34U52mFxJzNWcW/oom3lOMXGupZ/NF3p8rPXthBh
+ LQr2W/rn7FVkw4P99mnJaALXHzFzCI+wArf1WDNxJqaMezButahtN9bHBjpYKyBLUGu6
+ Rv1cWG/SRPQ3di55TjVkDH6bwAWmA3vCjYdrhPPGA61nbX53Z484wQap2dlo4A8u39hq
+ 1SGzd3e40ePXmVbeVj5cbHU82oCrmLLlk58TmXZ8KSP94rHnWbwnnwclSRrW66o6MO2P
+ gEWA==
+X-Gm-Message-State: APjAAAX1TNdyQcdp0jUNfuq98TBVXazfgqhV0VrIWr/F9CWJZfZ5orsv
+ Ru8S3CXsXoPQ+o2htfWlpuUhuTRF
+X-Google-Smtp-Source: APXvYqxsVq+Q+yUXiY947JP7Aft0JYhd1ZK7VnheSPQ5FYjYLeHGBJQGRZl3+W4sLO2s2PxDxJLA9g==
+X-Received: by 2002:a2e:1290:: with SMTP id 16mr40712563ljs.88.1560788797369; 
+ Mon, 17 Jun 2019 09:26:37 -0700 (PDT)
 Received: from octofox.cadence.com
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id m24sm528507lfl.41.2019.06.07.12.01.57
+ by smtp.gmail.com with ESMTPSA id v14sm1834721lfb.50.2019.06.17.09.26.35
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 07 Jun 2019 12:01:59 -0700 (PDT)
+ Mon, 17 Jun 2019 09:26:36 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Fri,  7 Jun 2019 12:01:31 -0700
-Message-Id: <20190607190131.4252-1-jcmvbkbc@gmail.com>
+To: linux-xtensa@linux-xtensa.org
+Date: Mon, 17 Jun 2019 09:26:21 -0700
+Message-Id: <20190617162623.28518-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.11.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
- linux-kernel@vger.kernel.org
-Subject: [Linux-Xtensa] [PULL 0/1] xtensa fix for v5.2-rc4
+Cc: Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH 0/2] xtensa: clean up PCI support
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -70,37 +69,24 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Hi Linus,
+Hello,
 
-please pull the following fix for the Xtensa architecture.
+this series removes unused/nonfunctional bits of the xtensa PCI support
+and replaces two custom functions with generic ones.
 
-The following changes since commit cd6c84d8f0cdc911df435bb075ba22ce3c605b07:
+Max Filippov (2):
+  xtensa: drop dead PCI support code
+  xtensa: use generic pcibios_set_master and pcibios_enable_device
 
-  Linux 5.2-rc2 (2019-05-26 16:49:19 -0700)
+ arch/xtensa/include/asm/platform.h |  10 ---
+ arch/xtensa/kernel/pci.c           | 123 -------------------------------------
+ arch/xtensa/kernel/platform.c      |   2 -
+ arch/xtensa/kernel/setup.c         |   4 --
+ 4 files changed, 139 deletions(-)
 
-are available in the git repository at:
+-- 
+2.11.0
 
-  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20190607
-
-for you to fetch changes up to adefd051a6707a6ca0ebad278d3c1c05c960fc3b:
-
-  xtensa: Fix section mismatch between memblock_reserve and mem_reserve (2019-05-30 06:53:53 -0700)
-
-----------------------------------------------------------------
-Xtensa fixes for v5.2-rc4
-
-- fix section mismatch between memblock_reserve and mem_reserve. This
-  fixes tinyconfig xtensa builds.
-
-----------------------------------------------------------------
-Guenter Roeck (1):
-      xtensa: Fix section mismatch between memblock_reserve and mem_reserve
-
- arch/xtensa/kernel/setup.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-Thanks.
--- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
