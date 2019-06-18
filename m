@@ -2,56 +2,55 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id BA3A54AD4B
-	for <lists+linux-xtensa@lfdr.de>; Tue, 18 Jun 2019 23:27:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AC3A4ADD3
+	for <lists+linux-xtensa@lfdr.de>; Wed, 19 Jun 2019 00:23:58 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 693946430;
-	Tue, 18 Jun 2019 21:24:31 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id A1C6B64CB;
+	Tue, 18 Jun 2019 22:20:44 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
- [209.85.208.195])
- by linux-xtensa.org (Postfix) with ESMTPS id 1262A58BA
- for <linux-xtensa@linux-xtensa.org>; Tue, 18 Jun 2019 21:24:30 +0000 (UTC)
-Received: by mail-lj1-f195.google.com with SMTP id 131so1051755ljf.4
- for <linux-xtensa@linux-xtensa.org>; Tue, 18 Jun 2019 14:27:42 -0700 (PDT)
+Received: from mail-yw1-f65.google.com (mail-yw1-f65.google.com
+ [209.85.161.65])
+ by linux-xtensa.org (Postfix) with ESMTPS id 5BE5E64C0
+ for <linux-xtensa@linux-xtensa.org>; Tue, 18 Jun 2019 22:20:42 +0000 (UTC)
+Received: by mail-yw1-f65.google.com with SMTP id k128so7423785ywf.2
+ for <linux-xtensa@linux-xtensa.org>; Tue, 18 Jun 2019 15:23:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=ZG084NGQCXCAYZubYWZ8BkgyVvysLzXv/AN9++CILd0=;
- b=fRc9Q98JiHgZ65dxOEiar2HfDsWSzMnvSqNpUyZfEsc0bgTQGXfPv0xsDyyuHWU/NN
- Vq8DcMDXFKfcKG3ex+qvzGa5/TEge3/EMcmykUABlhLj1KqXLARkRq3tQ6z27bm7T9Ap
- EeOOSLjGyO9HpuEATJgBtNOW+Y2kstj1ml67nFpy+zuSfz8QVhcMBexCF+4zLvw9a3kx
- qQTXb8H0UB5lB1ZW8q1MO4g9abWoUW8sqY297DOiRZY53XI8PxETLZUq68KPUxHCAQKR
- ozUQPY686l4MUJkQeqxP03Q+YIZwxfBbtYZ0lIHN8aOo9EYAoEN6KrZ7GrhY1X7X5G+F
- o24w==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=lblnjD8yKxjblXQJpvE8hIHPuogt1K2Mmlgr/5+atTY=;
+ b=qS2+l1XFU59Fk0nEg8XNz49InCLjrnlaF1CmU6iwQKLFpc49JI0PinvI0EJVvddD4C
+ nBuHwJKIYts9Wr8evAYrUiBoW4fhlsMPxZz/1Qu1qZcUcRptrHaEnpp53wNA0Ka3K/A6
+ 0gyIWqDewVEMqH5vJto4GbEIYpX0LupyolP9svPcPKoTYVojK3XfI+BKN66sVgmudUAA
+ 38HM96oH05NTRHbJyd2D7eUqxcoj9WVr5OUiyYYjDR3DuC1wf6q8wBgx/dmEdB2/VYWk
+ cobBbEcs8SlvDij4wI43iEo9kZIT+CY4O5Gxr9xwgjMfVWgyJNkHmfzCH+APcGKZy/+T
+ bfSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=ZG084NGQCXCAYZubYWZ8BkgyVvysLzXv/AN9++CILd0=;
- b=Ew+xFSY4d+QepRKNdYR3X09/6ZJ6EWSgn56oWKZg/y20wwpTJ6Mr3PD1R8ApL1Raxs
- IjR0E+LoLpN9okWZNmCJDdcJIt5Cu2qqXyJPUFhHoU5Z811MYLIVshcp70GxuvjGjhZm
- JBfxQ7CMyG3j9ONDN1bWPTixKcaliSkpHFZdWKCH00yxOVxql6WP+iys9JpT7ylsVB8H
- pXo/U/1W5lcyXNS3YO/oBqmTmmpT2w/y1kZUZg4zUFLg3Nxp9NWFptxisX2bebwKmdds
- Vungy/C+87+G3EZMLbu2fLtHWs0vAixBJ6a3YvqEy1kXn3bYzpN6vqNtUCV1LSFW0uh6
- XlFA==
-X-Gm-Message-State: APjAAAVo0eyA40TWp6xwy4aD+aPb7PqkBC86S/AMm7F0nT1JPARvmMMl
- KKNIFyZWPJ4Mix3cr15LWJw=
-X-Google-Smtp-Source: APXvYqwCeOkEzLbumYpx/yOzcLfACinKTHrcFiddcz8w+0f9VuCjH8HTzZEGl9RBnmtnTAPSgS3fVQ==
-X-Received: by 2002:a2e:8793:: with SMTP id n19mr22352173lji.174.1560893260138; 
- Tue, 18 Jun 2019 14:27:40 -0700 (PDT)
-Received: from octofox.cadence.com
- (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id 137sm2765737ljj.46.2019.06.18.14.27.37
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 18 Jun 2019 14:27:39 -0700 (PDT)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=lblnjD8yKxjblXQJpvE8hIHPuogt1K2Mmlgr/5+atTY=;
+ b=HHg6/8mDYar+xl3tCQZOaMuvrdTWv8REH8hBMjQg5y7yei0KFu+V1h1sBEvUG4Y9j3
+ iiN6s+rFZAcWPfD3ssxXoK4V9WyfZVZzSOQvYf/2zUIOQ9QQsxyeKt3LFneNx9mjLerg
+ FfCzO05mJcdCcri5hyir5FbFaDoN2B+LYqeCvoB+ltmJ1BOqWKIGpCX49txSxUJqIcvX
+ wDqi/PzMbRDEBq3qjFaFC/u/bP+erChpIhxS8GYS57L51PDo4Zewi24BJrRvJBjBj2yF
+ MSdA2e0eejFdtnS5GHl4rzpZe0lfRTyETHaCyYusVbPmbyj3X6rMOTPs22LA+BGWH3aE
+ K9Ww==
+X-Gm-Message-State: APjAAAX3WOgGMZ++9fieBNuM18xmdOwzCMGji1S5Hatf7q1u15yjCw1m
+ ksUI2g0pQuDkcFyR4NB4+PFgKbb2SxrNt8JdYzE=
+X-Google-Smtp-Source: APXvYqxG+jOKapX5HZagSWuQj8KFhElvqrAceoKaJgSgOYlz4a6grx9ExErD8b0z5qyJRodaocgQD65azDDU2cQhMtw=
+X-Received: by 2002:a81:6d07:: with SMTP id i7mr69639490ywc.112.1560896634549; 
+ Tue, 18 Jun 2019 15:23:54 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190618212715.10938-1-jcmvbkbc@gmail.com>
+ <CAGSvup_SsBpJf+nh6UTScxN0KLS21ZbGukDqK=OQ97Nm3NyCqw@mail.gmail.com>
+In-Reply-To: <CAGSvup_SsBpJf+nh6UTScxN0KLS21ZbGukDqK=OQ97Nm3NyCqw@mail.gmail.com>
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: gcc-patches@gcc.gnu.org
-Date: Tue, 18 Jun 2019 14:27:15 -0700
-Message-Id: <20190618212715.10938-1-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.11.0
-Cc: Sterling Augustine <augustine.sterling@gmail.com>,
- linux-xtensa@linux-xtensa.org, Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: fix PR target/90922
+Date: Tue, 18 Jun 2019 15:23:43 -0700
+Message-ID: <CAMo8BfJifHVmtQRPafvrROY+ybaZ=ArWwW7=hR8hEyM_b48mHQ@mail.gmail.com>
+To: "augustine.sterling@gmail.com" <augustine.sterling@gmail.com>
+Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>, GCC Patches <gcc-patches@gcc.gnu.org>
+Subject: Re: [Linux-Xtensa] [PATCH] xtensa: fix PR target/90922
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -64,47 +63,33 @@ List-Post: <mailto:linux-xtensa@linux-xtensa.org>
 List-Help: <mailto:linux-xtensa-request@linux-xtensa.org?subject=help>
 List-Subscribe: <http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa>, 
  <mailto:linux-xtensa-request@linux-xtensa.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Stack pointer adjustment code in prologue missed a case of no
-callee-saved registers and a stack frame size bigger than 128 bytes.
-Handle that case.
+On Tue, Jun 18, 2019 at 3:09 PM augustine.sterling@gmail.com
+<augustine.sterling@gmail.com> wrote:
+>
+> On Tue, Jun 18, 2019 at 2:27 PM Max Filippov <jcmvbkbc@gmail.com> wrote:
+> >
+> > Stack pointer adjustment code in prologue missed a case of no
+> > callee-saved registers and a stack frame size bigger than 128 bytes.
+> > Handle that case.
+> >
+> > This fixes the following gcc tests with call0 ABI:
+> >   gcc.c-torture/execute/stdarg-2.c
+> >   gcc.dg/torture/pr55882.c
+> >   gcc.dg/torture/pr57569.c
+>
+> Approved, please apply.
 
-This fixes the following gcc tests with call0 ABI:
-  gcc.c-torture/execute/stdarg-2.c
-  gcc.dg/torture/pr55882.c
-  gcc.dg/torture/pr57569.c
+Thanks. Applied to trunk.
+I'll backport it later to gcc-7..9 branches.
 
-2019-06-18  Max Filippov  <jcmvbkbc@gmail.com>
-gcc/
-	* config/xtensa/xtensa.c (xtensa_expand_prologue): Add stack
-	pointer adjustment for the case of no callee-saved registers and
-	stack frame bigger than 128 bytes.
----
- gcc/config/xtensa/xtensa.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/gcc/config/xtensa/xtensa.c b/gcc/config/xtensa/xtensa.c
-index 19bd616d67f6..ee5612441e25 100644
---- a/gcc/config/xtensa/xtensa.c
-+++ b/gcc/config/xtensa/xtensa.c
-@@ -2865,7 +2865,8 @@ xtensa_expand_prologue (void)
- 			    gen_rtx_SET (mem, reg));
- 	    }
- 	}
--      if (total_size > 1024)
-+      if (total_size > 1024
-+	  || (!callee_save_size && total_size > 128))
- 	{
- 	  rtx tmp_reg = gen_rtx_REG (Pmode, A9_REG);
- 	  emit_move_insn (tmp_reg, GEN_INT (total_size -
 -- 
-2.11.0
-
+Thanks.
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
