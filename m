@@ -2,55 +2,56 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AC3A4ADD3
-	for <lists+linux-xtensa@lfdr.de>; Wed, 19 Jun 2019 00:23:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8174958BBA
+	for <lists+linux-xtensa@lfdr.de>; Thu, 27 Jun 2019 22:37:34 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id A1C6B64CB;
-	Tue, 18 Jun 2019 22:20:44 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 4C33765D5;
+	Thu, 27 Jun 2019 20:34:01 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-yw1-f65.google.com (mail-yw1-f65.google.com
- [209.85.161.65])
- by linux-xtensa.org (Postfix) with ESMTPS id 5BE5E64C0
- for <linux-xtensa@linux-xtensa.org>; Tue, 18 Jun 2019 22:20:42 +0000 (UTC)
-Received: by mail-yw1-f65.google.com with SMTP id k128so7423785ywf.2
- for <linux-xtensa@linux-xtensa.org>; Tue, 18 Jun 2019 15:23:54 -0700 (PDT)
+Received: from mail-yb1-f193.google.com (mail-yb1-f193.google.com
+ [209.85.219.193])
+ by linux-xtensa.org (Postfix) with ESMTPS id 2F44665D3
+ for <linux-xtensa@linux-xtensa.org>; Thu, 27 Jun 2019 20:33:59 +0000 (UTC)
+Received: by mail-yb1-f193.google.com with SMTP id j8so2243845ybo.12
+ for <linux-xtensa@linux-xtensa.org>; Thu, 27 Jun 2019 13:37:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=lblnjD8yKxjblXQJpvE8hIHPuogt1K2Mmlgr/5+atTY=;
- b=qS2+l1XFU59Fk0nEg8XNz49InCLjrnlaF1CmU6iwQKLFpc49JI0PinvI0EJVvddD4C
- nBuHwJKIYts9Wr8evAYrUiBoW4fhlsMPxZz/1Qu1qZcUcRptrHaEnpp53wNA0Ka3K/A6
- 0gyIWqDewVEMqH5vJto4GbEIYpX0LupyolP9svPcPKoTYVojK3XfI+BKN66sVgmudUAA
- 38HM96oH05NTRHbJyd2D7eUqxcoj9WVr5OUiyYYjDR3DuC1wf6q8wBgx/dmEdB2/VYWk
- cobBbEcs8SlvDij4wI43iEo9kZIT+CY4O5Gxr9xwgjMfVWgyJNkHmfzCH+APcGKZy/+T
- bfSA==
+ :cc; bh=9nVOtlju8csIcNRRNwvhU29isQ3Rt4IPNLGyKSCvv90=;
+ b=gkX3/j7eA/9Dj6rOAXXvFLWl4m4E+rlkxxmn+g/fKNORNs1hO6b8z1g8OwGu/JGEfn
+ buOFuAB4ltgph5dqxxu2zCyygo9C3C1bhWaALqEyy8xYxfRQNeyhuGVEeopJSXCGMNDw
+ 7f4ld/9jEGn1F3TSYnIdlNypUjmtsk2V/yBzgcGX9htotPephx45YpG5Q5gwIxSbl98V
+ kAzDXC8tariAgUcmYO2HvzQ1UKNLmSwHqdK26R++vTbGlUK0NWDBpMG+eTQ07E/8+0QR
+ 0FNU8m3XuvAkTeL4NCOZkcW06+0L4mrrtFU8dGufBw7VzNqIEFaFMxG0gpmSSNbA+0Ax
+ sOyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=lblnjD8yKxjblXQJpvE8hIHPuogt1K2Mmlgr/5+atTY=;
- b=HHg6/8mDYar+xl3tCQZOaMuvrdTWv8REH8hBMjQg5y7yei0KFu+V1h1sBEvUG4Y9j3
- iiN6s+rFZAcWPfD3ssxXoK4V9WyfZVZzSOQvYf/2zUIOQ9QQsxyeKt3LFneNx9mjLerg
- FfCzO05mJcdCcri5hyir5FbFaDoN2B+LYqeCvoB+ltmJ1BOqWKIGpCX49txSxUJqIcvX
- wDqi/PzMbRDEBq3qjFaFC/u/bP+erChpIhxS8GYS57L51PDo4Zewi24BJrRvJBjBj2yF
- MSdA2e0eejFdtnS5GHl4rzpZe0lfRTyETHaCyYusVbPmbyj3X6rMOTPs22LA+BGWH3aE
- K9Ww==
-X-Gm-Message-State: APjAAAX3WOgGMZ++9fieBNuM18xmdOwzCMGji1S5Hatf7q1u15yjCw1m
- ksUI2g0pQuDkcFyR4NB4+PFgKbb2SxrNt8JdYzE=
-X-Google-Smtp-Source: APXvYqxG+jOKapX5HZagSWuQj8KFhElvqrAceoKaJgSgOYlz4a6grx9ExErD8b0z5qyJRodaocgQD65azDDU2cQhMtw=
-X-Received: by 2002:a81:6d07:: with SMTP id i7mr69639490ywc.112.1560896634549; 
- Tue, 18 Jun 2019 15:23:54 -0700 (PDT)
+ bh=9nVOtlju8csIcNRRNwvhU29isQ3Rt4IPNLGyKSCvv90=;
+ b=sRQezDej3RyP+9OtdBH9+URslcf4aYD4Cuo4Qu3jA7pCf203nre+Dz0dKqUvcFux1r
+ kdSpQhwwhtkIX7bwYw13oo8s2iugUPdK3hdqpyEkG2vxdhzM8bPsWtrcLTgL6T4dLnCL
+ sp8G/Jxc+miTE1TZVD/UG9IS+eipnihoG+CcvdJfOp6n2KL+TaiiIzCr71xgF/LmeNsN
+ NWJdRLL3yMiXqTnM1Gr7x2DHac2sPP4vpkPFhoElZCohkSscCxTkoUrAt7awdQHN2Br1
+ 9xDcpBQcoJasJn8w7YKS7cuuL7rCEfeA1u3wHH9YQTjK4O9qjPWqx6LnhanCQJj5dcNh
+ 2akA==
+X-Gm-Message-State: APjAAAWOzLUYPVYzjhHVRvmDJMgj6HJWVrSi//kdpXGcXcFV8XsCpbB8
+ VVfUHb6GVRrxvL0jPpP9Vx3NhMApyWtp3NGlEmM=
+X-Google-Smtp-Source: APXvYqxnZwKL8uAKFwqU1Al3NryHFgkeA2TGfrZeraalix6k1RfRY5XylEBxf580X2ZkhSDVbbQOmYYNQD9ZdNWnuKc=
+X-Received: by 2002:a25:7397:: with SMTP id o145mr218166ybc.329.1561667848946; 
+ Thu, 27 Jun 2019 13:37:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190618212715.10938-1-jcmvbkbc@gmail.com>
- <CAGSvup_SsBpJf+nh6UTScxN0KLS21ZbGukDqK=OQ97Nm3NyCqw@mail.gmail.com>
-In-Reply-To: <CAGSvup_SsBpJf+nh6UTScxN0KLS21ZbGukDqK=OQ97Nm3NyCqw@mail.gmail.com>
+References: <20190627070052.8647-1-yamada.masahiro@socionext.com>
+In-Reply-To: <20190627070052.8647-1-yamada.masahiro@socionext.com>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Tue, 18 Jun 2019 15:23:43 -0700
-Message-ID: <CAMo8BfJifHVmtQRPafvrROY+ybaZ=ArWwW7=hR8hEyM_b48mHQ@mail.gmail.com>
-To: "augustine.sterling@gmail.com" <augustine.sterling@gmail.com>
-Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, GCC Patches <gcc-patches@gcc.gnu.org>
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: fix PR target/90922
+Date: Thu, 27 Jun 2019 13:37:17 -0700
+Message-ID: <CAMo8BfJe6va+=oB_VWG5F0xWFQv+Qbx5DXdjJbO2XLNh5rs3=g@mail.gmail.com>
+To: Masahiro Yamada <yamada.masahiro@socionext.com>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>
+Subject: Re: [Linux-Xtensa] [PATCH] xtensa: remove unneeded BITS_PER_LONG
+	define
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -68,24 +69,23 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Tue, Jun 18, 2019 at 3:09 PM augustine.sterling@gmail.com
-<augustine.sterling@gmail.com> wrote:
->
-> On Tue, Jun 18, 2019 at 2:27 PM Max Filippov <jcmvbkbc@gmail.com> wrote:
-> >
-> > Stack pointer adjustment code in prologue missed a case of no
-> > callee-saved registers and a stack frame size bigger than 128 bytes.
-> > Handle that case.
-> >
-> > This fixes the following gcc tests with call0 ABI:
-> >   gcc.c-torture/execute/stdarg-2.c
-> >   gcc.dg/torture/pr55882.c
-> >   gcc.dg/torture/pr57569.c
->
-> Approved, please apply.
+Hi Yamada-san,
 
-Thanks. Applied to trunk.
-I'll backport it later to gcc-7..9 branches.
+On Thu, Jun 27, 2019 at 12:01 AM Masahiro Yamada
+<yamada.masahiro@socionext.com> wrote:
+>
+> Xtensa does not define CONFIG_64BIT. The generic definition in
+> include/asm-generic/bitsperlong.h should work.
+>
+> Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> ---
+>
+>  arch/xtensa/include/asm/types.h | 8 --------
+>  1 file changed, 8 deletions(-)
+
+After this change the file arch/xtensa/include/asm/types.h is effectively
+empty, only including uapi/asm/types.h. Maybe it should be dropped
+altogether?
 
 -- 
 Thanks.
