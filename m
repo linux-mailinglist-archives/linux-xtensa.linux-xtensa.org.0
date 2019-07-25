@@ -2,56 +2,55 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 66F1B69A15
-	for <lists+linux-xtensa@lfdr.de>; Mon, 15 Jul 2019 19:44:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77D75742B3
+	for <lists+linux-xtensa@lfdr.de>; Thu, 25 Jul 2019 02:50:39 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id DB60052A7;
-	Mon, 15 Jul 2019 17:40:41 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 7B55264BC;
+	Thu, 25 Jul 2019 00:46:08 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com
- [209.85.208.193])
- by linux-xtensa.org (Postfix) with ESMTPS id 949753566
- for <linux-xtensa@linux-xtensa.org>; Mon, 15 Jul 2019 17:40:39 +0000 (UTC)
-Received: by mail-lj1-f193.google.com with SMTP id z28so17187837ljn.4
- for <linux-xtensa@linux-xtensa.org>; Mon, 15 Jul 2019 10:44:49 -0700 (PDT)
+Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
+ [209.85.167.66])
+ by linux-xtensa.org (Postfix) with ESMTPS id CCBAC64B8
+ for <linux-xtensa@linux-xtensa.org>; Thu, 25 Jul 2019 00:46:05 +0000 (UTC)
+Received: by mail-lf1-f66.google.com with SMTP id s19so33221710lfb.9
+ for <linux-xtensa@linux-xtensa.org>; Wed, 24 Jul 2019 17:50:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id;
- bh=lN7NolkvgcEAi2xoTGIqWk3kYzQk+ol6Awu1yLItqUA=;
- b=ZLrQKjaj7huMHrfrkDQqhRaPPeLbmbgXI5QvCRdJEPV7lBgNacx2aDqK1gtjTkLxpk
- 8fxivqeUkGQTFlcVEnjw6Jvvgn5XNfKXhp7AinsJ9jLrYfKckS8WLiMb9vV1M6C84ifq
- u3mGPGGpr+Q0p3o1i7yfLr692BFeIvadk/FvCC6Je53GAgh+K8uB3HndKud08fHIBLFc
- 4AkCGIgjz5LsDc5nMxvrP07VO/9rgz/6d9zbcprP7YPAOy1D/2Syjm09lJAIsjLPmrsl
- 2vLyGpvRnBzd+y5zrU59d55vM2pwVDmwbFB4aSLtXgDoNaVVtmIyMa7CsnkcnrKLR8ec
- npkg==
+ bh=mCd7vGjPKVt9fXDd0rS7L2SXnPX/wqltrVI5UWXsS40=;
+ b=ZLHWza0snOAbw3v0S+yxjGrQ2FRsKxYAnKKmguNO1s1i2gn6D2O2Q0Nz6VJAs4Efme
+ W/VdiLntOlDHhorIf3tvmVUPhyWhSZFUM/t9e7qgoO+rLivp39H+MwAU5FUJ5N32KUr3
+ LyMfKjfd4G+glN/wzdyp3NdUAlSW4kzU5rpjDLF7WUFfudsa/PAoPySk6pZeXRz3GzjU
+ P80nZPC0/qvuzNvjAFjLcFPZerBhaDXEUUhrNjefbxcXL+CK4L2O5Y9Vfo2LjKA1Bh1y
+ +Ksu5iLRJZgio85x5dKyqQ610581eR8/sZTz1wopUCqpugzjYt73bYiagD6XPhlJBxrj
+ ePNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=lN7NolkvgcEAi2xoTGIqWk3kYzQk+ol6Awu1yLItqUA=;
- b=Uiai2uEPzI8LjrBJDQqKLZyCPuKTcotG9eun8AFdDU936BOsqSQD0saFQ4vJhY04DG
- 8DG4L5eJKFl1+0JgL2rS4oU93KaC3HrSWa7kzUfc45RSTsPtGeMhsVSKqI8K5cc2Fh3e
- CfgkqMUU5N34MoA8CqJnTmrML3fJIswFEIh9PUHGoKrLBrnworW2wqfrNMqHY6CP8SRF
- u6RvQmANmQkGYyLH4wWfrdXiXyRJd92lp9h8l4Ueos0lb2a18tFM70Tm6wAJgLg63Wrl
- msjj5f/lZoMyJ1sX6jI8p+dOEWzwpLV2YziYkDN+4UviiLpu/NWHzzKKEkD1JwL/jhog
- ZBLQ==
-X-Gm-Message-State: APjAAAX7JabXMlW1s8+J4dfI9gyoFX9TJFFhPCHFMaTmCIFmfrPBTtmL
- laExYOynd8rZ80nBLwQXtl8=
-X-Google-Smtp-Source: APXvYqwl5QVR0MSi4chrtMnfImvMNFt4ODmIHWF8jWRqUtLjAVwkhUFOFPeRIEX+8kqysR6t4Tvbww==
-X-Received: by 2002:a2e:298a:: with SMTP id p10mr14429150ljp.74.1563212687922; 
- Mon, 15 Jul 2019 10:44:47 -0700 (PDT)
-Received: from octofox.cadence.com
- (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id t21sm2431287lfl.17.2019.07.15.10.44.45
+ bh=mCd7vGjPKVt9fXDd0rS7L2SXnPX/wqltrVI5UWXsS40=;
+ b=pb7h/7EtotWkSlKO2m635BsJQymGC5Z0tdMHnYQkRNfIEwDbjccYNFswEYuXHCJakR
+ 1xoZrRiVOdnlkythiPk+5IBqysJXk2P7IAv9Bn0hsbvU8FZ1l/Rx0UDYiuLaZ66aB+A/
+ iE1nDQjbfjvzKql8D7ElvadSxxzBRp4Dj0SMKRFi1TeObziJ8yeR8mbld0ypChSKlF+9
+ 3FfDjmG0B0ftoeesz5Q9dAyJ8GR2s68Zd34UO0T3U7mHobRluV8zrCnlZIYJ4jqo8twA
+ MfWXqDv/96wPXlpYAFJkNTSiPty9YVpD0MP1WiGmaiuwK5QC87ZixbuMYCBWxVneUwjs
+ W+0A==
+X-Gm-Message-State: APjAAAUBaeLSrUhQX6dmCSXPagjPrhDRYLDXxI2u9ZjLknK2539UkD0l
+ 9659fOT0MFqUoe1IhkWk+BLcwUrDUK0=
+X-Google-Smtp-Source: APXvYqzSm893L0oehWLZI2wa2M+v062+va0jZ+6/9iuAVd+12h+6zRrXnsYN86WfdO7qXcv/EJUaqg==
+X-Received: by 2002:a19:a83:: with SMTP id 125mr18636295lfk.150.1564015834189; 
+ Wed, 24 Jul 2019 17:50:34 -0700 (PDT)
+Received: from octofox.lan1 (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net.
+ [2001:470:27:1fa::2])
+ by smtp.gmail.com with ESMTPSA id q1sm8816748ljb.87.2019.07.24.17.50.31
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 15 Jul 2019 10:44:47 -0700 (PDT)
+ Wed, 24 Jul 2019 17:50:33 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 15 Jul 2019 10:44:27 -0700
-Message-Id: <20190715174427.6144-1-jcmvbkbc@gmail.com>
+To: linux-xtensa@linux-xtensa.org
+Date: Wed, 24 Jul 2019 17:50:02 -0700
+Message-Id: <20190725005002.5008-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.11.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
- linux-kernel@vger.kernel.org
-Subject: [Linux-Xtensa] [PULL 0/7] xtensa updates for v5.3
+Cc: Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: fix build for cores with coprocessors
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -70,72 +69,31 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Hi Linus,
+Assembly entry/return abstraction change didn't add asmmacro.h include
+statement to coprocessor.S, resulting in references to undefined macros
+abi_entry and abi_ret on cores that define XTENSA_HAVE_COPROCESSORS.
+Fix that by including asm/asmmacro.h from the coprocessor.S.
 
-please pull the following batch of updates for the Xtensa architecture:
+Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+---
+ arch/xtensa/kernel/coprocessor.S | 1 +
+ 1 file changed, 1 insertion(+)
 
-The following changes since commit 9e0babf2c06c73cda2c0cd37a1653d823adb40ec:
-
-  Linux 5.2-rc5 (2019-06-16 08:49:45 -1000)
-
-are available in the git repository at:
-
-  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20190715
-
-for you to fetch changes up to 775f1f7eacede583ec25ed56e58c4483f2b29265:
-
-  xtensa: virt: add defconfig and DTS (2019-07-08 14:32:06 -0700)
-
-----------------------------------------------------------------
-Xtensa updates for v5.3:
-
-- clean up PCI support code;
-- add defconfig and DTS for the 'virt' board;
-- abstract 'entry' and 'retw' uses in xtensa assembly in preparation for
-  XEA3/NX pipeline support;
-- random small cleanups.
-
-----------------------------------------------------------------
-Guenter Roeck (1):
-      xtensa/PCI: Remove unused variable
-
-Markus Elfring (1):
-      xtensa: One function call less in bootmem_init()
-
-Max Filippov (5):
-      xtensa: drop dead PCI support code
-      xtensa: use generic pcibios_set_master and pcibios_enable_device
-      xtensa: remove arch/xtensa/include/asm/types.h
-      xtensa: abstract 'entry' and 'retw' in assembly code
-      xtensa: virt: add defconfig and DTS
-
- arch/xtensa/boot/dts/virt.dts      |  72 +++++++++++++++++++++
- arch/xtensa/configs/virt_defconfig | 113 +++++++++++++++++++++++++++++++++
- arch/xtensa/include/asm/asmmacro.h |  46 ++++++++++++++
- arch/xtensa/include/asm/platform.h |  10 ---
- arch/xtensa/include/asm/types.h    |  23 -------
- arch/xtensa/kernel/coprocessor.S   |   7 ++-
- arch/xtensa/kernel/entry.S         |  11 ++--
- arch/xtensa/kernel/mcount.S        |  11 ++--
- arch/xtensa/kernel/pci.c           | 124 -------------------------------------
- arch/xtensa/kernel/platform.c      |   2 -
- arch/xtensa/kernel/setup.c         |   4 --
- arch/xtensa/lib/checksum.S         |  12 ++--
- arch/xtensa/lib/memcopy.S          |  38 ++++++------
- arch/xtensa/lib/memset.S           |  10 +--
- arch/xtensa/lib/strncpy_user.S     |  16 ++---
- arch/xtensa/lib/strnlen_user.S     |  14 ++---
- arch/xtensa/lib/usercopy.S         |  12 ++--
- arch/xtensa/mm/init.c              |   5 +-
- arch/xtensa/mm/misc.S              |  78 +++++++++++------------
- 19 files changed, 339 insertions(+), 269 deletions(-)
- create mode 100644 arch/xtensa/boot/dts/virt.dts
- create mode 100644 arch/xtensa/configs/virt_defconfig
- delete mode 100644 arch/xtensa/include/asm/types.h
-
+diff --git a/arch/xtensa/kernel/coprocessor.S b/arch/xtensa/kernel/coprocessor.S
+index 60c220020054..80828b95a51f 100644
+--- a/arch/xtensa/kernel/coprocessor.S
++++ b/arch/xtensa/kernel/coprocessor.S
+@@ -14,6 +14,7 @@
+ 
+ #include <linux/linkage.h>
+ #include <asm/asm-offsets.h>
++#include <asm/asmmacro.h>
+ #include <asm/processor.h>
+ #include <asm/coprocessor.h>
+ #include <asm/thread_info.h>
 -- 
-Thanks.
--- Max
+2.11.0
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
