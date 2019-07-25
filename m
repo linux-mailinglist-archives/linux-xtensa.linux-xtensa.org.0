@@ -2,55 +2,54 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 77D75742B3
-	for <lists+linux-xtensa@lfdr.de>; Thu, 25 Jul 2019 02:50:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09AC77439A
+	for <lists+linux-xtensa@lfdr.de>; Thu, 25 Jul 2019 05:04:33 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 7B55264BC;
-	Thu, 25 Jul 2019 00:46:08 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 0D98E64CF;
+	Thu, 25 Jul 2019 03:00:02 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
- [209.85.167.66])
- by linux-xtensa.org (Postfix) with ESMTPS id CCBAC64B8
- for <linux-xtensa@linux-xtensa.org>; Thu, 25 Jul 2019 00:46:05 +0000 (UTC)
-Received: by mail-lf1-f66.google.com with SMTP id s19so33221710lfb.9
- for <linux-xtensa@linux-xtensa.org>; Wed, 24 Jul 2019 17:50:35 -0700 (PDT)
+Received: from mail-yw1-f67.google.com (mail-yw1-f67.google.com
+ [209.85.161.67])
+ by linux-xtensa.org (Postfix) with ESMTPS id A691A64C1
+ for <linux-xtensa@linux-xtensa.org>; Thu, 25 Jul 2019 03:00:00 +0000 (UTC)
+Received: by mail-yw1-f67.google.com with SMTP id l124so18792924ywd.0
+ for <linux-xtensa@linux-xtensa.org>; Wed, 24 Jul 2019 20:04:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=mCd7vGjPKVt9fXDd0rS7L2SXnPX/wqltrVI5UWXsS40=;
- b=ZLHWza0snOAbw3v0S+yxjGrQ2FRsKxYAnKKmguNO1s1i2gn6D2O2Q0Nz6VJAs4Efme
- W/VdiLntOlDHhorIf3tvmVUPhyWhSZFUM/t9e7qgoO+rLivp39H+MwAU5FUJ5N32KUr3
- LyMfKjfd4G+glN/wzdyp3NdUAlSW4kzU5rpjDLF7WUFfudsa/PAoPySk6pZeXRz3GzjU
- P80nZPC0/qvuzNvjAFjLcFPZerBhaDXEUUhrNjefbxcXL+CK4L2O5Y9Vfo2LjKA1Bh1y
- +Ksu5iLRJZgio85x5dKyqQ610581eR8/sZTz1wopUCqpugzjYt73bYiagD6XPhlJBxrj
- ePNA==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Nrbk7bQLskXts/zN28tmN3yp8oUVQIhnquHI+u1+rrU=;
+ b=P2FV77oa65p+uZuWlQRKhCU+fsKjGfcfvFEmoKLqa5om2N7vSy9QKvqy13EdjCOFsb
+ wd/+JuIsqBO2sarMfxgkzGx1upakvFLfYNtbutK8plfj2/7ik3D7z+BHmVI65H36YFY2
+ Qu+ZhwwkZq2nCOoIqSFSRpJW1Y0o1+qkep75SeTDA7tnHl6VFTEBy/FO5IGUaP+hXl73
+ oS4+HM4o9kGYjbUPmZppvpXvGNQd9WS9jWvuxStpLHoZuB6Z3xpL8nkzM0BcBdmSSyN6
+ EqOfM38IoiG7xH/q+8RDJ4CNw3LhQ2OoFArHpQg88IlCaJ//Tx4Kv+qu2vmMcJweWjvW
+ nq0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=mCd7vGjPKVt9fXDd0rS7L2SXnPX/wqltrVI5UWXsS40=;
- b=pb7h/7EtotWkSlKO2m635BsJQymGC5Z0tdMHnYQkRNfIEwDbjccYNFswEYuXHCJakR
- 1xoZrRiVOdnlkythiPk+5IBqysJXk2P7IAv9Bn0hsbvU8FZ1l/Rx0UDYiuLaZ66aB+A/
- iE1nDQjbfjvzKql8D7ElvadSxxzBRp4Dj0SMKRFi1TeObziJ8yeR8mbld0ypChSKlF+9
- 3FfDjmG0B0ftoeesz5Q9dAyJ8GR2s68Zd34UO0T3U7mHobRluV8zrCnlZIYJ4jqo8twA
- MfWXqDv/96wPXlpYAFJkNTSiPty9YVpD0MP1WiGmaiuwK5QC87ZixbuMYCBWxVneUwjs
- W+0A==
-X-Gm-Message-State: APjAAAUBaeLSrUhQX6dmCSXPagjPrhDRYLDXxI2u9ZjLknK2539UkD0l
- 9659fOT0MFqUoe1IhkWk+BLcwUrDUK0=
-X-Google-Smtp-Source: APXvYqzSm893L0oehWLZI2wa2M+v062+va0jZ+6/9iuAVd+12h+6zRrXnsYN86WfdO7qXcv/EJUaqg==
-X-Received: by 2002:a19:a83:: with SMTP id 125mr18636295lfk.150.1564015834189; 
- Wed, 24 Jul 2019 17:50:34 -0700 (PDT)
-Received: from octofox.lan1 (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net.
- [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id q1sm8816748ljb.87.2019.07.24.17.50.31
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 24 Jul 2019 17:50:33 -0700 (PDT)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Nrbk7bQLskXts/zN28tmN3yp8oUVQIhnquHI+u1+rrU=;
+ b=ZJKZCE/aOBXlKx7witHvNWbokGwpEkRlcGt46+cZRWpg/BgP0RieCsjoAsx9DtvuTN
+ BjEyR9mIrNPj5L7jEXGTDyxtztmrjwwkeBbpEkMBb2UFk6N7TT6hAQO9vE/CHdJZyZ0T
+ EQIgvIwWpjhMj35pWzgqaB+jY5D9bthM8qn4waLmohGdFO0UVWg2KAnosBM9YrZtd6iz
+ df/3vsCXB8kimwxXV5FFG66DTijE9oOesEE2JMc0cgvHO/ptLPQAUmlYR7fkF//6RDsw
+ AJK2kslMvh/UcZp1P+ms57YdbTxscdttM+Ff5q/eU8gQjxhT2uAxPiD7CLCumkG5tIbH
+ lHIg==
+X-Gm-Message-State: APjAAAUu2uAE/eyAnJI2tv0qVyq8iDj+qmwcxM7XhjLBOqqULBbk45F9
+ 9DfHZU70jGw6B2TIZOI2EInyyB2O/jP+2oRD/Ws=
+X-Google-Smtp-Source: APXvYqzpy8AKgUa7JslgdCRM5mJYzjaH3LwuEiZjPk1f4K1Ck/sKn1S+vC0IwuBx7SSJAURffMLJOX4C3MzZ+DX6hEw=
+X-Received: by 2002:a81:6d07:: with SMTP id i7mr54324963ywc.112.1564023870299; 
+ Wed, 24 Jul 2019 20:04:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <1563977432-8376-1-git-send-email-rppt@linux.ibm.com>
+In-Reply-To: <1563977432-8376-1-git-send-email-rppt@linux.ibm.com>
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: linux-xtensa@linux-xtensa.org
-Date: Wed, 24 Jul 2019 17:50:02 -0700
-Message-Id: <20190725005002.5008-1-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.11.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: fix build for cores with coprocessors
+Date: Wed, 24 Jul 2019 20:04:18 -0700
+Message-ID: <CAMo8Bf+d39UKeUHLcjBcT40Zwr4j9BY7uKaS23vn+nyyVZCMhw@mail.gmail.com>
+To: Mike Rapoport <rppt@linux.ibm.com>
+Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [Linux-Xtensa] [PATCH] xtensa: remove free_initrd_mem
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -63,37 +62,31 @@ List-Post: <mailto:linux-xtensa@linux-xtensa.org>
 List-Help: <mailto:linux-xtensa-request@linux-xtensa.org?subject=help>
 List-Subscribe: <http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa>, 
  <mailto:linux-xtensa-request@linux-xtensa.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Assembly entry/return abstraction change didn't add asmmacro.h include
-statement to coprocessor.S, resulting in references to undefined macros
-abi_entry and abi_ret on cores that define XTENSA_HAVE_COPROCESSORS.
-Fix that by including asm/asmmacro.h from the coprocessor.S.
+On Wed, Jul 24, 2019 at 7:11 AM Mike Rapoport <rppt@linux.ibm.com> wrote:
+>
+> The xtensa free_initrd_mem() verifies that initrd is mapped and then
+> frees its memory using free_reserved_area().
+>
+> The initrd is considered mapped when its memory was successfully reserved
+> with mem_reserve().
+>
+> Resetting initrd_start to 0 in case of mem_reserve() failure allows to
+> switch to generic free_initrd_mem() implementation.
+>
+> Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
+> ---
+>  arch/xtensa/kernel/setup.c |  9 +++------
+>  arch/xtensa/mm/init.c      | 10 ----------
+>  2 files changed, 3 insertions(+), 16 deletions(-)
 
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
- arch/xtensa/kernel/coprocessor.S | 1 +
- 1 file changed, 1 insertion(+)
+Thanks, applied to my xtensa tree.
 
-diff --git a/arch/xtensa/kernel/coprocessor.S b/arch/xtensa/kernel/coprocessor.S
-index 60c220020054..80828b95a51f 100644
---- a/arch/xtensa/kernel/coprocessor.S
-+++ b/arch/xtensa/kernel/coprocessor.S
-@@ -14,6 +14,7 @@
- 
- #include <linux/linkage.h>
- #include <asm/asm-offsets.h>
-+#include <asm/asmmacro.h>
- #include <asm/processor.h>
- #include <asm/coprocessor.h>
- #include <asm/thread_info.h>
--- 
-2.11.0
-
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
