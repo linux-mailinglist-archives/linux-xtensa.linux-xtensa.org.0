@@ -2,57 +2,56 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 07C897E219
-	for <lists+linux-xtensa@lfdr.de>; Thu,  1 Aug 2019 20:21:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEE00808BB
+	for <lists+linux-xtensa@lfdr.de>; Sun,  4 Aug 2019 02:34:03 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id E8B0158B4;
-	Thu,  1 Aug 2019 18:16:43 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id B3B52655B;
+	Sun,  4 Aug 2019 00:29:11 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-yw1-f68.google.com (mail-yw1-f68.google.com
- [209.85.161.68])
- by linux-xtensa.org (Postfix) with ESMTPS id C0E16584E
- for <linux-xtensa@linux-xtensa.org>; Thu,  1 Aug 2019 18:16:42 +0000 (UTC)
-Received: by mail-yw1-f68.google.com with SMTP id q128so26464255ywc.1
- for <linux-xtensa@linux-xtensa.org>; Thu, 01 Aug 2019 11:21:29 -0700 (PDT)
+Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
+ [209.85.167.66])
+ by linux-xtensa.org (Postfix) with ESMTPS id 6078364D9
+ for <linux-xtensa@linux-xtensa.org>; Sun,  4 Aug 2019 00:29:10 +0000 (UTC)
+Received: by mail-lf1-f66.google.com with SMTP id v16so1545045lfg.11
+ for <linux-xtensa@linux-xtensa.org>; Sat, 03 Aug 2019 17:34:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=uziT82TLEzNDslokSMjdgq8NAuexcw/nI7buWS/Yyhg=;
- b=ebU5LIV5/h7eiPBHH/GogzR59usEkgPjAhVy74hMNpuOXi5605sm/9TmOiXQTD32yY
- Nm9cxKwR03IFfSxg73CRvBT17IWsZSATEYp8xIagwYEfKzruOCEp5lqevfmOn9iNNGs3
- jgDs6zjn6DxiLQrexzFT+saB/jSH7c0OmoTfk9/+DXf3AE0k2GdgKADLmIExhTQsOm1m
- i/oGLzfKUHCkeBhDpgAPtN+PnkMTkz7bXYTuxxMZcq4GNiLrQQ+xSh6pheKLBDndHF94
- hE09VaMGfCD2Tw/GxurXuamCxU6/JuyirZpyYneNwxiDLvslVvT7JSCfa60N/1OvRAM1
- Feyg==
+ h=from:to:cc:subject:date:message-id;
+ bh=IDK+5GJsZg/moQTYynkFTD4VZ9t6Tz3FIid8VE7y7kI=;
+ b=bGFGZFLRVjn1uAjxt0g6Xpfpd0DZhYy7lhDfricGG0nHBKOvemXKtt9o+hmbu8Xfn9
+ 74otpIeSgbrAjTTr2x6xoBdBA7jdM8dn2qFjA9XWcaQBuVVJ6zBi2Lxrn97NXxKE3vDJ
+ LqfmmaR4GFQbxZAELYtn48dD5fRU1Dih2jWWWTULEmOkfDHHg13TzEoKxGi+vTzH30S6
+ SImvND02Zdb/vcExsfarjxee/+jhVPF/W4LiSg0GLJRMgG2lI2qbTbCS76+uL6DM7jlG
+ UcNiFqGG83dagfrevFpWuA0qqCdO3XslVlj+coIOa4HLOrN5ObNHkepQ8+K0cdYGatIw
+ 0Y4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=uziT82TLEzNDslokSMjdgq8NAuexcw/nI7buWS/Yyhg=;
- b=MS0wIDIenVFgG8U36ClAc0O8SOjcTB6YOTFwkey2wrQ/I4q3nwRGzP/BwC30qjXDZz
- A9usik+asg2y3XzKKwnyz6xLYJiL5axXot4cBJ7sc7RlU62jyyBvVtVjRpVVDWnWw3md
- YjKCYFUZhDj3avmpJtkdMovE8hss2iijMtH7Gek63RUdNk8YseS3ar//WaavtUyvA1F/
- j+oBvy41fvHklv95DLyFNcmYPL1Qfoiuk01LWJjTWfJCO8blMDJh5k9GbelPhcB/nAaF
- jFxZ9aDtWS39VSfRG1kgbGsE332c642HYDHYl7sEDJC90f3OdHyXFcZa86QR5sIWT31O
- rIJg==
-X-Gm-Message-State: APjAAAVj0dv/8Qgsb3qdzHQoxNAxLOKOBmvYM1kCOJ8+jJtYtma0X1ob
- 3iFibCmFSLKrsDfPPxLHr5pY4rVwHt7R9iWBrBY=
-X-Google-Smtp-Source: APXvYqysoznmHT7yeGKwQfoNdBvzcxkVzcpv+pC3huoSkNaHtNpo8+UtpOZOh0bR9FIf4rmPV0nlvoDDdA36e2yDohw=
-X-Received: by 2002:a0d:d947:: with SMTP id b68mr80190709ywe.409.1564683688733; 
- Thu, 01 Aug 2019 11:21:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190731072227.14893-1-jcmvbkbc@gmail.com>
- <CAGSvup8gjakg=Ddfm44rU9vwDvhx3PuTrU78azsTjjLoUy6qSg@mail.gmail.com>
-In-Reply-To: <CAGSvup8gjakg=Ddfm44rU9vwDvhx3PuTrU78azsTjjLoUy6qSg@mail.gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=IDK+5GJsZg/moQTYynkFTD4VZ9t6Tz3FIid8VE7y7kI=;
+ b=Msd5Y+0uSFcFvDZN7//9ISmBADtM4qZ4SMR0VWgnCBE6NBYfITDTTYiBYPAkXR5UPC
+ 2EQfb89sZoj86/4jvqTrq4Dlf0yANI5ghWkJq3z5W48kcetHxCu5LjU/cANQ5jNKN1dl
+ HDyEHcCfbR551UBgJrlVaRy6XZRz1g4x++V4UMtfxLy1xNAteNd3wk1eLtWJ4pFYtAPr
+ pdkUf0Zh7gFK+CG4v2Cz+PD62yf7pU8D8LHpEyT8ifsH6KRWfD1FSc9sBhPAPzxv8VsA
+ q1gVB97iP8Xqh8Pzoy11dCfRpth1+8E+VFjKKEeDvsqE95wDqDrgF8ZycIAbEVEzLjFD
+ ZLag==
+X-Gm-Message-State: APjAAAWDVGt7UuxhU1njsIcKuWivjn0hqgbEaw3SZ2zGAOUb55CzloUA
+ RuLVhiR1+2tuK5KXfPp6IRg=
+X-Google-Smtp-Source: APXvYqwVzou9iJ1UwdgKNFFg+Q9vHwibyzvE4IAqQwjoFWjcnQhys467V/V3deTpaF+HZ6xKl3eD+w==
+X-Received: by 2002:ac2:4d02:: with SMTP id r2mr23021734lfi.138.1564878840353; 
+ Sat, 03 Aug 2019 17:34:00 -0700 (PDT)
+Received: from octofox.hsd1.ca.comcast.net.
+ (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
+ by smtp.gmail.com with ESMTPSA id x22sm13687848lfq.20.2019.08.03.17.33.57
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Sat, 03 Aug 2019 17:33:59 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Thu, 1 Aug 2019 11:21:19 -0700
-Message-ID: <CAMo8Bf+pxvPg+DVsOYHwN8sRSu6JRcrz-HE0A_nCRpx65=ghBw@mail.gmail.com>
-To: "augustine.sterling@gmail.com" <augustine.sterling@gmail.com>
-Cc: Eric Tsai <erictsai@cadence.com>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, binutils@sourceware.org
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: bfd: add special case to loop
-	alignment check
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Sat,  3 Aug 2019 17:33:17 -0700
+Message-Id: <20190804003317.15370-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.11.0
+Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
+ linux-kernel@vger.kernel.org
+Subject: [Linux-Xtensa] [PULL 0/1] xtensa fixes for v5.3
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -65,32 +64,40 @@ List-Post: <mailto:linux-xtensa@linux-xtensa.org>
 List-Help: <mailto:linux-xtensa-request@linux-xtensa.org?subject=help>
 List-Subscribe: <http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa>, 
  <mailto:linux-xtensa-request@linux-xtensa.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Wed, Jul 31, 2019 at 11:20 AM augustine.sterling@gmail.com
-<augustine.sterling@gmail.com> wrote:
->
-> On Wed, Jul 31, 2019 at 12:22 AM Max Filippov <jcmvbkbc@gmail.com> wrote:
-> >
-> > check_loop_aligned is used during link time relaxation to only allow
-> > transformations that don't violate loop body alignment requirements.
-> > Assembler can relax loops that have too long body by adding instructions
-> > between the loop instruction and the loop body. check_loop_aligned must
-> > check alignment of the first instruction of the actual loop body.
-> > Detect loop / rsr.lend / wsr.lbeg sequence used in assembly time
-> > relaxation and adjust alignment check when it's detected.
->
-> Approved.
+Hi Linus,
 
-Applied to master, thanks.
+please pull the following fix for the Xtensa architecture.
 
-> I'm surprised no one has noticed this until now.
+The following changes since commit 5f9e832c137075045d15cd6899ab0505cfb2ca4b:
 
-It was broken by the recent change to long loop relaxation, before that
-the whole such loops were marked as non-transformable.
+  Linus 5.3-rc1 (2019-07-21 14:05:38 -0700)
+
+are available in the git repository at:
+
+  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20190803
+
+for you to fetch changes up to e3cacb73e626d885b8cf24103fed0ae26518e3c4:
+
+  xtensa: fix build for cores with coprocessors (2019-07-24 17:44:42 -0700)
+
+----------------------------------------------------------------
+Xtensa fixes for v5.3:
+
+- fix build for xtensa cores with coprocessors that was broken by
+  entry/return abstraction patch.
+
+----------------------------------------------------------------
+Max Filippov (1):
+      xtensa: fix build for cores with coprocessors
+
+ arch/xtensa/kernel/coprocessor.S | 1 +
+ 1 file changed, 1 insertion(+)
 
 -- 
 Thanks.
