@@ -2,56 +2,56 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 91ADA8BC26
-	for <lists+linux-xtensa@lfdr.de>; Tue, 13 Aug 2019 16:54:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67B5C90BBC
+	for <lists+linux-xtensa@lfdr.de>; Sat, 17 Aug 2019 02:24:11 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 49AD2655D;
-	Tue, 13 Aug 2019 14:48:59 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 817C96529;
+	Sat, 17 Aug 2019 00:18:51 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-yb1-f196.google.com (mail-yb1-f196.google.com
- [209.85.219.196])
- by linux-xtensa.org (Postfix) with ESMTPS id B63E26550
- for <linux-xtensa@linux-xtensa.org>; Tue, 13 Aug 2019 14:48:57 +0000 (UTC)
-Received: by mail-yb1-f196.google.com with SMTP id s142so10102212ybc.6
- for <linux-xtensa@linux-xtensa.org>; Tue, 13 Aug 2019 07:54:09 -0700 (PDT)
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
+ [209.85.167.50])
+ by linux-xtensa.org (Postfix) with ESMTPS id 712716506
+ for <linux-xtensa@linux-xtensa.org>; Sat, 17 Aug 2019 00:18:50 +0000 (UTC)
+Received: by mail-lf1-f50.google.com with SMTP id x3so5195982lfn.6
+ for <linux-xtensa@linux-xtensa.org>; Fri, 16 Aug 2019 17:24:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=1KU9mje70e+6lKi+rMvXi2qXDx/1Q5yRIVbPscoGXPM=;
- b=h2ukMp8EPMkBgpIyyFxOgCduzQ3gQstydJDnvvMifx8yP8rJ2dG9GZ1x/yiAVJ6uu4
- 2KGThU8AfrzAQqyCHPSHdZOy8WnmUJ43QM+7a/HL1u1GN9tvmiA9hEiDJBLzZi2luoYK
- yXPNHTf+Z/kJ6n/LGkEJyXFQc9bLFQqmtVL/iZOhnc9rUQbGrsSfz5taksMS3bcEl4cJ
- tJIw0cMVUCyBbd9m6bSdntaaFaQwIxp4+K58HEHnvxaDiyg1z/HLtN5Jz7mtkxhbBc4b
- WsX9fQF/oypxcHm+j66KAgiMfnnyPXXLEIG9oxp5eLgtMCbx7yjM2QjcALIYeb3Xy70E
- c2HA==
+ h=from:to:cc:subject:date:message-id;
+ bh=5BCk8bFtxwiRj/dtDmyR2CqB0dW325WAsdwABRHioXU=;
+ b=VdYQLM9o0hIXZUJKTYv3xybe+MsZqxJIUjzUNVfm1RUlRdBYhQrVUul/vKNg8ko5vA
+ NEoyP+Puvvjz1dBlMdQPFr+C4raCP/qeYU1T/W1Mcrul9Xir8cg9HueIcdWihrXMo1vZ
+ NaX5WYv//9KBNNOjWHL2XOcChFQ98YSzXMbVMvyvJ57ypyvQq73Ljzgcp9wcMXkIyMA5
+ oVScKImhM3GnmY2LyIkrNCcBkAXbMOPD/6QKDp8RYZpNuSyhs/GfSHs0zD5qr7lTqqCZ
+ Z7uyyjh8E2QTVMN/+pcXOmmXHrHIAgdtCGbPY+QAyGwfSY6UfOqgbHFE3qeTiJSdbZdA
+ QIGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=1KU9mje70e+6lKi+rMvXi2qXDx/1Q5yRIVbPscoGXPM=;
- b=poDfwh0Gjy8RAIv1Q/lATRzqHP5vmSho87E2xeoqHYVp/51Ze77jZvnw1PS1CQ/BAt
- 7k2Uy2AwaX6tLauPBRzJ8MtUHqSD5S4aVEMrC6Y1s0vpt7pHoWY+hJymDevBwtuZCO0h
- T1wdfA1TKnTGOFuVwG9RROgdE1H4tLyXdRB8J9aPpRthEiWLoyRT5GY5cVoGqeoCsFU9
- k3VmwMddQdCShV0ukUFokdbocLde7udI3jUuWJ+tuSFnCnOpMVaPg07eQmBLDYn9OcVl
- V9CF+/BeJJKGL/pvsE3AQdzW7ZmvGoHX5gDUqo7ZZ3y/4ppKf6CWRT6OYA6G0LVNqKYD
- IsuA==
-X-Gm-Message-State: APjAAAUA3fStqtI/7mjFyQ3o6Vkyqx9k+cWnLaLmQ7zUqdjEM8kGc0Lx
- 1ip417utMoR/hBoX/elsdsz3rRl+UZhvu6ol9X4=
-X-Google-Smtp-Source: APXvYqzTiFoZxKA6/w46nHrRRZNZR7l/RR8F8w5xde/qo5FAy4WJMIytp6bjq8QMDOMdBbsqhP3SyXTD8emi1H7HPkk=
-X-Received: by 2002:a5b:5ce:: with SMTP id w14mr7416427ybp.25.1565708048859;
- Tue, 13 Aug 2019 07:54:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190812220847.14624-1-jcmvbkbc@gmail.com>
- <20190813124815.D64A520840@mail.kernel.org>
-In-Reply-To: <20190813124815.D64A520840@mail.kernel.org>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=5BCk8bFtxwiRj/dtDmyR2CqB0dW325WAsdwABRHioXU=;
+ b=TfeBBG31R9thYyinAbSCAm9uDe85GM314dWodD0OdMLqyT1K0d+n7MXN4EUkEU99OV
+ ZW1W+nmXa/HKyJ72V0toPrQatn1+D+6tFY1tXsmOJutJeFG7z2fNbdAy/ZzBveIHsrNB
+ XR6+YBL0BwAC0N1AIfgmjZW+hu2J59KAJo8XvmCH8TxE9236lDNC83IhSoq9QxytySYE
+ uszlkwudhqH5e8HG8i2zTWeZZPm0iMZwGriIDmNFiPym1DrMOIiY7Xg7YEV1+46gFLC7
+ JP4C5MZqQBh4E9+dCR0QmYwwACbG7gCu/o99ca0WKjnh7vUO/RwEMo1jNYHhF+iwt6sU
+ jHng==
+X-Gm-Message-State: APjAAAVdJ8PB58UDdQdwa2gt12mk5851W52qmDN3lkFIW+fFo7kbxsPq
+ K/x2HN15MgcR2/LzAD8YKJQ=
+X-Google-Smtp-Source: APXvYqykHZ6nHNGIyr15OwALdLImvl18zWCo0bcVFvKGQDwHSddoOMs4F23dXqxmFol1AU3GPdCs6Q==
+X-Received: by 2002:a19:4c88:: with SMTP id z130mr6588499lfa.149.1566001448127; 
+ Fri, 16 Aug 2019 17:24:08 -0700 (PDT)
+Received: from octofox.cadence.com
+ (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
+ by smtp.gmail.com with ESMTPSA id 25sm1146633lft.71.2019.08.16.17.24.05
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 16 Aug 2019 17:24:07 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Tue, 13 Aug 2019 07:53:57 -0700
-Message-ID: <CAMo8Bf+AAo0+4yriZv-RpGHchAODJ5y1-jFGvYbJcBx958dkSA@mail.gmail.com>
-To: Sasha Levin <sashal@kernel.org>
-Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, stable@vger.kernel.org
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: add missing isync to the
-	cpu_reset TLB code
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Fri, 16 Aug 2019 17:23:49 -0700
+Message-Id: <20190817002349.28658-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.11.0
+Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
+ linux-kernel@vger.kernel.org
+Subject: [Linux-Xtensa] [PULL 0/1] Xtensa fix for v5.3
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -64,33 +64,40 @@ List-Post: <mailto:linux-xtensa@linux-xtensa.org>
 List-Help: <mailto:linux-xtensa-request@linux-xtensa.org?subject=help>
 List-Subscribe: <http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa>, 
  <mailto:linux-xtensa-request@linux-xtensa.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Hi Sasha,
+Hi Linus,
 
-On Tue, Aug 13, 2019 at 5:48 AM Sasha Levin <sashal@kernel.org> wrote:
-> This commit has been processed because it contains a -stable tag.
-> The stable tag indicates that it's relevant for the following trees: all
->
-> The bot has tested the following trees: v5.2.8, v4.19.66, v4.14.138, v4.9.189, v4.4.189.
->
-> v5.2.8: Build OK!
-> v4.19.66: Build OK!
-> v4.14.138: Build OK!
-> v4.4.189: Failed to apply! Possible dependencies:
->     4f2056873ff0 ("xtensa: extract common CPU reset code into separate function")
->     bf15f86b343e ("xtensa: initialize MMU before jumping to reset vector")
->     ea951c34ea95 ("xtensa: fix icountlevel setting in cpu_reset")
->
->
-> NOTE: The patch will not be queued to stable trees until it is upstream.
->
-> How should we proceed with this patch?
+please pull another small fix for the Xtensa architecture.
 
-It should be applied to stable trees for linux versions 4.10 and newer.
+The following changes since commit d45331b00ddb179e291766617259261c112db872:
+
+  Linux 5.3-rc4 (2019-08-11 13:26:41 -0700)
+
+are available in the git repository at:
+
+  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20190816
+
+for you to fetch changes up to cd8869f4cb257f22b89495ca40f5281e58ba359c:
+
+  xtensa: add missing isync to the cpu_reset TLB code (2019-08-12 15:05:48 -0700)
+
+----------------------------------------------------------------
+Xtensa fixes for v5.3:
+
+- add missing isync into cpu_reset to make sure ITLB changes are
+  effective.
+
+----------------------------------------------------------------
+Max Filippov (1):
+      xtensa: add missing isync to the cpu_reset TLB code
+
+ arch/xtensa/kernel/setup.c | 1 +
+ 1 file changed, 1 insertion(+)
 
 -- 
 Thanks.
