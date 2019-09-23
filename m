@@ -2,56 +2,57 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 05A94B55CC
-	for <lists+linux-xtensa@lfdr.de>; Tue, 17 Sep 2019 20:59:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 755AFBAECC
+	for <lists+linux-xtensa@lfdr.de>; Mon, 23 Sep 2019 09:59:29 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 1E89757FA;
-	Tue, 17 Sep 2019 18:52:56 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 52EA864EF;
+	Mon, 23 Sep 2019 07:52:49 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
- [209.85.167.66])
- by linux-xtensa.org (Postfix) with ESMTPS id B2A6957F0
- for <linux-xtensa@linux-xtensa.org>; Tue, 17 Sep 2019 18:52:54 +0000 (UTC)
-Received: by mail-lf1-f66.google.com with SMTP id y127so3783433lfc.0
- for <linux-xtensa@linux-xtensa.org>; Tue, 17 Sep 2019 11:59:21 -0700 (PDT)
+Received: from mail-yb1-f196.google.com (mail-yb1-f196.google.com
+ [209.85.219.196])
+ by linux-xtensa.org (Postfix) with ESMTPS id 065B664EC
+ for <linux-xtensa@linux-xtensa.org>; Mon, 23 Sep 2019 07:52:48 +0000 (UTC)
+Received: by mail-yb1-f196.google.com with SMTP id o80so5089334ybc.6
+ for <linux-xtensa@linux-xtensa.org>; Mon, 23 Sep 2019 00:59:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=dyuKhmzoMsbtM5H85infDrEkbEV6Ixbxarte1ObFGk0=;
- b=NbK2DVn9q0mEgbm8RATY4iFGicQZh6cH/8s2X7tkuc9lJBv9VJ0pNcIRn0IkEkJRJx
- ZGIOyg97bX+/DzoRKZvT2QMMqdrOG4/Dwp9QdWL2YAP2UfU6GnbVurqn50CEW01rYQKg
- ycaYqsUJHN8A733YK0OfgV5gaVv1YgjcEgqKyHT333ouFyXPVfP+/WGuENSz49XA/JXw
- Vy14qr3QQzmXdu+ZStFOzbL2rvhVHqU2vqTAZ6+8Eg8iZ0mqonaycTybwtgNxY3znHrv
- GMTpqwvLB2JfKZGCNFakt7kIMZbamj2RmQisIfEsgL/zmCAwz2tBraCyCWoaR096eFIC
- PzNg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=4VC54+iUDcIhCp6XH00ZYdvA5IUiqllztCq7ZR21saM=;
+ b=JQe9tBG2taNlTM75J2nr89UWC3ZIcnqKXuiV+3cPo3XUyXu135P/ZPk2B7+nrmGGpl
+ Lzue/Zm1R55PwdEDgiH+xGv/6cK0Tvu/T9tq8q1xPfb+73VyyZsSrAbbb7ZFVYIyhB8K
+ mMQCNm25wjwvz+fMq5teL0bf4x9PzExRZ6Dv0KwOn48pSKHGD5cnETS0SxtS2+U1X7Lb
+ tdowKhiF+d5KA6JEL5H5iNUXvpebcW5sswWMDfEyLioEJgV/9OlGyAkXPE36ockT9u96
+ fHYdajkwM1MJkCSn9s1Nqlw4jl9zIjrteKKXtejlXGDsdmi8IvbDhDWTMQb9VYn6nIFt
+ CDew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=dyuKhmzoMsbtM5H85infDrEkbEV6Ixbxarte1ObFGk0=;
- b=B9jINrXiNZEt9Gt58tFKkW6elnBZhRPCldiOH+MHmdBtSk6WltO65u6Pia+Vwd3gjh
- CaseqRYJTkwm+zqD4cHa6jscwgsk2SNsRcUg4gaMFAOR/uimU+WRCWwNmj2pje6/qKlA
- Mhv6nf4vFkE0h2ZfB9NXJOMU/qBActibs18MxIme2oRbHUczkgE2X0WXWKEgR+1oF01X
- WN3aytEX98FbD8teran7D9QcY4RpENUjJC33xKi5Ve9NDVDsijPX9A2aMBsqeyPubTuq
- Hb5Kjwt7kx8YD3MLQ2P3nQGHfLs9bkXTb/K1KWhby0zFFAr72LA8XxR6NENF3bm+RcQv
- YKdA==
-X-Gm-Message-State: APjAAAUysPJTdMV1NCQM/PbyNlrspUelnQ/XoQ/p3NByMbDL1wpLMuGw
- XnMfDyZcEnoR0r+JtbiaAIg=
-X-Google-Smtp-Source: APXvYqxnNzrUX1SZAZFrr7uID+PtmazTg1aQvfYAbQBTc0mmMkg6V3GJEaMkr20MOcTljLg9GIOjvg==
-X-Received: by 2002:ac2:491a:: with SMTP id n26mr2937567lfi.182.1568746760346; 
- Tue, 17 Sep 2019 11:59:20 -0700 (PDT)
-Received: from octofox.hsd1.ca.comcast.net.
- (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id 6sm573038lfa.24.2019.09.17.11.59.17
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 17 Sep 2019 11:59:19 -0700 (PDT)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=4VC54+iUDcIhCp6XH00ZYdvA5IUiqllztCq7ZR21saM=;
+ b=nBs3b/ngHkh2MRWasLLvovQT3kgGb0zhH7y71KHSHMyA9yAnuxuu6xWYyIL0SGIxW/
+ NWcb11gLoHSAFWCkwhy2Te/B/fMOIulggSSbvTWQr62JfFfTffj1AoQXb226sLf4oBsL
+ 2Q3i5d++MnGHi2xZjBqfbHBGT/+CFQzqWVL/48KpmMXGQm3LR7fdk6+xW8GC7PgPw9fi
+ XQor3ppt1DbEWbKpnUkGnxbmaF5LrALDm7zOIrcDdCJ353ZLlgM9P6MCvChTEsxbUMjX
+ 0alVzFhR4IUPWNSh1xw4cYbBO52wfFlIw2ZdsjWhZ29wOm/oocQUDSTCU3DU3uxn6gXC
+ X1Iw==
+X-Gm-Message-State: APjAAAWpppOD/qBBwhJmPbfC92GeE6hsp1LXS3re8yx4rRNt05X275qc
+ 8VdLCbfoZ7JR/s24fU/o5+C56jrP4jbnFbayzwQ=
+X-Google-Smtp-Source: APXvYqxT+wH0aK1dMMyTsIGAlZu0a1KozbYDc5jqxW3fpBr5xac2KMPb+kxF/wF3pAzXYorxNDQy6R8Z0efbi+0P2Lo=
+X-Received: by 2002:a25:d787:: with SMTP id
+ o129mr13188419ybg.329.1569225566127; 
+ Mon, 23 Sep 2019 00:59:26 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190618212715.10938-1-jcmvbkbc@gmail.com>
+ <CAGSvup_SsBpJf+nh6UTScxN0KLS21ZbGukDqK=OQ97Nm3NyCqw@mail.gmail.com>
+ <CAMo8BfJifHVmtQRPafvrROY+ybaZ=ArWwW7=hR8hEyM_b48mHQ@mail.gmail.com>
+In-Reply-To: <CAMo8BfJifHVmtQRPafvrROY+ybaZ=ArWwW7=hR8hEyM_b48mHQ@mail.gmail.com>
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Tue, 17 Sep 2019 11:59:05 -0700
-Message-Id: <20190917185905.2761-1-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.11.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
- linux-kernel@vger.kernel.org
-Subject: [Linux-Xtensa] [PULL 0/4] xtensa updates for v5.4
+Date: Mon, 23 Sep 2019 00:59:15 -0700
+Message-ID: <CAMo8BfKsWJBABaW5GBM9ROo27Z03gY4z-0U4c6NMqJQ6K_mCUA@mail.gmail.com>
+To: "augustine.sterling@gmail.com" <augustine.sterling@gmail.com>
+Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>, GCC Patches <gcc-patches@gcc.gnu.org>
+Subject: Re: [Linux-Xtensa] [PATCH] xtensa: fix PR target/90922
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -64,57 +65,33 @@ List-Post: <mailto:linux-xtensa@linux-xtensa.org>
 List-Help: <mailto:linux-xtensa-request@linux-xtensa.org?subject=help>
 List-Subscribe: <http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa>, 
  <mailto:linux-xtensa-request@linux-xtensa.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Hi Linus,
+On Tue, Jun 18, 2019 at 3:23 PM Max Filippov <jcmvbkbc@gmail.com> wrote:
+>
+> On Tue, Jun 18, 2019 at 3:09 PM augustine.sterling@gmail.com
+> <augustine.sterling@gmail.com> wrote:
+> >
+> > On Tue, Jun 18, 2019 at 2:27 PM Max Filippov <jcmvbkbc@gmail.com> wrote:
+> > >
+> > > Stack pointer adjustment code in prologue missed a case of no
+> > > callee-saved registers and a stack frame size bigger than 128 bytes.
+> > > Handle that case.
+> > >
+> > > This fixes the following gcc tests with call0 ABI:
+> > >   gcc.c-torture/execute/stdarg-2.c
+> > >   gcc.dg/torture/pr55882.c
+> > >   gcc.dg/torture/pr57569.c
+> >
+> > Approved, please apply.
+>
+> Thanks. Applied to trunk.
+> I'll backport it later to gcc-7..9 branches.
 
-please pull the following batch of updates for the Xtensa architecture:
-
-The following changes since commit a55aa89aab90fae7c815b0551b07be37db359d76:
-
-  Linux 5.3-rc6 (2019-08-25 12:01:23 -0700)
-
-are available in the git repository at:
-
-  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20190917
-
-for you to fetch changes up to 982792f45894878b9ec13df81e6e02209b34cb11:
-
-  xtensa: virt: move PCI root complex to KIO range (2019-09-02 00:09:30 -0700)
-
-----------------------------------------------------------------
-Xtensa updates for v5.4:
-
-- add support for xtensa call0 ABI in userspace;
-- update xtensa virt board DTS for PCI root complex in KIO range;
-- remove free_initrd_mem.
-
-----------------------------------------------------------------
-Max Filippov (3):
-      xtensa: clean up PS_WOE_BIT usage
-      xtensa: add support for call0 ABI in userspace
-      xtensa: virt: move PCI root complex to KIO range
-
-Mike Rapoport (1):
-      xtensa: remove free_initrd_mem
-
- arch/xtensa/Kconfig                 | 48 +++++++++++++++++++++++++++++++++++++
- arch/xtensa/boot/dts/virt.dts       |  8 +++----
- arch/xtensa/include/asm/io.h        |  1 +
- arch/xtensa/include/asm/processor.h | 11 +++++++--
- arch/xtensa/include/asm/regs.h      |  1 +
- arch/xtensa/kernel/entry.S          | 42 ++++++++++++++++++++++++++++----
- arch/xtensa/kernel/head.S           |  2 +-
- arch/xtensa/kernel/setup.c          |  9 +++----
- arch/xtensa/kernel/signal.c         | 26 +++++++++++++-------
- arch/xtensa/kernel/stacktrace.c     |  5 ++++
- arch/xtensa/kernel/traps.c          |  4 ++++
- arch/xtensa/mm/init.c               | 10 --------
- 12 files changed, 132 insertions(+), 35 deletions(-)
+I've committed the backported versions to gcc-7..9 branches.
 
 -- 
 Thanks.
