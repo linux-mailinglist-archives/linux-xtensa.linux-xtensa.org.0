@@ -2,55 +2,56 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id BC783BFAC4
-	for <lists+linux-xtensa@lfdr.de>; Thu, 26 Sep 2019 22:53:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E202C0F05
+	for <lists+linux-xtensa@lfdr.de>; Sat, 28 Sep 2019 02:43:05 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 5BA0A52BF;
-	Thu, 26 Sep 2019 20:46:38 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 2B07352DA;
+	Sat, 28 Sep 2019 00:36:16 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-yb1-f193.google.com (mail-yb1-f193.google.com
- [209.85.219.193])
- by linux-xtensa.org (Postfix) with ESMTPS id BC02A52BA
- for <linux-xtensa@linux-xtensa.org>; Thu, 26 Sep 2019 20:46:36 +0000 (UTC)
-Received: by mail-yb1-f193.google.com with SMTP id f1so1172210ybq.11
- for <linux-xtensa@linux-xtensa.org>; Thu, 26 Sep 2019 13:53:22 -0700 (PDT)
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
+ [209.85.208.195])
+ by linux-xtensa.org (Postfix) with ESMTPS id 5ADB552D3
+ for <linux-xtensa@linux-xtensa.org>; Sat, 28 Sep 2019 00:36:14 +0000 (UTC)
+Received: by mail-lj1-f195.google.com with SMTP id m13so4101751ljj.11
+ for <linux-xtensa@linux-xtensa.org>; Fri, 27 Sep 2019 17:43:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=JJAqwHUoeit82kIXfJFbaFXE1+izLPQNZWxGSOdK2YI=;
- b=heX0bB9Q9d/N/x/6OXBzJq2IJUIjHomYkQbd+DuKWcgwxMIjcCCLYDXN8xo914hoK6
- S3WNiGeyo59/V1PxoRfKDEMiN1LkHTkvjvnaSoyUFF02OdfpuPlT4VwjpLhVxl8Dnk+X
- 97omqDtyGK25QC6EROdqvgXgcovlzkMZ0H4jAgkCYHsMLPzr/xwAXfvjhqhYQ79chnls
- Tm87KkAwHdM2zrXtIxAgePr5c5Jh4hIHrrpuVzEWVQ0WGYuAkAIltG45kBq2VzrK4+sX
- YcCOBWuIfxIYfKBmU1lOkA4yphoYJXOGv45n5/pCs3ZRTyxi4VpGwbLi7HYpG6Lqgs0p
- A+TQ==
+ h=from:to:cc:subject:date:message-id;
+ bh=drAdC+jh//y0Il1JQmnrfyXmS5xiniQET11ZhYLtsNQ=;
+ b=EbVLvO5c9u1cmYy67A/CSPoAFV6W3bSxrWka08Ocvh9SykBFtA2cXbMXu6CuippO4y
+ +ZN1Qx/akAZbA6wtiiqaq/gcYBt4MG8IuA2SMIs2hLViIn/79mV3aroqezSM4scl02/b
+ SMOKRZ2vJZk2bs15X4JiM+JID29mWHDD4TwwjckBcrWUOSwkyD4VfnZ/GtS9NCRsfJCJ
+ lzqtZZpBDn/9Lh0Eq5z0+Ls1K6kEio8vzxbG2upFXpxAmW9N3sHfbJVenr7gBHW6LW+x
+ oN1FDOlYCGIQus8RtMrKN0POLJkI/8VY9hlySue49q7QAPvVx7I9WgzBI+TNnQGOeMLI
+ 3wrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=JJAqwHUoeit82kIXfJFbaFXE1+izLPQNZWxGSOdK2YI=;
- b=BEZlJfJaw6rQHJJdcPA62JX5aOWHVH4o4aKH7WjXexkdHr2v7nGsBhxL+2FVkIoksD
- R4qjKt2BSA4WSZYrfMWKH9fDTL0i+TzqYMAFfmu9EBGttfI8TPDnSLkEBSZsFmD8TV1M
- YoSceJgFzUCkGSEN0v3T7UHcNQEj6z8Rj43a2HcbfNLF/N2W9j+k+hCr7qilv+PzRhYj
- 6Om/l/0/Y78KKggjtkZnC039GXbIdjAg9RO8AyLj3bO5zXY/UwKt9jEvld4MeeZOBHuH
- qCg43j9E8yfSBryyOIQ8430PxJjppcaksPGxGXRCRoveVDFyodmyBe1w7ygACZDER31q
- V8rA==
-X-Gm-Message-State: APjAAAW284k91J629jZhAnL7qG72dXHXMdNE8kPYiMT3J5XZ7RqIzvXU
- Y74MkH+e3wLwFleQ8Nw93XisFYeKJLrYGkf8YfM=
-X-Google-Smtp-Source: APXvYqytTugZBGGsrCiKC8m55LVsEbnUaY9Vw+yJErtruR4VvjgyMhmH79nB15+eC7/L9Hdy4wiavJpJAL7+u+X63eM=
-X-Received: by 2002:a25:911:: with SMTP id 17mr3724538ybj.143.1569531202387;
- Thu, 26 Sep 2019 13:53:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190925004111.14989-1-jcmvbkbc@gmail.com>
- <CAGSvup-sM7b7_XiGdfUde0ugvJKubWBNU64SFOtM=KQUd2wsZQ@mail.gmail.com>
-In-Reply-To: <CAGSvup-sM7b7_XiGdfUde0ugvJKubWBNU64SFOtM=KQUd2wsZQ@mail.gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=drAdC+jh//y0Il1JQmnrfyXmS5xiniQET11ZhYLtsNQ=;
+ b=uDJbjT7REVKs9E7bFjyOnANhxpgnLIu28bKbQ27XveHB5z14cVxoX7Qz8JuVB3FhM6
+ 8nyqOsyeWSVOJ2oMU1va2emqwSDC5/EvI+BaJIepWfHKW1UiIwZ6IxgDkFV3o8KJwh5n
+ PuT5dpiZFPyLo1OY0VR4SO1Rdz8Cx2yUVOFw+pYitvxZ0kgJuz/Z49w8Y/W+tGFAao0r
+ B3/DfnMxWhV5JOqKDSvI8wGCSkhpVuK+a+rmnqhSVhd0RSEA+VC9wtjA1iN5UTfUJ9Ic
+ KdJfBJjYwMb/YSQVluugdJszJnI+mv7zZgN+7FzXCG1pXsGKEHdc8h59C86VRTTe6DR0
+ EoqQ==
+X-Gm-Message-State: APjAAAVxknS89DE7khjWDwW+ThIzae5709QXGcGce82wdVSzM3M46Clz
+ 9Q0vjyBCsPBUyIdsJtXIaYUWl+UJ
+X-Google-Smtp-Source: APXvYqy7t+MaiMhmrU03sqIManQL59XjP5tmRCzlTRYlrMH2XuCkNNM47MNDx2trNS8z8SRAkQnGzA==
+X-Received: by 2002:a2e:7f07:: with SMTP id a7mr4791334ljd.173.1569631380551; 
+ Fri, 27 Sep 2019 17:43:00 -0700 (PDT)
+Received: from octofox.cadence.com
+ (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
+ by smtp.gmail.com with ESMTPSA id f22sm842744lfk.56.2019.09.27.17.42.57
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 27 Sep 2019 17:42:59 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Thu, 26 Sep 2019 13:53:11 -0700
-Message-ID: <CAMo8BfJ1SjovYkZpnxa6cE+YDvDpvocfwXvranH3USiunZO82g@mail.gmail.com>
-To: "augustine.sterling@gmail.com" <augustine.sterling@gmail.com>
-Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, GCC Patches <gcc-patches@gcc.gnu.org>
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: fix PR target/91880
+To: linux-xtensa@linux-xtensa.org
+Date: Fri, 27 Sep 2019 17:42:44 -0700
+Message-Id: <20190928004244.22199-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.11.0
+Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Subject: [Linux-Xtensa] [PATCH] xtensa: update arch features
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -63,44 +64,58 @@ List-Post: <mailto:linux-xtensa@linux-xtensa.org>
 List-Help: <mailto:linux-xtensa-request@linux-xtensa.org?subject=help>
 List-Subscribe: <http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa>, 
  <mailto:linux-xtensa-request@linux-xtensa.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Thu, Sep 26, 2019 at 1:42 PM augustine.sterling@gmail.com
-<augustine.sterling@gmail.com> wrote:
->
-> On Tue, Sep 24, 2019 at 5:41 PM Max Filippov <jcmvbkbc@gmail.com> wrote:
-> >
-> > Xtensa hwloop_optimize segfaults when zero overhead loop is about to be
-> > inserted as the first instruction of the function.
-> > Insert zero overhead loop instruction into new basic block before the
-> > loop when basic block that precedes the loop is empty.
-> >
-> > 2019-09-24  Max Filippov  <jcmvbkbc@gmail.com>
-> > gcc/
-> >         * config/xtensa/xtensa.c (hwloop_optimize): Insert zero overhead
-> >         loop instruction into new basic block before the loop when basic
-> >         block that precedes the loop is empty.
-> >
-> > gcc/testsuite/
-> >         * gcc.target/xtensa/pr91880.c: New test case.
-> >         * gcc.target/xtensa/xtensa.exp: New test suite.
-> > ---
-> >  gcc/config/xtensa/xtensa.c                 |  5 ++--
-> >  gcc/testsuite/gcc.target/xtensa/pr91880.c  | 10 ++++++++
-> >  gcc/testsuite/gcc.target/xtensa/xtensa.exp | 41 ++++++++++++++++++++++++++++++
-> >  3 files changed, 54 insertions(+), 2 deletions(-)
-> >  create mode 100644 gcc/testsuite/gcc.target/xtensa/pr91880.c
-> >  create mode 100644 gcc/testsuite/gcc.target/xtensa/xtensa.exp
->
-> Approved. Thanks.
+xtensa now supports tracehook, queued spinlocks and rwlocks. Update
+corresponding Documentation/features entries.
 
-Thanks. Applied to trunk.
-I'll backport it later to gcc-7..9 branches.
+Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+---
+ Documentation/features/core/tracehook/arch-support.txt           | 2 +-
+ Documentation/features/locking/queued-rwlocks/arch-support.txt   | 2 +-
+ Documentation/features/locking/queued-spinlocks/arch-support.txt | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
--- Max
+diff --git a/Documentation/features/core/tracehook/arch-support.txt b/Documentation/features/core/tracehook/arch-support.txt
+index d344b99aae1e..964667052eda 100644
+--- a/Documentation/features/core/tracehook/arch-support.txt
++++ b/Documentation/features/core/tracehook/arch-support.txt
+@@ -30,5 +30,5 @@
+     |          um: | TODO |
+     |   unicore32: | TODO |
+     |         x86: |  ok  |
+-    |      xtensa: | TODO |
++    |      xtensa: |  ok  |
+     -----------------------
+diff --git a/Documentation/features/locking/queued-rwlocks/arch-support.txt b/Documentation/features/locking/queued-rwlocks/arch-support.txt
+index c683da198f31..ee922746a64c 100644
+--- a/Documentation/features/locking/queued-rwlocks/arch-support.txt
++++ b/Documentation/features/locking/queued-rwlocks/arch-support.txt
+@@ -30,5 +30,5 @@
+     |          um: | TODO |
+     |   unicore32: | TODO |
+     |         x86: |  ok  |
+-    |      xtensa: | TODO |
++    |      xtensa: |  ok  |
+     -----------------------
+diff --git a/Documentation/features/locking/queued-spinlocks/arch-support.txt b/Documentation/features/locking/queued-spinlocks/arch-support.txt
+index e3080b82aefd..eb0e6047a2ce 100644
+--- a/Documentation/features/locking/queued-spinlocks/arch-support.txt
++++ b/Documentation/features/locking/queued-spinlocks/arch-support.txt
+@@ -30,5 +30,5 @@
+     |          um: | TODO |
+     |   unicore32: | TODO |
+     |         x86: |  ok  |
+-    |      xtensa: | TODO |
++    |      xtensa: |  ok  |
+     -----------------------
+-- 
+2.11.0
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
