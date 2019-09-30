@@ -2,55 +2,55 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 1622FC0F07
-	for <lists+linux-xtensa@lfdr.de>; Sat, 28 Sep 2019 02:43:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C015C1B04
+	for <lists+linux-xtensa@lfdr.de>; Mon, 30 Sep 2019 07:33:32 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 436AF52DA;
-	Sat, 28 Sep 2019 00:36:39 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 2AC326499;
+	Mon, 30 Sep 2019 05:26:38 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
- [209.85.167.67])
- by linux-xtensa.org (Postfix) with ESMTPS id 8C79052D3
- for <linux-xtensa@linux-xtensa.org>; Sat, 28 Sep 2019 00:36:38 +0000 (UTC)
-Received: by mail-lf1-f67.google.com with SMTP id u28so3173500lfc.5
- for <linux-xtensa@linux-xtensa.org>; Fri, 27 Sep 2019 17:43:26 -0700 (PDT)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com
+ [209.85.208.182])
+ by linux-xtensa.org (Postfix) with ESMTPS id E1DB16489
+ for <linux-xtensa@linux-xtensa.org>; Mon, 30 Sep 2019 05:26:36 +0000 (UTC)
+Received: by mail-lj1-f182.google.com with SMTP id b20so8015522ljj.5
+ for <linux-xtensa@linux-xtensa.org>; Sun, 29 Sep 2019 22:33:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id;
- bh=1tSjfpPimD/34jCR9zXpm47r4Z/4tfKvbErjvzDZFGs=;
- b=FAMpsdOkj/iAmOhXhTMlZRxmvDSSkGWKXLzuTTxRR0kk+8O258OP+8iUWQppDGt7Qr
- NQGrno95F6KQ4m1o7nqupsVzv+bRjxrmtuPmenMkzspc9fviOLKjsrzkUwX0duaDo/gP
- bcoK3uCajQniL99evSgMU1oHGJjlc6vwhYproSj5wfmPJUc521Y/m5qGk9JpgLMH/uUI
- IYweb78/zun3f4+U9oHFB4pAihI0J/gw96TaX84AZpi/EeCLUv1WQ7gC+bnuT8HUzKA0
- ZU9Ec8J05k/6PGrS2WTrOvMHJVZ6EJ+e3zL7N1jHeOK4XGWPVFJyUiSFOwo16m4oBEaP
- b38Q==
+ bh=ALU3ETjRpvpykxWjWBQy4d6Y5qcKvcWseKPlLYQFg14=;
+ b=aED+GzqiPNDWAwfKj0BnK0YJkPlr8tc9B1topf6W4PXd8MSKPlvAnmp1YyCL4MHz8/
+ psKp83AR1p0ad1OZdHQwuEkMqsUwDbQR4Aafb5PfQC9amDZ6hvSjwA+lc+nc+UwPNEX/
+ AoGZi0p54XNYVJkhnaH1/CbEMwpFKEKNqaVE9jgxxli0c0xv4JxZHcuvJfz07jJyU2xw
+ ExLfuWxP8BogBbwh5aOeba8kT4c6GWXPs0kJWbfboelK6rPIITwukrdLUDLIkIPjdL6U
+ o+w+srKslVzJaKDnBEMUqSyQEz1UmrGywfttNzuQFSJkgSq4e/4LSMvGbeSGibydeXuE
+ za5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=1tSjfpPimD/34jCR9zXpm47r4Z/4tfKvbErjvzDZFGs=;
- b=Xp8GiIPAfvhMA7z9sK4hh2AUGX/yuU8UlbGdW0NsRxHyIJ/OY5YIiW6Q+JoHFpSRdd
- 0pwGJIl7s4GmuXr6BV8SSPODaBXJ8A7o5n64kvXT/vqXD7f+c2ZQToiGSR4+oSyqnnL4
- 5HkEShDd9bTgm1KBkVnXBOEJS+SKwK5tkNUGXtDwRmILdUi5dgogJZWorBKDKst5Vdxx
- NNDeHsRXnbk73p5Hm72DgWZ1JwDGAOW3fxVXPP9Zipdq9hD81jX0QmEOCYEq9cKFpOVQ
- ptcV+fDvkt0S+r7Xbx654wImyIYVPgR4aONUlUQquaLg8EtyepSOTx9bBVdo9FNhZgGq
- llaQ==
-X-Gm-Message-State: APjAAAUTwfLA7xXabFQdh56J5M4uPwBhKQb+vSPpOah/SwKkL1M9Ybab
- SMr/H4cLwG4o7HzcFRLyUj7VqqY8d44=
-X-Google-Smtp-Source: APXvYqwWp6hHEmVDjyN0pUopPjfWB/Em+XnQd/gPR2RI467Wj2aGCvhBElKy4+ms97evNPqf1lHMYA==
-X-Received: by 2002:a19:ee02:: with SMTP id g2mr4594156lfb.113.1569631405624; 
- Fri, 27 Sep 2019 17:43:25 -0700 (PDT)
-Received: from octofox.cadence.com
+ bh=ALU3ETjRpvpykxWjWBQy4d6Y5qcKvcWseKPlLYQFg14=;
+ b=qSHRAo29x9cosQkB90h7nUQF/HT1FXxkEH81eagSuPzX1iraODOAcg0RQN3Pktv17E
+ c67O+zIl4Fkm5VxgObzn1wzizrhgPL1cEU96ZhLkIPphK3xcPfaKmjOdAlJLSl2q5218
+ wYarCPVsBnHXdTUb6QmHus7UCqT+98oBrVJUArAhpt9ZDRyDxqQWVj0dFBAnuUYiLoMd
+ PSDbn2Ef1HL/yOhk/0vP7guXrvAzD/MxuXieMY3UCV8gZ9Gtx8/uihu5tGpYux9OgiDt
+ lFGhdnf9GGf5eS+Acf2xHjj4nf4M5ay2q1iEvlzZE4gIDpA2CvaWRILVsbicKCNtQPF2
+ 41Ow==
+X-Gm-Message-State: APjAAAUsItonxVEts1uwGQgm3hT7aoRU6Opjfivn7+L3iHdd3JkcKPHv
+ Y+FQ1uP16Zv2X6RO/wCBOb6WxPlX
+X-Google-Smtp-Source: APXvYqwWDvpu/vM0KZ8M4fsC8HwWdWEybUGUnO2kcgazOCLybPOhqoN3zsiBeqYsLjgOPcRmOx1wGg==
+X-Received: by 2002:a2e:5dc3:: with SMTP id v64mr11133757lje.118.1569821608507; 
+ Sun, 29 Sep 2019 22:33:28 -0700 (PDT)
+Received: from octofox.hsd1.ca.comcast.net.
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id 207sm1026320lfn.0.2019.09.27.17.43.23
+ by smtp.gmail.com with ESMTPSA id k23sm2944211ljc.13.2019.09.29.22.33.26
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 27 Sep 2019 17:43:25 -0700 (PDT)
+ Sun, 29 Sep 2019 22:33:27 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Fri, 27 Sep 2019 17:43:12 -0700
-Message-Id: <20190928004312.22245-1-jcmvbkbc@gmail.com>
+Date: Sun, 29 Sep 2019 22:33:01 -0700
+Message-Id: <20190930053306.7029-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.11.0
 Cc: Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: clean up empty include files
+Subject: [Linux-Xtensa] [PATCH 0/5] xtensa: add XIP kernel support
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -69,84 +69,37 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Remove empty hw_irq.h and user.h from arch/xtensa/include/asm and use
-generic versions instead.
+Hello,
 
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
- arch/xtensa/include/asm/Kbuild   |  2 ++
- arch/xtensa/include/asm/hw_irq.h | 14 --------------
- arch/xtensa/include/asm/user.h   | 20 --------------------
- 3 files changed, 2 insertions(+), 34 deletions(-)
- delete mode 100644 arch/xtensa/include/asm/hw_irq.h
- delete mode 100644 arch/xtensa/include/asm/user.h
+this series adds initial support for eXecute In Place kernel image for
+xtensa. XIP image may be written to the bootloader region of the onboard
+FLASH and the CPU will boot into linux executing its code directly from
+FLASH.
+There's also a few cleanups and an example MMU XIP defconfig.
 
-diff --git a/arch/xtensa/include/asm/Kbuild b/arch/xtensa/include/asm/Kbuild
-index ffa0cf7f66c3..3acc31e55e02 100644
---- a/arch/xtensa/include/asm/Kbuild
-+++ b/arch/xtensa/include/asm/Kbuild
-@@ -11,6 +11,7 @@ generic-y += exec.h
- generic-y += extable.h
- generic-y += fb.h
- generic-y += hardirq.h
-+generic-y += hw_irq.h
- generic-y += irq_regs.h
- generic-y += irq_work.h
- generic-y += kdebug.h
-@@ -30,6 +31,7 @@ generic-y += qspinlock.h
- generic-y += sections.h
- generic-y += topology.h
- generic-y += trace_clock.h
-+generic-y += user.h
- generic-y += vga.h
- generic-y += word-at-a-time.h
- generic-y += xor.h
-diff --git a/arch/xtensa/include/asm/hw_irq.h b/arch/xtensa/include/asm/hw_irq.h
-deleted file mode 100644
-index 3ddbea759b2b..000000000000
---- a/arch/xtensa/include/asm/hw_irq.h
-+++ /dev/null
-@@ -1,14 +0,0 @@
--/*
-- * include/asm-xtensa/hw_irq.h
-- *
-- * This file is subject to the terms and conditions of the GNU General
-- * Public License.  See the file "COPYING" in the main directory of
-- * this archive for more details.
-- *
-- * Copyright (C) 2002 - 2005 Tensilica Inc.
-- */
--
--#ifndef _XTENSA_HW_IRQ_H
--#define _XTENSA_HW_IRQ_H
--
--#endif
-diff --git a/arch/xtensa/include/asm/user.h b/arch/xtensa/include/asm/user.h
-deleted file mode 100644
-index 2c3ed23354a8..000000000000
---- a/arch/xtensa/include/asm/user.h
-+++ /dev/null
-@@ -1,20 +0,0 @@
--/*
-- * include/asm-xtensa/user.h
-- *
-- * Xtensa Processor version.
-- *
-- * This file is subject to the terms and conditions of the GNU General Public
-- * License.  See the file "COPYING" in the main directory of this archive
-- * for more details.
-- *
-- * Copyright (C) 2001 - 2005 Tensilica Inc.
-- */
--
--#ifndef _XTENSA_USER_H
--#define _XTENSA_USER_H
--
--/* This file usually defines a 'struct user' structure. However, it it only
-- * used for a.out file, which are not supported on Xtensa.
-- */
--
--#endif	/* _XTENSA_USER_H */
+Max Filippov (5):
+  xtensa: move XCHAL_KIO_* definitions to kmem_layout.h
+  xtensa: move MPU constants from .data to .ref.rodata
+  xtensa: fix section name for start_info
+  xtensa: use correct symbol for the end of .rodata
+  xtensa: add XIP kernel support
+
+ arch/xtensa/Kconfig                      |  39 ++++++++++
+ arch/xtensa/Makefile                     |   3 +-
+ arch/xtensa/boot/Makefile                |   5 ++
+ arch/xtensa/configs/xip_kc705_defconfig  | 120 +++++++++++++++++++++++++++++++
+ arch/xtensa/include/asm/cache.h          |   6 ++
+ arch/xtensa/include/asm/initialize_mmu.h |   3 +-
+ arch/xtensa/include/asm/kmem_layout.h    |  29 ++++++++
+ arch/xtensa/include/asm/page.h           |  11 +++
+ arch/xtensa/include/asm/vectors.h        |  44 ++----------
+ arch/xtensa/kernel/head.S                |  13 +++-
+ arch/xtensa/kernel/setup.c               |   7 ++
+ arch/xtensa/kernel/vmlinux.lds.S         |  52 +++++++++++++-
+ arch/xtensa/mm/init.c                    |   4 +-
+ 13 files changed, 289 insertions(+), 47 deletions(-)
+ create mode 100644 arch/xtensa/configs/xip_kc705_defconfig
+
 -- 
 2.11.0
 
