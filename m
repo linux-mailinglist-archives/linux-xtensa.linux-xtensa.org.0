@@ -2,59 +2,58 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id CBA30C1B06
-	for <lists+linux-xtensa@lfdr.de>; Mon, 30 Sep 2019 07:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBBD1C1B07
+	for <lists+linux-xtensa@lfdr.de>; Mon, 30 Sep 2019 07:33:37 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 4CAFC64A6;
-	Mon, 30 Sep 2019 05:26:42 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 5B7A864A9;
+	Mon, 30 Sep 2019 05:26:44 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
 Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com
  [209.85.208.193])
- by linux-xtensa.org (Postfix) with ESMTPS id 003B06489
- for <linux-xtensa@linux-xtensa.org>; Mon, 30 Sep 2019 05:26:41 +0000 (UTC)
-Received: by mail-lj1-f193.google.com with SMTP id b20so8015671ljj.5
- for <linux-xtensa@linux-xtensa.org>; Sun, 29 Sep 2019 22:33:34 -0700 (PDT)
+ by linux-xtensa.org (Postfix) with ESMTPS id 35B096489
+ for <linux-xtensa@linux-xtensa.org>; Mon, 30 Sep 2019 05:26:43 +0000 (UTC)
+Received: by mail-lj1-f193.google.com with SMTP id m13so7986126ljj.11
+ for <linux-xtensa@linux-xtensa.org>; Sun, 29 Sep 2019 22:33:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=EX2iagCYxbbfVSwNYAvSqT0RRit3O7vA4/pCLIgEK3k=;
- b=BTSC+ywEzAsZ+CWcpXIMpwxOVr4IgVpr8bugpLObWbhfxXbIoeEHKrBV8VDmSci2ed
- H1fVj5X1fLaNudPGpnGZLEt15iqUptIrg2R37q0yJXSdNhZACSitnDZGe5DwYKk2RFVo
- nLlRVrkt0xPniiGa8Je6blBiH6xwUz5QmItGW1zrXqpswPl0eK08CLJBVEpJpchJczeO
- epOB2/6H1nwExTJmu/TbXTasMRxnn8Wp2bufbFGwJHFspRYkMXhT2AA/3s1uewg6+3fK
- BwqYRlm8wCWYcKMc8BQahpv1cDYzmXXV7B1MVZvw9fzHuGZS86eu+gxyiOBpsU0XLu8C
- m5+A==
+ bh=rLeE+htgaU9gzy01Jb/ZeRp34lUaINpP7MzC2bKJlxI=;
+ b=FXHcWQA0qkvhj52JzHEk3WNnNmDxkKBFpR60nuR1CEvQZkfln2h6Zg/jIeRiOrqyQH
+ 9ZVkV3133TzuL8C1EBQpTp2akp34mS2Mv9W93GFa6wR8jh1BOPXfInV0H+1De3TTlwH3
+ vOHXPRU51+RYtrsirr/N1ECCzELYiciVZebt2yJyJDOrMsipxLJPWo8A/7Vqt1gPeFyR
+ gTMJLdJIPJhpf2DL7ZuW8Af8QZwtvsyKifdOskM42kIXGMF+3y0nZBXAK41gTU0R1Qsd
+ vphHEKSkam7Xyt6aMgHcIpwZGgcc2fDfnm/JeRkWW7f2S02cXLEhmLPwqoBXSnm949D1
+ y6oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=EX2iagCYxbbfVSwNYAvSqT0RRit3O7vA4/pCLIgEK3k=;
- b=skr6lgM3/p2/pnkwUCHvsgnCYgt7P89F0h1EBavvsKp5592pWGItI1kMajs8IjuB04
- zcvJ3KSgYHq8/a2qHE+oX+3goxFRADRfkCr4aefDERqYC97iFrRc19urYUu2B1y4eDdi
- F8OZQDKYUtxZLJFuOhGK0l++BVuzQDYgLKOKhbQVsJiBngMQX1SZO3ElrtXUuXSpzifr
- UTSx/9RyUxe8z9WByMLpQIr5jISSPEmyAyOFrwfMdSj9GUPsWFxZeEALThoZi3uluqO8
- ZY6KLQapCsJ7g8xlzvx9mrfhPAXfI2fGvR09jv6K9s9Mi6+pXHNi9udtzGAQJMDC5a6O
- zXrA==
-X-Gm-Message-State: APjAAAXWDZhESQQcEUrzZVf3Y/az8nnLB7Z5/KvLhlyQZt1NQxun1DcZ
- LYkq1hEZyzHWxaUWYxNUUS4rjwj0
-X-Google-Smtp-Source: APXvYqytAV2l2Xi35Zip6ns5etJhccB97zqNPoRkqCGSk4OpVWs0juxIalOLeDyUX8n/wqZSkqUGvQ==
-X-Received: by 2002:a2e:1415:: with SMTP id u21mr11124112ljd.22.1569821612915; 
- Sun, 29 Sep 2019 22:33:32 -0700 (PDT)
+ bh=rLeE+htgaU9gzy01Jb/ZeRp34lUaINpP7MzC2bKJlxI=;
+ b=bSi9AA9GCd1KbD8wR31knq7LAinMW8nxhh37wAn3KbDQZTvarMRDKATryY0thOnapu
+ tV38I06zwlij1LNrVHzj8k/+1kSfuuoBqju6DlLkw2Qkv9XADC1To9lvJu0lDOdnhk6b
+ wRzIfvBCEp8e0/ipYvQV7IgHeCgNCaylk4V/o+I424Gfr2pzRkVJJAVcULg6IqHWaXf4
+ kUuaQAWWcr32qQnHaiczEHdHZtHUK6YVw7VeRWnf2gMV+6YMJ0nEZ3twmpwRz/XfL+d8
+ 9cPxBM8kOD6EsJiwqKoa7D+s4Qw+wN/rO06tTwJ+8S3kFmhqvMz4Q2pIY0DA28kX7eI0
+ 2mGQ==
+X-Gm-Message-State: APjAAAX+q7OcxYR0VLdlsOamiU1uehFW3fzsm5tISBBhyknP6br+ZyPb
+ c/Ny6et5UxSy9UOiaySVsNccx1zV
+X-Google-Smtp-Source: APXvYqwTOaGqtLKAOQ5aycM4ciR2aDxJV2zqgqtLlDOt8EYmopwypHm8bwFMxHt8GNmdPXXeBHKszw==
+X-Received: by 2002:a2e:b0c2:: with SMTP id g2mr10486220ljl.217.1569821615174; 
+ Sun, 29 Sep 2019 22:33:35 -0700 (PDT)
 Received: from octofox.hsd1.ca.comcast.net.
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id k23sm2944211ljc.13.2019.09.29.22.33.30
+ by smtp.gmail.com with ESMTPSA id k23sm2944211ljc.13.2019.09.29.22.33.33
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 29 Sep 2019 22:33:32 -0700 (PDT)
+ Sun, 29 Sep 2019 22:33:34 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Sun, 29 Sep 2019 22:33:03 -0700
-Message-Id: <20190930053306.7029-3-jcmvbkbc@gmail.com>
+Date: Sun, 29 Sep 2019 22:33:04 -0700
+Message-Id: <20190930053306.7029-4-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.11.0
 In-Reply-To: <20190930053306.7029-1-jcmvbkbc@gmail.com>
 References: <20190930053306.7029-1-jcmvbkbc@gmail.com>
 Cc: Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH 2/5] xtensa: move MPU constants from .data to
-	.ref.rodata
+Subject: [Linux-Xtensa] [PATCH 3/5] xtensa: fix section name for start_info
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -73,37 +72,32 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-MPU attribute mapping table is R/O, move it from .data to __REFCONST
-(as the rest of the _startup code where initialize_cacheattr is used is
-in the __REF section). This allows executing initialize_cacheattr before
-the data section of the XIP kernel is relocated to its place.
+.data.init.refok has been removed from the kernel long ago, replaced
+with __REFDATA. Fix start_info definition.
 
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- arch/xtensa/include/asm/initialize_mmu.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ arch/xtensa/kernel/head.S | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/xtensa/include/asm/initialize_mmu.h b/arch/xtensa/include/asm/initialize_mmu.h
-index 3b054d2bede0..e3e1d9a1ef69 100644
---- a/arch/xtensa/include/asm/initialize_mmu.h
-+++ b/arch/xtensa/include/asm/initialize_mmu.h
-@@ -23,6 +23,7 @@
- #ifndef _XTENSA_INITIALIZE_MMU_H
- #define _XTENSA_INITIALIZE_MMU_H
+diff --git a/arch/xtensa/kernel/head.S b/arch/xtensa/kernel/head.S
+index 7f009719304e..c60ce905274f 100644
+--- a/arch/xtensa/kernel/head.S
++++ b/arch/xtensa/kernel/head.S
+@@ -355,10 +355,10 @@ ENDPROC(cpu_restart)
+  * DATA section
+  */
  
-+#include <linux/init.h>
- #include <asm/pgtable.h>
- #include <asm/vectors.h>
+-        .section ".data.init.refok"
+-        .align  4
++	__REFDATA
++	.align  4
+ ENTRY(start_info)
+-        .long   init_thread_union + KERNEL_STACK_SIZE
++	.long	init_thread_union + KERNEL_STACK_SIZE
  
-@@ -183,7 +184,7 @@
- #endif
- 
- #if XCHAL_HAVE_MPU
--	.data
-+	__REFCONST
- 	.align	4
- .Lattribute_table:
- 	.long 0x000000, 0x1fff00, 0x1ddf00, 0x1eef00
+ /*
+  * BSS section
 -- 
 2.11.0
 
