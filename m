@@ -2,50 +2,52 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id EF151D1E10
-	for <lists+linux-xtensa@lfdr.de>; Thu, 10 Oct 2019 03:38:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94C24D1E57
+	for <lists+linux-xtensa@lfdr.de>; Thu, 10 Oct 2019 04:11:54 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 3D44164E8;
-	Thu, 10 Oct 2019 01:31:12 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 9621B64BE;
+	Thu, 10 Oct 2019 02:04:39 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-yb1-f193.google.com (mail-yb1-f193.google.com
- [209.85.219.193])
- by linux-xtensa.org (Postfix) with ESMTPS id 7BC7E64E2
- for <linux-xtensa@linux-xtensa.org>; Thu, 10 Oct 2019 01:31:10 +0000 (UTC)
-Received: by mail-yb1-f193.google.com with SMTP id s7so1404620ybq.7
- for <linux-xtensa@linux-xtensa.org>; Wed, 09 Oct 2019 18:38:24 -0700 (PDT)
+Received: from mail-yw1-f67.google.com (mail-yw1-f67.google.com
+ [209.85.161.67])
+ by linux-xtensa.org (Postfix) with ESMTPS id 5F89864AA
+ for <linux-xtensa@linux-xtensa.org>; Thu, 10 Oct 2019 02:04:38 +0000 (UTC)
+Received: by mail-yw1-f67.google.com with SMTP id m7so1593301ywe.4
+ for <linux-xtensa@linux-xtensa.org>; Wed, 09 Oct 2019 19:11:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=UFJYsUva5FRhcAbZsdQcSuIVXzC9BSS6Ql6F/47Wmsk=;
- b=cvXsAm1qlmc+Kbv8i7YhK9zObTtu1ly7yMvlUxQMutSbYVH95MgCajf07z+x+zufvJ
- agz6VDwepjFNpv0zWKXH1nYHgoOgA+JmuYf63UOHiqz8yowM+06edu7A8w+EWHGDJcC3
- 4/JCFGwNqfNV8Z5rt+xsZVoLuslm2q1AMNPPeofdPgphamXuUaIZAKOZXkvnaRi2XIaU
- f0+WcyTD0LVRdG4VnbNCpnmyhyVOPDkWYhCdLGB7hGP4PgsbAuz9ZwQ7/yAfaOpyL7VF
- jZKlHGYStG7dboM/75SjdMtz1mNsq3C3npFYuxO3IQlg+qxZCbFXtXfAV6a5IVUwppxn
- ZGqg==
+ :cc; bh=woyaIkIQv6Xs21ozbrL0GY7iKCTuq76f+v68JretALk=;
+ b=dSK/3UR3/ac63/FVph2mecjCuuCfPMnqYKYexzIGXFHLESmymGyJvuEOkNJxmopgLf
+ 5xrb/JWTOx3bD1bIQTBrrkOa6GrKrJt1Mcnwrrz2GG5XB59jgbYMVCJf1wDWXFn3NNj1
+ kkSiaomXd8DWEQe6AePVRU47qYr4Nst8PBIv3QVxcCp5RPOHk8JOXsB0rzEVO3wTPtKT
+ eL8RzJgX5Av2Jc0ZJBR50ttog9yzygYjYrEtDm+BpEWEz7el2WE08oF9KSfgINM/QKwK
+ otJ35OkhiqPAhB22Hnq1b2ZIsDIbX1ugGOMFdDCxERwi1Jx7K8YvjslVMFDun/cDyymv
+ G0qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=UFJYsUva5FRhcAbZsdQcSuIVXzC9BSS6Ql6F/47Wmsk=;
- b=HccMWWyqITA4dwQ8wfQPHTQGvQNuSvSpSZ65HdXMACHLtoG+W6MOp/bVUl9i2yZOzo
- 0wYi9j6LFMJ2nDDmIXIcds5ksiLJMmbXJcGZPJ3i/WwAUCDt4LeEIxpHi9WDRyk4Eqd1
- +b43rcSZbEdo4D+Gb7gjNONvwTlavTzOj1EZykQce7B0E2kwtED7qyWKfV+OZsVtYNMb
- sq9zzjfzKsmyDx9nvLuprouP18GJ4o+2G1S/AyWmMNXs34UOr9/q4XjxfNlUAmfoD1Bu
- pwOj9B2i4QNMYwirh3g31h6NbHz2pUZKmgJEYI3wvpfWtm6w5++l4KiZUtO5awnb+HOD
- ie6w==
-X-Gm-Message-State: APjAAAW80fpLPm681lQh6Pj9MnBdLmpnFVnyFgJLiSTSgVxv3o+m9/UL
- acJXCOhUdviAOzBas/dbfLLMk3l5Unl4VzZzq2M=
-X-Google-Smtp-Source: APXvYqy5qQm96zZkZ//ly0S8Fu08YzPKTdph55FfVXIY19+1yN1kD1nrf2mh/IACpgkcsDp8rZx4QM+4gtNJMtIXviI=
-X-Received: by 2002:a5b:d50:: with SMTP id f16mr3995164ybr.25.1570671503860;
- Wed, 09 Oct 2019 18:38:23 -0700 (PDT)
+ bh=woyaIkIQv6Xs21ozbrL0GY7iKCTuq76f+v68JretALk=;
+ b=mpMttVt2b6T4352w5KKhHya/RA5DyvqL6K5yyVQjyR009oTX3aar8KGg75xhVqjb07
+ J4VYeei8VKX2+PrcT8Z8PPISYJSSZd0mKJL1S95+TG/pPZS6a9LtA2RgShIyxUaKSYEy
+ NGyQuxm4YTVOa4WHNWFiUJWr4zTsAUEvBe8e/RXoBcsr7uxeqWSJ3AVRzaiKnVfmEnWA
+ jscZ8D1BWxTAP/V5n2yi4RIvmBNrUD8QXI13LMYRgVssUjmIUjKea9UsrQ4XAreacfTC
+ 75K8ZIKVV0xdRf8oH05w15iPNvG14h/lylXCx1blwGtAPBLlCRbkYvMn3P/q9dgN0pvL
+ 0eIQ==
+X-Gm-Message-State: APjAAAU3u1gvwU5w440gpyJBIU6haxFe88SuGPoKDGpT1ywu0OBK5FlS
+ e+9J7ExYLiwhgXHbavXgQ7hd50JYJ4zu1xDRP/U=
+X-Google-Smtp-Source: APXvYqzCRWZDmD2E9YFKDujrVGkDM9cpNNyJ94dqrwW0mY7ENRS6hBWtMFes2xo1pKhFn0Is8FgWCwtUQDcOWPsVbcI=
+X-Received: by 2002:a81:254d:: with SMTP id l74mr5160055ywl.409.1570673511796; 
+ Wed, 09 Oct 2019 19:11:51 -0700 (PDT)
 MIME-Version: 1.0
 References: <20191009192105.GC26530@ZenIV.linux.org.uk>
-In-Reply-To: <20191009192105.GC26530@ZenIV.linux.org.uk>
+ <CAMo8BfKUOmExGRMaUPmcRsy=iyRrguLF6JOLUMegNnzkF9vcvQ@mail.gmail.com>
+ <20191010015606.GD26530@ZenIV.linux.org.uk>
+In-Reply-To: <20191010015606.GD26530@ZenIV.linux.org.uk>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Wed, 9 Oct 2019 18:38:12 -0700
-Message-ID: <CAMo8BfKUOmExGRMaUPmcRsy=iyRrguLF6JOLUMegNnzkF9vcvQ@mail.gmail.com>
+Date: Wed, 9 Oct 2019 19:11:40 -0700
+Message-ID: <CAMo8BfLo4hy+WGA7p+7iZaLmmgFOyzMRAtG5dzNj=JEU04GoKA@mail.gmail.com>
 To: Al Viro <viro@zeniv.linux.org.uk>
 Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
  <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>
@@ -68,64 +70,75 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Wed, Oct 9, 2019 at 12:21 PM Al Viro <viro@zeniv.linux.org.uk> wrote:
+On Wed, Oct 9, 2019 at 6:56 PM Al Viro <viro@zeniv.linux.org.uk> wrote:
 >
-> First of all, on short copies __copy_{to,from}_user() return the amount
-> of bytes left uncopied, *not* -EFAULT.  get_user() and put_user() are
-> expected to return -EFAULT on failure.
+> On Wed, Oct 09, 2019 at 06:38:12PM -0700, Max Filippov wrote:
 >
-> Another problem is get_user(v32, (__u64 __user *)p); that should
-> fetch 64bit value and the assign it to v32, truncating it in process.
-> Current code, OTOH, reads 8 bytes of data and stores them at the
-> address of v32, stomping on the 4 bytes that follow v32 itself.
+> > There's also the following code in the callers of this macro, e.g. in
+> > __get_user_nocheck:
+> >
+> >         long __gu_err, __gu_val;                                \
+> >         __get_user_size(__gu_val, (ptr), (size), __gu_err);     \
+> >         (x) = (__force __typeof__(*(ptr)))__gu_val;             \
+> >
+> > the last line is important for sizes 1..4, because it takes care of
+> > sign extension of the value loaded by the assembly.
+> > At the same time the first line doesn't make sense for the size 8
+> > as it will result in value truncation.
 >
-> Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
-> --
-> diff --git a/arch/xtensa/include/asm/uaccess.h b/arch/xtensa/include/asm/uaccess.h
-> index 6792928ba84a..155174ddb7ae 100644
-> --- a/arch/xtensa/include/asm/uaccess.h
-> +++ b/arch/xtensa/include/asm/uaccess.h
-> @@ -100,7 +100,7 @@ do {                                                                        \
->         case 4: __put_user_asm(x, ptr, retval, 4, "s32i", __cb); break; \
->         case 8: {                                                       \
->                      __typeof__(*ptr) __v64 = x;                        \
-> -                    retval = __copy_to_user(ptr, &__v64, 8);           \
-> +                    retval = __copy_to_user(ptr, &__v64, 8) ? -EFAULT : 0;     \
+> Right you are...
+>
+> > +       long __gu_err;                                          \
+> > +       __typeof__(*(ptr) + 0) __gu_val;                        \
+>
+> What would __u64 __gu_val; end up with for smaller sizes?
 
-Sure, I agree with that.
+It does good job with little endian cores, i.e. the generated code is
+the same in both cases, but on big endian it looks into wrong register
+of the register pair that represents __gu_val. E.g.:
 
->                      break;                                             \
->                 }                                                       \
->         default: __put_user_bad();                                      \
-> @@ -198,7 +198,12 @@ do {                                                                       \
->         case 1: __get_user_asm(x, ptr, retval, 1, "l8ui", __cb);  break;\
->         case 2: __get_user_asm(x, ptr, retval, 2, "l16ui", __cb); break;\
->         case 4: __get_user_asm(x, ptr, retval, 4, "l32i", __cb);  break;\
-> -       case 8: retval = __copy_from_user(&x, ptr, 8);    break;        \
-> +       case 8: {                                                       \
-> +               __u64 __x = 0;                                          \
-> +               retval = __copy_from_user(&__x, ptr, 8) ? -EFAULT : 0;  \
-> +               (x) = *(__force __typeof__(*(ptr)) *) &__x;             \
-> +               break;                                                  \
-> +       }                                                               \
+foo_in_s8_out_s8:
+        entry   sp, 32  #
+        mov.n   a7, sp  # a5,
+# /home/jcmvbkbc/ws/tensilica/linux/linux-xtensa/arch/xtensa/kernel/signal.c:518:
+gen_outs(8)
+        movi.n  a8, 0   # __gu_err,
+#APP
+# 518 "/home/jcmvbkbc/ws/tensilica/linux/linux-xtensa/arch/xtensa/kernel/signal.c"
+1
+        1: l8ui  a10, a2, 0                     # __gu_val, p
+2:
+   .section  .fixup,"ax"
+   .align 4
+   .literal_position
+5:
+   movi   a2, 2b                        # __cb
+   movi   a10, 0                        # __gu_val
+   movi   a8, -14                       # __gu_err,
+   jx     a2                            # __cb
+   .previous
+   .section  __ex_table,"a"
+   .long        1b, 5b
+   .previous
+# 0 "" 2
+#NO_APP
+        extui   a2, a11, 0, 8   #, __gu_val
+        retw.n
 
-There's also the following code in the callers of this macro, e.g. in
-__get_user_nocheck:
+> I don't have
+> xtensa cross-toolchain at the moment, so I can't check it easily;
+> what does =r constraint generate in such case?
 
-        long __gu_err, __gu_val;                                \
-        __get_user_size(__gu_val, (ptr), (size), __gu_err);     \
-        (x) = (__force __typeof__(*(ptr)))__gu_val;             \
+Lower register of the register pair.
 
-the last line is important for sizes 1..4, because it takes care of
-sign extension of the value loaded by the assembly.
-At the same time the first line doesn't make sense for the size 8
-as it will result in value truncation.
+> Another thing is, you want to zero it on failure, to avoid an uninitialized
+> value ending up someplace interesting....
 
-How about the following change instead:
+Ok, this?
 
 diff --git a/arch/xtensa/include/asm/uaccess.h
 b/arch/xtensa/include/asm/uaccess.h
-index 6792928ba84a..c54893651d69 100644
+index 6792928ba84a..0bdaadf1636e 100644
 --- a/arch/xtensa/include/asm/uaccess.h
 +++ b/arch/xtensa/include/asm/uaccess.h
 @@ -100,7 +100,7 @@ do {
@@ -146,7 +159,7 @@ index 6792928ba84a..c54893651d69 100644
  ({                                                             \
 -       long __gu_err, __gu_val;                                \
 +       long __gu_err;                                          \
-+       __typeof__(*(ptr) + 0) __gu_val;                        \
++       __typeof__(*(ptr) + 0) __gu_val = 0;                    \
         __get_user_size(__gu_val, (ptr), (size), __gu_err);     \
         (x) = (__force __typeof__(*(ptr)))__gu_val;             \
         __gu_err;                                               \
@@ -173,9 +186,6 @@ index 6792928ba84a..c54893651d69 100644
         }                                                               \
  } while (0)
 
-Here __typeof__(*(ptr) + 0) makes enough room for all cases
-in the __get_user_size and the "+0" part takes care of pointers
-to const data.
 
 -- 
 Thanks.
