@@ -2,58 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 04044D37E8
-	for <lists+linux-xtensa@lfdr.de>; Fri, 11 Oct 2019 05:35:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14800D4B44
+	for <lists+linux-xtensa@lfdr.de>; Sat, 12 Oct 2019 02:07:31 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id DE4476430;
-	Fri, 11 Oct 2019 03:28:35 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 7C03364BF;
+	Sat, 12 Oct 2019 00:00:12 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-yw1-f68.google.com (mail-yw1-f68.google.com
- [209.85.161.68])
- by linux-xtensa.org (Postfix) with ESMTPS id 697C95823
- for <linux-xtensa@linux-xtensa.org>; Fri, 11 Oct 2019 03:28:34 +0000 (UTC)
-Received: by mail-yw1-f68.google.com with SMTP id 129so2985384ywb.8
- for <linux-xtensa@linux-xtensa.org>; Thu, 10 Oct 2019 20:35:50 -0700 (PDT)
+Received: from mail-lj1-f196.google.com (mail-lj1-f196.google.com
+ [209.85.208.196])
+ by linux-xtensa.org (Postfix) with ESMTPS id C501264BC
+ for <linux-xtensa@linux-xtensa.org>; Sat, 12 Oct 2019 00:00:10 +0000 (UTC)
+Received: by mail-lj1-f196.google.com with SMTP id n14so11377758ljj.10
+ for <linux-xtensa@linux-xtensa.org>; Fri, 11 Oct 2019 17:07:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=OgPaV+qaSMkdCLw3rM07i0HH191EBL2f3oOUwQ7aINM=;
- b=Xk4BT32VWl7rmbedpzjSt5jXZ6YD4Nf9YCauqsxDOhZntTvKg5bpEb0RwAzy4VQMQL
- tlfrsMqcY0JHQAXCXq1ORbpQ5AUUP4m14X8nPaCiH3vSFvTydqmgp69cg/lKPuAoNHC5
- jNL0ADF3se3LDaAQEHYC4/4T5YFmHf9sP/f+5z7VK52bZBBjpEW8dYbZubWDunkCeGbZ
- GpjMunMnDVe+joQv8s74lShKRZBF5901HU+bWB/7jGqTydun6sQFCo/6J9Fn0P3rA9qE
- FsBgquAXoC+peoEcTVVg4+lW2Mn0HYiaGpasCjhtt9nSBGTnAv/l8NbTT4MRLOCul1ER
- axLA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=DP/pIZ7Dk1r0Q1hAF8O62ASZwsVKnOksJciqBlvU9ik=;
+ b=Q7kTfk7MSE6QawaFDXeSSzLymvp4F8fw5HDlXIrhbSMRYSOL2Bs/kBZY6CvwwBktap
+ pQEhlW3IqjqiVmd9yzYIUpEPMypBT5AIhmcsnyYzd1ZBaah/uVjt9FmJN3wQ6Y/mu1vV
+ 9cmWtcLBuoMIKagHz3hrlORigpkYyNJnx+bND7R/O9A2GdkTli3uLg+/6QnDihRTKqTK
+ vZ7cYwZjqkZlG4JDUb1aG4D2sSZZ4Fqc0m0BzMvbhDV3BUTeT8qeO6oSDJ+wyP/0lGp8
+ tMVmz33GbIh6e7WFkI2cjOubo4mVEG3jul7rs0ZFkn1wPFtS1bGqsXjIMuDVzXCanSfa
+ KKhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=OgPaV+qaSMkdCLw3rM07i0HH191EBL2f3oOUwQ7aINM=;
- b=riDv19loiVtpw8VDP+Tgz7LMDmHkuu6n6eQ5k9UMtzXalneRMAmM6UpJy7dEOFrB1u
- Il3ZJ+VD1DBFWDnyiWf30JyZ2ADBpbsNDsYjPnXV+c52Yie94F5GMOHklBvNrJMHASUi
- 0/RfYmHz/Cu2SCC3efZgAh7dkTlXspPgqDbD7rYCgWCgdmSuoUGwwENCAvKsVc9jXPM8
- JxWeEjMPHF72xA0i3PPkeRm70DMTPrtZ/xiQ9jwOCYefvRJ0W+lQUPorgkUQLz6Om7Hu
- NiD1M3BhirFwmojsZNh3oWfSVcnazkEGUz3x9PMOZEYONmQ1/CIFtNnHBdljg3JaQtKf
- Gatw==
-X-Gm-Message-State: APjAAAU44jSatMHYYllbtQqK3M6llwMP1xv+aGBj1dCQnN9hILsxU5yg
- /ADEvhSd4BrEfuX2NvgGL52rXjTjmkwFZ0pQ2xs=
-X-Google-Smtp-Source: APXvYqx3e2s/VJH2fkJJc3gtf+mHISawf0sbgYOGmUSAfyxFrrhUpFi9yXJ4oieBmM3yVFqQsKMZUl/B2rXpoY9JXpc=
-X-Received: by 2002:a81:74d4:: with SMTP id p203mr764119ywc.234.1570764950010; 
- Thu, 10 Oct 2019 20:35:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191009192105.GC26530@ZenIV.linux.org.uk>
- <CAMo8BfKUOmExGRMaUPmcRsy=iyRrguLF6JOLUMegNnzkF9vcvQ@mail.gmail.com>
- <20191010015606.GD26530@ZenIV.linux.org.uk>
- <CAMo8BfLo4hy+WGA7p+7iZaLmmgFOyzMRAtG5dzNj=JEU04GoKA@mail.gmail.com>
- <20191010142956.GG26530@ZenIV.linux.org.uk>
-In-Reply-To: <20191010142956.GG26530@ZenIV.linux.org.uk>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=DP/pIZ7Dk1r0Q1hAF8O62ASZwsVKnOksJciqBlvU9ik=;
+ b=Y0DNeFeQZhh4NJlF5VrCB4OywG15bAxE9E3i1P098z0QflzRD3J/H9le1hREO1hQJJ
+ gwcFVjCfg5YiOeFhHXSvWHMmw92scyxce3FJzTZPT2bGaago/NxDSaLnsxhwkcNrXEnh
+ d5GDB4MS2HAy9jJPHdZt3dfEqGjtKFeEyTvZk70MPNRptYC9/jlbUhK9ErM5mI66wXXl
+ ztAdlEl0Tomy+VoeXdgLujwWoa1cV9s7nMqRlzFzDGJbKk6rdDkNRNuv1L8yiT6A/H3L
+ s043CsbPISehdyEYfz4dSYU3+wxXyu2gBAhmJ0Fxov0Faoy/Z80gN7vYOn/cmc8kT/Z3
+ bRQQ==
+X-Gm-Message-State: APjAAAVuyCVG3BvoJX6jTpTnQ1JRNIXH8J/2sY6iucddLssmSIYf7zW1
+ 3BfKdr+PutZV6CWI02NsINpQcO97
+X-Google-Smtp-Source: APXvYqyG4EQRdcZnPtOacNPj+2wtZVQmew6gNw/unYbzGH39NbH2j7vfVUco9+sdZYdF9zjlSBVZJg==
+X-Received: by 2002:a05:651c:1b9:: with SMTP id
+ c25mr10299063ljn.163.1570838847064; 
+ Fri, 11 Oct 2019 17:07:27 -0700 (PDT)
+Received: from octofox.cadence.com
+ (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
+ by smtp.gmail.com with ESMTPSA id x17sm2215705lji.62.2019.10.11.17.07.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 11 Oct 2019 17:07:25 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Thu, 10 Oct 2019 20:35:39 -0700
-Message-ID: <CAMo8BfL3j4odehiR8KzHwjohfoBADOhjSjeXFG7AwgBXoXQRTw@mail.gmail.com>
-To: Al Viro <viro@zeniv.linux.org.uk>
-Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: fix {get,
+To: linux-xtensa@linux-xtensa.org,
+	Al Viro <viro@zeniv.linux.org.uk>
+Date: Fri, 11 Oct 2019 17:07:08 -0700
+Message-Id: <20191012000711.3775-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: linux-kernel@vger.kernel.org, Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH 0/3] xtensa: fix {get,
 	put}_user() for 64bit values
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
@@ -72,37 +74,26 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Thu, Oct 10, 2019 at 7:29 AM Al Viro <viro@zeniv.linux.org.uk> wrote:
-> Hmm...   Looking at __get_user_size(), we have retval = 0; very early
-> in it.  So I wonder if it should simply be
-> #define __get_user_size(x, ptr, size, retval)                           \
-> do {                                                                    \
->         int __cb;                                                       \
->         retval = 0;                                                     \
->         switch (size) {                                                 \
->         case 1: __get_user_asm(x, ptr, retval, 1, "l8ui", __cb);  break;\
->         case 2: __get_user_asm(x, ptr, retval, 2, "l16ui", __cb); break;\
->         case 4: __get_user_asm(x, ptr, retval, 4, "l32i", __cb);  break;\
->         case 8: if (unlikely(__copy_from_user(&x, ptr, 8)) {            \
->                         retval = -EFAULT;                               \
->                         x = 0;                                          \
->                 }                                                       \
->                 break;                                                  \
->         default: (x) = __get_user_bad();                                \
->         }                                                               \
-> } while (0)
-> so that 64bit case is closer to the others in that respect (i.e. zeroing
-> done on failure and out of line).  No?
+Hello,
 
-Ok, I agree.
-The intermediate __gu_val in __get_user_[no]check doesn't work well
-with some data types used in the kernel, unfortunately. I'll post a series
-with what's close to your initial patch on top of rearranged
-__get_user_[no]check.
+this series fixes return value, out-of-bound stack access and value
+truncation in xtensa implementation of {get,put}_user() for 64bit
+values. It also cleans up naming of assembly parameters in
+__{get,put}_user_asm and __check_align_{1,2,4}.
+
+Al Viro (1):
+  xtensa: fix {get,put}_user() for 64bit values
+
+Max Filippov (2):
+  xtensa: clean up assembly arguments in uaccess macros
+  xtensa: fix type conversion in __get_user_[no]check
+
+ arch/xtensa/include/asm/uaccess.h | 93 +++++++++++++++++--------------
+ 1 file changed, 52 insertions(+), 41 deletions(-)
 
 -- 
-Thanks.
--- Max
+2.20.1
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
