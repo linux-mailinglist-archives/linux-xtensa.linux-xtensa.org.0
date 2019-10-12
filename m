@@ -2,62 +2,62 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id C0E05D4B64
-	for <lists+linux-xtensa@lfdr.de>; Sat, 12 Oct 2019 02:37:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D97FBD4B65
+	for <lists+linux-xtensa@lfdr.de>; Sat, 12 Oct 2019 02:37:33 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 8EB44583D;
-	Sat, 12 Oct 2019 00:30:14 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id A100364E8;
+	Sat, 12 Oct 2019 00:30:15 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f68.google.com (mail-lf1-f68.google.com
- [209.85.167.68])
- by linux-xtensa.org (Postfix) with ESMTPS id 66FC55821
- for <linux-xtensa@linux-xtensa.org>; Sat, 12 Oct 2019 00:30:12 +0000 (UTC)
-Received: by mail-lf1-f68.google.com with SMTP id u28so8203109lfc.5
- for <linux-xtensa@linux-xtensa.org>; Fri, 11 Oct 2019 17:37:30 -0700 (PDT)
+Received: from mail-lj1-f194.google.com (mail-lj1-f194.google.com
+ [209.85.208.194])
+ by linux-xtensa.org (Postfix) with ESMTPS id 23FF664E6
+ for <linux-xtensa@linux-xtensa.org>; Sat, 12 Oct 2019 00:30:15 +0000 (UTC)
+Received: by mail-lj1-f194.google.com with SMTP id 7so11436008ljw.7
+ for <linux-xtensa@linux-xtensa.org>; Fri, 11 Oct 2019 17:37:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=KOU51IFsj1iWUWTwrZgYX0bBua/cZqGBz0E2pjuMMik=;
- b=UTJP5c51u97TZQgmSLoRxAc925Tkumx8EJcmpN2Qa463ReM1bWUp4aN9rj4Wo8FsfU
- 19TbDGA3FzoulgBqb/PHvZtLhF0VqxWCVzjh+aju5wXruPSLQFPp8TKPQn2j3y43lLvR
- /ML1Y+T3xSkUA7U3uRn/a4eihlQ3sOFHA8kWUGTrMJIVVIszwHEx3VyMY71qjM/p4ggy
- ofLUpySc3mRtQYwcolnmzLyVEhvtu6n6vqUpfIuY/6zfiLtRZyHxIbrxLQqTf3E50p7a
- ce3FP1VdZICSAfhGh7+Cl3B0M7f6I5DKs8lNG574GxL+KO0twj3+ZjcjOb7C4khywNUR
- 9IZA==
+ bh=kjWi0GH8KhuY/mSwjF/Yf4/A/3SkcDswuz7RL6JGBfI=;
+ b=rh4nxRsKkMkiwnIctrOGT5SbHJrYngN5eKB5fsnIHEReNl9P+A3GddlSrOmeuFKJ61
+ CvQlE5p2RXKXy+N42l7kEI/mV0tUMy2dT7X9LzbjR7FDw2WVjG5qYcD6i2so+H92Jmrv
+ mKf1CTJBbkNIQMYf8mDPNSc6wkxZZVn8556hg7QOIGZZQ04uR8pPqVOskjnlTPALkrCf
+ RwzuVQxreg+3fSSdRfgCspVcEmxVt4Ay2tuzSdrC+BKwcNZ4uJpEKl0CEM29mCAyg/ZE
+ zEXreg1qwL1m2LD8Q6ZB86KwYJZ7QvE4OS7HsX2G8Yx55CvsQvNrFDmQJbxZNnoslAUF
+ C5xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=KOU51IFsj1iWUWTwrZgYX0bBua/cZqGBz0E2pjuMMik=;
- b=MHIhH8MeAm6e7jAWXzodK+cavJ13TYp4PRSGE6S2Vg+GJAxU9vUGghD+MwxwdGp7w9
- 2ADlURFD4eJ5FKNaRwd45eUcxY5wxEo6L68qQfZdNxQaYh0x1CTmoSTQijsWDEzD+ywo
- Mr7qhaV2LMFHks9oiFwtvHNQSHD4Xexu7z2Tv7DxVuEPR7ClmIBxBnfdRWGlRmLTiEKU
- jAYStKCdOiLLXSIQQYJTcRl2L6lvHuEgcS6TfFbW+1rc8MxMLIL2mzU5GEgBLJ7DoBkH
- d9oedtwTOgoJPETFa7HcT9QoRItMx+D08sO8K0pZ4Jk3uzik7uMI1H6zDEZEmq25d2mH
- vSbw==
-X-Gm-Message-State: APjAAAXSBnK/1rP4AwRmfTXGX8A1JqbGkwalf2stImcX8LswXzB7OCkP
- ebGJ1+Ar9ivvgJhRR+hVKhWYN7URcu0=
-X-Google-Smtp-Source: APXvYqyh7VUEelfBevfxp2ozULTq0Wc4+EN6WACxzJmxXe54N++ulhT3aTDtgkmJ0xTyoatL6FeAjw==
-X-Received: by 2002:ac2:5bc1:: with SMTP id u1mr10487452lfn.182.1570840648861; 
- Fri, 11 Oct 2019 17:37:28 -0700 (PDT)
+ bh=kjWi0GH8KhuY/mSwjF/Yf4/A/3SkcDswuz7RL6JGBfI=;
+ b=Bqi2DuK3rM4oP1fPBoDFhK7fLgShDbVPw6Egs342bv7+x7SwA3Z6eN9iLDiCxVaH5l
+ Up1NBjKKsYbwShho46EK+lNh6Iy4kDjAojt+lLbcx0CWcGokpvzTTeDvEtf1qiuAicDt
+ 7nthMFllUUXrlI+55F52TM8/M6hcnhBZVzrkk5oBWOAJQCp9o7axjuXRM7IttlMl3sFF
+ OX+clMdOQMD2akFgLqagoIciYT9qaqSj6Q8dndw3Ar1IQZ0f6ajl7JZrNGTL7QO6WTOv
+ ns6m5voIf3Rb+YjP4J9961FS1qK6Y5Coax/M8GuXnYw8IzRpojPnUEs+Zie4fa79uct1
+ iTlA==
+X-Gm-Message-State: APjAAAX6fvyn5dauFGuFpfKIvUnwtxh4Ad81cph+6VAJIDCOd3m5O/h3
+ vyLyCXmkWyhFeznNsrzHXW86UlWmlew=
+X-Google-Smtp-Source: APXvYqw6fcCV0PZreTMFX3gLNfVBk9VZ2rni/sqhP0+1ifefTyR1iykvxk+3suosh4xnI6Ft+8OEeA==
+X-Received: by 2002:a2e:5354:: with SMTP id t20mr10842119ljd.227.1570840651571; 
+ Fri, 11 Oct 2019 17:37:31 -0700 (PDT)
 Received: from octofox.cadence.com
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id f22sm2346620lfa.41.2019.10.11.17.37.26
+ by smtp.gmail.com with ESMTPSA id f22sm2346620lfa.41.2019.10.11.17.37.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 11 Oct 2019 17:37:28 -0700 (PDT)
+ Fri, 11 Oct 2019 17:37:30 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org,
 	Al Viro <viro@zeniv.linux.org.uk>
-Date: Fri, 11 Oct 2019 17:37:05 -0700
-Message-Id: <20191012003708.22182-2-jcmvbkbc@gmail.com>
+Date: Fri, 11 Oct 2019 17:37:06 -0700
+Message-Id: <20191012003708.22182-3-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191012003708.22182-1-jcmvbkbc@gmail.com>
 References: <20191012003708.22182-1-jcmvbkbc@gmail.com>
 MIME-Version: 1.0
 Cc: linux-kernel@vger.kernel.org, Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH v2 1/4] xtensa: fix {get,
-	put}_user() for 64bit values
+Subject: [Linux-Xtensa] [PATCH v2 2/4] xtensa: clean up assembly arguments
+	in uaccess macros
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -75,54 +75,107 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-From: Al Viro <viro@zeniv.linux.org.uk>
+Numeric assembly arguments are hard to understand and assembly code that
+uses them is hard to modify. Use named arguments in __check_align_*,
+__get_user_asm and __put_user_asm. Modify macro parameter names so that
+they don't affect argument names.
 
-First of all, on short copies __copy_{to,from}_user() return the amount
-of bytes left uncopied, *not* -EFAULT.  get_user() and put_user() are
-expected to return -EFAULT on failure.
-
-Another problem is get_user(v32, (__u64 __user *)p); that should
-fetch 64bit value and the assign it to v32, truncating it in process.
-Current code, OTOH, reads 8 bytes of data and stores them at the
-address of v32, stomping on the 4 bytes that follow v32 itself.
-
-Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- arch/xtensa/include/asm/uaccess.h | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ arch/xtensa/include/asm/uaccess.h | 42 +++++++++++++++----------------
+ 1 file changed, 21 insertions(+), 21 deletions(-)
 
 diff --git a/arch/xtensa/include/asm/uaccess.h b/arch/xtensa/include/asm/uaccess.h
-index 6792928ba84a..f568c00392ec 100644
+index f568c00392ec..aca510707189 100644
 --- a/arch/xtensa/include/asm/uaccess.h
 +++ b/arch/xtensa/include/asm/uaccess.h
-@@ -100,7 +100,7 @@ do {									\
- 	case 4: __put_user_asm(x, ptr, retval, 4, "s32i", __cb); break;	\
- 	case 8: {							\
- 		     __typeof__(*ptr) __v64 = x;			\
--		     retval = __copy_to_user(ptr, &__v64, 8);		\
-+		     retval = __copy_to_user(ptr, &__v64, 8) ? -EFAULT : 0;	\
- 		     break;						\
- 	        }							\
- 	default: __put_user_bad();					\
-@@ -198,7 +198,16 @@ do {									\
- 	case 1: __get_user_asm(x, ptr, retval, 1, "l8ui", __cb);  break;\
- 	case 2: __get_user_asm(x, ptr, retval, 2, "l16ui", __cb); break;\
- 	case 4: __get_user_asm(x, ptr, retval, 4, "l32i", __cb);  break;\
--	case 8: retval = __copy_from_user(&x, ptr, 8);    break;	\
-+	case 8: {							\
-+		u64 __x;						\
-+		if (unlikely(__copy_from_user(&__x, ptr, 8))) {		\
-+			retval = -EFAULT;				\
-+			(x) = 0;					\
-+		} else {						\
-+			(x) = *(__force __typeof__((ptr)))&__x;		\
-+		}							\
-+		break;							\
-+	}								\
- 	default: (x) = __get_user_bad();				\
- 	}								\
- } while (0)
+@@ -132,14 +132,14 @@ do {									\
+ #define __check_align_1  ""
+ 
+ #define __check_align_2				\
+-	"   _bbci.l %3,  0, 1f		\n"	\
+-	"   movi    %0, %4		\n"	\
++	"   _bbci.l %[addr], 0, 1f	\n"	\
++	"   movi    %[err], %[efault]	\n"	\
+ 	"   _j      2f			\n"
+ 
+ #define __check_align_4				\
+-	"   _bbsi.l %3,  0, 0f		\n"	\
+-	"   _bbci.l %3,  1, 1f		\n"	\
+-	"0: movi    %0, %4		\n"	\
++	"   _bbsi.l %[addr], 0, 0f	\n"	\
++	"   _bbci.l %[addr], 1, 1f	\n"	\
++	"0: movi    %[err], %[efault]	\n"	\
+ 	"   _j      2f			\n"
+ 
+ 
+@@ -151,24 +151,24 @@ do {									\
+  * WARNING: If you modify this macro at all, verify that the
+  * __check_align_* macros still work.
+  */
+-#define __put_user_asm(x, addr, err, align, insn, cb)	\
++#define __put_user_asm(x_, addr_, err_, align, insn, cb)\
+ __asm__ __volatile__(					\
+ 	__check_align_##align				\
+-	"1: "insn"  %2, %3, 0		\n"		\
++	"1: "insn"  %[x], %[addr], 0	\n"		\
+ 	"2:				\n"		\
+ 	"   .section  .fixup,\"ax\"	\n"		\
+ 	"   .align 4			\n"		\
+ 	"   .literal_position		\n"		\
+ 	"5:				\n"		\
+-	"   movi   %1, 2b		\n"		\
+-	"   movi   %0, %4		\n"		\
+-	"   jx     %1			\n"		\
++	"   movi   %[tmp], 2b		\n"		\
++	"   movi   %[err], %[efault]	\n"		\
++	"   jx     %[tmp]		\n"		\
+ 	"   .previous			\n"		\
+ 	"   .section  __ex_table,\"a\"	\n"		\
+ 	"   .long	1b, 5b		\n"		\
+ 	"   .previous"					\
+-	:"=r" (err), "=r" (cb)				\
+-	:"r" ((int)(x)), "r" (addr), "i" (-EFAULT), "0" (err))
++	:[err] "=r"(err_), [tmp] "=r"(cb)		\
++	:[x] "r"(x_), [addr] "r"(addr_), [efault] "i"(-EFAULT))
+ 
+ #define __get_user_nocheck(x, ptr, size)			\
+ ({								\
+@@ -217,25 +217,25 @@ do {									\
+  * WARNING: If you modify this macro at all, verify that the
+  * __check_align_* macros still work.
+  */
+-#define __get_user_asm(x, addr, err, align, insn, cb) \
+-__asm__ __volatile__(			\
++#define __get_user_asm(x_, addr_, err_, align, insn, cb) \
++__asm__ __volatile__(				\
+ 	__check_align_##align			\
+-	"1: "insn"  %2, %3, 0		\n"	\
++	"1: "insn"  %[x], %[addr], 0	\n"	\
+ 	"2:				\n"	\
+ 	"   .section  .fixup,\"ax\"	\n"	\
+ 	"   .align 4			\n"	\
+ 	"   .literal_position		\n"	\
+ 	"5:				\n"	\
+-	"   movi   %1, 2b		\n"	\
+-	"   movi   %2, 0		\n"	\
+-	"   movi   %0, %4		\n"	\
+-	"   jx     %1			\n"	\
++	"   movi   %[tmp], 2b		\n"	\
++	"   movi   %[x], 0		\n"	\
++	"   movi   %[err], %[efault]	\n"	\
++	"   jx     %[tmp]		\n"	\
+ 	"   .previous			\n"	\
+ 	"   .section  __ex_table,\"a\"	\n"	\
+ 	"   .long	1b, 5b		\n"	\
+ 	"   .previous"				\
+-	:"=r" (err), "=r" (cb), "=r" (x)	\
+-	:"r" (addr), "i" (-EFAULT), "0" (err))
++	:[err] "=r"(err_), [tmp] "=r"(cb), [x] "=r"(x_)\
++	:[addr] "r"(addr_), [efault] "i"(-EFAULT))
+ 
+ 
+ /*
 -- 
 2.20.1
 
