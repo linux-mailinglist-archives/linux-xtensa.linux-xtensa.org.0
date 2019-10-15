@@ -2,59 +2,58 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 24262D8224
-	for <lists+linux-xtensa@lfdr.de>; Tue, 15 Oct 2019 23:26:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76608D822B
+	for <lists+linux-xtensa@lfdr.de>; Tue, 15 Oct 2019 23:27:54 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 14DC15866;
-	Tue, 15 Oct 2019 21:18:30 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 9806B6459;
+	Tue, 15 Oct 2019 21:20:25 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
- [209.85.167.66])
- by linux-xtensa.org (Postfix) with ESMTPS id B6A6D583D
- for <linux-xtensa@linux-xtensa.org>; Tue, 15 Oct 2019 21:18:26 +0000 (UTC)
-Received: by mail-lf1-f66.google.com with SMTP id f23so133884lfk.7
- for <linux-xtensa@linux-xtensa.org>; Tue, 15 Oct 2019 14:25:51 -0700 (PDT)
+Received: from mail-lj1-f194.google.com (mail-lj1-f194.google.com
+ [209.85.208.194])
+ by linux-xtensa.org (Postfix) with ESMTPS id 82E04643E
+ for <linux-xtensa@linux-xtensa.org>; Tue, 15 Oct 2019 21:20:20 +0000 (UTC)
+Received: by mail-lj1-f194.google.com with SMTP id y23so21747630lje.9
+ for <linux-xtensa@linux-xtensa.org>; Tue, 15 Oct 2019 14:27:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=TupgV0MHjA8yhWmBL3cewNdEfIAySH9lA2snhT2KSA0=;
- b=gU0FNH+YkmD9qkMKyKIVtHQfL7lcArLVLw6hAZPGPh9wu58EpZ+OqTE5ywg4R6bFY+
- pkXIAD4EvoB/gq5QY5gfkd6tVajJJ+I7cgDFtE8U3E9XxbgIDHsFg5+ggcrBta64PCLp
- cCQ6uS/yBUw6Qefb03aimc23o9T6g2wc3Sg2H/xgKMAC3Af+08SLkLOBKVyduCs/ak54
- Tvc5EFS+2zAcirOKtZE0J6UoCXUvPvyOdFgeYoIimjMc9CxfwajW5OJrVyopbuEmmlhy
- eokWvZ336DJO9Kbbe0n+eEvJVpXqF+xa1u4SlwDxi8nEmoYHMz9QKwp/a233ViLfOUnU
- 5Sog==
+ bh=EVHn2NsX5B43le8B3EzhzIe6h5tssyt0eUzyXr5fRms=;
+ b=fFMRjYmuNY/EYaYPvODMmokfwxbkt954msSOcq8ybTuZgxihReM7+van6dQnlyIZX0
+ tzLDOY0yYHQ5i1bm66t+XAn2jhutPxAl1K0enno6VdNamNUMx3bbGq6aAES7fkU1Jksz
+ t05xxP2Mv/PMj5hExJRLshmsGptfuTwy/8zfBB0PrHs6Xwb2Q2kRNJZ39AhvVfCBO+2a
+ NwdoWPE8oLGuejQM/7VgcBMvBBKw5vzDf5BXDiayiat/eF2SGSTKnb4Foh/vy0noLzAe
+ fRGJoVLq5PEemmvE71DlN9w7eQ7umh1KwUmfQ7lZGfWcVeh00ZJejhRTRNvyrrPGUCZ/
+ d3KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=TupgV0MHjA8yhWmBL3cewNdEfIAySH9lA2snhT2KSA0=;
- b=KzGngnAt6gW2X6l8IbmKXD03wVTSlpeXzk7N5a0MyLCeaRQ0qlz0x6dTZeuwCehVuK
- p71mv7Cn2qbEQEY3UKgHGcwmOWrUH8WGJ9Nb9MgETptNLS34yJ5TVNZuVr1uM8KXXn7T
- evxtyCEtD1edd4lySQqf5wmd5n/toqvOtMxYvDRhR41TLwuuuD1LDXwHfqje+C5fJ8JA
- OxYHTJhyRQLv0bF5oDOKeNdxFmAVmxuierQGonA8UuaSzA976xu4qcIuQbhiQFwRe6Rj
- v5ag7DneJArHBGp9Qr66Si5V8Hamj8jKbbVS/wTUH9DtmmThesbjjN+2Thb9cKTtN3f0
- cx6g==
-X-Gm-Message-State: APjAAAW3Aubza7f7BO7qyfATcxzQ37gwUcJjyCgILqcMQ5+PXcn3fdpt
- mIcajzytFc6b1RbT0dOtCic4uUb+iKg=
-X-Google-Smtp-Source: APXvYqwYi9FHUGev/22Lws4+0G8iiMlMBA/PDnRq6muX/tFrhu8jEDv03Ihqb6Wd32ENbMM1SI5v7A==
-X-Received: by 2002:ac2:44c3:: with SMTP id d3mr21412169lfm.109.1571174750137; 
- Tue, 15 Oct 2019 14:25:50 -0700 (PDT)
+ bh=EVHn2NsX5B43le8B3EzhzIe6h5tssyt0eUzyXr5fRms=;
+ b=r3TGVAbprlrZhdEsatGg1mbS4B5P3kS+Ea/+yER1F2Zuw9cnm28+Y8/z3ckhLy+dxJ
+ xl+WAZi+QGaWhc9XIMtG033rVVtktZ3x5dSF+Gtvm1P6o/bVc6vlKErJkd5JKbXa5OT/
+ iDIQKeKQjkzR7PfFjZyNUUnmqXjTgXmQL0t/aEgdT87ZphPlmZXpwHtO+P77EBlF6y6B
+ 4tCL8TrZZfKojDfXBSMHLxWgDG5xKjie6rXz7Psk7BzXUWNJCQGaw3/EVTcL/9bnBG/8
+ S4C/GVz4t6cSYyzpti7moy16s54FrXr8dzjdAzXrkIQh273qCy5horWgEpBMtfWYepet
+ 1k2Q==
+X-Gm-Message-State: APjAAAUqDUxvuDyCp1iAUMKpZAtMvo6Mlo4h6GAtv4CMIpfaFeCZoWH0
+ eoo3nN853dWu1g7XebjWK2pJc2f5+8E=
+X-Google-Smtp-Source: APXvYqyiozfzDnQC1amBm6yNL2SxT+UJbl/whBsyzrUlYhwUlmmMcg0aa7IfIzIr7QasZHbmzYpQEQ==
+X-Received: by 2002:a2e:9ec2:: with SMTP id h2mr20570006ljk.85.1571174864377; 
+ Tue, 15 Oct 2019 14:27:44 -0700 (PDT)
 Received: from octofox.cadence.com
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id w30sm5313233lfn.82.2019.10.15.14.25.47
+ by smtp.gmail.com with ESMTPSA id j127sm6489849lfd.63.2019.10.15.14.27.42
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 15 Oct 2019 14:25:49 -0700 (PDT)
+ Tue, 15 Oct 2019 14:27:43 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Tue, 15 Oct 2019 14:25:26 -0700
-Message-Id: <20191015212526.1775-1-jcmvbkbc@gmail.com>
+Date: Tue, 15 Oct 2019 14:27:32 -0700
+Message-Id: <20191015212732.1992-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>, Christoph Hellwig <hch@lst.de>,
- linux-kernel@vger.kernel.org
-Subject: [Linux-Xtensa] [PATCH] xtensa: implement arch_dma_coherent_to_pfn
+Cc: Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: virt: fix PCI IO ports mapping
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -72,42 +71,29 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Add trivial implementation for arch_dma_coherent_to_pfn.
-This change enables communication with PCI ALSA devices through mmapped
-buffers.
+virt device tree incorrectly uses 0xf0000000 on both sides of PCI IO
+ports address space mapping. This results in incorrect port address
+assignment in PCI IO BARs and subsequent crash on attempt to access
+them. Use 0 as base address in PCI IO ports address space.
 
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- arch/xtensa/Kconfig          | 1 +
- arch/xtensa/kernel/pci-dma.c | 6 ++++++
- 2 files changed, 7 insertions(+)
+ arch/xtensa/boot/dts/virt.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/xtensa/Kconfig b/arch/xtensa/Kconfig
-index bf492f9e1f75..f78e6b6f8b6f 100644
---- a/arch/xtensa/Kconfig
-+++ b/arch/xtensa/Kconfig
-@@ -3,6 +3,7 @@ config XTENSA
- 	def_bool y
- 	select ARCH_32BIT_OFF_T
- 	select ARCH_HAS_BINFMT_FLAT if !MMU
-+	select ARCH_HAS_DMA_COHERENT_TO_PFN
- 	select ARCH_HAS_SYNC_DMA_FOR_CPU
- 	select ARCH_HAS_SYNC_DMA_FOR_DEVICE
- 	select ARCH_USE_QUEUED_RWLOCKS
-diff --git a/arch/xtensa/kernel/pci-dma.c b/arch/xtensa/kernel/pci-dma.c
-index 154979d62b73..6a114ce23084 100644
---- a/arch/xtensa/kernel/pci-dma.c
-+++ b/arch/xtensa/kernel/pci-dma.c
-@@ -200,3 +200,9 @@ void arch_dma_free(struct device *dev, size_t size, void *vaddr,
- 	if (!dma_release_from_contiguous(dev, page, count))
- 		__free_pages(page, get_order(size));
- }
-+
-+long arch_dma_coherent_to_pfn(struct device *dev, void *cpu_addr,
-+			      dma_addr_t dma_addr)
-+{
-+	return __phys_to_pfn(dma_to_phys(dev, dma_addr));
-+}
+diff --git a/arch/xtensa/boot/dts/virt.dts b/arch/xtensa/boot/dts/virt.dts
+index a9dcd87b6eb1..611b98a02a65 100644
+--- a/arch/xtensa/boot/dts/virt.dts
++++ b/arch/xtensa/boot/dts/virt.dts
+@@ -56,7 +56,7 @@
+ 		reg = <0xf0100000 0x03f00000>;
+ 
+ 		     // BUS_ADDRESS(3)  CPU_PHYSICAL(1)  SIZE(2)
+-		ranges = <0x01000000 0x0 0xf0000000  0xf0000000  0x0 0x00010000>,
++		ranges = <0x01000000 0x0 0x00000000  0xf0000000  0x0 0x00010000>,
+ 			 <0x02000000 0x0 0xf4000000  0xf4000000  0x0 0x08000000>;
+ 
+ 		     // PCI_DEVICE(3)  INT#(1)  CONTROLLER(PHANDLE)  CONTROLLER_DATA(2)
 -- 
 2.20.1
 
