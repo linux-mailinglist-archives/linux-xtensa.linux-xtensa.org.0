@@ -2,57 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C7F6D8080
-	for <lists+linux-xtensa@lfdr.de>; Tue, 15 Oct 2019 21:44:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24262D8224
+	for <lists+linux-xtensa@lfdr.de>; Tue, 15 Oct 2019 23:26:00 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 1AAC9666F;
-	Tue, 15 Oct 2019 19:36:38 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 14DC15866;
+	Tue, 15 Oct 2019 21:18:30 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-yw1-f66.google.com (mail-yw1-f66.google.com
- [209.85.161.66])
- by linux-xtensa.org (Postfix) with ESMTPS id BD1FD666D
- for <linux-xtensa@linux-xtensa.org>; Tue, 15 Oct 2019 19:36:36 +0000 (UTC)
-Received: by mail-yw1-f66.google.com with SMTP id m7so7782440ywe.4
- for <linux-xtensa@linux-xtensa.org>; Tue, 15 Oct 2019 12:44:01 -0700 (PDT)
+Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
+ [209.85.167.66])
+ by linux-xtensa.org (Postfix) with ESMTPS id B6A6D583D
+ for <linux-xtensa@linux-xtensa.org>; Tue, 15 Oct 2019 21:18:26 +0000 (UTC)
+Received: by mail-lf1-f66.google.com with SMTP id f23so133884lfk.7
+ for <linux-xtensa@linux-xtensa.org>; Tue, 15 Oct 2019 14:25:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ZwF3UovUJQM4lIZOxzxPbkJHR0pkb72kpecDlmrnReI=;
- b=XODjQi2tQm5hqkLwP+VbgANGcu6RvgWN8kN+xHLxAjnkj3s25skyfNejbMoU92LZno
- YAxE1QgQ5Drh3afgV3gqCh0auh8qm+A9r0gtfi8D8Xm/sI+2cfswt4hT/7/jtY48ce3O
- jJdiOwkHBPpKUfFL/dvKORFBPQoFmi/X1YgX8voScl9VAX8MjLEeVf2HEsAfoOagTyCc
- G8X9C9fGtsiTdhm3gG9ZFbfVyfTdAnHlIuys8P7iP0ifA4O3e2xYB/aKaEb+Q2wHcMCN
- HLxNwzCSzxlZHBZqL3XypTJen0jjEutErT9R+RAAVps4owtcMl6Wn7IuiAciPPZYeD6p
- HwaA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=TupgV0MHjA8yhWmBL3cewNdEfIAySH9lA2snhT2KSA0=;
+ b=gU0FNH+YkmD9qkMKyKIVtHQfL7lcArLVLw6hAZPGPh9wu58EpZ+OqTE5ywg4R6bFY+
+ pkXIAD4EvoB/gq5QY5gfkd6tVajJJ+I7cgDFtE8U3E9XxbgIDHsFg5+ggcrBta64PCLp
+ cCQ6uS/yBUw6Qefb03aimc23o9T6g2wc3Sg2H/xgKMAC3Af+08SLkLOBKVyduCs/ak54
+ Tvc5EFS+2zAcirOKtZE0J6UoCXUvPvyOdFgeYoIimjMc9CxfwajW5OJrVyopbuEmmlhy
+ eokWvZ336DJO9Kbbe0n+eEvJVpXqF+xa1u4SlwDxi8nEmoYHMz9QKwp/a233ViLfOUnU
+ 5Sog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ZwF3UovUJQM4lIZOxzxPbkJHR0pkb72kpecDlmrnReI=;
- b=gpKs63Ksv/disstsspwD6aYGUdsVihpfbrfJ5RuzaZklb0QdsNR8NrmexJxrm9sBgD
- Hfqtjev7gUTBBYh7sIM/qka/PZhGiYjwvExRAM5gTbbsAEeAwq9TK62i2PYl7T/kb9Ll
- vGdvg5FxydToXWNm/jB5U9k451M5GoS0nCpe/96ndDYzZeOw8NQTrv3+6LrCkaJIhgbG
- 3aarNZ8GiKY0MxK0S8GmJOy6rX+OxUuINxUlRSudDdfVylqShaEeYG5EdHdNKCCg7FSe
- 323NFTAb0E0bgjTseC1EdYFxWCip8cf9Y9IEkjnw0nkXuAq2azFR++X/ZE97LzA91KZE
- 2kQA==
-X-Gm-Message-State: APjAAAXoUVZtP4CNbPmvcqSZHcng84Bt9SBUmt9cAU5DR54rCHhpq4yg
- 70qsR/jnDrZ0iR2mkuamvw5fRHw/w3IP2zTOaZE=
-X-Google-Smtp-Source: APXvYqxg/ocWm0Vdt6TA/rSb3L5qnhnb+zg1qq/R2n7id6WlidlESVt5rWqPACBSRFtFQeGLeboCSpx9jA9o07ZPxD0=
-X-Received: by 2002:a81:74d4:: with SMTP id
- p203mr17581738ywc.234.1571168641550; 
- Tue, 15 Oct 2019 12:44:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191015191821.11479-1-bigeasy@linutronix.de>
- <20191015191821.11479-21-bigeasy@linutronix.de>
-In-Reply-To: <20191015191821.11479-21-bigeasy@linutronix.de>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=TupgV0MHjA8yhWmBL3cewNdEfIAySH9lA2snhT2KSA0=;
+ b=KzGngnAt6gW2X6l8IbmKXD03wVTSlpeXzk7N5a0MyLCeaRQ0qlz0x6dTZeuwCehVuK
+ p71mv7Cn2qbEQEY3UKgHGcwmOWrUH8WGJ9Nb9MgETptNLS34yJ5TVNZuVr1uM8KXXn7T
+ evxtyCEtD1edd4lySQqf5wmd5n/toqvOtMxYvDRhR41TLwuuuD1LDXwHfqje+C5fJ8JA
+ OxYHTJhyRQLv0bF5oDOKeNdxFmAVmxuierQGonA8UuaSzA976xu4qcIuQbhiQFwRe6Rj
+ v5ag7DneJArHBGp9Qr66Si5V8Hamj8jKbbVS/wTUH9DtmmThesbjjN+2Thb9cKTtN3f0
+ cx6g==
+X-Gm-Message-State: APjAAAW3Aubza7f7BO7qyfATcxzQ37gwUcJjyCgILqcMQ5+PXcn3fdpt
+ mIcajzytFc6b1RbT0dOtCic4uUb+iKg=
+X-Google-Smtp-Source: APXvYqwYi9FHUGev/22Lws4+0G8iiMlMBA/PDnRq6muX/tFrhu8jEDv03Ihqb6Wd32ENbMM1SI5v7A==
+X-Received: by 2002:ac2:44c3:: with SMTP id d3mr21412169lfm.109.1571174750137; 
+ Tue, 15 Oct 2019 14:25:50 -0700 (PDT)
+Received: from octofox.cadence.com
+ (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
+ by smtp.gmail.com with ESMTPSA id w30sm5313233lfn.82.2019.10.15.14.25.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 15 Oct 2019 14:25:49 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Tue, 15 Oct 2019 12:43:49 -0700
-Message-ID: <CAMo8BfJRN3D4+UW-9FQd7JBJuszRPT5whNXoPuWjdofvzF=NsQ@mail.gmail.com>
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc: Thomas Gleixner <tglx@linutronix.de>, LKML <linux-kernel@vger.kernel.org>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>
-Subject: Re: [Linux-Xtensa] [PATCH 20/34] xtensa: Use CONFIG_PREEMPTION
+To: linux-xtensa@linux-xtensa.org
+Date: Tue, 15 Oct 2019 14:25:26 -0700
+Message-Id: <20191015212526.1775-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: Max Filippov <jcmvbkbc@gmail.com>, Christoph Hellwig <hch@lst.de>,
+ linux-kernel@vger.kernel.org
+Subject: [Linux-Xtensa] [PATCH] xtensa: implement arch_dma_coherent_to_pfn
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -70,34 +72,45 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Tue, Oct 15, 2019 at 12:18 PM Sebastian Andrzej Siewior
-<bigeasy@linutronix.de> wrote:
->
-> From: Thomas Gleixner <tglx@linutronix.de>
->
-> CONFIG_PREEMPTION is selected by CONFIG_PREEMPT and by CONFIG_PREEMPT_RT.
-> Both PREEMPT and PREEMPT_RT require the same functionality which today
-> depends on CONFIG_PREEMPT.
->
-> Switch the entry code over to use CONFIG_PREEMPTION. Add PREEMPT_RT
-> output to die().
->
-> Cc: Chris Zankel <chris@zankel.net>
-> Cc: Max Filippov <jcmvbkbc@gmail.com>
-> Cc: linux-xtensa@linux-xtensa.org
-> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-> [bigeasy: +traps.c]
-> Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-> ---
->  arch/xtensa/kernel/entry.S | 2 +-
->  arch/xtensa/kernel/traps.c | 7 +++++--
->  2 files changed, 6 insertions(+), 3 deletions(-)
+Add trivial implementation for arch_dma_coherent_to_pfn.
+This change enables communication with PCI ALSA devices through mmapped
+buffers.
 
-Acked-by: Max Filippov <jcmvbkbc@gmail.com>
+Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+---
+ arch/xtensa/Kconfig          | 1 +
+ arch/xtensa/kernel/pci-dma.c | 6 ++++++
+ 2 files changed, 7 insertions(+)
 
+diff --git a/arch/xtensa/Kconfig b/arch/xtensa/Kconfig
+index bf492f9e1f75..f78e6b6f8b6f 100644
+--- a/arch/xtensa/Kconfig
++++ b/arch/xtensa/Kconfig
+@@ -3,6 +3,7 @@ config XTENSA
+ 	def_bool y
+ 	select ARCH_32BIT_OFF_T
+ 	select ARCH_HAS_BINFMT_FLAT if !MMU
++	select ARCH_HAS_DMA_COHERENT_TO_PFN
+ 	select ARCH_HAS_SYNC_DMA_FOR_CPU
+ 	select ARCH_HAS_SYNC_DMA_FOR_DEVICE
+ 	select ARCH_USE_QUEUED_RWLOCKS
+diff --git a/arch/xtensa/kernel/pci-dma.c b/arch/xtensa/kernel/pci-dma.c
+index 154979d62b73..6a114ce23084 100644
+--- a/arch/xtensa/kernel/pci-dma.c
++++ b/arch/xtensa/kernel/pci-dma.c
+@@ -200,3 +200,9 @@ void arch_dma_free(struct device *dev, size_t size, void *vaddr,
+ 	if (!dma_release_from_contiguous(dev, page, count))
+ 		__free_pages(page, get_order(size));
+ }
++
++long arch_dma_coherent_to_pfn(struct device *dev, void *cpu_addr,
++			      dma_addr_t dma_addr)
++{
++	return __phys_to_pfn(dma_to_phys(dev, dma_addr));
++}
 -- 
-Thanks.
--- Max
+2.20.1
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
