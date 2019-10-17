@@ -2,56 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id A22B3D89FD
-	for <lists+linux-xtensa@lfdr.de>; Wed, 16 Oct 2019 09:40:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1D74DB9DD
+	for <lists+linux-xtensa@lfdr.de>; Fri, 18 Oct 2019 00:49:35 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id E17DA646C;
-	Wed, 16 Oct 2019 07:33:31 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 6DE78425D;
+	Thu, 17 Oct 2019 22:42:05 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-yb1-f195.google.com (mail-yb1-f195.google.com
- [209.85.219.195])
- by linux-xtensa.org (Postfix) with ESMTPS id F3A82645F
- for <linux-xtensa@linux-xtensa.org>; Wed, 16 Oct 2019 07:33:30 +0000 (UTC)
-Received: by mail-yb1-f195.google.com with SMTP id 206so7488674ybc.8
- for <linux-xtensa@linux-xtensa.org>; Wed, 16 Oct 2019 00:40:57 -0700 (PDT)
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
+ [209.85.208.195])
+ by linux-xtensa.org (Postfix) with ESMTPS id DCAAC2D7F
+ for <linux-xtensa@linux-xtensa.org>; Thu, 17 Oct 2019 22:42:03 +0000 (UTC)
+Received: by mail-lj1-f195.google.com with SMTP id d1so4180735ljl.13
+ for <linux-xtensa@linux-xtensa.org>; Thu, 17 Oct 2019 15:49:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=DrfvktYJgAyHta/Fz913K8rareDdtUbK//eXrFywXHc=;
- b=Rx7dicTGbigHVFli33Z0CCDjnpeCZSVCs8WSkbB0h9qQ9s3NUhpJmYM1+CskI4USTO
- U8lEW6L/BvXQ3hliCs1oMJxRlt8oYNtn8Zlb3tXcBhwlm7E9dQgdutJHonBKZ6tp8rUR
- zyZB2MKVFN3H3fiGcXpxl54HXEJpjTcml8wzFj6g4AtR21H/k1HKGbLKG8+THhhONegW
- XWvbyaZ+3Y/yvnNCXQFfUiltiaFsb59NapoZlTmDZ3y0ejKXkAPYtze17pT7nZjEX4OJ
- 5MY8JsigNfkZLBCuebrCtVwxYD0KLKQWD24PQjDPIICGFiP7xfiY4rBGct6d7906CSK/
- tbMw==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=i/cEOoDfGUvop24BI6ZzpG7iBvdRmcFCHbzsqMJ5d8Q=;
+ b=nLW6YpiexfLKhssUXQWKzy2sZlvvM3m9DOhQGhkA+wYifCLDjD5aWQrjhyuqi2xXPe
+ n1TzNwdkohvt8i80owYaqwbbl8Sd8cLMFPjooo0FUmQsQEkdpGhoF6ayed47A+wb/iGn
+ x+1TpFOAyvbDV06AHZFmZ7qbPfugtNvR9R2z4qWAA3RKRLSjzQmeKSMXtN/73XsjvDMP
+ fInvi9C37akUmsTdx0Q6fNcAXg1s7oKTQNacx2bDzfb1lQh8SlLYUpZG3tHbf/L98Tpd
+ E/3DuPY7akIIH3pOd3eo5eFZKhOjfWQW9vyiyB4HSEj41njiZMLqr+TvDh1hOKzJrUZ3
+ M71g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=DrfvktYJgAyHta/Fz913K8rareDdtUbK//eXrFywXHc=;
- b=B1Lgm4oEbQwTsLuc1H6cyUkdhjwRdgFSTycO+IXKKckYF2/bHFufAm8cR5rKbfXiGo
- 7EygcRYDze6reMXIHa0g75jYnN8SxuLB5QNsrJiiNSma8A8/UiegErEjlby+bkUc2/Pk
- v0W7zIXXqc6hcGNkCVpLWSvevDgmXPnH6U5O5NpiridmKdJH04Z1tSoH3ZQaqv4asl0n
- UtYvGHqSahDHMdBensthuNqXKGW+TS6hkoWN5pYX4fgHvHlu7cBUU+nj4J1UE1A0EgfF
- p4VJUEmzzCwpRUT6GIgQVmm5U/w3MUWvp4FBFsDpjAYF5aAcoytiJeF+/EKZ6e1v68Mb
- 7qEg==
-X-Gm-Message-State: APjAAAW1B1ghRdR2zz2cPDEsvPEUBUnENUuzrX1U2Zgng5U/my/VRJv/
- UuJ2LsTID23SrxnDhHG0+qs+MnHItvK/UvtZdlg=
-X-Google-Smtp-Source: APXvYqycJt2YiaXwNjBOltfUHwxfdgZ2fpnSS5NnUnC+6uOaN53bFDpsPUaRNgTPEVTBEloZi/YepjgE6HpyhrRkP4g=
-X-Received: by 2002:a5b:4c5:: with SMTP id u5mr14131584ybp.25.1571211656797;
- Wed, 16 Oct 2019 00:40:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191015212526.1775-1-jcmvbkbc@gmail.com>
- <20191016070827.GA23051@lst.de>
-In-Reply-To: <20191016070827.GA23051@lst.de>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=i/cEOoDfGUvop24BI6ZzpG7iBvdRmcFCHbzsqMJ5d8Q=;
+ b=LoVBkEAAlSC1sicJmr+47EcC1k4zrl03D8YiiwR6krMBmxNFvvCc9vDZO8YPyJ9Luf
+ 4RCvnkwcYaNQBiCuezekk/95AK9EaLgKNK6Ah/Uo3v2XRD7LPuuFcRbayj4rT2MQ84up
+ j0LyGThHzHFZlB+RoQBGTYMuhwbylkFOQRULWf9/zN6+V3ytt9jrit+PI8FCxDZ9TqDx
+ CM71bjwixeA5s09y7neCXRY4+cSFmrdaxIE/kY/qBOxLOD4d1boxhUYJJNTi/qBSQk6K
+ XRlNGf1xVyKnWk+t7p3fgy4251keEcDZdrYe69tdBLAvG2f33DoXMJD8jTU4fxF+XMMc
+ XHsg==
+X-Gm-Message-State: APjAAAV3ZSQM/kqfm+j4pI7L9IUDf+iYcNV3nLCfPijySqC+M2FjJnxD
+ 3RKfNy0sYkTfX86oIuilcxM=
+X-Google-Smtp-Source: APXvYqwQK4tiyrhkp43QT8S6jtFE0xnRvVPdabNTKsJYBDSRKCl4DpvLVGFid03BbuZyErJztNtUJQ==
+X-Received: by 2002:a05:651c:8b:: with SMTP id 11mr3954907ljq.98.1571352571898; 
+ Thu, 17 Oct 2019 15:49:31 -0700 (PDT)
+Received: from octofox.cadence.com
+ (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
+ by smtp.gmail.com with ESMTPSA id v1sm1592347lfq.89.2019.10.17.15.49.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 17 Oct 2019 15:49:31 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Wed, 16 Oct 2019 00:40:45 -0700
-Message-ID: <CAMo8BfLz5R=nXb3Ycw-xs9qfxHjBiKS2--mS3pr7=7rgwBeO_Q@mail.gmail.com>
-To: Christoph Hellwig <hch@lst.de>
-Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: implement
-	arch_dma_coherent_to_pfn
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Thu, 17 Oct 2019 15:49:10 -0700
+Message-Id: <20191017224910.18457-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
+ linux-kernel@vger.kernel.org
+Subject: [Linux-Xtensa] [PULL 0/6] xtensa fixes for v5.4-rc4
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -69,25 +72,46 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Hi Christoph,
+Hi Linus,
 
-On Wed, Oct 16, 2019 at 12:08 AM Christoph Hellwig <hch@lst.de> wrote:
-> On Tue, Oct 15, 2019 at 02:25:26PM -0700, Max Filippov wrote:
-> > Add trivial implementation for arch_dma_coherent_to_pfn.
-> > This change enables communication with PCI ALSA devices through mmapped
-> > buffers.
->
-> This looks fine, although I'd much rather convert xtensa to the
-> generic DMA remap / uncached segment support.
+please pull the following batch of fixes for the Xtensa architecture:
 
-Thanks for the review.
+The following changes since commit 4f5cafb5cb8471e54afdc9054d973535614f7675:
 
-> Do you want this fix for 5.4?  If so please queue it up ASAP so that
-> I can do the proper thing for 5.5.  If you don't need it that urgent
-> I'd rather go straight to the generic code.
+  Linux 5.4-rc3 (2019-10-13 16:37:36 -0700)
 
-There's no rush, I'll keep my version privately and will switch to the
-generic version once it's available.
+are available in the Git repository at:
+
+  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20191017
+
+for you to fetch changes up to 775fd6bfefc66a8c33e91dd9687ed530643b954d:
+
+  xtensa: fix change_bit in exclusive access option (2019-10-16 00:14:33 -0700)
+
+----------------------------------------------------------------
+Xtensa fixes for v5.4:
+
+- fix {get,put}_user() for 64bit values;
+- fix warning about static EXPORT_SYMBOL from modpost;
+- fix PCI IO ports mapping for the virt board;
+- fix pasto in change_bit for exclusive access option.
+
+----------------------------------------------------------------
+Al Viro (1):
+      xtensa: fix {get,put}_user() for 64bit values
+
+Max Filippov (5):
+      xtensa: clean up assembly arguments in uaccess macros
+      xtensa: fix type conversion in __get_user_[no]check
+      xtensa: drop EXPORT_SYMBOL for outs*/ins*
+      xtensa: virt: fix PCI IO ports mapping
+      xtensa: fix change_bit in exclusive access option
+
+ arch/xtensa/boot/dts/virt.dts     |  2 +-
+ arch/xtensa/include/asm/bitops.h  |  2 +-
+ arch/xtensa/include/asm/uaccess.h | 94 ++++++++++++++++++++++-----------------
+ arch/xtensa/kernel/xtensa_ksyms.c |  7 ---
+ 4 files changed, 55 insertions(+), 50 deletions(-)
 
 -- 
 Thanks.
