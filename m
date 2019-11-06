@@ -2,59 +2,56 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 15876F1D4E
-	for <lists+linux-xtensa@lfdr.de>; Wed,  6 Nov 2019 19:16:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81D74F2145
+	for <lists+linux-xtensa@lfdr.de>; Wed,  6 Nov 2019 23:00:28 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id B4A5C64EE;
-	Wed,  6 Nov 2019 18:08:35 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 2D20357EC;
+	Wed,  6 Nov 2019 21:52:19 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com
- [209.85.208.193])
- by linux-xtensa.org (Postfix) with ESMTPS id E2F7E64EC
- for <linux-xtensa@linux-xtensa.org>; Wed,  6 Nov 2019 18:08:33 +0000 (UTC)
-Received: by mail-lj1-f193.google.com with SMTP id r7so18541769ljg.2
- for <linux-xtensa@linux-xtensa.org>; Wed, 06 Nov 2019 10:16:42 -0800 (PST)
+Received: from mail-yw1-f65.google.com (mail-yw1-f65.google.com
+ [209.85.161.65])
+ by linux-xtensa.org (Postfix) with ESMTPS id 7B91352E8
+ for <linux-xtensa@linux-xtensa.org>; Wed,  6 Nov 2019 21:52:17 +0000 (UTC)
+Received: by mail-yw1-f65.google.com with SMTP id g77so10152633ywb.10
+ for <linux-xtensa@linux-xtensa.org>; Wed, 06 Nov 2019 14:00:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=xT8iUzv28AccBALCzubNLTgJqXnu61TsgsHE/dDWhrM=;
- b=r/eQWTe/mz/PiMRmWAOPO09nJRU7KWxRCz+PhtRqScjowOS3NAMuGMfOEC+UGAD5ou
- E7DrVWBlm75uEUrk6j6kWo4bYobY/eYzZ6z9g/6Rc5rf/wezJOUyh21FUtkyY09ROYUH
- BPZ71nklPlzf1SZ5DhOws/ac3xmCbDx2luvwlKuuCC0yYY0wZNP6TOOX4KPArMKf5JnG
- t3GIeDHZGkY7iX7gx25Ppn7uKrdM3tVPO+3xovdQ8GO5rMEUtCj4NdNYAoWtHEnlHKvv
- C+hb6Hw+xLZg/WEzWms7pPYiSFL9bn+pI1Awp2VEhqZoacNlidZaAnc0QihEx/N6mNdt
- RJng==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=y3o8l4teeUkfXISUOAxa3pHTPdubgp1E+n1um6h/pcQ=;
+ b=i8V+RCk5wjwjk4V7CqTktL4fgprLf7fter8Klj1wmtmhT6ZzFVA3VSByZDeiRYTgbr
+ NlRfKzfKPQKlHt1L7m8v9K69wLeeMyt4n+odUwkCO4aQuhVEeGPmOk2ToCCQjZJEz3ty
+ q7f39mpXnkWwrudtzI6UwZF67uE+uz4qh1JHieAXKsY4E2jbHoIIeME7Db4X/mkbW11u
+ 4wclqG9ZAygVS76IsNI2qy0rVnZUL2bnGIait6aCLDmlR+05HUUk8D8XKgy9mMp83IpE
+ 6mtWGWF1BdaggdI+ErUxNyNos6SuO47L6wA6kpj6+BYOQxb8WBgje8G4owlrnTPZ9Hb7
+ ET+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=xT8iUzv28AccBALCzubNLTgJqXnu61TsgsHE/dDWhrM=;
- b=T9uDoMcOaIO3ac3TMVtAVuD1ASPFe+Mc2ctBrzmrTycHv3jfJYOaD007SoGZ1mzN9b
- iVFeSDLAh/9dscOySr5Cp5UiQuF3sG+UeD6AYCyEjRbaFzAabrn4Qk4PasOeD0QYj3IZ
- AUWeSbBNfxtCVquPnkDY6Pg5rA7+CSB939gdVR7oqVuwr2bBoFb83WkOeFLPXNUoDwfm
- nznSmMKEYWppJgrznDj86p7jjvv36Rpw634LaZSmEvIuk7RvlKqvVcVyk/tpRY+CVuJK
- 3OZ8IV9HLzvfkkdWYv47oWPwfEVdiaUA4vo55lJ3YK12mZiroUmf3oYYviyooX3pHV7O
- 8Kog==
-X-Gm-Message-State: APjAAAUJIkIpcMjMpOh9AQ74+5c9bzdAUzze8smCxrRHi9iAJafDHyTo
- 76nSyNm2DAxYpC3eTC8bWqCTx407
-X-Google-Smtp-Source: APXvYqxVZqs41D0CX2V7LeMkINUOFsrvTXPdCEHvmi9XfmCDf8wQacmREboXQxenEPTsuj/4vJ/DUg==
-X-Received: by 2002:a2e:90b:: with SMTP id 11mr2873372ljj.233.1573064200610;
- Wed, 06 Nov 2019 10:16:40 -0800 (PST)
-Received: from octofox.hsd1.ca.comcast.net
- (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id l82sm11318139lfd.81.2019.11.06.10.16.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 06 Nov 2019 10:16:40 -0800 (PST)
-From: Max Filippov <jcmvbkbc@gmail.com>
-To: linux-xtensa@linux-xtensa.org
-Date: Wed,  6 Nov 2019 10:16:17 -0800
-Message-Id: <20191106181617.1832-1-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.20.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=y3o8l4teeUkfXISUOAxa3pHTPdubgp1E+n1um6h/pcQ=;
+ b=IAQm1tQy+sSIu9PKOV1NsF+vMjXKFHYRM7J/I0KT3gUml9kKFCVjlsgBo3KNb9FVIf
+ XWiu2fnpfOFTIjZbQlPgH+gQddczSIhmsWAF/7zfClwhSKdavIkJS2A3+J/Tom/ypcA2
+ GonwLU14YJR8jxW6nMhJUjmSaNoi1n7AAU10U6FtkLs6iQq5YcxbQgnHLIA8KVTK3Ug3
+ Q68dj/zertsy924xJx6f9nKS25UpoF33ho0V+kcJSWfKAFgLzJNyaZQ9kMqydE+gcvFx
+ W4NjNlZUav9qyt3AayapP1hKDYfb2ZU6TpkOBq/xAnw9whFBIZ/KNiDdW0f420ZHNpG3
+ tbWw==
+X-Gm-Message-State: APjAAAW6ez1w8zlTbwHnG/NbyQnAnZGQya14UbWwfK3QQa1GtFyxpO3x
+ 0uX/oYvmlttc3noCkXa/m3a1Jm8ZK5pfb6XrLM8=
+X-Google-Smtp-Source: APXvYqwhSW4L/fYgzPgdulTlAxNTbtMgQz8G23pFy0SAB60EVDMdfVK5Ou8MKAf+7aKLxqFrNuCj0bKQuvIBAaVbxig=
+X-Received: by 2002:a81:5b43:: with SMTP id p64mr3367068ywb.234.1573077625667; 
+ Wed, 06 Nov 2019 14:00:25 -0800 (PST)
 MIME-Version: 1.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-kernel@vger.kernel.org,
- Petr Mladek <pmladek@suse.com>, Dmitry Safonov <dima@arista.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: improve stack dumping
+References: <20191106181617.1832-1-jcmvbkbc@gmail.com>
+ <27720768-9fb7-0382-e1ef-ac9760cdf5cc@arista.com>
+In-Reply-To: <27720768-9fb7-0382-e1ef-ac9760cdf5cc@arista.com>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Wed, 6 Nov 2019 14:00:14 -0800
+Message-ID: <CAMo8BfLDk_ztsG0eSFgd2+hW9-MqrOKmPn0kSvCeq3uBGXapHg@mail.gmail.com>
+To: Dmitry Safonov <dima@arista.com>
+Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>,
+ Petr Mladek <pmladek@suse.com>
+Subject: Re: [Linux-Xtensa] [PATCH] xtensa: improve stack dumping
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -72,77 +69,36 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Collect whole stack dump lines in a buffer and print the whole buffer
-when it's ready with pr_info instead of pr_cont. This makes stack dump
-lines consistent in SMP case and relies less on pr_cont/printk
-differences related to timestamps.
-Make size of stack dump configurable.
-Drop extra newline output in show_trace as its output format does not
-depend on CONFIG_KALLSYMS.
+On Wed, Nov 6, 2019 at 12:51 PM Dmitry Safonov <dima@arista.com> wrote:
+> On 11/6/19 6:16 PM, Max Filippov wrote:
+> > @@ -512,10 +510,12 @@ void show_stack(struct task_struct *task, unsigned long *sp)
+> >       for (i = 0; i < kstack_depth_to_print; i++) {
+> >               if (kstack_end(sp))
+> >                       break;
+> > -             pr_cont(" %08lx", *sp++);
+> > +             sprintf(buf + (i % 8) * 9, " %08lx", *sp++);
+>
+> buf is on the stack, does sprintf() put null-terminator for hex?
 
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
- arch/xtensa/Kconfig.debug  |  7 +++++++
- arch/xtensa/kernel/traps.c | 12 ++++++------
- 2 files changed, 13 insertions(+), 6 deletions(-)
+It should put null-terminator regardless of the format string.
 
-diff --git a/arch/xtensa/Kconfig.debug b/arch/xtensa/Kconfig.debug
-index 39de98e20018..83cc8d12fa0e 100644
---- a/arch/xtensa/Kconfig.debug
-+++ b/arch/xtensa/Kconfig.debug
-@@ -31,3 +31,10 @@ config S32C1I_SELFTEST
- 	  It is easy to make wrong hardware configuration, this test should catch it early.
- 
- 	  Say 'N' on stable hardware.
-+
-+config PRINT_STACK_DEPTH
-+	int "Stack depth to print" if DEBUG_KERNEL
-+	default 64
-+	help
-+	  This option allows you to set the stack depth that the kernel
-+	  prints in stack traces.
-diff --git a/arch/xtensa/kernel/traps.c b/arch/xtensa/kernel/traps.c
-index 4a6c495ce9b6..b0c952652c73 100644
---- a/arch/xtensa/kernel/traps.c
-+++ b/arch/xtensa/kernel/traps.c
-@@ -491,17 +491,15 @@ void show_trace(struct task_struct *task, unsigned long *sp)
- 
- 	pr_info("Call Trace:\n");
- 	walk_stackframe(sp, show_trace_cb, NULL);
--#ifndef CONFIG_KALLSYMS
--	pr_cont("\n");
--#endif
- }
- 
--static int kstack_depth_to_print = 24;
-+static int kstack_depth_to_print = CONFIG_PRINT_STACK_DEPTH;
- 
- void show_stack(struct task_struct *task, unsigned long *sp)
- {
- 	int i = 0;
- 	unsigned long *stack;
-+	char buf[9 * 8 + 1];
- 
- 	if (!sp)
- 		sp = stack_pointer(task);
-@@ -512,10 +510,12 @@ void show_stack(struct task_struct *task, unsigned long *sp)
- 	for (i = 0; i < kstack_depth_to_print; i++) {
- 		if (kstack_end(sp))
- 			break;
--		pr_cont(" %08lx", *sp++);
-+		sprintf(buf + (i % 8) * 9, " %08lx", *sp++);
- 		if (i % 8 == 7)
--			pr_cont("\n");
-+			pr_info("%s\n", buf);
- 	}
-+	if (i % 8)
-+		pr_info("%s\n", buf);
- 	show_trace(task, stack);
- }
- 
+> >               if (i % 8 == 7)
+> > -                     pr_cont("\n");
+> > +                     pr_info("%s\n", buf);
+> >       }
+> > +     if (i % 8)
+> > +             pr_info("%s\n", buf);
+>
+> If the stack trace ends with (i % 8 == 7), you'll double-print the last
+> line?
+
+No, I don't think so. 'For' loop condition is checked after i++, so if
+loop ends with i % 8 == 7 then its last iteration was done with
+i % 8 == 6 and thus the buf haven't been printed.
+
 -- 
-2.20.1
-
+Thanks.
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
