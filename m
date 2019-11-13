@@ -2,64 +2,57 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 638B8F9D5B
-	for <lists+linux-xtensa@lfdr.de>; Tue, 12 Nov 2019 23:45:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81466FB9D8
+	for <lists+linux-xtensa@lfdr.de>; Wed, 13 Nov 2019 21:30:54 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 398AF6546;
-	Tue, 12 Nov 2019 22:37:00 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 2001758A1;
+	Wed, 13 Nov 2019 20:22:32 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
- [209.85.208.195])
- by linux-xtensa.org (Postfix) with ESMTPS id D577E6529
- for <linux-xtensa@linux-xtensa.org>; Tue, 12 Nov 2019 22:36:58 +0000 (UTC)
-Received: by mail-lj1-f195.google.com with SMTP id q2so268541ljg.7
- for <linux-xtensa@linux-xtensa.org>; Tue, 12 Nov 2019 14:45:18 -0800 (PST)
+Received: from mail-yb1-f196.google.com (mail-yb1-f196.google.com
+ [209.85.219.196])
+ by linux-xtensa.org (Postfix) with ESMTPS id A79AE52BF
+ for <linux-xtensa@linux-xtensa.org>; Wed, 13 Nov 2019 20:22:30 +0000 (UTC)
+Received: by mail-yb1-f196.google.com with SMTP id v15so1482957ybp.13
+ for <linux-xtensa@linux-xtensa.org>; Wed, 13 Nov 2019 12:30:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=Dlzc9ZW2QK+Bf04vZsdeB35W1UEikvkDQZdvHiTdHiw=;
- b=fSEHMQ2152EQPx9pY74DdNe3R/DLJhrZrzSt/FcS5QA0aJOwx5p1V2R4kQhGRZ7r+o
- wru3mBbU5BmpXiTjx42QZ9jghV+5sNbfS8baupjOQZ6n25v64Xoo2M+tyzmIPFxZ1dcv
- UGJNRwL+fDOYGUdcvBSiagvT9vYup23aTtnzkcy1uV6qlNrZKUah99IvMOSzx2JAnJWm
- FLW27/ZAa4pjhlb/vIHR+jrqWUrBSTaXbdJUSf2BZK/hYOYf86gPFhVD2EBFVr1JX4nJ
- wzhlzta7m/H0u6+hiZeqBUTnD3aBROdtxrhjL4+mEhpOOUzKvs53XjslZxR/Ns29QnHJ
- QG1Q==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=HhUJSPQDvSVcW6lExUu0Aos25QWc66JPMYbcEiKuXrc=;
+ b=Nn03DCxiI7YI0L9xwwcV+FWANHJyX0Nosiah9C9ZEYM6RrUknHizEw0/Ycd051SlK3
+ p+Abqia/sM7br2NF1iq6mgg7c3AqnCya0VFzL+xCg6m/DvN2uAaXNdeI+hA1pF0mlLm7
+ lajPR7C6kVPLXfNzWmevC8ueutQUsmor9IfCJkTa6m9g1VjBQ0cCm0ROz3JWUfbpI+eB
+ PiOheiqaWiP9+CJ6BJaOZOv4+4gGvcJ41Un+Wqvod2rKcV1KbUYOz4xORFCqDAbJgbQQ
+ 562C+TZg0L8TjWX3oLB+QWrwC15uulzsY5TV58YDTkSLEnYd9pPzqLJ2FvpCLH1ZoccY
+ jJiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=Dlzc9ZW2QK+Bf04vZsdeB35W1UEikvkDQZdvHiTdHiw=;
- b=LquXIz2vmoPPUqw5rqnhZ99qhIKvq8K+i12/EsgmoabXX9SaDraGzIVvWzi39f3l8J
- olHidz31yJQUbprQHE1tcwuwmyyMdIs8cScEobO0A46Xk9n27EfigqfZNcKHBguv1d7+
- ZN2HykQHd40NiESSnfihSUMlOB0Yqn7GRmyouF+B3N2jvKw7Q4zG0qdVg4k421V5Jthj
- 5mEfOvtNK/Pborn608gTF/Hof43TMLqY+LlGDrKUyld8pw5lV5YGAP4cZw9fyqp6zbfp
- p6fnlKY4o1pl2s3YSNMAcX8w9ZgGYJCAEmL25x3e4jCsxVAICNWW8+LH9AjiEVF1VkHN
- pKHA==
-X-Gm-Message-State: APjAAAWvOFUfJ9kGsvvjWRrJebUP2IUXXSrgF7ZAKxBJNOuwGZpYM1s6
- YdcFDZw4QDTW6BLTneJ63GrCX0XH
-X-Google-Smtp-Source: APXvYqyKR8f+A1blypWPTt6vPOpdDDjtrTZpb+CWB3Fb3V0DJ5Jo0xdGXqfKLevZ7X/JP0euhNYAuQ==
-X-Received: by 2002:a05:651c:1117:: with SMTP id
- d23mr139959ljo.90.1573598717383; 
- Tue, 12 Nov 2019 14:45:17 -0800 (PST)
-Received: from octofox.cadence.com
- (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id x16sm38677ljd.69.2019.11.12.14.45.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 12 Nov 2019 14:45:16 -0800 (PST)
-From: Max Filippov <jcmvbkbc@gmail.com>
-To: linux-xtensa@linux-xtensa.org
-Date: Tue, 12 Nov 2019 14:44:43 -0800
-Message-Id: <20191112224443.12267-3-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191112224443.12267-1-jcmvbkbc@gmail.com>
-References: <20191112224443.12267-1-jcmvbkbc@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=HhUJSPQDvSVcW6lExUu0Aos25QWc66JPMYbcEiKuXrc=;
+ b=gtBrKReKnlcC5I8i+bPtiMr/RHT+bQArNFfkrfu+GwqRZ3lOPrYCHx9Hw9l6ctnCnT
+ GvQvZ7zd/YUDRbs7amnPj33xqKPRRpS/W1slc+ItE1DkRDEKG9WQt9F5anjj635BKu/s
+ bcjyCibSy3Y5ERpzpalA/Uxoi+SCV+sHd0rccQjAS3UpTpVYbM+dDZSVCdkL375/4wDp
+ v+yxZFjoghqGZFvhT+zy/c9m0cfm7porL8zHVJZCouWyGqWS58LdblT8UVet51Xfmyaz
+ Vmicuq1qJ44ZVoRauq5mXiziMzKFRQukOyBzYly74MqUxan7mUhg4xh0Geddg+V6PhNO
+ j2cQ==
+X-Gm-Message-State: APjAAAW3MsfN3pzDztGKvasp5MeGKtUFw0NE7ocy/P0dW4XHZMO90yXj
+ nSBwrwx/NlTx1SNfB77sqkf8C4V4Wkhzc62PmNM=
+X-Google-Smtp-Source: APXvYqxtTDE1DuX7odfSWA32rCc5N/jNL04v+VM3rGUIhjMW0FCHmUvG7BWWqqzfvcrhoqFMyCvgmEKAHAX+rTFSN4k=
+X-Received: by 2002:a25:768d:: with SMTP id r135mr3778035ybc.25.1573677051679; 
+ Wed, 13 Nov 2019 12:30:51 -0800 (PST)
 MIME-Version: 1.0
-Cc: Petr Mladek <pmladek@suse.com>, Dmitry Safonov <dima@arista.com>,
- linux-kernel@vger.kernel.org, Max Filippov <jcmvbkbc@gmail.com>,
- Joe Perches <joe@perches.com>
-Subject: [Linux-Xtensa] [PATCH v3 2/2] xtensa: make stack dump size
-	configurable
+References: <1572964400-16542-1-git-send-email-rppt@kernel.org>
+ <1572964400-16542-3-git-send-email-rppt@kernel.org>
+In-Reply-To: <1572964400-16542-3-git-send-email-rppt@kernel.org>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Wed, 13 Nov 2019 12:30:39 -0800
+Message-ID: <CAMo8BfLpdy4biZ4UvE4PDhscCFOj75nHWTwO+HFXpWx1qQOmEQ@mail.gmail.com>
+To: Mike Rapoport <rppt@kernel.org>
+Cc: linux-mm@kvack.org, Mike Rapoport <rppt@linux.ibm.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)" <linux-xtensa@linux-xtensa.org>
+Subject: Re: [Linux-Xtensa] [PATCH 2/2] xtensa: get rid of
+	__ARCH_USE_5LEVEL_HACK
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -77,50 +70,54 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Introduce Kconfig symbol PRINT_STACK_DEPTH and use it to initialize
-kstack_depth_to_print.
+Hi Mike,
 
-Reviewed-by: Petr Mladek <pmladek@suse.com>
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
-Changes v2->v3:
-- split Kconfig change into separate patch
+On Tue, Nov 5, 2019 at 6:33 AM Mike Rapoport <rppt@kernel.org> wrote:
+>
+> From: Mike Rapoport <rppt@linux.ibm.com>
+>
+> xtensa has 2-level page tables and already uses pgtable-nopmd for page
+> table folding.
+>
+> Add walks of p4d level where appropriate and drop usage of
+> __ARCH_USE_5LEVEL_HACK.
+>
+> Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
+> ---
+>  arch/xtensa/include/asm/pgtable.h |  1 -
+>  arch/xtensa/mm/fault.c            | 10 ++++++++--
+>  arch/xtensa/mm/kasan_init.c       |  6 ++++--
+>  arch/xtensa/mm/mmu.c              |  3 ++-
+>  arch/xtensa/mm/tlb.c              |  5 ++++-
+>  5 files changed, 18 insertions(+), 7 deletions(-)
 
- arch/xtensa/Kconfig.debug  | 7 +++++++
- arch/xtensa/kernel/traps.c | 2 +-
- 2 files changed, 8 insertions(+), 1 deletion(-)
+This change missed a spot in arch/xtensa/include/asm/fixmap.h.
+I've added the following hunk and queued both patches to the xtensa tree:
 
-diff --git a/arch/xtensa/Kconfig.debug b/arch/xtensa/Kconfig.debug
-index 39de98e20018..83cc8d12fa0e 100644
---- a/arch/xtensa/Kconfig.debug
-+++ b/arch/xtensa/Kconfig.debug
-@@ -31,3 +31,10 @@ config S32C1I_SELFTEST
- 	  It is easy to make wrong hardware configuration, this test should catch it early.
- 
- 	  Say 'N' on stable hardware.
-+
-+config PRINT_STACK_DEPTH
-+	int "Stack depth to print" if DEBUG_KERNEL
-+	default 64
-+	help
-+	  This option allows you to set the stack depth that the kernel
-+	  prints in stack traces.
-diff --git a/arch/xtensa/kernel/traps.c b/arch/xtensa/kernel/traps.c
-index be26ec6c0e0e..87bd68dd7687 100644
---- a/arch/xtensa/kernel/traps.c
-+++ b/arch/xtensa/kernel/traps.c
-@@ -495,7 +495,7 @@ void show_trace(struct task_struct *task, unsigned long *sp)
- 
- #define STACK_DUMP_ENTRY_SIZE 4
- #define STACK_DUMP_LINE_SIZE 32
--static size_t kstack_depth_to_print = 24;
-+static size_t kstack_depth_to_print = CONFIG_PRINT_STACK_DEPTH;
- 
- void show_stack(struct task_struct *task, unsigned long *sp)
- {
+diff --git a/arch/xtensa/include/asm/fixmap.h b/arch/xtensa/include/asm/fixmap.h
+index 7e25c1b50ac0..cfb8696917e9 100644
+--- a/arch/xtensa/include/asm/fixmap.h
++++ b/arch/xtensa/include/asm/fixmap.h
+@@ -78,8 +78,10 @@ static inline unsigned long virt_to_fix(const
+unsigned long vaddr)
+
+ #define kmap_get_fixmap_pte(vaddr) \
+        pte_offset_kernel( \
+-               pmd_offset(pud_offset(pgd_offset_k(vaddr), (vaddr)), (vaddr)), \
+-               (vaddr) \
+-       )
++               pmd_offset(pud_offset(p4d_offset(pgd_offset_k(vaddr), \
++                                                (vaddr)), \
++                                     (vaddr)), \
++                          (vaddr)), \
++               (vaddr))
+
+ #endif
+
+
 -- 
-2.20.1
-
+Thanks.
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
