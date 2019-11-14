@@ -2,60 +2,57 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EADBFBD52
-	for <lists+linux-xtensa@lfdr.de>; Thu, 14 Nov 2019 02:08:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 577C5FCCF6
+	for <lists+linux-xtensa@lfdr.de>; Thu, 14 Nov 2019 19:17:33 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id BF4F964E6;
-	Thu, 14 Nov 2019 01:00:24 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 6D6EA2264;
+	Thu, 14 Nov 2019 18:09:09 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f68.google.com (mail-lf1-f68.google.com
- [209.85.167.68])
- by linux-xtensa.org (Postfix) with ESMTPS id 6A8B264A6
- for <linux-xtensa@linux-xtensa.org>; Thu, 14 Nov 2019 01:00:23 +0000 (UTC)
-Received: by mail-lf1-f68.google.com with SMTP id o65so3521687lff.13
- for <linux-xtensa@linux-xtensa.org>; Wed, 13 Nov 2019 17:08:45 -0800 (PST)
+Received: from mail-yb1-f195.google.com (mail-yb1-f195.google.com
+ [209.85.219.195])
+ by linux-xtensa.org (Postfix) with ESMTPS id C462F2258
+ for <linux-xtensa@linux-xtensa.org>; Thu, 14 Nov 2019 18:09:07 +0000 (UTC)
+Received: by mail-yb1-f195.google.com with SMTP id q18so2933959ybq.6
+ for <linux-xtensa@linux-xtensa.org>; Thu, 14 Nov 2019 10:17:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=wBQHB2EzlG/RSRWYzzXHGHn7Pgw3gzypxOnIpXuT5fc=;
- b=dLdhF2PzyQ/jFoL4zrJ4qhDA2R7hCREOwWVwawyuVHALBhJHtbEXnCQz1uUxkzTNLq
- wCyutaWHNPjDEhXkiQn8T65OcpDyFgntNJWyA9noEO11ZSotKuO8nD+93Q+0PS/BMbYD
- JF+fT85rjf2Z0MQfsES+fuUDd5zXynLC9SCN8gKCYXwzdfNUnQRZNJLTgOch7duW1qyU
- 6X31e2ITWOiWXpzgnOrTxuO9KfNtX7z6XWxKSt17khUaC/c68B05BjDz5rhqOdIUuXHy
- ZOY9HXj8XNP4Ox8HFRpuAZaoE/ALG4L6YOVT7bqNFoE0bxAJ/IiJeUggbYcKtM4roz5S
- pw2A==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=PL2/BS0frIN9r/rql9vL+NYiXX+POn906WNUO708kb8=;
+ b=tdkk2lclgAaaumaNuSA2n62iBAg3Vc2V1Cb8sFANskZSlwGCCgptxnkvvRwnz3qULC
+ /tCHSmgVFORwe95/A/AS7NECcmHhE9zkiCxRrqMxONwuZIfnCbszRQ4rXmnH/eENuicE
+ ZRIgZFBVgGGX1VHS0eOQPHWxS0aU4PYeLs2/QCsfMFgXSxT7a0JylQ+8Vk4pWGafzeTl
+ FUy9hvkPIbKiiAj3JMvm1hgjl+xCWiRbB4ANJIBbz0MEW3+yt3+Gd1Dg2nP+MnVbItMs
+ vx8/5948mpDKlbpB2wVhBfJFXO2I6drHuSXoIaOtvuYWbvrN+dPLNGKtLiI+QG9VjDz1
+ 4UUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=wBQHB2EzlG/RSRWYzzXHGHn7Pgw3gzypxOnIpXuT5fc=;
- b=dm2GU+IqpjZvcK8v27zOIbZIutwHxL7v9zSwbq+cHQxVc6dUGo3weZHXK6efk4LYC+
- DYIPRnlupuY/HSfINBo6foK/IYHufKqgeF+beIaIfFC3vwRF87wqo6beM004vLW4tSZs
- ZTulwKbfR4WHi7rN3YHkzvYcjKx0c6H1WUuqXRdl9s2g2JxDcFy/ImFdJKsKFr4FSIn9
- lZYYyfgVeeCPLX2zm2tRZy41OaIKU+p+BPHIAgFQlbgumWyPNiAMYLMmZI+AQAGhmg92
- WeASUB/molGKggc+Pi8TYckRKUsbJXIobuRKLbFWb/kz7VGnME+lD7+/gJr21oyUu235
- lzeQ==
-X-Gm-Message-State: APjAAAW9z8u/S80j47ofS3j/S3NTX/9D3qrjGnjglcTpYYgxr865tw8N
- i5QiOtVwL6JitfR1aQY60PXa4EdOjDU=
-X-Google-Smtp-Source: APXvYqyjODrUidyRiNtKsHWwCmupyjlQdwCeGsh09cvSNBIORfw8Pm8KVk1OyhKrkpCWYVOWGegIsg==
-X-Received: by 2002:a19:ee17:: with SMTP id g23mr4590004lfb.121.1573693723677; 
- Wed, 13 Nov 2019 17:08:43 -0800 (PST)
-Received: from octofox.cadence.com
- (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id b14sm1726678lfa.14.2019.11.13.17.08.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 Nov 2019 17:08:43 -0800 (PST)
-From: Max Filippov <jcmvbkbc@gmail.com>
-To: linux-xtensa@linux-xtensa.org
-Date: Wed, 13 Nov 2019 17:08:24 -0800
-Message-Id: <20191114010824.29540-1-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.20.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=PL2/BS0frIN9r/rql9vL+NYiXX+POn906WNUO708kb8=;
+ b=gVfUx2AswOvh3r10rL2Sbg1yvnVYsLMS8wJaru/fUcwFG7QpaEksFsUBUvuF+FLxA8
+ oKIA5ezsOKDPKLV+jyl3dgyq2pA39BiXQcQFupyJjTbxQH7qK9IP+JHd4oRhpIZ9qYeF
+ xwInGMwRjLXCNGdLDm98g8yXKmMPPpU/PoqkJH+fL9xyWdfOCZbFenlx5Noka1M1bypo
+ NqoGAdqDtlDEHKeUeQjGGFDxfpM7fTsnq/2ZXxQicTQZV3bwNVJcS3GYmx2qAij8Grdx
+ U8R6jVym5cb2RfB5vJfXfzuuDoWYzSYWDICQmPaZGWEGtxu2xwJdDjCURfQjN0JGVBuc
+ Z+eQ==
+X-Gm-Message-State: APjAAAXo+9jPL5aJe1tBwBjEnD1BDuOBFAz2/qbyf6ZUknd+/8cayfbN
+ D4AkQr9XAK5Ftn+KpO1zPkJN3btBc4QAvbPHWPo=
+X-Google-Smtp-Source: APXvYqxwKK1fcX3dN/1WnWVywPIQVg3vwTClEHlB2e9J8UOycek5FQVewADIfuiWdljL74dEyViCieXwgHIHFupeDAQ=
+X-Received: by 2002:a25:778c:: with SMTP id s134mr8530150ybc.143.1573755450272; 
+ Thu, 14 Nov 2019 10:17:30 -0800 (PST)
 MIME-Version: 1.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, Mike Rapoport <rppt@linux.ibm.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: use MEMBLOCK_ALLOC_ANYWHERE for
-	KASAN shadow map
+References: <20190923143620.29334-1-valentin.schneider@arm.com>
+ <20190923143620.29334-10-valentin.schneider@arm.com>
+In-Reply-To: <20190923143620.29334-10-valentin.schneider@arm.com>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Thu, 14 Nov 2019 10:17:19 -0800
+Message-ID: <CAMo8BfJ86CH1w1NUKz-hWNstCARbivaBrx0_uKOrBgxCfNq9OA@mail.gmail.com>
+To: Valentin Schneider <valentin.schneider@arm.com>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>
+Subject: Re: [Linux-Xtensa] [PATCH v2 9/9] xtensa: entry: Remove unneeded
+	need_resched() loop
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -73,37 +70,27 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-KASAN shadow map doesn't need to be accessible through the linear kernel
-mapping, allocate its pages with MEMBLOCK_ALLOC_ANYWHERE so that high
-memory can be used. This frees up to ~100MB of low memory on xtensa
-configurations with KASAN and high memory.
+On Mon, Sep 23, 2019 at 7:36 AM Valentin Schneider
+<valentin.schneider@arm.com> wrote:
+>
+> Since the enabling and disabling of IRQs within preempt_schedule_irq()
+> is contained in a need_resched() loop, we don't need the outer arch
+> code loop.
+>
+> Acked-by: Max Filippov <jcmvbkbc@gmail.com>
+> Signed-off-by: Valentin Schneider <valentin.schneider@arm.com>
+> Cc: Chris Zankel <chris@zankel.net>
+> Cc: linux-xtensa@linux-xtensa.org
+> ---
+>  arch/xtensa/kernel/entry.S | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Cc: stable@vger.kernel.org # v5.1+
-Fixes: f240ec09bb8a ("memblock: replace memblock_alloc_base(ANYWHERE)
-		     with memblock_phys_alloc")
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
- arch/xtensa/mm/kasan_init.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+I've applied this patch to the xtensa tree as it doesn't seem to be taken
+anywhere else.
 
-diff --git a/arch/xtensa/mm/kasan_init.c b/arch/xtensa/mm/kasan_init.c
-index 9c957791bb33..e3baa21ff24c 100644
---- a/arch/xtensa/mm/kasan_init.c
-+++ b/arch/xtensa/mm/kasan_init.c
-@@ -60,7 +60,9 @@ static void __init populate(void *start, void *end)
- 
- 		for (k = 0; k < PTRS_PER_PTE; ++k, ++j) {
- 			phys_addr_t phys =
--				memblock_phys_alloc(PAGE_SIZE, PAGE_SIZE);
-+				memblock_phys_alloc_range(PAGE_SIZE, PAGE_SIZE,
-+							  0,
-+							  MEMBLOCK_ALLOC_ANYWHERE);
- 
- 			if (!phys)
- 				panic("Failed to allocate page table page\n");
 -- 
-2.20.1
-
+Thanks.
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
