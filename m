@@ -2,61 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 83E6D10A48B
-	for <lists+linux-xtensa@lfdr.de>; Tue, 26 Nov 2019 20:30:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F32C10A4B8
+	for <lists+linux-xtensa@lfdr.de>; Tue, 26 Nov 2019 20:50:24 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 42CD564BF;
-	Tue, 26 Nov 2019 19:22:01 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id B96DB3AD9;
+	Tue, 26 Nov 2019 19:41:37 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lj1-f194.google.com (mail-lj1-f194.google.com
- [209.85.208.194])
- by linux-xtensa.org (Postfix) with ESMTPS id 0650E64B8
- for <linux-xtensa@linux-xtensa.org>; Tue, 26 Nov 2019 19:22:00 +0000 (UTC)
-Received: by mail-lj1-f194.google.com with SMTP id e9so21576516ljp.13
- for <linux-xtensa@linux-xtensa.org>; Tue, 26 Nov 2019 11:30:45 -0800 (PST)
+Received: from mail-lf1-f65.google.com (mail-lf1-f65.google.com
+ [209.85.167.65])
+ by linux-xtensa.org (Postfix) with ESMTPS id 05CA72D7F
+ for <linux-xtensa@linux-xtensa.org>; Tue, 26 Nov 2019 19:41:37 +0000 (UTC)
+Received: by mail-lf1-f65.google.com with SMTP id y5so2407615lfy.7
+ for <linux-xtensa@linux-xtensa.org>; Tue, 26 Nov 2019 11:50:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=N1fma/rzZbsK0KgJkH5gDE4TEHvO2HL1ft3nAMVM09o=;
- b=DH9OE1isC9wMnuJMDGOHRni1GwxOUfsJU0ywmLSPLdfWPuomlkUHP8ykBHs1KwwoNZ
- IJftDyO+OQGKxgrWaR0Bird2WXdpg7JQ9WPQTWKm7kLMz5l8yTUSlLy9lR6+twon3BEh
- EB6ZMe5P7AwiA+ntl+Nn8ygQu1ODMZv5/opG4sn7DXVu57YHDoSxUbWgOblojTYE5OiK
- 6bpufoW/OvY8x5WIF4Ugk/rykcm4PGNjfe4M7+WT1L9t2ngWMLGuZy5LhvaJbQV+cYRT
- 865N738hDX8lXfnjCAPGvdp10UKPvPSQjjmjkLYLAW8NOmVywCz/EaS7QwF/z0HlnYgV
- sXUw==
+ bh=yToflPu1v9gopWp0ead2H9oQlGYqjKSS8AgQAzzNRyo=;
+ b=DRlgVBlM0CYsPktev3AHOiRnXXvGT0hwbIqiT6T6mcvhr4RhMj76va4GkjQyq3mCyn
+ 7NYwmnxoUGmS8fRbSBOD1Iqpr8d9udA3YcTmAshJqZFLN543eooDtj6fi+w/IGyxE1u9
+ ibdhhmx/Ik6ohhlFtOQIlfy2+8KC3AGfAj3cqfyDkTLnrM5Ar+BoftY92A7Gwohokk8Y
+ AO+pJN1UnDu0oAfPjDDBHKt/GnEbCmrn2xf+VN4Q79ycs89vcpY37s2GBZB0dj1een9r
+ fsGRDZD5eYIEfJ3iziKGvcDJL83B2d/+XzDqLFBVDG36yR158GtU7k1cyl68gvhk11pJ
+ 6HQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=N1fma/rzZbsK0KgJkH5gDE4TEHvO2HL1ft3nAMVM09o=;
- b=RXyu4tK2l7XNBeagiZrc+x95XSMzg5EmT29kZR4RckXOBAScWgQfZs3mvGgVos1w0N
- GE25317IlBdZau3pbTdkokMO87KnYYe8OCFYkEdCSQsmVlsbssVea+0GKxRUM9wKx1J6
- ddZ3ETdWHDbiW3acBuskvPKRxS3YFbjpfcvC4LPhx+IU+tpmZfNAqElS0iSMKxrSgs54
- 2Ar/7A0yyIeKd1gn+lhOYu5CEdsKoDgfmwzx6fnmOND/XN5g/ULq/NsGChbT1w854O6a
- 5zk7kYPYFrpJqYiPLiE8rmCWb9Olr+GNYfBYQSFCyJ0iInTNLZ9MP1WFY6GaC7C1aSJU
- TAJg==
-X-Gm-Message-State: APjAAAU4wRIQKkt72L6C/9BLqR64uV4aCgJteBHdTuEPc1FFwVNfLkQ5
- 2ZcNenJ1G9+qsQgMyYCi3zQ0NV0h
-X-Google-Smtp-Source: APXvYqx9/2noQaJq7x/KWqh0xaR3KlZk66kcGXCNzZVnDIkbRFG0nnLsPyaQcfSma3Bx0Mn7mgvzSg==
-X-Received: by 2002:a2e:894b:: with SMTP id b11mr28263730ljk.118.1574796643636; 
- Tue, 26 Nov 2019 11:30:43 -0800 (PST)
+ bh=yToflPu1v9gopWp0ead2H9oQlGYqjKSS8AgQAzzNRyo=;
+ b=hUoFgY33nguEvUF1qJiAUOIqH0wzR/0R5GgDvuFu7tS15MFALEdXIeivf3dHh77o8V
+ Z7lAsyXGZTJ47TkAQ48VqGZDdFfPHpwX0+gtq54oEyAnPdp2MlTmtjle92LI4lxU5E+2
+ +3nBIhWS9575CViiYpiXiD3YQnMoUM6zWTdN7DLMIBEvinwWR0yvdnWwNGGerHng7+sD
+ qsMOoquExGxmCwB+p6LccEisaA+0ntmNX/8aze3t3O5NOYczmFDr7vFXDo3bQILUUjfV
+ dqfdjvEUDyzcWBZPaK7wtzYBfumXaqp13F0VeQN317BAAD5wYrrUjJDBLfmabp+xMqvJ
+ lKJA==
+X-Gm-Message-State: APjAAAX41I425O6tH7TAEUMM4BsbJwa9jy6bWQbFTuF4Q//mkvGvVIku
+ x4XtZfB+ApZDyQuOBILM7Ej0wYV5q8A=
+X-Google-Smtp-Source: APXvYqxw2Mop/i0LLPlggD/2oG3tNfB0YpUWJ6g4kX7hMtK82hPlV4rvCdpvCMvF4WXCmx/H0VKUPA==
+X-Received: by 2002:ac2:57cb:: with SMTP id k11mr25706032lfo.87.1574797820996; 
+ Tue, 26 Nov 2019 11:50:20 -0800 (PST)
 Received: from octofox.cadence.com
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id m18sm6134434ljg.3.2019.11.26.11.30.40
+ by smtp.gmail.com with ESMTPSA id j81sm5778314lfj.26.2019.11.26.11.50.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 26 Nov 2019 11:30:43 -0800 (PST)
+ Tue, 26 Nov 2019 11:50:20 -0800 (PST)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Tue, 26 Nov 2019 11:30:27 -0800
-Message-Id: <20191126193027.11970-1-jcmvbkbc@gmail.com>
+Date: Tue, 26 Nov 2019 11:50:09 -0800
+Message-Id: <20191126195009.12811-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: Baruch Siach <baruch@tkos.co.il>, linux-gpio@vger.kernel.org,
- Max Filippov <jcmvbkbc@gmail.com>, Linus Walleij <linus.walleij@linaro.org>,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [Linux-Xtensa] [PATCH] drivers/gpio/gpio-xtensa: fix driver build
+Cc: Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: drop unneeded headers from
+	coprocessor.S
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -74,40 +72,36 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Commit cad6fade6e78 ("xtensa: clean up WSR*/RSR*/get_sr/set_sr") removed
-{RSR,WSR}_CPENABLE from xtensa code, but did not fix up all users,
-breaking gpio-xtensa driver build.
-Update gpio-xtensa to use new xtensa_{get,set}_sr API.
+A bunch of irrelevant headers is included into coprocessor.S. Remove
+them and add necessary asm/regs.h.
 
-Cc: stable@vger.kernel.org # v5.0+
-Fixes: cad6fade6e78 ("xtensa: clean up WSR*/RSR*/get_sr/set_sr")
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- drivers/gpio/gpio-xtensa.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ arch/xtensa/kernel/coprocessor.S | 10 +---------
+ 1 file changed, 1 insertion(+), 9 deletions(-)
 
-diff --git a/drivers/gpio/gpio-xtensa.c b/drivers/gpio/gpio-xtensa.c
-index 43d3fa5f511a..0fb2211f9573 100644
---- a/drivers/gpio/gpio-xtensa.c
-+++ b/drivers/gpio/gpio-xtensa.c
-@@ -44,15 +44,14 @@ static inline unsigned long enable_cp(unsigned long *cpenable)
- 	unsigned long flags;
+diff --git a/arch/xtensa/kernel/coprocessor.S b/arch/xtensa/kernel/coprocessor.S
+index 80828b95a51f..bb8e499b9900 100644
+--- a/arch/xtensa/kernel/coprocessor.S
++++ b/arch/xtensa/kernel/coprocessor.S
+@@ -15,17 +15,9 @@
+ #include <linux/linkage.h>
+ #include <asm/asm-offsets.h>
+ #include <asm/asmmacro.h>
+-#include <asm/processor.h>
+ #include <asm/coprocessor.h>
+-#include <asm/thread_info.h>
+-#include <asm/asm-uaccess.h>
+-#include <asm/unistd.h>
+-#include <asm/ptrace.h>
+ #include <asm/current.h>
+-#include <asm/pgtable.h>
+-#include <asm/page.h>
+-#include <asm/signal.h>
+-#include <asm/tlbflush.h>
++#include <asm/regs.h>
  
- 	local_irq_save(flags);
--	RSR_CPENABLE(*cpenable);
--	WSR_CPENABLE(*cpenable | BIT(XCHAL_CP_ID_XTIOP));
--
-+	*cpenable = xtensa_get_sr(cpenable);
-+	xtensa_set_sr(*cpenable | BIT(XCHAL_CP_ID_XTIOP), cpenable);
- 	return flags;
- }
- 
- static inline void disable_cp(unsigned long flags, unsigned long cpenable)
- {
--	WSR_CPENABLE(cpenable);
-+	xtensa_set_sr(cpenable, cpenable);
- 	local_irq_restore(flags);
- }
+ #if XTENSA_HAVE_COPROCESSORS
  
 -- 
 2.20.1
