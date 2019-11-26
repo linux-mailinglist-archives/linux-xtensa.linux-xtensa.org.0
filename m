@@ -2,59 +2,58 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F32C10A4B8
-	for <lists+linux-xtensa@lfdr.de>; Tue, 26 Nov 2019 20:50:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E75B10A4FD
+	for <lists+linux-xtensa@lfdr.de>; Tue, 26 Nov 2019 21:01:23 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id B96DB3AD9;
-	Tue, 26 Nov 2019 19:41:37 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 89D596461;
+	Tue, 26 Nov 2019 19:52:36 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f65.google.com (mail-lf1-f65.google.com
- [209.85.167.65])
- by linux-xtensa.org (Postfix) with ESMTPS id 05CA72D7F
- for <linux-xtensa@linux-xtensa.org>; Tue, 26 Nov 2019 19:41:37 +0000 (UTC)
-Received: by mail-lf1-f65.google.com with SMTP id y5so2407615lfy.7
- for <linux-xtensa@linux-xtensa.org>; Tue, 26 Nov 2019 11:50:22 -0800 (PST)
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
+ [209.85.208.195])
+ by linux-xtensa.org (Postfix) with ESMTPS id 5BF63377C
+ for <linux-xtensa@linux-xtensa.org>; Tue, 26 Nov 2019 19:52:35 +0000 (UTC)
+Received: by mail-lj1-f195.google.com with SMTP id s22so2678913ljs.7
+ for <linux-xtensa@linux-xtensa.org>; Tue, 26 Nov 2019 12:01:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=yToflPu1v9gopWp0ead2H9oQlGYqjKSS8AgQAzzNRyo=;
- b=DRlgVBlM0CYsPktev3AHOiRnXXvGT0hwbIqiT6T6mcvhr4RhMj76va4GkjQyq3mCyn
- 7NYwmnxoUGmS8fRbSBOD1Iqpr8d9udA3YcTmAshJqZFLN543eooDtj6fi+w/IGyxE1u9
- ibdhhmx/Ik6ohhlFtOQIlfy2+8KC3AGfAj3cqfyDkTLnrM5Ar+BoftY92A7Gwohokk8Y
- AO+pJN1UnDu0oAfPjDDBHKt/GnEbCmrn2xf+VN4Q79ycs89vcpY37s2GBZB0dj1een9r
- fsGRDZD5eYIEfJ3iziKGvcDJL83B2d/+XzDqLFBVDG36yR158GtU7k1cyl68gvhk11pJ
- 6HQA==
+ bh=9gYplPhtVE/YGLO3x1smraYGKvZdNPRdzDgfUGwplws=;
+ b=GIRldqEdiwGN3YNe6c76Ggzly2TLHRFCWdEE02G+zF+8N2KcF8j+jZ7WokzK3KR1jo
+ /yPaNkdQ0wHsOvzOfc/G7e+o6IifetbIk+4AiYUdw6r/FbJKR1y0htKWfJQiYuSzTiI6
+ DosXBqB1wRDvH6FY5kC4YS7TjMZaLBpwXex/yrgMIpL8f13YiVi2lUSE3rs1r2p5urn+
+ yxOGgZAJ+vHP4NVbQfWv14U0yXnPuqRtpRAwPApmMtb1cviCfSs/aUuO4+zCgIT8ecPB
+ WttE4aMeG8NTlccrGQsIbB9JmiVoRfRr8gLGSKByL7PSvln/J5CBgFA0nBzYm3II9pyv
+ l+Ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=yToflPu1v9gopWp0ead2H9oQlGYqjKSS8AgQAzzNRyo=;
- b=hUoFgY33nguEvUF1qJiAUOIqH0wzR/0R5GgDvuFu7tS15MFALEdXIeivf3dHh77o8V
- Z7lAsyXGZTJ47TkAQ48VqGZDdFfPHpwX0+gtq54oEyAnPdp2MlTmtjle92LI4lxU5E+2
- +3nBIhWS9575CViiYpiXiD3YQnMoUM6zWTdN7DLMIBEvinwWR0yvdnWwNGGerHng7+sD
- qsMOoquExGxmCwB+p6LccEisaA+0ntmNX/8aze3t3O5NOYczmFDr7vFXDo3bQILUUjfV
- dqfdjvEUDyzcWBZPaK7wtzYBfumXaqp13F0VeQN317BAAD5wYrrUjJDBLfmabp+xMqvJ
- lKJA==
-X-Gm-Message-State: APjAAAX41I425O6tH7TAEUMM4BsbJwa9jy6bWQbFTuF4Q//mkvGvVIku
- x4XtZfB+ApZDyQuOBILM7Ej0wYV5q8A=
-X-Google-Smtp-Source: APXvYqxw2Mop/i0LLPlggD/2oG3tNfB0YpUWJ6g4kX7hMtK82hPlV4rvCdpvCMvF4WXCmx/H0VKUPA==
-X-Received: by 2002:ac2:57cb:: with SMTP id k11mr25706032lfo.87.1574797820996; 
- Tue, 26 Nov 2019 11:50:20 -0800 (PST)
+ bh=9gYplPhtVE/YGLO3x1smraYGKvZdNPRdzDgfUGwplws=;
+ b=dtRDPXJN/Ug6NM1LpeMa18ysckmKg3lj7CYhNbayQ1aBeP+4Bi6H4fjVkhausRrsNt
+ 68i7h8Txr26F6M+cDZCfkaC/wvU0DTpIrfW8BQFdtCbl8AVqslJNhVSccZpBHKyLsAhV
+ NFNeaWhbG2tKj4GEqBEY4K0R1ukpyRK/sYtO9gmRNVXavljRujzkLA+4iXSo9PNIHoPe
+ wm/wAxSI9Y2XdkzVzDqCcEiXE6PMbXJrabfQQC4yr4ZWFcIdoT22JQJoF+k8fxu4LMRy
+ WCbAoolzsM26pcukDV6GZ31MyeF+2Ze7Nj7V054jT6N+YLsl8TDfTBnldw4HMfqau/fj
+ UUAQ==
+X-Gm-Message-State: APjAAAVJuw/0L9YvP5m8vH6nM6a+MaRg/RxtUO/S+wNwHJjK2GecxKpe
+ P+Wuj7Yzcr2LXIaSQg4Y5U2C0tj20Po=
+X-Google-Smtp-Source: APXvYqxMydKAw0SnQ/rYZD0FFMTLmbLErH0qXFuFIDX2swa/M1Ot0o1BirTQP/nA/jNMfD5RfERQkw==
+X-Received: by 2002:a2e:81c1:: with SMTP id s1mr27477310ljg.83.1574798479363; 
+ Tue, 26 Nov 2019 12:01:19 -0800 (PST)
 Received: from octofox.cadence.com
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id j81sm5778314lfj.26.2019.11.26.11.50.18
+ by smtp.gmail.com with ESMTPSA id g11sm5767129lfb.94.2019.11.26.12.01.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 26 Nov 2019 11:50:20 -0800 (PST)
+ Tue, 26 Nov 2019 12:01:18 -0800 (PST)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Tue, 26 Nov 2019 11:50:09 -0800
-Message-Id: <20191126195009.12811-1-jcmvbkbc@gmail.com>
+Date: Tue, 26 Nov 2019 12:01:07 -0800
+Message-Id: <20191126200107.13008-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: drop unneeded headers from
-	coprocessor.S
+Cc: stable@vger.kernel.org, Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: fix syscall_set_return_value
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -72,37 +71,28 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-A bunch of irrelevant headers is included into coprocessor.S. Remove
-them and add necessary asm/regs.h.
+syscall return value is in the register a2, not a0.
 
+Cc: stable@vger.kernel.org # v5.0+
+Fixes: 9f24f3c1067c ("xtensa: implement tracehook functions and enable HAVE_ARCH_TRACEHOOK")
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- arch/xtensa/kernel/coprocessor.S | 10 +---------
- 1 file changed, 1 insertion(+), 9 deletions(-)
+ arch/xtensa/include/asm/syscall.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/xtensa/kernel/coprocessor.S b/arch/xtensa/kernel/coprocessor.S
-index 80828b95a51f..bb8e499b9900 100644
---- a/arch/xtensa/kernel/coprocessor.S
-+++ b/arch/xtensa/kernel/coprocessor.S
-@@ -15,17 +15,9 @@
- #include <linux/linkage.h>
- #include <asm/asm-offsets.h>
- #include <asm/asmmacro.h>
--#include <asm/processor.h>
- #include <asm/coprocessor.h>
--#include <asm/thread_info.h>
--#include <asm/asm-uaccess.h>
--#include <asm/unistd.h>
--#include <asm/ptrace.h>
- #include <asm/current.h>
--#include <asm/pgtable.h>
--#include <asm/page.h>
--#include <asm/signal.h>
--#include <asm/tlbflush.h>
-+#include <asm/regs.h>
+diff --git a/arch/xtensa/include/asm/syscall.h b/arch/xtensa/include/asm/syscall.h
+index 359ab40e935a..c90fb944f9d8 100644
+--- a/arch/xtensa/include/asm/syscall.h
++++ b/arch/xtensa/include/asm/syscall.h
+@@ -51,7 +51,7 @@ static inline void syscall_set_return_value(struct task_struct *task,
+ 					    struct pt_regs *regs,
+ 					    int error, long val)
+ {
+-	regs->areg[0] = (long) error ? error : val;
++	regs->areg[2] = (long) error ? error : val;
+ }
  
- #if XTENSA_HAVE_COPROCESSORS
- 
+ #define SYSCALL_MAX_ARGS 6
 -- 
 2.20.1
 
