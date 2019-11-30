@@ -2,58 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id C99BF10DC46
-	for <lists+linux-xtensa@lfdr.de>; Sat, 30 Nov 2019 04:45:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56E6610DC47
+	for <lists+linux-xtensa@lfdr.de>; Sat, 30 Nov 2019 04:45:14 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 117DC6583;
-	Sat, 30 Nov 2019 03:36:20 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 1EA6A6586;
+	Sat, 30 Nov 2019 03:36:22 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f68.google.com (mail-lf1-f68.google.com
- [209.85.167.68])
- by linux-xtensa.org (Postfix) with ESMTPS id BC8256579
- for <linux-xtensa@linux-xtensa.org>; Sat, 30 Nov 2019 03:36:18 +0000 (UTC)
-Received: by mail-lf1-f68.google.com with SMTP id r15so21001587lff.2
- for <linux-xtensa@linux-xtensa.org>; Fri, 29 Nov 2019 19:45:10 -0800 (PST)
+Received: from mail-lf1-f65.google.com (mail-lf1-f65.google.com
+ [209.85.167.65])
+ by linux-xtensa.org (Postfix) with ESMTPS id BCCDD6585
+ for <linux-xtensa@linux-xtensa.org>; Sat, 30 Nov 2019 03:36:20 +0000 (UTC)
+Received: by mail-lf1-f65.google.com with SMTP id r15so21001620lff.2
+ for <linux-xtensa@linux-xtensa.org>; Fri, 29 Nov 2019 19:45:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=TxQPdJxNyepJ+7HvIw3vGl/aei4/1HLBmK7Ev2iT0B4=;
- b=W+5DX9GzK0eHm3lLdhvbim7aswgBOTJIH3yFZGo0JzlxucTJjfRN7ipbKbdFHw1GZ0
- KtdxUPqHJxf5QvgC0MYJT0hikiIM6NT0MQ/Pv1WOaa4ZafVTH04yv7cPxbcySH+NOVuW
- 5MLgxu5bLLdg/BApHiRh+Viy+y12RgzkmHrbBt4wDPCEFSmGFj2f7AU9eRUPvzJ9thVU
- pGIgbtPK59tf7sXElGAScSOBVyJA/kfFqWBDYk80hGNO79uVA96hFMq97qbzr7Mfccre
- ILlpG59ipuA2ldCfmw5WPvJkd7qKRtJxPlzEDzAlQb316peLoU0ijAzXV14neKXrQfIX
- BlFQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=iXFjuLX0iGyT38UQPN5PdmevuxsDCgeWiwiIr+JE2yE=;
+ b=iepCG9D9M6R42N1YIWFN7wTcftZI5g0d/BRBGIt+N8VeUSceqBrqQXiGs9hk1kXOzy
+ VbbJ0xP4m8ajh5Pn2doZLtseUFDrDtemA8FlceRq3KOlO2nsXqEmFjJXWglopNYMpSAo
+ QxcueFMIXNBzgKxAPgCac8+8LmA6a4vOglPXx405jjX86wbrPIHnEGW9TsWeIXni3S1z
+ 4H5J4XicSMh8iVdTMjZVfrqyeNir/QHe4V/T/auT6GHkA5vCnr9TLPyFYPfTWo9HOQyl
+ LkVf9LGexcPvfLLWJ2lVX9AHOMjnn3DZsgtKEAr75E3NOUyfFMNR0YxXj+II5D1YuVJh
+ ud6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=TxQPdJxNyepJ+7HvIw3vGl/aei4/1HLBmK7Ev2iT0B4=;
- b=bJ3NnMFrJlbI2unGSh6T1pZdKojfQokydyOB9SKeMT2OfSCFQMD4RPiIdlY+HT4ulr
- 3xrTMCiOfCp93T/z0g5GuE+Ql9R8x7aP3SpqiGWEuc5m0aDmx0YmEwRmKQMF5uhhyugf
- bUP2emwaeS6+ff9bIzrPRrCR0FdGNe5NN191IcX5B1nQ9L0KWKFDUjkUbEr5wsg17svC
- IjRCFeubBjtpDaMr/ua0jwUY9EJKpMCM6vdlzmWD7hFOdun1Ykxzx4+32KcdjsQLFpZs
- u4EiKv+bWAfUHBsbJJHViL3QLzJga7Rz3UptKNJIa+v3zZJNzzt1OwNp8NB4Zftug6Sc
- 84FA==
-X-Gm-Message-State: APjAAAU7hggrXq4u+d37OlLIMwgMt2BkdPR4jG6pRgjeY5Z6qztvvJVj
- RnFsHiZ0Bhgph9/oqBNC0RkC2YZIgsk=
-X-Google-Smtp-Source: APXvYqz0myTBpY75TPNbMuGuk29ju22LjVugURWiR3WNVe1Eo1voorsoJtlJY0ZohkJEIBbeRWS18w==
-X-Received: by 2002:ac2:43a7:: with SMTP id t7mr2560620lfl.125.1575085508895; 
- Fri, 29 Nov 2019 19:45:08 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=iXFjuLX0iGyT38UQPN5PdmevuxsDCgeWiwiIr+JE2yE=;
+ b=j8ETfUrQc/pkOq0ub2tcmW1/72YJ41OBHXovK2hxMHhbJfYE83tC3oYI4CeSe4iaiD
+ sbU2/JcFCIrxtBcnPOYWszhp7g1FEw7+LClU4C7cuWRczRbPnkxcArppPGc4Znb4svmA
+ qcU/kcCmCYWRpkmGtOVCcpaRc9cfy/rry2Ssdrzw40SOZ2TCLA42c4ZCiBF8ljFiCJW1
+ dfJ5DxlzBAcUW/6O4xKgEchqJk14EcEwvkFjhnh0hcv1zvug6TijjOqyHf2ywcptoCHh
+ QavlUD9lICzCaaxRIsUMIhMJd4/Wupwm8IHcJ1VcdVKQI+2kXm93weTDVLNGF9cvs3gK
+ fuJw==
+X-Gm-Message-State: APjAAAX3Jxr7t7JBBjG7yhT1vhMrCONnSvsAq7pwqDyI6l1ZPiv5tUxz
+ k31VGGep7+EXfXp2crfy73esM7VG53M=
+X-Google-Smtp-Source: APXvYqywrRMUk3N59Fjbt9YNDjcHZQXBtO0MEFD/a3pO1PFPKQXy6ENr8+ADRr41KI20wvcJfXk5IQ==
+X-Received: by 2002:a19:e20b:: with SMTP id z11mr37242630lfg.171.1575085511201; 
+ Fri, 29 Nov 2019 19:45:11 -0800 (PST)
 Received: from octofox.hsd1.ca.comcast.net
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id z9sm2920528ljm.40.2019.11.29.19.45.06
+ by smtp.gmail.com with ESMTPSA id z9sm2920528ljm.40.2019.11.29.19.45.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 29 Nov 2019 19:45:08 -0800 (PST)
+ Fri, 29 Nov 2019 19:45:10 -0800 (PST)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Fri, 29 Nov 2019 19:44:47 -0800
-Message-Id: <20191130034450.25507-1-jcmvbkbc@gmail.com>
+Date: Fri, 29 Nov 2019 19:44:48 -0800
+Message-Id: <20191130034450.25507-2-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20191130034450.25507-1-jcmvbkbc@gmail.com>
+References: <20191130034450.25507-1-jcmvbkbc@gmail.com>
 MIME-Version: 1.0
 Cc: Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH 0/3] xtensa system_call cleanup
+Subject: [Linux-Xtensa] [PATCH 1/3] xtensa: rearrange syscall tracing
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -71,26 +73,79 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Hello,
+system_call saves and restores syscall number across system call to make
+clone and execv entry and exit tracing match. This complicates things
+when syscall code may be changed by ptrace.
+Preserve syscall code in copy_thread and start_thread directly instead of
+doing tricks in system_call.
 
-this series cleans up xtensa system_call implementation, dropping
-workarounds for clone/execv tracing and extra argument passing for
-xtensa_rt_sigreturn. It fixes value returned from system call when
-call is cancelled by ptrace.
+Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+---
+ arch/xtensa/include/asm/processor.h | 3 ++-
+ arch/xtensa/kernel/entry.S          | 6 ------
+ arch/xtensa/kernel/process.c        | 2 ++
+ 3 files changed, 4 insertions(+), 7 deletions(-)
 
-Max Filippov (3):
-  xtensa: rearrange syscall tracing
-  xtensa: fix system_call interaction with ptrace
-  xtensa: clean up system_call/xtensa_rt_sigreturn interaction
-
- arch/xtensa/include/asm/processor.h |  3 ++-
- arch/xtensa/include/asm/syscall.h   |  2 +-
- arch/xtensa/kernel/entry.S          | 20 +++++---------------
- arch/xtensa/kernel/process.c        |  2 ++
- arch/xtensa/kernel/ptrace.c         | 18 ++++++++++++++++--
- arch/xtensa/kernel/signal.c         |  4 ++--
- 6 files changed, 28 insertions(+), 21 deletions(-)
-
+diff --git a/arch/xtensa/include/asm/processor.h b/arch/xtensa/include/asm/processor.h
+index 7495520d7a3e..6fa903daf2a2 100644
+--- a/arch/xtensa/include/asm/processor.h
++++ b/arch/xtensa/include/asm/processor.h
+@@ -195,6 +195,7 @@ struct thread_struct {
+ /* Clearing a0 terminates the backtrace. */
+ #define start_thread(regs, new_pc, new_sp) \
+ 	do { \
++		unsigned long syscall = (regs)->syscall; \
+ 		memset((regs), 0, sizeof(*(regs))); \
+ 		(regs)->pc = (new_pc); \
+ 		(regs)->ps = USER_PS_VALUE; \
+@@ -204,7 +205,7 @@ struct thread_struct {
+ 		(regs)->depc = 0; \
+ 		(regs)->windowbase = 0; \
+ 		(regs)->windowstart = 1; \
+-		(regs)->syscall = NO_SYSCALL; \
++		(regs)->syscall = syscall; \
+ 	} while (0)
+ 
+ /* Forward declaration */
+diff --git a/arch/xtensa/kernel/entry.S b/arch/xtensa/kernel/entry.S
+index 2ca209e71565..59af494d9940 100644
+--- a/arch/xtensa/kernel/entry.S
++++ b/arch/xtensa/kernel/entry.S
+@@ -1895,8 +1895,6 @@ ENTRY(system_call)
+ 	l32i	a7, a2, PT_SYSCALL
+ 
+ 1:
+-	s32i	a7, a1, 4
+-
+ 	/* syscall = sys_call_table[syscall_nr] */
+ 
+ 	movi	a4, sys_call_table
+@@ -1930,12 +1928,8 @@ ENTRY(system_call)
+ 	abi_ret(4)
+ 
+ 1:
+-	l32i	a4, a1, 4
+-	l32i	a3, a2, PT_SYSCALL
+-	s32i	a4, a2, PT_SYSCALL
+ 	mov	a6, a2
+ 	call4	do_syscall_trace_leave
+-	s32i	a3, a2, PT_SYSCALL
+ 	abi_ret(4)
+ 
+ ENDPROC(system_call)
+diff --git a/arch/xtensa/kernel/process.c b/arch/xtensa/kernel/process.c
+index db278a9e80c7..9e1c49134c07 100644
+--- a/arch/xtensa/kernel/process.c
++++ b/arch/xtensa/kernel/process.c
+@@ -264,6 +264,8 @@ int copy_thread(unsigned long clone_flags, unsigned long usp_thread_fn,
+ 			       &regs->areg[XCHAL_NUM_AREGS - len/4], len);
+ 		}
+ 
++		childregs->syscall = regs->syscall;
++
+ 		/* The thread pointer is passed in the '4th argument' (= a5) */
+ 		if (clone_flags & CLONE_SETTLS)
+ 			childregs->threadptr = childregs->areg[5];
 -- 
 2.20.1
 
