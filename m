@@ -2,61 +2,62 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 5750110DC48
-	for <lists+linux-xtensa@lfdr.de>; Sat, 30 Nov 2019 04:45:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A23E10DC49
+	for <lists+linux-xtensa@lfdr.de>; Sat, 30 Nov 2019 04:45:19 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 2E09B6589;
-	Sat, 30 Nov 2019 03:36:24 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 42864658B;
+	Sat, 30 Nov 2019 03:36:27 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
- [209.85.167.67])
- by linux-xtensa.org (Postfix) with ESMTPS id 22A186579
- for <linux-xtensa@linux-xtensa.org>; Sat, 30 Nov 2019 03:36:23 +0000 (UTC)
-Received: by mail-lf1-f67.google.com with SMTP id b20so23940801lfp.4
- for <linux-xtensa@linux-xtensa.org>; Fri, 29 Nov 2019 19:45:14 -0800 (PST)
+Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
+ [209.85.167.66])
+ by linux-xtensa.org (Postfix) with ESMTPS id 74A216579
+ for <linux-xtensa@linux-xtensa.org>; Sat, 30 Nov 2019 03:36:25 +0000 (UTC)
+Received: by mail-lf1-f66.google.com with SMTP id q6so922695lfb.6
+ for <linux-xtensa@linux-xtensa.org>; Fri, 29 Nov 2019 19:45:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=4AQRc5UpE71EIlhTuNk73TpGDdUifUHEZcrpF9LUyMs=;
- b=gp2DIxs2B6r1XVG2OVMvXMhUdRKiGU/k/vnAMpd7q9Xd45k/x9/1q2E+kV7SR4/PTj
- PMlasq8YHQK1EU3p1XsG3314D3aX3YiZeMF8vhdaK9waJ80gBToy1XTEcbSKFytma4/u
- NGVbocffg4xdFBb2NJJbkKRNM8oPZeqNzdjLCdAqzePb0iOT2AtnKwjGiUFlKmzSxqWa
- j11vQ1ngkm8xFwynNsdHBbbmPOlVEDgpR1Z95bcrUbwhrh0b/LhB/i6HI84YC9jHr2sl
- X7aOwKX9eiSNekOawLm5EqADpRmCgKKaljdbCFmk2hOiuwdWp/E/gWzUdEzon8o3D3CW
- VJwg==
+ bh=b0/RSZtZa/8k0SsBOdWVOHCkbjUz+w0oVuNtCkTS7c8=;
+ b=NrmVCCj3OF1nsro0wjwnvMpXQsZ2tewscAGSbbL4R4xeF2aLPnvPz4QDUdYStMgu68
+ 9x0yY6Q2GVWjog8qojRYMyHlrAz/trL9FdudpOVJKKmFjY95+Cb5gIBZfvFM0GERNsOS
+ OfxtkeyoilXshGQUQLJr3C9RQWk4wUqJk6QE3lVazV8BQRcBmRTWTTPqQZHc8EEKf4zv
+ At+czu4k+wz+CVuPMmTdTPQZiqYR5jXHDdYtyJUUe0CYqLpdCQn5KKcxGK8DYdGBlaXh
+ h6wm8QbVW0/s7p2NH4jXmCSmZ2rXqWHmIAhlh7vapuv1gTkOKGcacjK5co85YhEHDptf
+ CTIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=4AQRc5UpE71EIlhTuNk73TpGDdUifUHEZcrpF9LUyMs=;
- b=REiFXag0r6HAOWyvjiX0+aqfsbM7bPKmOfAJNRPJHD4Zp1g6sYwwuAPShuFoXhf9mP
- yiF5HiP35hnVMgljelbab/ALjii+jmeB5gSzeIJp+gawu5tcqNnTTdWj6whyoJMYsjgn
- C2QFQRDJExTBg68knD9w9P/4JP45nuzLxp0sCntcw8+DrKtnBzxval6PrVbQAJHIc4xP
- 3Y+m9yGWxiY8HM6c1F5oNFuXmkijT9L2c7SqClfC5bN/OwZ4opN5XDg7B+Ce0BQ5NqcF
- bjY8JRrLQwr+ofeNBELbEnlF6lZCPXYGpOdBaguKIgb8T1y1xBUL8ck7Tha5SpiYatdn
- OmAA==
-X-Gm-Message-State: APjAAAWBVbzAcqVyO160dbGWMoOUpssMeSPGKSlejPt7O3VZcMuYXMvt
- LKaoK2ycSb93FikyY94ZVuUeF+PbVsY=
-X-Google-Smtp-Source: APXvYqzqK/VabnaQ2LI8juvjQyFqkNf5B4Zj5dG09jItt1ohm9E9Th0RM6tQmpRyNQWk4yENJDqivQ==
-X-Received: by 2002:ac2:4c31:: with SMTP id u17mr1889468lfq.57.1575085513595; 
- Fri, 29 Nov 2019 19:45:13 -0800 (PST)
+ bh=b0/RSZtZa/8k0SsBOdWVOHCkbjUz+w0oVuNtCkTS7c8=;
+ b=Wqlc93dgNqVO+Kp4B4QFboNkv6VxabeaeN+iTHUXy4HQaU+NjimLHGNYq/nSSPMPwh
+ YoaDIaDwpzSwWsqP6WgB1zMezdzxIwphlHmSfliPWccZ62UmGqeEBDWVXByJI46+67Zc
+ 9pT5NF3OmwvQPAR9kllPyZGeyPCOPea8+cfjDqJMWS4VRSp4SL0BVkuZE7anZj1shX5W
+ bfzowtTaX89984cOn5Ki0qGsLPwDm47twA0lL0Alf9ZDfFvWsLJ+uQPsoGaH42XQQVH8
+ QeLhaVfRpVoszZfdIbXxHMBv8qXJ/hja5dnq5zzsv90EyEnf1fR3ktQmhrbfJeb0nERI
+ S1WA==
+X-Gm-Message-State: APjAAAWalLyXsgwA4cmAuIcr0eL94plHghBDeqtOsdm0HJQEQ7tUqZvO
+ yKtLG/2BfViB27ahLlWPr+1a5EkqItQ=
+X-Google-Smtp-Source: APXvYqykNu1XlTg0Fz3aLqBpQIDZ9hmTmW0se4r8GExnWvOkLsPWqCkoWXtzcy3plrV+JgQqKIvahA==
+X-Received: by 2002:a05:6512:284:: with SMTP id
+ j4mr25552792lfp.109.1575085515914; 
+ Fri, 29 Nov 2019 19:45:15 -0800 (PST)
 Received: from octofox.hsd1.ca.comcast.net
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id z9sm2920528ljm.40.2019.11.29.19.45.11
+ by smtp.gmail.com with ESMTPSA id z9sm2920528ljm.40.2019.11.29.19.45.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 29 Nov 2019 19:45:12 -0800 (PST)
+ Fri, 29 Nov 2019 19:45:15 -0800 (PST)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Fri, 29 Nov 2019 19:44:49 -0800
-Message-Id: <20191130034450.25507-3-jcmvbkbc@gmail.com>
+Date: Fri, 29 Nov 2019 19:44:50 -0800
+Message-Id: <20191130034450.25507-4-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191130034450.25507-1-jcmvbkbc@gmail.com>
 References: <20191130034450.25507-1-jcmvbkbc@gmail.com>
 MIME-Version: 1.0
 Cc: Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH 2/3] xtensa: fix system_call interaction with
-	ptrace
+Subject: [Linux-Xtensa] [PATCH 3/3] xtensa: clean up
+	system_call/xtensa_rt_sigreturn interaction
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -74,80 +75,89 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Don't overwrite return value if system call was cancelled at entry by
-ptrace. Return status code from do_syscall_trace_enter so that
-pt_regs::syscall doesn't need to be changed to skip syscall.
+system_call assembly code always pushes pointer to struct pt_regs as the
+last additional parameter for all system calls. The only user of this
+feature is xtensa_rt_sigreturn.
+Avoid this special case. Define xtensa_rt_sigreturn as accepting no
+argiments. Use current_pt_regs to get pointer to struct pt_regs in
+xtensa_rt_sigreturn. Don't pass additional parameter from system_call
+code.
 
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- arch/xtensa/kernel/entry.S  |  4 ++--
- arch/xtensa/kernel/ptrace.c | 18 ++++++++++++++++--
- 2 files changed, 18 insertions(+), 4 deletions(-)
+ arch/xtensa/include/asm/syscall.h |  2 +-
+ arch/xtensa/kernel/entry.S        | 10 +++-------
+ arch/xtensa/kernel/signal.c       |  4 ++--
+ 3 files changed, 6 insertions(+), 10 deletions(-)
 
+diff --git a/arch/xtensa/include/asm/syscall.h b/arch/xtensa/include/asm/syscall.h
+index c90fb944f9d8..f9a671cbf933 100644
+--- a/arch/xtensa/include/asm/syscall.h
++++ b/arch/xtensa/include/asm/syscall.h
+@@ -79,7 +79,7 @@ static inline void syscall_set_arguments(struct task_struct *task,
+ 		regs->areg[reg[i]] = args[i];
+ }
+ 
+-asmlinkage long xtensa_rt_sigreturn(struct pt_regs*);
++asmlinkage long xtensa_rt_sigreturn(void);
+ asmlinkage long xtensa_shmat(int, char __user *, int);
+ asmlinkage long xtensa_fadvise64_64(int, int,
+ 				    unsigned long long, unsigned long long);
 diff --git a/arch/xtensa/kernel/entry.S b/arch/xtensa/kernel/entry.S
-index 59af494d9940..138469e26560 100644
+index 138469e26560..be897803834a 100644
 --- a/arch/xtensa/kernel/entry.S
 +++ b/arch/xtensa/kernel/entry.S
-@@ -1892,6 +1892,7 @@ ENTRY(system_call)
+@@ -1876,8 +1876,7 @@ ENDPROC(fast_store_prohibited)
  
- 	mov	a6, a2
- 	call4	do_syscall_trace_enter
-+	beqz	a6, .Lsyscall_exit
- 	l32i	a7, a2, PT_SYSCALL
+ ENTRY(system_call)
  
- 1:
-@@ -1904,8 +1905,6 @@ ENTRY(system_call)
+-	/* reserve 4 bytes on stack for function parameter */
+-	abi_entry(4)
++	abi_entry_default
  
- 	addx4	a4, a7, a4
- 	l32i	a4, a4, 0
--	movi	a5, sys_ni_syscall;
--	beq	a4, a5, 1f
+ 	/* regs->syscall = regs->areg[2] */
  
- 	/* Load args: arg0 - arg5 are passed via regs. */
+@@ -1915,9 +1914,6 @@ ENTRY(system_call)
+ 	l32i	a10, a2, PT_AREG8
+ 	l32i	a11, a2, PT_AREG9
  
-@@ -1925,6 +1924,7 @@ ENTRY(system_call)
+-	/* Pass one additional argument to the syscall: pt_regs (on stack) */
+-	s32i	a2, a1, 0
+-
+ 	callx4	a4
  
+ 1:	/* regs->areg[2] = return_value */
+@@ -1925,12 +1921,12 @@ ENTRY(system_call)
  	s32i	a6, a2, PT_AREG2
  	bnez	a3, 1f
-+.Lsyscall_exit:
- 	abi_ret(4)
+ .Lsyscall_exit:
+-	abi_ret(4)
++	abi_ret_default
  
  1:
-diff --git a/arch/xtensa/kernel/ptrace.c b/arch/xtensa/kernel/ptrace.c
-index b964f0b2d886..145742d70a9f 100644
---- a/arch/xtensa/kernel/ptrace.c
-+++ b/arch/xtensa/kernel/ptrace.c
-@@ -542,14 +542,28 @@ long arch_ptrace(struct task_struct *child, long request,
- 	return ret;
- }
+ 	mov	a6, a2
+ 	call4	do_syscall_trace_leave
+-	abi_ret(4)
++	abi_ret_default
  
--void do_syscall_trace_enter(struct pt_regs *regs)
-+void do_syscall_trace_leave(struct pt_regs *regs);
-+int do_syscall_trace_enter(struct pt_regs *regs)
+ ENDPROC(system_call)
+ 
+diff --git a/arch/xtensa/kernel/signal.c b/arch/xtensa/kernel/signal.c
+index dae83cddd6ca..76cee341507b 100644
+--- a/arch/xtensa/kernel/signal.c
++++ b/arch/xtensa/kernel/signal.c
+@@ -236,9 +236,9 @@ restore_sigcontext(struct pt_regs *regs, struct rt_sigframe __user *frame)
+  * Do a signal return; undo the signal stack.
+  */
+ 
+-asmlinkage long xtensa_rt_sigreturn(long a0, long a1, long a2, long a3,
+-				    long a4, long a5, struct pt_regs *regs)
++asmlinkage long xtensa_rt_sigreturn(void)
  {
-+	if (regs->syscall == NO_SYSCALL)
-+		regs->areg[2] = -ENOSYS;
-+
- 	if (test_thread_flag(TIF_SYSCALL_TRACE) &&
--	    tracehook_report_syscall_entry(regs))
-+	    tracehook_report_syscall_entry(regs)) {
-+		regs->areg[2] = -ENOSYS;
- 		regs->syscall = NO_SYSCALL;
-+		return 0;
-+	}
-+
-+	if (regs->syscall == NO_SYSCALL) {
-+		do_syscall_trace_leave(regs);
-+		return 0;
-+	}
- 
- 	if (test_thread_flag(TIF_SYSCALL_TRACEPOINT))
- 		trace_sys_enter(regs, syscall_get_nr(current, regs));
-+
-+	return 1;
- }
- 
- void do_syscall_trace_leave(struct pt_regs *regs)
++	struct pt_regs *regs = current_pt_regs();
+ 	struct rt_sigframe __user *frame;
+ 	sigset_t set;
+ 	int ret;
 -- 
 2.20.1
 
