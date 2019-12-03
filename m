@@ -2,62 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A23E10DC49
-	for <lists+linux-xtensa@lfdr.de>; Sat, 30 Nov 2019 04:45:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BCE510F932
+	for <lists+linux-xtensa@lfdr.de>; Tue,  3 Dec 2019 08:46:49 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 42864658B;
-	Sat, 30 Nov 2019 03:36:27 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id E15F964E6;
+	Tue,  3 Dec 2019 07:37:50 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
- [209.85.167.66])
- by linux-xtensa.org (Postfix) with ESMTPS id 74A216579
- for <linux-xtensa@linux-xtensa.org>; Sat, 30 Nov 2019 03:36:25 +0000 (UTC)
-Received: by mail-lf1-f66.google.com with SMTP id q6so922695lfb.6
- for <linux-xtensa@linux-xtensa.org>; Fri, 29 Nov 2019 19:45:17 -0800 (PST)
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
+ [209.85.208.195])
+ by linux-xtensa.org (Postfix) with ESMTPS id CD1E752AD
+ for <linux-xtensa@linux-xtensa.org>; Tue,  3 Dec 2019 07:37:48 +0000 (UTC)
+Received: by mail-lj1-f195.google.com with SMTP id j6so2651323lja.2
+ for <linux-xtensa@linux-xtensa.org>; Mon, 02 Dec 2019 23:46:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=b0/RSZtZa/8k0SsBOdWVOHCkbjUz+w0oVuNtCkTS7c8=;
- b=NrmVCCj3OF1nsro0wjwnvMpXQsZ2tewscAGSbbL4R4xeF2aLPnvPz4QDUdYStMgu68
- 9x0yY6Q2GVWjog8qojRYMyHlrAz/trL9FdudpOVJKKmFjY95+Cb5gIBZfvFM0GERNsOS
- OfxtkeyoilXshGQUQLJr3C9RQWk4wUqJk6QE3lVazV8BQRcBmRTWTTPqQZHc8EEKf4zv
- At+czu4k+wz+CVuPMmTdTPQZiqYR5jXHDdYtyJUUe0CYqLpdCQn5KKcxGK8DYdGBlaXh
- h6wm8QbVW0/s7p2NH4jXmCSmZ2rXqWHmIAhlh7vapuv1gTkOKGcacjK5co85YhEHDptf
- CTIA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=jWL0S/lwLfyBQNFH9COx+nXWnpckOMIBLfpqnAgHt3c=;
+ b=iusGFqERBVX91IN4sHwkB2hC2gT3KT+woNnvvGllqJybFcZhZcjxOs9DDh4+Qvr25S
+ aUFJw6/RVRHwOpXQijxHZmxthsJmogNtp92tp5PSKiSUce1S1a78U7rExa6aSNCuyDa5
+ vy5XXi9WVQyPKZ0mc9eq9QVDaqLOfCv8dCJllPMkh1ygbd01+c/sQLe4yLDwiGE7b80M
+ kNHru8ptMBELGcDk6C1kl0ETYjrdBWdGCRmzQkKEcKYhvSCo7WLq2yrx9i0bjdB5Zd9N
+ TnlwI0tLfxNNPqa7UG2aKPg4xaISPQRrYSE7Cpb96IEko1Fl3lNfPwAqqVavGB67LSCZ
+ d6Fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=b0/RSZtZa/8k0SsBOdWVOHCkbjUz+w0oVuNtCkTS7c8=;
- b=Wqlc93dgNqVO+Kp4B4QFboNkv6VxabeaeN+iTHUXy4HQaU+NjimLHGNYq/nSSPMPwh
- YoaDIaDwpzSwWsqP6WgB1zMezdzxIwphlHmSfliPWccZ62UmGqeEBDWVXByJI46+67Zc
- 9pT5NF3OmwvQPAR9kllPyZGeyPCOPea8+cfjDqJMWS4VRSp4SL0BVkuZE7anZj1shX5W
- bfzowtTaX89984cOn5Ki0qGsLPwDm47twA0lL0Alf9ZDfFvWsLJ+uQPsoGaH42XQQVH8
- QeLhaVfRpVoszZfdIbXxHMBv8qXJ/hja5dnq5zzsv90EyEnf1fR3ktQmhrbfJeb0nERI
- S1WA==
-X-Gm-Message-State: APjAAAWalLyXsgwA4cmAuIcr0eL94plHghBDeqtOsdm0HJQEQ7tUqZvO
- yKtLG/2BfViB27ahLlWPr+1a5EkqItQ=
-X-Google-Smtp-Source: APXvYqykNu1XlTg0Fz3aLqBpQIDZ9hmTmW0se4r8GExnWvOkLsPWqCkoWXtzcy3plrV+JgQqKIvahA==
-X-Received: by 2002:a05:6512:284:: with SMTP id
- j4mr25552792lfp.109.1575085515914; 
- Fri, 29 Nov 2019 19:45:15 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=jWL0S/lwLfyBQNFH9COx+nXWnpckOMIBLfpqnAgHt3c=;
+ b=pe/+J5nrYUVrbsBczjqRqc8b/UiO2VUpbQEmfu6uoM5e4PJkr4kvOyJ3+zQXs3xvIy
+ nALGUCvmbrP0Fagc7zRTjdvS49Lc3WgwbRT1I6BRoZ9ZDMsYMtl/U3IisVW9dJ1wh/gm
+ xY12sKQqatfLpi7FVyTS3Q6yIrE/fftVOJegb5rhjZ4UuRuHE1+6ZMRU58qMIZZj6obR
+ AxKKMfmesyfn5u1ckoTrnbvklU/pO6Txb8bsll6c5QEOK2nkGCZ691MYFB/EeubCxFky
+ NH7xy0adkiuewIWWnRB4S6hIJyaxITqqLM1GFyOJ2jxK5Ee8YNLzqzl0FYG3IXXcM4ah
+ uyEw==
+X-Gm-Message-State: APjAAAX6PxP4Gw4DtlKQoscL+6/38J7zUWTXxnV3VcjCMXShKIf3ACy5
+ Z3wwv9kR4emHuJQLxK7Rzxw=
+X-Google-Smtp-Source: APXvYqx3hBFm2zFpe5i6I0ZWiGSGFSXl0GSke+dvhBZidO9NDtAH5OmbPGWOKpNYH+yEFGkCmFpKhw==
+X-Received: by 2002:a2e:6a14:: with SMTP id f20mr1789018ljc.87.1575359205046; 
+ Mon, 02 Dec 2019 23:46:45 -0800 (PST)
 Received: from octofox.hsd1.ca.comcast.net
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id z9sm2920528ljm.40.2019.11.29.19.45.13
+ by smtp.gmail.com with ESMTPSA id v7sm800228lfa.10.2019.12.02.23.46.42
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 29 Nov 2019 19:45:15 -0800 (PST)
+ Mon, 02 Dec 2019 23:46:44 -0800 (PST)
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: linux-xtensa@linux-xtensa.org
-Date: Fri, 29 Nov 2019 19:44:50 -0800
-Message-Id: <20191130034450.25507-4-jcmvbkbc@gmail.com>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Mon,  2 Dec 2019 23:46:29 -0800
+Message-Id: <20191203074629.17278-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191130034450.25507-1-jcmvbkbc@gmail.com>
-References: <20191130034450.25507-1-jcmvbkbc@gmail.com>
 MIME-Version: 1.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH 3/3] xtensa: clean up
-	system_call/xtensa_rt_sigreturn interaction
+Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
+ linux-kernel@vger.kernel.org
+Subject: [Linux-Xtensa] [PULL 00/30] xtensa updates for v5.5
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -75,92 +72,121 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-system_call assembly code always pushes pointer to struct pt_regs as the
-last additional parameter for all system calls. The only user of this
-feature is xtensa_rt_sigreturn.
-Avoid this special case. Define xtensa_rt_sigreturn as accepting no
-argiments. Use current_pt_regs to get pointer to struct pt_regs in
-xtensa_rt_sigreturn. Don't pass additional parameter from system_call
-code.
+Hi Linus,
 
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
- arch/xtensa/include/asm/syscall.h |  2 +-
- arch/xtensa/kernel/entry.S        | 10 +++-------
- arch/xtensa/kernel/signal.c       |  4 ++--
- 3 files changed, 6 insertions(+), 10 deletions(-)
+please pull the following batch of updates for the Xtensa architecture.
+There's a merge conflict in arch/xtensa/kernel/vmlinux.lds.S that has
+obvious part (the conflicting part itself) and non-obvious part (another
+copy of RW_DATA_SECTION macro which was renamed in c9174047b48d
+("vmlinux.lds.h: Replace RW_DATA_SECTION with RW_DATA")) that doesn't
+conflict, but will result in build error if left unfixed. My resolution
+of this conflict is available at
 
-diff --git a/arch/xtensa/include/asm/syscall.h b/arch/xtensa/include/asm/syscall.h
-index c90fb944f9d8..f9a671cbf933 100644
---- a/arch/xtensa/include/asm/syscall.h
-+++ b/arch/xtensa/include/asm/syscall.h
-@@ -79,7 +79,7 @@ static inline void syscall_set_arguments(struct task_struct *task,
- 		regs->areg[reg[i]] = args[i];
- }
- 
--asmlinkage long xtensa_rt_sigreturn(struct pt_regs*);
-+asmlinkage long xtensa_rt_sigreturn(void);
- asmlinkage long xtensa_shmat(int, char __user *, int);
- asmlinkage long xtensa_fadvise64_64(int, int,
- 				    unsigned long long, unsigned long long);
-diff --git a/arch/xtensa/kernel/entry.S b/arch/xtensa/kernel/entry.S
-index 138469e26560..be897803834a 100644
---- a/arch/xtensa/kernel/entry.S
-+++ b/arch/xtensa/kernel/entry.S
-@@ -1876,8 +1876,7 @@ ENDPROC(fast_store_prohibited)
- 
- ENTRY(system_call)
- 
--	/* reserve 4 bytes on stack for function parameter */
--	abi_entry(4)
-+	abi_entry_default
- 
- 	/* regs->syscall = regs->areg[2] */
- 
-@@ -1915,9 +1914,6 @@ ENTRY(system_call)
- 	l32i	a10, a2, PT_AREG8
- 	l32i	a11, a2, PT_AREG9
- 
--	/* Pass one additional argument to the syscall: pt_regs (on stack) */
--	s32i	a2, a1, 0
--
- 	callx4	a4
- 
- 1:	/* regs->areg[2] = return_value */
-@@ -1925,12 +1921,12 @@ ENTRY(system_call)
- 	s32i	a6, a2, PT_AREG2
- 	bnez	a3, 1f
- .Lsyscall_exit:
--	abi_ret(4)
-+	abi_ret_default
- 
- 1:
- 	mov	a6, a2
- 	call4	do_syscall_trace_leave
--	abi_ret(4)
-+	abi_ret_default
- 
- ENDPROC(system_call)
- 
-diff --git a/arch/xtensa/kernel/signal.c b/arch/xtensa/kernel/signal.c
-index dae83cddd6ca..76cee341507b 100644
---- a/arch/xtensa/kernel/signal.c
-+++ b/arch/xtensa/kernel/signal.c
-@@ -236,9 +236,9 @@ restore_sigcontext(struct pt_regs *regs, struct rt_sigframe __user *frame)
-  * Do a signal return; undo the signal stack.
-  */
- 
--asmlinkage long xtensa_rt_sigreturn(long a0, long a1, long a2, long a3,
--				    long a4, long a5, struct pt_regs *regs)
-+asmlinkage long xtensa_rt_sigreturn(void)
- {
-+	struct pt_regs *regs = current_pt_regs();
- 	struct rt_sigframe __user *frame;
- 	sigset_t set;
- 	int ret;
--- 
-2.20.1
+  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20191201-mainline-merge
 
+The following changes since commit 7d194c2100ad2a6dded545887d02754948ca5241:
+
+  Linux 5.4-rc4 (2019-10-20 15:56:22 -0400)
+
+are available in the Git repository at:
+
+  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20191201
+
+for you to fetch changes up to 9d9043f6a81713248d82d88983c06b1eaedda287:
+
+  xtensa: clean up system_call/xtensa_rt_sigreturn interaction (2019-11-29 19:37:12 -0800)
+
+----------------------------------------------------------------
+Xtensa updates for v5.5:
+
+- add support for execute in place (XIP) kernels
+- improvements in inline assembly: use named arguments and "m"
+  constraints where possible
+- improve stack dumping
+- clean up system_call code and syscall tracing
+- various small fixes and cleanups
+
+----------------------------------------------------------------
+Max Filippov (27):
+      xtensa: update arch features
+      xtensa: clean up empty include files
+      xtensa: move XCHAL_KIO_* definitions to kmem_layout.h
+      xtensa: move MPU constants from .data to .ref.rodata
+      xtensa: fix section name for start_info
+      xtensa: use correct symbol for the end of .rodata
+      xtensa: move kernel memory layout to platform options
+      xtensa: add XIP kernel support
+      xtensa: merge .fixup with .text
+      xtensa: use "m" constraint instead of "a" in uaccess.h assembly
+      xtensa: use macros to generate *_bit and test_and_*_bit functions
+      xtensa: use named assembly arguments in bitops.h
+      xtensa: use "m" constraint instead of "a" in bitops.h assembly
+      xtensa: use named assembly arguments in atomic.h
+      xtensa: use "m" constraint instead of "a" in atomic.h assembly
+      xtensa: use named assembly arguments in cmpxchg.h
+      xtensa: use "m" constraint instead of "a" in cmpxchg.h assembly
+      xtensa: use "m" constraint instead of "r" in futex.h assembly
+      xtensa: improve stack dumping
+      xtensa: make stack dump size configurable
+      xtensa: fix TLB sanity checker
+      xtensa: use MEMBLOCK_ALLOC_ANYWHERE for KASAN shadow map
+      xtensa: drop unneeded headers from coprocessor.S
+      xtensa: fix syscall_set_return_value
+      xtensa: rearrange syscall tracing
+      xtensa: fix system_call interaction with ptrace
+      xtensa: clean up system_call/xtensa_rt_sigreturn interaction
+
+Mike Rapoport (2):
+      xtensa: mm: fix PMD folding implementation
+      xtensa: get rid of __ARCH_USE_5LEVEL_HACK
+
+Valentin Schneider (1):
+      xtensa: entry: Remove unneeded need_resched() loop
+
+ .../features/core/tracehook/arch-support.txt       |   2 +-
+ arch/xtensa/Kconfig                                | 396 ++++++++++++---------
+ arch/xtensa/Kconfig.debug                          |   7 +
+ arch/xtensa/Makefile                               |   3 +-
+ arch/xtensa/boot/Makefile                          |   5 +
+ arch/xtensa/configs/xip_kc705_defconfig            | 119 +++++++
+ arch/xtensa/include/asm/Kbuild                     |   2 +
+ arch/xtensa/include/asm/atomic.h                   | 124 +++----
+ arch/xtensa/include/asm/bitops.h                   | 323 +++++------------
+ arch/xtensa/include/asm/cache.h                    |   6 +
+ arch/xtensa/include/asm/cmpxchg.h                  |  71 ++--
+ arch/xtensa/include/asm/fixmap.h                   |   8 +-
+ arch/xtensa/include/asm/futex.h                    |  10 +-
+ arch/xtensa/include/asm/hw_irq.h                   |  14 -
+ arch/xtensa/include/asm/initialize_mmu.h           |   3 +-
+ arch/xtensa/include/asm/kmem_layout.h              |  29 ++
+ arch/xtensa/include/asm/page.h                     |  11 +
+ arch/xtensa/include/asm/pgtable.h                  |   4 -
+ arch/xtensa/include/asm/processor.h                |   3 +-
+ arch/xtensa/include/asm/syscall.h                  |   4 +-
+ arch/xtensa/include/asm/uaccess.h                  |  16 +-
+ arch/xtensa/include/asm/user.h                     |  20 --
+ arch/xtensa/include/asm/vectors.h                  |  44 +--
+ arch/xtensa/kernel/coprocessor.S                   |  10 +-
+ arch/xtensa/kernel/entry.S                         |  22 +-
+ arch/xtensa/kernel/head.S                          |  13 +-
+ arch/xtensa/kernel/process.c                       |   2 +
+ arch/xtensa/kernel/ptrace.c                        |  18 +-
+ arch/xtensa/kernel/setup.c                         |   7 +
+ arch/xtensa/kernel/signal.c                        |   4 +-
+ arch/xtensa/kernel/traps.c                         |  27 +-
+ arch/xtensa/kernel/vmlinux.lds.S                   |  58 ++-
+ arch/xtensa/mm/fault.c                             |  16 +-
+ arch/xtensa/mm/init.c                              |   4 +-
+ arch/xtensa/mm/kasan_init.c                        |  12 +-
+ arch/xtensa/mm/mmu.c                               |   4 +-
+ arch/xtensa/mm/tlb.c                               |  14 +-
+ 37 files changed, 772 insertions(+), 663 deletions(-)
+ create mode 100644 arch/xtensa/configs/xip_kc705_defconfig
+ delete mode 100644 arch/xtensa/include/asm/hw_irq.h
+ delete mode 100644 arch/xtensa/include/asm/user.h
+
+Thanks.
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
