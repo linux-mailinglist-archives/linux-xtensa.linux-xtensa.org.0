@@ -2,58 +2,61 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id D178314F325
-	for <lists+linux-xtensa@lfdr.de>; Fri, 31 Jan 2020 21:28:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A52814F326
+	for <lists+linux-xtensa@lfdr.de>; Fri, 31 Jan 2020 21:28:16 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 04154645D;
-	Fri, 31 Jan 2020 20:17:27 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 120F9648E;
+	Fri, 31 Jan 2020 20:17:28 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
- [209.85.208.195])
- by linux-xtensa.org (Postfix) with ESMTPS id 6225C6443
- for <linux-xtensa@linux-xtensa.org>; Fri, 31 Jan 2020 20:17:25 +0000 (UTC)
-Received: by mail-lj1-f195.google.com with SMTP id h23so8417186ljc.8
- for <linux-xtensa@linux-xtensa.org>; Fri, 31 Jan 2020 12:28:13 -0800 (PST)
+Received: from mail-lf1-f65.google.com (mail-lf1-f65.google.com
+ [209.85.167.65])
+ by linux-xtensa.org (Postfix) with ESMTPS id 979516464
+ for <linux-xtensa@linux-xtensa.org>; Fri, 31 Jan 2020 20:17:27 +0000 (UTC)
+Received: by mail-lf1-f65.google.com with SMTP id b15so5780719lfc.4
+ for <linux-xtensa@linux-xtensa.org>; Fri, 31 Jan 2020 12:28:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=wbJQJH6EdFt/V7nLW3ajkAWISboC2w5swRQw5wcUX5c=;
- b=MdE9/8LbhBD1EtkSgEWDTb2zRYzooIw3gha87Lfc0C8QYgzqBJI7tO30uVKP/9HRY2
- JkxW2ebzz/ideoGu/zpr4MEas+5YX8XTRVYPbu1bI6bnevaYMVfelfm5LCTqSgYxPXXS
- fWN2x7ccTdxd0ZzyMhjtAliCk4LqtwzHfFuLqnZ91OSoANE+EIJCQPVpoTb4OsxYSstD
- MVdScI0SxsAElhmGEGk64f2BBWJDGtU9yZoinz0SYF6H1MCC2jjBm0Bd9dSUaLqjwBKr
- KKFE4OvJCDgK+lM3rRzLUcNdg80d+OkCQTjnskt/pI70LyLHB9Tj7I8jVd2T+h1DO2D9
- 6aXg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=m5DBX4yD78/iH19T1X6zMW9mR+W+JxGUwOLGGZTAaig=;
+ b=O40d+7s7u7pu66H7PA35WXrQiSA7FL4oS+wU4OW9AchjV3Czcg71/oKQOOMQuI+B18
+ ixgPEPsmkyPoeYvtZfsOz57bl/HVMrQqIR2PrKMhcC3kfF7p/X9LVevETcgNndhOBq5/
+ eKb/uodrlR4d4SurX5avQdfwEDSrBB9zJ5sgu6YsJNqKOnkwQhlduxzyeQYLW0Z+V3ZP
+ HSxy7gFRLBRzJ2XPg7j6uuTPfYzWzHRYD8479x4pYmHMyaTH8N/xDPtx8qa3z9+XkCGe
+ OqdIy2Jz5P6jN5Q4FClvsr+BPORG+2CCXW2MOK1AJVKuCPI+QlKPMSu6zUnCpJo5ZuqC
+ EyEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=wbJQJH6EdFt/V7nLW3ajkAWISboC2w5swRQw5wcUX5c=;
- b=jZ3p2tIijBYI2CDzxro3JA7lGEqnGp8gwCkBpGSB9UQz7BCgsOqPulRXTm/kF6FUFr
- wkp0QqivJtO6EqzBlGPtiZ3EvlYQ5rS7xz+kGEE2eH6EC01Qgio/VIuxG8Mt3cJ3fF4J
- YyebyNx0aXjKGWKh3fQ3mJwR1dKSPEqeZbtqKnt39x96NrRrUeJrj1MVBhGEXedqw7dw
- fbVQmsCEhMmLf0ITXncXKmEQUpUxTiNMKjtcSm1k3vDJ2RTRtpEKLseHrdvGDTNDzRgC
- 2a2k7uiWk7NDoEloMo5mDRvdKCCBrY+3Q+cWdMluAZz878zc3IBbRRquJruzgchuwKTC
- qF6Q==
-X-Gm-Message-State: APjAAAU1iBdXxRhtqLB8kAgjWuIIc8VQc95Nujs8YH17EXlIk0jEbgXk
- UwunI6yj087snV6C2+BWayFfhE1e
-X-Google-Smtp-Source: APXvYqzYhz5JgRy/Hmv6GNdlUkVmTRBn9CWK1OhcOWmHJCeZ1q++J1CGplr8UXq331/PJVgvn58jAg==
-X-Received: by 2002:a2e:9dc3:: with SMTP id x3mr7100822ljj.257.1580502491799; 
- Fri, 31 Jan 2020 12:28:11 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=m5DBX4yD78/iH19T1X6zMW9mR+W+JxGUwOLGGZTAaig=;
+ b=GKMcrkGrq5AAnmKuY99jGBMfUIG8ZFJ5hm8PuVrmvCT+w2SWd1K/CkyavA/RxhXf7d
+ UDe475A0o2obafTcH6R0xKCs6mWmcNMSpM0jeJi3r+bt3gWLqC8qLJV7XzqeHZPoihE8
+ jrpwBEaLe0PGYJI1DfGqaqGG7s2J+zITfGv3BE6OyVXt8728gEg84ctGwULtVRnXoBOe
+ H0bj+fXoMhzdw3u+rnOAAkh8x9OEtbzVNTJO7t2j/Npo/hjAhik5sTF5yXKsGKOpf6uq
+ OMrAVHm5zLp6LAgR/EpI97aiA768UmVe1tZ1Nk0icquA6iJr93rmq45hN1OJbx/TKvez
+ Ow3Q==
+X-Gm-Message-State: APjAAAX7Y18WAD3GkkAwMYE8gjna/vANy1M0Mxffj/R99GGn6QAEFPm+
+ +zf7oNThnNyMYXQAVg/fV0/nIyvP
+X-Google-Smtp-Source: APXvYqxZuvFaAPM3xhO6ulnoG3JsjzMYzJD1xjY3+XaFJiroUhWVkAi5ngxVegzs+hOBUb0Iw5E8gg==
+X-Received: by 2002:ac2:42ca:: with SMTP id n10mr6293457lfl.215.1580502494113; 
+ Fri, 31 Jan 2020 12:28:14 -0800 (PST)
 Received: from octofox.cadence.com
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id 5sm5215216lju.69.2020.01.31.12.28.08
+ by smtp.gmail.com with ESMTPSA id 5sm5215216lju.69.2020.01.31.12.28.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Jan 2020 12:28:10 -0800 (PST)
+ Fri, 31 Jan 2020 12:28:13 -0800 (PST)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Fri, 31 Jan 2020 12:27:48 -0800
-Message-Id: <20200131202751.10375-1-jcmvbkbc@gmail.com>
+Date: Fri, 31 Jan 2020 12:27:49 -0800
+Message-Id: <20200131202751.10375-2-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200131202751.10375-1-jcmvbkbc@gmail.com>
+References: <20200131202751.10375-1-jcmvbkbc@gmail.com>
 MIME-Version: 1.0
 Cc: Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH 0/3] xtensa: cleanups
+Subject: [Linux-Xtensa] [PATCH 1/3] xtensa: drop set_except_vector
+	declaration
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -71,23 +74,25 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Hello,
+There's no implementation for set_except_vector function in the xtensa
+code. Drop its declaration.
 
-this series removes unused headers and duplicate empty platform_* hooks
-from platform-specific xtensa code.
+Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+---
+ arch/xtensa/include/uapi/asm/setup.h | 2 --
+ 1 file changed, 2 deletions(-)
 
-Max Filippov (3):
-  xtensa: drop set_except_vector declaration
-  xtensa: clean up platform headers
-  xtensa: drop empty platform_* functions from platforms
-
- arch/xtensa/include/asm/platform.h   |  2 --
- arch/xtensa/include/uapi/asm/setup.h |  2 --
- arch/xtensa/kernel/platform.c        |  5 ++---
- arch/xtensa/platforms/iss/setup.c    | 25 ++++---------------------
- arch/xtensa/platforms/xtfpga/setup.c | 17 +----------------
- 5 files changed, 7 insertions(+), 44 deletions(-)
-
+diff --git a/arch/xtensa/include/uapi/asm/setup.h b/arch/xtensa/include/uapi/asm/setup.h
+index 57e6c210e84f..5356a5fd4d17 100644
+--- a/arch/xtensa/include/uapi/asm/setup.h
++++ b/arch/xtensa/include/uapi/asm/setup.h
+@@ -14,6 +14,4 @@
+ 
+ #define COMMAND_LINE_SIZE	256
+ 
+-extern void set_except_vector(int n, void *addr);
+-
+ #endif
 -- 
 2.20.1
 
