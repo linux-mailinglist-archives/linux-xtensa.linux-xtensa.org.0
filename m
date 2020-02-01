@@ -2,59 +2,58 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 54D3D14F746
-	for <lists+linux-xtensa@lfdr.de>; Sat,  1 Feb 2020 09:40:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0D6F14F747
+	for <lists+linux-xtensa@lfdr.de>; Sat,  1 Feb 2020 09:40:21 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 928B4657D;
-	Sat,  1 Feb 2020 08:29:10 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id A72436578;
+	Sat,  1 Feb 2020 08:29:32 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
- [209.85.167.67])
- by linux-xtensa.org (Postfix) with ESMTPS id 8308B6577
- for <linux-xtensa@linux-xtensa.org>; Sat,  1 Feb 2020 08:29:07 +0000 (UTC)
-Received: by mail-lf1-f67.google.com with SMTP id 203so6430564lfa.12
- for <linux-xtensa@linux-xtensa.org>; Sat, 01 Feb 2020 00:39:56 -0800 (PST)
+Received: from mail-lf1-f68.google.com (mail-lf1-f68.google.com
+ [209.85.167.68])
+ by linux-xtensa.org (Postfix) with ESMTPS id 468DC6578
+ for <linux-xtensa@linux-xtensa.org>; Sat,  1 Feb 2020 08:29:30 +0000 (UTC)
+Received: by mail-lf1-f68.google.com with SMTP id v201so6446221lfa.11
+ for <linux-xtensa@linux-xtensa.org>; Sat, 01 Feb 2020 00:40:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=hSDkEF5ez2wjkXf4Go4yhjiXCk7S4uDoyQFmbe77IR4=;
- b=Cn3/RCudP5NV4UFQX0A1WhMd40uy25cheJKGENtbHHCwwo70POE2k45EktcJWEsM1I
- a/opqFwuKEIR7hKpwdeu9/PzDTqd/IXl6Sk0Vv9aF+/w5RnFsI8UEb+MOw97Hzr5lvIw
- d8mtIueRCSI6Hj1c9otqi2u2o8sZemsBAJiQPYCauN1rc0+gObUYIO7TVslOdQK35LNQ
- h73G+15ozn+ZpAKTobJVySmCStvnFJejPINKHyd861rx1tYhEK2RuzaSFG66xJWSTnlu
- cbS0Wq/gBocjD6OHEIDZIjOnLFIyMbG9zp1RMUJKHqQJlQAup+rUI8vqqbre6SuWXS5J
- 13BQ==
+ bh=0Z28SuKZRXMNFVR0O2T8TpM75CzBYxq5Fn9CvJuB4+g=;
+ b=mG0tAZzVQa61mz/2TBGLDXpQ7HpHwGPNPvn/VsjcocPXdjbOMwQ/lZ9m2dyzxKKqZ1
+ vNC4UdxVuGl8dN/HsGKNY1zajOvNXHFgPculbN1pYTQ1f4ZF3czMuYaYCGTLQRHm9OVw
+ sry8g4kCRWZeUq8eDR3D9do63w1Jbo3bqgKJFclCyzr4IvL2ilYJATIBRf4ly/cqdhkh
+ uhkBLdst6OmXdfqJPjafU6Zf+5/VTXGKD3pRTWZX+MgDYlVFYlU3gbHDz07mfLX5wbr9
+ 0Db1lsLAGHJY6ZsIyHwStWLhUuWb655hMIfHTAibPlZ6h+3qugLCRh8okisJ7WWykvy5
+ yCog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=hSDkEF5ez2wjkXf4Go4yhjiXCk7S4uDoyQFmbe77IR4=;
- b=dXer4dTchcdd8jEHnyuUXaH7m+OaEImT1ffi0WuYydSxuQoFY2UbFDUHdptNCKD78q
- P0l4J63yfTi6mmDQet8BuX97zHiIfWVkzRh2TabAOxmmfVr2AzrWmS62T2YX7kWSp45B
- kBTccH/HWRyLV4kgb1VfyYbvThh94nlK1V1dLl5bjyTPsKhqO0dw+2UVEgSQyvT2mDcZ
- e5uUNdPLI5PHWiWip0QtyKbZZxRDy7ZGc0hoS3IeHcOdNobz4GRZYCtsN9ZR9yrielrL
- Gs2ipq4yyCTidxqDE8LaD2nsYKIdW3vUUMyTwvTuZkEP507sL61ebU05UgB/BMtlSwPO
- p4fQ==
-X-Gm-Message-State: APjAAAW+Qa+1bW+MQVzYm2B+PO+a8+b03e3i78ik6dNqHWXv1/UtNapZ
- S7pm4ne60NyBAv0lXwCBRSj8i4Moksk=
-X-Google-Smtp-Source: APXvYqxPwjYdeHr1kUwf+plhiWZ3JKx09mdaomSNAOWU3+icKl5mh6DefSF9giuf78TfBaU/yRPk1w==
-X-Received: by 2002:a19:e011:: with SMTP id x17mr7616279lfg.59.1580546394849; 
- Sat, 01 Feb 2020 00:39:54 -0800 (PST)
+ bh=0Z28SuKZRXMNFVR0O2T8TpM75CzBYxq5Fn9CvJuB4+g=;
+ b=Egc6d4+csqVkSrz2TIx878UsmfC7u5QtceewXMJipSVw6VZJxZc/xCI3GOZQgKsip2
+ zIfa0bljLXCDEIkeEj+z/mZvI/dAZPHSgeAL4b2hxEd9bP4/+9Mj9uV7VPUc51/KtL5M
+ EwjYHBi5i0rBd36bkGPsikkxt4V0HNgw0SpvZUeMLGHsphtUcfUIIdMApo1qOKKHWXXH
+ YpA88pVNqefVbHmoigYCS979qgY3YbaQE3s/nVh7T7lt5giU66S7oWPllGrh526pDO0D
+ D8t5UHThXqdrwKuxww9PTSqzkz2Q651aGQKenDl4+aFoZ6y1UhHzyirnfLaCodylKDnd
+ 0EUw==
+X-Gm-Message-State: APjAAAUTksm2XmNNZURcyCGlWn6U9DKMaULXjrhN0y6hJt6WgSHzSTTg
+ EDDnvkAa79rWLhWh0MnAuAwNuIOeOi4=
+X-Google-Smtp-Source: APXvYqyuwEE74O2onGC+68HDdv6Zt3GN1hYgqGRLGZiKHVd5k2IACLiAYfMFD8VZR02NsrysVbCQaA==
+X-Received: by 2002:ac2:5509:: with SMTP id j9mr7329297lfk.135.1580546417792; 
+ Sat, 01 Feb 2020 00:40:17 -0800 (PST)
 Received: from octofox.hsd1.ca.comcast.net
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id f21sm4175718ljc.30.2020.02.01.00.39.52
+ by smtp.gmail.com with ESMTPSA id v16sm5742645lfp.92.2020.02.01.00.40.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 01 Feb 2020 00:39:54 -0800 (PST)
+ Sat, 01 Feb 2020 00:40:17 -0800 (PST)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Sat,  1 Feb 2020 00:39:39 -0800
-Message-Id: <20200201083939.23565-1-jcmvbkbc@gmail.com>
+Date: Sat,  1 Feb 2020 00:40:02 -0800
+Message-Id: <20200201084002.23617-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Cc: Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: drop unused function
-	fast_coprocessor_double
+Subject: [Linux-Xtensa] [PATCH] xtensa: clean up optional XCHAL_* definitions
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -72,34 +71,67 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-fast_coprocessor_double is not used since commit c658eac628aa ("[XTENSA]
-Add support for configurable registers and coprocessors") remove it.
-There should be no coprocessor exceptions generated in the exception
-handling paths while PS.EXCM is set.
+Simplify users of XCHAL_HAVE_EXTERN_REGS and XCHAL_HAVE_VECBASE and
+always define them as 0 if they're not defined in the variant/core.h
 
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- arch/xtensa/kernel/coprocessor.S | 7 -------
- 1 file changed, 7 deletions(-)
+ arch/xtensa/include/asm/core.h      | 8 ++++++++
+ arch/xtensa/include/asm/processor.h | 4 ----
+ arch/xtensa/include/asm/vectors.h   | 2 +-
+ 3 files changed, 9 insertions(+), 5 deletions(-)
 
-diff --git a/arch/xtensa/kernel/coprocessor.S b/arch/xtensa/kernel/coprocessor.S
-index bb8e499b9900..c53ce6d8794f 100644
---- a/arch/xtensa/kernel/coprocessor.S
-+++ b/arch/xtensa/kernel/coprocessor.S
-@@ -145,13 +145,6 @@ ENDPROC(coprocessor_flush)
-  *	     <  VALID_DOUBLE_EXCEPTION_ADDRESS: regular exception
-  */
+diff --git a/arch/xtensa/include/asm/core.h b/arch/xtensa/include/asm/core.h
+index 5b4acb7d1c07..5590b0f68837 100644
+--- a/arch/xtensa/include/asm/core.h
++++ b/arch/xtensa/include/asm/core.h
+@@ -10,10 +10,18 @@
+ #define XCHAL_HAVE_EXCLUSIVE 0
+ #endif
  
--ENTRY(fast_coprocessor_double)
--
--	wsr	a0, excsave1
--	call0	unrecoverable_exception
--
--ENDPROC(fast_coprocessor_double)
--
- ENTRY(fast_coprocessor)
++#ifndef XCHAL_HAVE_EXTERN_REGS
++#define XCHAL_HAVE_EXTERN_REGS 0
++#endif
++
+ #ifndef XCHAL_HAVE_MPU
+ #define XCHAL_HAVE_MPU 0
+ #endif
  
- 	/* Save remaining registers a1-a3 and SAR */
++#ifndef XCHAL_HAVE_VECBASE
++#define XCHAL_HAVE_VECBASE 0
++#endif
++
+ #ifndef XCHAL_SPANNING_WAY
+ #define XCHAL_SPANNING_WAY 0
+ #endif
+diff --git a/arch/xtensa/include/asm/processor.h b/arch/xtensa/include/asm/processor.h
+index 6fa903daf2a2..7f63aca6a0d3 100644
+--- a/arch/xtensa/include/asm/processor.h
++++ b/arch/xtensa/include/asm/processor.h
+@@ -237,10 +237,6 @@ extern unsigned long get_wchan(struct task_struct *p);
+ 	 v; \
+ 	 })
+ 
+-#ifndef XCHAL_HAVE_EXTERN_REGS
+-#define XCHAL_HAVE_EXTERN_REGS 0
+-#endif
+-
+ #if XCHAL_HAVE_EXTERN_REGS
+ 
+ static inline void set_er(unsigned long value, unsigned long addr)
+diff --git a/arch/xtensa/include/asm/vectors.h b/arch/xtensa/include/asm/vectors.h
+index fd99b25037a7..140f30762cf9 100644
+--- a/arch/xtensa/include/asm/vectors.h
++++ b/arch/xtensa/include/asm/vectors.h
+@@ -40,7 +40,7 @@
+ #define VECBASE_VADDR			_vecbase
+ #endif
+ 
+-#if defined(XCHAL_HAVE_VECBASE) && XCHAL_HAVE_VECBASE
++#if XCHAL_HAVE_VECBASE
+ 
+ #define VECTOR_VADDR(offset)		(VECBASE_VADDR + offset)
+ 
 -- 
 2.20.1
 
