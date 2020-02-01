@@ -2,61 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 3014E14F328
-	for <lists+linux-xtensa@lfdr.de>; Fri, 31 Jan 2020 21:28:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54D3D14F746
+	for <lists+linux-xtensa@lfdr.de>; Sat,  1 Feb 2020 09:40:00 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id C409E645D;
-	Fri, 31 Jan 2020 20:17:33 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 928B4657D;
+	Sat,  1 Feb 2020 08:29:10 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
 Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
  [209.85.167.67])
- by linux-xtensa.org (Postfix) with ESMTPS id 339DA6464
- for <linux-xtensa@linux-xtensa.org>; Fri, 31 Jan 2020 20:17:32 +0000 (UTC)
-Received: by mail-lf1-f67.google.com with SMTP id z18so5783433lfe.2
- for <linux-xtensa@linux-xtensa.org>; Fri, 31 Jan 2020 12:28:20 -0800 (PST)
+ by linux-xtensa.org (Postfix) with ESMTPS id 8308B6577
+ for <linux-xtensa@linux-xtensa.org>; Sat,  1 Feb 2020 08:29:07 +0000 (UTC)
+Received: by mail-lf1-f67.google.com with SMTP id 203so6430564lfa.12
+ for <linux-xtensa@linux-xtensa.org>; Sat, 01 Feb 2020 00:39:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=Cp8WM/bDx8ZI4sk7ACj6rJijMQPmVKvelurkwfOg69M=;
- b=IzeX7lvYgZQmlvxrRE9Xhco+yYpGLIm99hnntroIBHZB7pAO6LbG2LcWTakVoCl9Bj
- CIep8400OriE/gQCwpt+WCfc/mZ3SibXeXIgiN4JKo61VUrwMqpJRM/zW2C+BOX9fr7n
- QbQI4PSTmnH3iBfz0Tmfu5OmTG1TcqGrKg+/xuZs3t5CSrVWXwBrTdm8AbMll6R0GjiJ
- 6wCdtd84ECCLA6bTowtP/kSSEv6HQuxY/bt3VK+OOX7dwyqs60q9bD/QXLJ1KU93NrKH
- 5ODtScldjazv+7IgEHL01Ldnruji4ie/76i9Z2/eVIYpltZrfutw97k0gVQivQMdUWsO
- Zo8A==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=hSDkEF5ez2wjkXf4Go4yhjiXCk7S4uDoyQFmbe77IR4=;
+ b=Cn3/RCudP5NV4UFQX0A1WhMd40uy25cheJKGENtbHHCwwo70POE2k45EktcJWEsM1I
+ a/opqFwuKEIR7hKpwdeu9/PzDTqd/IXl6Sk0Vv9aF+/w5RnFsI8UEb+MOw97Hzr5lvIw
+ d8mtIueRCSI6Hj1c9otqi2u2o8sZemsBAJiQPYCauN1rc0+gObUYIO7TVslOdQK35LNQ
+ h73G+15ozn+ZpAKTobJVySmCStvnFJejPINKHyd861rx1tYhEK2RuzaSFG66xJWSTnlu
+ cbS0Wq/gBocjD6OHEIDZIjOnLFIyMbG9zp1RMUJKHqQJlQAup+rUI8vqqbre6SuWXS5J
+ 13BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=Cp8WM/bDx8ZI4sk7ACj6rJijMQPmVKvelurkwfOg69M=;
- b=N3Ezq2Y2WdNVeM6/KoqwboebnxwL/1+ifvPiKNQw7YxhgTarkxpgZt2GD9RB6pybKs
- yR/UBGrVwNT22hZnS1GN1eaNBlHriN4nPNejrlQ8rcoTKpIXAplyY5DTfA6QCAT5rUvl
- hre5ufpGzpuWplRCbk755M1pQwppjhmi22mibh7spxWDze2IWJM7fK/QBW8yyxqg90Qp
- b7NbtlmYckrsGiaIyQ/yxMZWaigNTtTDnhU/Hl6sO6hdlxZBg8e9HyU0dedPcWUH6WZm
- 7diAgKblEIAmtuF4BafDkMaZx4Sa96WBdtNJDcYASCT9U72hGWSD3epLyO6kOCdSjJ6Q
- RCFg==
-X-Gm-Message-State: APjAAAUsZWXUirzE68rGsAGHeOAMqIbLpVoKQws2/+bsOebHMpHgdSFt
- qFOojFHOkETP0B82MbrkHMoukhSa
-X-Google-Smtp-Source: APXvYqxOxAVsuXy5n2NSFcJiRPrAePeF7/BCLa7YHFQYpdMEAqGUa4JrKNJvMWy97cFIcmN1A0voTg==
-X-Received: by 2002:ac2:5f68:: with SMTP id c8mr6176026lfc.196.1580502498755; 
- Fri, 31 Jan 2020 12:28:18 -0800 (PST)
-Received: from octofox.cadence.com
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=hSDkEF5ez2wjkXf4Go4yhjiXCk7S4uDoyQFmbe77IR4=;
+ b=dXer4dTchcdd8jEHnyuUXaH7m+OaEImT1ffi0WuYydSxuQoFY2UbFDUHdptNCKD78q
+ P0l4J63yfTi6mmDQet8BuX97zHiIfWVkzRh2TabAOxmmfVr2AzrWmS62T2YX7kWSp45B
+ kBTccH/HWRyLV4kgb1VfyYbvThh94nlK1V1dLl5bjyTPsKhqO0dw+2UVEgSQyvT2mDcZ
+ e5uUNdPLI5PHWiWip0QtyKbZZxRDy7ZGc0hoS3IeHcOdNobz4GRZYCtsN9ZR9yrielrL
+ Gs2ipq4yyCTidxqDE8LaD2nsYKIdW3vUUMyTwvTuZkEP507sL61ebU05UgB/BMtlSwPO
+ p4fQ==
+X-Gm-Message-State: APjAAAW+Qa+1bW+MQVzYm2B+PO+a8+b03e3i78ik6dNqHWXv1/UtNapZ
+ S7pm4ne60NyBAv0lXwCBRSj8i4Moksk=
+X-Google-Smtp-Source: APXvYqxPwjYdeHr1kUwf+plhiWZ3JKx09mdaomSNAOWU3+icKl5mh6DefSF9giuf78TfBaU/yRPk1w==
+X-Received: by 2002:a19:e011:: with SMTP id x17mr7616279lfg.59.1580546394849; 
+ Sat, 01 Feb 2020 00:39:54 -0800 (PST)
+Received: from octofox.hsd1.ca.comcast.net
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id 5sm5215216lju.69.2020.01.31.12.28.16
+ by smtp.gmail.com with ESMTPSA id f21sm4175718ljc.30.2020.02.01.00.39.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Jan 2020 12:28:18 -0800 (PST)
+ Sat, 01 Feb 2020 00:39:54 -0800 (PST)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Fri, 31 Jan 2020 12:27:51 -0800
-Message-Id: <20200131202751.10375-4-jcmvbkbc@gmail.com>
+Date: Sat,  1 Feb 2020 00:39:39 -0800
+Message-Id: <20200201083939.23565-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200131202751.10375-1-jcmvbkbc@gmail.com>
-References: <20200131202751.10375-1-jcmvbkbc@gmail.com>
 MIME-Version: 1.0
 Cc: Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH 3/3] xtensa: drop empty platform_* functions
-	from platforms
+Subject: [Linux-Xtensa] [PATCH] xtensa: drop unused function
+	fast_coprocessor_double
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -74,90 +72,34 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Provide missing default implementation for platform_init and drop copies
-of default platform_init, platform_setup and platform_heartbeet from
-platforms/*/setup.c
+fast_coprocessor_double is not used since commit c658eac628aa ("[XTENSA]
+Add support for configurable registers and coprocessors") remove it.
+There should be no coprocessor exceptions generated in the exception
+handling paths while PS.EXCM is set.
 
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- arch/xtensa/kernel/platform.c        |  1 +
- arch/xtensa/platforms/iss/setup.c    |  9 +--------
- arch/xtensa/platforms/xtfpga/setup.c | 16 ----------------
- 3 files changed, 2 insertions(+), 24 deletions(-)
+ arch/xtensa/kernel/coprocessor.S | 7 -------
+ 1 file changed, 7 deletions(-)
 
-diff --git a/arch/xtensa/kernel/platform.c b/arch/xtensa/kernel/platform.c
-index 25fd2cf1fe08..ac1e0e566995 100644
---- a/arch/xtensa/kernel/platform.c
-+++ b/arch/xtensa/kernel/platform.c
-@@ -26,6 +26,7 @@
-  * (Please, refer to include/asm-xtensa/platform.h for more information)
+diff --git a/arch/xtensa/kernel/coprocessor.S b/arch/xtensa/kernel/coprocessor.S
+index bb8e499b9900..c53ce6d8794f 100644
+--- a/arch/xtensa/kernel/coprocessor.S
++++ b/arch/xtensa/kernel/coprocessor.S
+@@ -145,13 +145,6 @@ ENDPROC(coprocessor_flush)
+  *	     <  VALID_DOUBLE_EXCEPTION_ADDRESS: regular exception
   */
  
-+_F(void, init, (bp_tag_t *first), { });
- _F(void, setup, (char** cmd), { });
- _F(void, restart, (void), { while(1); });
- _F(void, halt, (void), { while(1); });
-diff --git a/arch/xtensa/platforms/iss/setup.c b/arch/xtensa/platforms/iss/setup.c
-index 554758823ff5..ed519aee0ec8 100644
---- a/arch/xtensa/platforms/iss/setup.c
-+++ b/arch/xtensa/platforms/iss/setup.c
-@@ -23,10 +23,6 @@
- #include <platform/simcall.h>
+-ENTRY(fast_coprocessor_double)
+-
+-	wsr	a0, excsave1
+-	call0	unrecoverable_exception
+-
+-ENDPROC(fast_coprocessor_double)
+-
+ ENTRY(fast_coprocessor)
  
- 
--void __init platform_init(bp_tag_t* bootparam)
--{
--}
--
- void platform_halt(void)
- {
- 	pr_info(" ** Called platform_halt() **\n");
-@@ -38,6 +34,7 @@ void platform_power_off(void)
- 	pr_info(" ** Called platform_power_off() **\n");
- 	simc_exit(0);
- }
-+
- void platform_restart(void)
- {
- 	/* Flush and reset the mmu, simulate a processor reset, and
-@@ -46,10 +43,6 @@ void platform_restart(void)
- 	/* control never gets here */
- }
- 
--void platform_heartbeat(void)
--{
--}
--
- static int
- iss_panic_event(struct notifier_block *this, unsigned long event, void *ptr)
- {
-diff --git a/arch/xtensa/platforms/xtfpga/setup.c b/arch/xtensa/platforms/xtfpga/setup.c
-index b7e4580d3636..4f7d6142d41f 100644
---- a/arch/xtensa/platforms/xtfpga/setup.c
-+++ b/arch/xtensa/platforms/xtfpga/setup.c
-@@ -57,22 +57,6 @@ void platform_restart(void)
- 	/* control never gets here */
- }
- 
--void __init platform_setup(char **cmdline)
--{
--}
--
--/* early initialization */
--
--void __init platform_init(bp_tag_t *first)
--{
--}
--
--/* Heartbeat. */
--
--void platform_heartbeat(void)
--{
--}
--
- #ifdef CONFIG_XTENSA_CALIBRATE_CCOUNT
- 
- void __init platform_calibrate_ccount(void)
+ 	/* Save remaining registers a1-a3 and SAR */
 -- 
 2.20.1
 
