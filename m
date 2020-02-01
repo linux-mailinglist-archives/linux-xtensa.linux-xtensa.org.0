@@ -2,58 +2,57 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id F0D6F14F747
-	for <lists+linux-xtensa@lfdr.de>; Sat,  1 Feb 2020 09:40:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19E2614F749
+	for <lists+linux-xtensa@lfdr.de>; Sat,  1 Feb 2020 09:47:13 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id A72436578;
-	Sat,  1 Feb 2020 08:29:32 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 3AD1D6589;
+	Sat,  1 Feb 2020 08:36:21 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f68.google.com (mail-lf1-f68.google.com
- [209.85.167.68])
- by linux-xtensa.org (Postfix) with ESMTPS id 468DC6578
- for <linux-xtensa@linux-xtensa.org>; Sat,  1 Feb 2020 08:29:30 +0000 (UTC)
-Received: by mail-lf1-f68.google.com with SMTP id v201so6446221lfa.11
- for <linux-xtensa@linux-xtensa.org>; Sat, 01 Feb 2020 00:40:19 -0800 (PST)
+Received: from mail-pj1-f68.google.com (mail-pj1-f68.google.com
+ [209.85.216.68])
+ by linux-xtensa.org (Postfix) with ESMTPS id DC9CC6585
+ for <linux-xtensa@linux-xtensa.org>; Sat,  1 Feb 2020 08:36:18 +0000 (UTC)
+Received: by mail-pj1-f68.google.com with SMTP id e9so4089897pjr.4
+ for <linux-xtensa@linux-xtensa.org>; Sat, 01 Feb 2020 00:47:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=0Z28SuKZRXMNFVR0O2T8TpM75CzBYxq5Fn9CvJuB4+g=;
- b=mG0tAZzVQa61mz/2TBGLDXpQ7HpHwGPNPvn/VsjcocPXdjbOMwQ/lZ9m2dyzxKKqZ1
- vNC4UdxVuGl8dN/HsGKNY1zajOvNXHFgPculbN1pYTQ1f4ZF3czMuYaYCGTLQRHm9OVw
- sry8g4kCRWZeUq8eDR3D9do63w1Jbo3bqgKJFclCyzr4IvL2ilYJATIBRf4ly/cqdhkh
- uhkBLdst6OmXdfqJPjafU6Zf+5/VTXGKD3pRTWZX+MgDYlVFYlU3gbHDz07mfLX5wbr9
- 0Db1lsLAGHJY6ZsIyHwStWLhUuWb655hMIfHTAibPlZ6h+3qugLCRh8okisJ7WWykvy5
- yCog==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=CylU9ftSDJ0Ci9ZsmZEbddejAvubtZZm2KsEiJHwKX4=;
+ b=AgnA3KEnv+bmLs+V5VpwlmEWBrJHZ/nDunw/+0aUVOjCPKZJrf2i3PfyW21086fe+M
+ F6G8Et5vA0AOJ+zkClCSsOeQHoRzX0w2xGQiGckPbioLMAFiNxCSHwKRZRSMK4Vec4Xh
+ VZim0nQIZ9O4CsMXF+F1B7hUEMegqIAj/F7+RxQZPXXA7gyHZakhtg1r8u8pjTDqideD
+ EySJJPcZgy2zpygt7jAlvgEwQX6fVAr0dxTk4yebREQwlNjaKBIh4tej/XXWKuWfbLcn
+ M8AC/SQ0D693Z6J2a+B8a5oo6fVAB6l9/MtoHKEMBVO0iLb3H5sR7APLLb1MCVmaH3Uo
+ Y3wQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=0Z28SuKZRXMNFVR0O2T8TpM75CzBYxq5Fn9CvJuB4+g=;
- b=Egc6d4+csqVkSrz2TIx878UsmfC7u5QtceewXMJipSVw6VZJxZc/xCI3GOZQgKsip2
- zIfa0bljLXCDEIkeEj+z/mZvI/dAZPHSgeAL4b2hxEd9bP4/+9Mj9uV7VPUc51/KtL5M
- EwjYHBi5i0rBd36bkGPsikkxt4V0HNgw0SpvZUeMLGHsphtUcfUIIdMApo1qOKKHWXXH
- YpA88pVNqefVbHmoigYCS979qgY3YbaQE3s/nVh7T7lt5giU66S7oWPllGrh526pDO0D
- D8t5UHThXqdrwKuxww9PTSqzkz2Q651aGQKenDl4+aFoZ6y1UhHzyirnfLaCodylKDnd
- 0EUw==
-X-Gm-Message-State: APjAAAUTksm2XmNNZURcyCGlWn6U9DKMaULXjrhN0y6hJt6WgSHzSTTg
- EDDnvkAa79rWLhWh0MnAuAwNuIOeOi4=
-X-Google-Smtp-Source: APXvYqyuwEE74O2onGC+68HDdv6Zt3GN1hYgqGRLGZiKHVd5k2IACLiAYfMFD8VZR02NsrysVbCQaA==
-X-Received: by 2002:ac2:5509:: with SMTP id j9mr7329297lfk.135.1580546417792; 
- Sat, 01 Feb 2020 00:40:17 -0800 (PST)
-Received: from octofox.hsd1.ca.comcast.net
- (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id v16sm5742645lfp.92.2020.02.01.00.40.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 01 Feb 2020 00:40:17 -0800 (PST)
-From: Max Filippov <jcmvbkbc@gmail.com>
-To: linux-xtensa@linux-xtensa.org
-Date: Sat,  1 Feb 2020 00:40:02 -0800
-Message-Id: <20200201084002.23617-1-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.20.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=CylU9ftSDJ0Ci9ZsmZEbddejAvubtZZm2KsEiJHwKX4=;
+ b=c7IHNf6d5k5fr7fnEIsBQruj17F54B4ZZxoX0txW1EcAIekjfo2y/Fc3vX3OFw4aqT
+ BrDxAetHgIrih/dajsIyQwXqu8AzAb/2woGChGAsmW+ScnkyoHEEQh2nbCICSjliCZw2
+ 76JSyH/kjFaERG8gBx+iUfs+pjvXO1XR9UgRSoef8hbeSoax2Cw0kN3d6p1FA5AeSimr
+ DDHtLK9eLYUMKeUyl7FadnEzVwy+zcSx3yBYvRJuaXOwG1GjAKvtB5kqXAweFqAmCLHP
+ N/lYJkq5CyH7Ez2qQ3d2VQRJRFnHKc3mki3nslUZomGNFnPdy0oxvdtlM3BzO6lY0swV
+ 9SOg==
+X-Gm-Message-State: APjAAAW64qXhg1E4CPIQqkerG6ZYzxzsT9YlrMdOJxTL0aAz8bW5Ta1e
+ 91z31rs6pcv28pjY3zw/mfVBw8DP/BiV7oK2NeI=
+X-Google-Smtp-Source: APXvYqyIaEfAhfBwNrMQEQUHGwDCLKHG5fjRlKfmP8mxC005JDNfw24zVnSy/nOPHIjJZ0lua2r2YUOGXdBivGJZ1JI=
+X-Received: by 2002:a17:90a:c24c:: with SMTP id
+ d12mr17614144pjx.113.1580546827051; 
+ Sat, 01 Feb 2020 00:47:07 -0800 (PST)
 MIME-Version: 1.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: clean up optional XCHAL_* definitions
+References: <500b2132-ea3c-a385-1f37-05664de5f1dd@infradead.org>
+In-Reply-To: <500b2132-ea3c-a385-1f37-05664de5f1dd@infradead.org>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Sat, 1 Feb 2020 00:46:56 -0800
+Message-ID: <CAMo8BfJ8TsXthhD4pyDcAeODPaE-ueS-+nJcwV8F3JcoSN7dpA@mail.gmail.com>
+To: Randy Dunlap <rdunlap@infradead.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)" <linux-xtensa@linux-xtensa.org>
+Subject: Re: [Linux-Xtensa] [PATCH] arch/xtensa: fix Kconfig typos for
+	HAVE_SMP
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -71,70 +70,25 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Simplify users of XCHAL_HAVE_EXTERN_REGS and XCHAL_HAVE_VECBASE and
-always define them as 0 if they're not defined in the variant/core.h
+On Fri, Jan 31, 2020 at 5:59 PM Randy Dunlap <rdunlap@infradead.org> wrote:
+>
+> From: Randy Dunlap <rdunlap@infradead.org>
+>
+> Fix typos in xtensa Kconfig help text for HAVE_SMP.
+>
+> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+> Cc: Chris Zankel <chris@zankel.net>
+> Cc: Max Filippov <jcmvbkbc@gmail.com>
+> Cc: linux-xtensa@linux-xtensa.org
+> ---
+>  arch/xtensa/Kconfig |    4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
- arch/xtensa/include/asm/core.h      | 8 ++++++++
- arch/xtensa/include/asm/processor.h | 4 ----
- arch/xtensa/include/asm/vectors.h   | 2 +-
- 3 files changed, 9 insertions(+), 5 deletions(-)
+Thanks, applied to my xtensa tree.
 
-diff --git a/arch/xtensa/include/asm/core.h b/arch/xtensa/include/asm/core.h
-index 5b4acb7d1c07..5590b0f68837 100644
---- a/arch/xtensa/include/asm/core.h
-+++ b/arch/xtensa/include/asm/core.h
-@@ -10,10 +10,18 @@
- #define XCHAL_HAVE_EXCLUSIVE 0
- #endif
- 
-+#ifndef XCHAL_HAVE_EXTERN_REGS
-+#define XCHAL_HAVE_EXTERN_REGS 0
-+#endif
-+
- #ifndef XCHAL_HAVE_MPU
- #define XCHAL_HAVE_MPU 0
- #endif
- 
-+#ifndef XCHAL_HAVE_VECBASE
-+#define XCHAL_HAVE_VECBASE 0
-+#endif
-+
- #ifndef XCHAL_SPANNING_WAY
- #define XCHAL_SPANNING_WAY 0
- #endif
-diff --git a/arch/xtensa/include/asm/processor.h b/arch/xtensa/include/asm/processor.h
-index 6fa903daf2a2..7f63aca6a0d3 100644
---- a/arch/xtensa/include/asm/processor.h
-+++ b/arch/xtensa/include/asm/processor.h
-@@ -237,10 +237,6 @@ extern unsigned long get_wchan(struct task_struct *p);
- 	 v; \
- 	 })
- 
--#ifndef XCHAL_HAVE_EXTERN_REGS
--#define XCHAL_HAVE_EXTERN_REGS 0
--#endif
--
- #if XCHAL_HAVE_EXTERN_REGS
- 
- static inline void set_er(unsigned long value, unsigned long addr)
-diff --git a/arch/xtensa/include/asm/vectors.h b/arch/xtensa/include/asm/vectors.h
-index fd99b25037a7..140f30762cf9 100644
---- a/arch/xtensa/include/asm/vectors.h
-+++ b/arch/xtensa/include/asm/vectors.h
-@@ -40,7 +40,7 @@
- #define VECBASE_VADDR			_vecbase
- #endif
- 
--#if defined(XCHAL_HAVE_VECBASE) && XCHAL_HAVE_VECBASE
-+#if XCHAL_HAVE_VECBASE
- 
- #define VECTOR_VADDR(offset)		(VECBASE_VADDR + offset)
- 
 -- 
-2.20.1
-
+Thanks.
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
