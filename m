@@ -2,60 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 2524414FB11
-	for <lists+linux-xtensa@lfdr.de>; Sun,  2 Feb 2020 01:36:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA449150700
+	for <lists+linux-xtensa@lfdr.de>; Mon,  3 Feb 2020 14:21:35 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 9ACC3656F;
-	Sun,  2 Feb 2020 00:25:36 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id E151C5848;
+	Mon,  3 Feb 2020 13:10:40 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
- [209.85.167.67])
- by linux-xtensa.org (Postfix) with ESMTPS id 6ED0F6555
- for <linux-xtensa@linux-xtensa.org>; Sun,  2 Feb 2020 00:25:35 +0000 (UTC)
-Received: by mail-lf1-f67.google.com with SMTP id 9so7286609lfq.10
- for <linux-xtensa@linux-xtensa.org>; Sat, 01 Feb 2020 16:36:25 -0800 (PST)
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
+ [209.85.208.195])
+ by linux-xtensa.org (Postfix) with ESMTPS id B88A957EF
+ for <linux-xtensa@linux-xtensa.org>; Mon,  3 Feb 2020 13:10:39 +0000 (UTC)
+Received: by mail-lj1-f195.google.com with SMTP id x7so14633362ljc.1
+ for <linux-xtensa@linux-xtensa.org>; Mon, 03 Feb 2020 05:21:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=smWDUQn2OyTCYfM1KRnGUXM+W71uVRy3CrLYbRHj4nU=;
- b=QpWGgpB5teoGzTu86E/f9BExOIpzxhYvpoegObfQU/c/gLbHG/fzFFtZ7JSVTrNZQ7
- 62443ZWtmz0P4tA02s3jRvU3dKwZajyjN+CdAp86bc9aIHfA/jh25FQdj6PY5zTLLu4U
- tFJiPI8gowyqgByctGhfDJr2KStpqMS5N0QvlDvSKCMjZi0endCDUr3skAzHV0ech5do
- X8pWWw8D4KjHN1W6RoX92zwXQ1Y8CtUlLQGlpvaQe64kUS7AWfDvORyuaDsURYjfsxj7
- rL4zGVENGxkKlydkcqTU66IF0WiVLZhZSphm74dUDS7zJQV96S4Jxyi8fKKoM4K+66vJ
- j+oA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=/mj9fwQDuAjWFQ5bryIevOvI6Y0A3GEvofVsrFYmsdk=;
+ b=hNdZF8CW6LYjhRzE6f3KHcnPLQ5a1BRzmvlGPH/Vl68wGF3wLeO5q6i3uudenupy/I
+ alyBYMshrE0XTO4LQxhyG5G66XwDXvKT5cYWWl6IlTpkfDVTC6hnQEXMI/leOfStiN06
+ shhhGX5zE8nfXGYpS7hiX5vBWemV728YZfd6KsB1Xz//gcmpE6Mb6m57NvZznJLRQhAj
+ OXjJeb875hlA9f4QPs0pxMXHT1x8TnqTv3xaW0fqJRnAX/FfaPk5O3SExakSpu/Iuq8I
+ 7T7Ozkc+bFYK91Ye5mkWTmNxthCBvEVqD5eu2/GJMt8fhIGb/pn5S9zB+TA4tM/VBOnG
+ tCRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=smWDUQn2OyTCYfM1KRnGUXM+W71uVRy3CrLYbRHj4nU=;
- b=DnXzOLjulyWY7N1+oDhg6AIK1JJEX5OnnyRpeECeL+gMIjXXuhcMvWJnB8VzW7M6DB
- 309q49Wn7wAPzEB0WMFicDLHXandG1I5j6V8oNOWpwXYFgy+dpptt0PlbJmno+kI1rle
- rTzV4R0iA2eT6+adGaLFNNVMZ2LvWhg/K9ua/Q27ggiOjMYMl9mE1kJugO4FtSrfc4yc
- 9+bcnT3ftocYMci65v0anAuZ13S1rzkC1/vIykvCy/hIz0amEhIaoBnAFmgAFUa/7J2S
- R+ghyikTEYwC7K1ol3WJLpQXkTtFykjpjgrUu5EoQHgt/J6B1xe9Jk1iKZNv6ZDfZyJf
- RnjQ==
-X-Gm-Message-State: APjAAAV1h0R913Yk1ExU9bT/pLPaDRW8OpS+qIS+4C/wOHmqv9R/p4fE
- LbVylBx21lZIYiLPDhE6Zzq/chdHbHQ=
-X-Google-Smtp-Source: APXvYqwY3d728NSZHG9DRw13JrA5znZ/TfCDlq3lRQ8E8+FV/YXzUnGG8xMfXkUm471Xh66fxeL7Ig==
-X-Received: by 2002:a19:f812:: with SMTP id a18mr1798647lff.0.1580603783935;
- Sat, 01 Feb 2020 16:36:23 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=/mj9fwQDuAjWFQ5bryIevOvI6Y0A3GEvofVsrFYmsdk=;
+ b=dHU8vmXkRwCIR52LVy75ocWw5UMoDxqxOj2rFmxe+pzjPX0ZVWL03R0s85HR8IsFEQ
+ sTunep5sC4lFpGIImxiWwLc6+ZM1jXUCZb9c7AVg6B0fZlTw6G9NcmDu5HwNtnvFkbiw
+ AhxO/cLZDCxICQoKWx39V5gmCrkN+bCJWoNEQCUkWefxfhKldh8Hpl3H962pmMADH5Uf
+ qCzOFUVxX5VZysGSfWoiAs8WDTiaaMkTRk6wTAduBS/XOS7qIuKPuxj7lTcBBogesxvu
+ 58/jX+hD3tg5ZA493eTRLk++VmzUX7fVluJaT5foqzPz80HN2Ez1hK6MlO+US9G4oL+V
+ my1g==
+X-Gm-Message-State: APjAAAU0G7RWcJmr8jLL54UWYWhj3z9EQtJ7oMMDG2jJtLzEiWSVbRK5
+ +c2nW34bt98pt2nDb6ygYN3Bj0Td
+X-Google-Smtp-Source: APXvYqyQF39wjuSb/NdueX6NZ+YjDl/SxYFtFlCeXQ3idf9k+d2fMAbh4mV46XOwP1FZEenwoIRpgQ==
+X-Received: by 2002:a2e:8711:: with SMTP id m17mr13703523lji.284.1580736090528; 
+ Mon, 03 Feb 2020 05:21:30 -0800 (PST)
 Received: from octofox.hsd1.ca.comcast.net
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id p26sm6711312lfh.64.2020.02.01.16.36.21
+ by smtp.gmail.com with ESMTPSA id 11sm9906866lju.103.2020.02.03.05.21.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 01 Feb 2020 16:36:23 -0800 (PST)
+ Mon, 03 Feb 2020 05:21:29 -0800 (PST)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Sat,  1 Feb 2020 16:36:04 -0800
-Message-Id: <20200202003604.30767-4-jcmvbkbc@gmail.com>
+Date: Mon,  3 Feb 2020 05:20:03 -0800
+Message-Id: <20200203132003.1713-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200202003604.30767-1-jcmvbkbc@gmail.com>
-References: <20200202003604.30767-1-jcmvbkbc@gmail.com>
 MIME-Version: 1.0
 Cc: Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH 3/3] xtensa: reorganize vectors placement
+Subject: [Linux-Xtensa] [PATCH v2 1/3] xtensa: move fast exception handlers
+	close to vectors
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -73,215 +72,241 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Allow vectors to be either merged into the kernel .text or put at a
-fixed virtual address independently of XIP option. Drop option that
-puts vectors at a fixed offset from the kernel text. Add choice to
-Kconfig.
-Vectors at fixed virtual address may be useful for XIP-aware MTD support
-and for noMMU configurations with available IRAM. Configurations without
-VECBASE register must put their vectors at specific locations regardless
-of the selected option. All other configurations should happily use
-merged vectors.
+On XIP kernels it makes sense to have exception vectors and fast
+exception handlers together (in a fast memory). In addition, with MTD
+XIP support both vectors and fast exception handlers must be outside of
+the FLASH.
+
+Add section .handler.text and move fast exception handlers to it.
+Put it together with vectors when vectors are outside of the .text.
 
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- arch/xtensa/Kconfig                     | 40 ++++++++++++++++++++-----
- arch/xtensa/configs/smp_lx200_defconfig |  1 -
- arch/xtensa/configs/virt_defconfig      |  1 -
- arch/xtensa/include/asm/vectors.h       |  4 +--
- arch/xtensa/kernel/setup.c              |  4 +--
- arch/xtensa/kernel/vmlinux.lds.S        | 21 ++++++++-----
- 6 files changed, 51 insertions(+), 20 deletions(-)
+Changes v1->v2:
+- add .literal_position to handlers section in entry.S
 
-diff --git a/arch/xtensa/Kconfig b/arch/xtensa/Kconfig
-index be029ea43848..bb618f9648de 100644
---- a/arch/xtensa/Kconfig
-+++ b/arch/xtensa/Kconfig
-@@ -581,15 +581,41 @@ config KERNEL_LOAD_ADDRESS
+ arch/xtensa/include/asm/asmmacro.h |  2 ++
+ arch/xtensa/kernel/coprocessor.S   |  5 ++---
+ arch/xtensa/kernel/entry.S         | 18 ++++++++++++------
+ arch/xtensa/kernel/setup.c         |  4 ++++
+ arch/xtensa/kernel/vectors.S       |  3 ++-
+ arch/xtensa/kernel/vmlinux.lds.S   | 19 ++++++++++++++++---
+ 6 files changed, 38 insertions(+), 13 deletions(-)
+
+diff --git a/arch/xtensa/include/asm/asmmacro.h b/arch/xtensa/include/asm/asmmacro.h
+index 71a7e846bc1f..74c0df6a6e15 100644
+--- a/arch/xtensa/include/asm/asmmacro.h
++++ b/arch/xtensa/include/asm/asmmacro.h
+@@ -237,4 +237,6 @@
+ #error Unsupported Xtensa ABI
+ #endif
  
- 	  If unsure, leave the default value here.
- 
--config VECTORS_OFFSET
--	hex "Kernel vectors offset"
--	default 0x00003000
--	depends on !XIP_KERNEL
-+choice
-+	prompt "Relocatable vectors location"
-+	default XTENSA_VECTORS_IN_TEXT
- 	help
--	  This is the offset of the kernel image from the relocatable vectors
--	  base.
-+	  Choose whether relocatable vectors are merged into the kernel .text
-+	  or placed separately at runtime. This option does not affect
-+	  configurations without VECBASE register where vectors are always
-+	  placed at their hardware-defined locations.
- 
--	  If unsure, leave the default value here.
-+config XTENSA_VECTORS_IN_TEXT
-+	bool "Merge relocatable vectors into kernel text"
-+	depends on !MTD_XIP
-+	help
-+	  This option puts relocatable vectors into the kernel .text section
-+	  with proper alignment.
-+	  This is a safe choice for most configurations.
++#define __XTENSA_HANDLER	.section ".handler.text", "ax"
 +
-+config XTENSA_VECTORS_SEPARATE
-+	bool "Put relocatable vectors at fixed address"
-+	help
-+	  This option puts relocatable vectors at specific virtual address.
-+	  Vectors are merged with the .init data in the kernel image and
-+	  are copied into their designated location during kernel startup.
-+	  Use it to put vectors into IRAM or out of FLASH on kernels with
-+	  XIP-aware MTD support.
+ #endif /* _XTENSA_ASMMACRO_H */
+diff --git a/arch/xtensa/kernel/coprocessor.S b/arch/xtensa/kernel/coprocessor.S
+index c53ce6d8794f..c426b846beef 100644
+--- a/arch/xtensa/kernel/coprocessor.S
++++ b/arch/xtensa/kernel/coprocessor.S
+@@ -58,6 +58,8 @@
+ 	.endif;								\
+ 	.long THREAD_XTREGS_CP##x
+ 
++	__XTENSA_HANDLER
 +
-+endchoice
-+
-+config VECTORS_ADDR
-+	hex "Kernel vectors virtual address"
-+	default 0x00000000
-+	depends on XTENSA_VECTORS_SEPARATE
-+	help
-+	  This is the virtual address of the (relocatable) vectors base.
-+	  It must be within KSEG if MMU is used.
+ 	SAVE_CP_REGS(0)
+ 	SAVE_CP_REGS(1)
+ 	SAVE_CP_REGS(2)
+@@ -76,7 +78,6 @@
+ 	LOAD_CP_REGS(6)
+ 	LOAD_CP_REGS(7)
  
- config XIP_DATA_ADDR
- 	hex "XIP kernel data virtual address"
-diff --git a/arch/xtensa/configs/smp_lx200_defconfig b/arch/xtensa/configs/smp_lx200_defconfig
-index 8b3bc92a079c..4f1c7998b030 100644
---- a/arch/xtensa/configs/smp_lx200_defconfig
-+++ b/arch/xtensa/configs/smp_lx200_defconfig
-@@ -30,7 +30,6 @@ CONFIG_SMP=y
- CONFIG_HOTPLUG_CPU=y
- # CONFIG_INITIALIZE_XTENSA_MMU_INSIDE_VMLINUX is not set
- # CONFIG_PCI is not set
--CONFIG_VECTORS_OFFSET=0x00002000
- CONFIG_XTENSA_PLATFORM_XTFPGA=y
- CONFIG_CMDLINE_BOOL=y
- CONFIG_CMDLINE="earlycon=uart8250,mmio32native,0xfd050020,115200n8 console=ttyS0,115200n8 ip=dhcp root=/dev/nfs rw debug memmap=96M@0"
-diff --git a/arch/xtensa/configs/virt_defconfig b/arch/xtensa/configs/virt_defconfig
-index 4fddd8512350..6d1387dfa96f 100644
---- a/arch/xtensa/configs/virt_defconfig
-+++ b/arch/xtensa/configs/virt_defconfig
-@@ -19,7 +19,6 @@ CONFIG_KALLSYMS_ALL=y
- CONFIG_PERF_EVENTS=y
- CONFIG_XTENSA_VARIANT_DC233C=y
- CONFIG_XTENSA_UNALIGNED_USER=y
--CONFIG_VECTORS_OFFSET=0x00002000
- CONFIG_XTENSA_KSEG_512M=y
- CONFIG_HIGHMEM=y
- CONFIG_CMDLINE_BOOL=y
-diff --git a/arch/xtensa/include/asm/vectors.h b/arch/xtensa/include/asm/vectors.h
-index 140f30762cf9..704286c35640 100644
---- a/arch/xtensa/include/asm/vectors.h
-+++ b/arch/xtensa/include/asm/vectors.h
-@@ -34,8 +34,8 @@
- #endif
+-	.section ".rodata", "a"
+ 	.align 4
+ .Lsave_cp_regs_jump_table:
+ 	SAVE_CP_REGS_TAB(0)
+@@ -98,8 +99,6 @@
+ 	LOAD_CP_REGS_TAB(6)
+ 	LOAD_CP_REGS_TAB(7)
  
- #define RESET_VECTOR1_VADDR		(XCHAL_RESET_VECTOR1_VADDR)
--#ifdef CONFIG_VECTORS_OFFSET
--#define VECBASE_VADDR			(KERNELOFFSET - CONFIG_VECTORS_OFFSET)
-+#ifdef CONFIG_VECTORS_ADDR
-+#define VECBASE_VADDR			(CONFIG_VECTORS_ADDR)
- #else
- #define VECBASE_VADDR			_vecbase
- #endif
-diff --git a/arch/xtensa/kernel/setup.c b/arch/xtensa/kernel/setup.c
-index 9f8e702faf75..ce88d6e0f2fe 100644
---- a/arch/xtensa/kernel/setup.c
-+++ b/arch/xtensa/kernel/setup.c
-@@ -349,7 +349,7 @@ void __init setup_arch(char **cmdline_p)
- 	mem_reserve(__pa(_xip_start), __pa(_xip_end));
- #endif
+-	.previous
+-
+ /*
+  * coprocessor_flush(struct thread_info*, index)
+  *                             a2        a3
+diff --git a/arch/xtensa/kernel/entry.S b/arch/xtensa/kernel/entry.S
+index be897803834a..9d2e22d9f3c3 100644
+--- a/arch/xtensa/kernel/entry.S
++++ b/arch/xtensa/kernel/entry.S
+@@ -939,6 +939,9 @@ ENDPROC(unrecoverable_exception)
  
--#ifdef CONFIG_VECTORS_OFFSET
-+#ifdef CONFIG_VECTORS_ADDR
- 	mem_reserve(__pa(&_WindowVectors_text_start),
- 		    __pa(&_WindowVectors_text_end));
+ /* -------------------------- FAST EXCEPTION HANDLERS ----------------------- */
  
-@@ -388,7 +388,7 @@ void __init setup_arch(char **cmdline_p)
- 		    __pa(&_Level6InterruptVector_text_end));
- #endif
- 
--#endif /* CONFIG_VECTORS_OFFSET */
-+#endif /* CONFIG_VECTORS_ADDR */
- 
- #ifdef CONFIG_SMP
- 	mem_reserve(__pa(&_SecondaryResetVector_text_start),
-diff --git a/arch/xtensa/kernel/vmlinux.lds.S b/arch/xtensa/kernel/vmlinux.lds.S
-index 662cee72242f..6818d2f992d5 100644
---- a/arch/xtensa/kernel/vmlinux.lds.S
-+++ b/arch/xtensa/kernel/vmlinux.lds.S
-@@ -47,9 +47,15 @@ jiffies = jiffies_64;
- 	LONG(sym ## _end);			\
- 	LONG(LOADADDR(section))
- 
-+#if !defined(CONFIG_VECTORS_ADDR) && XCHAL_HAVE_VECBASE
-+#define MERGED_VECTORS 1
-+#else
-+#define MERGED_VECTORS 0
-+#endif
++	__XTENSA_HANDLER
++	.literal_position
 +
  /*
-- * Macro to define a section for a vector. When CONFIG_VECTORS_OFFSET is
-- * defined code for every vector is located with other init data. At startup
-+ * Macro to define a section for a vector. When MERGED_VECTORS is 0
-+ * code for every vector is located with other init data. At startup
-  * time head.S copies code for every vector to its final position according
-  * to description recorded in the corresponding RELOCATE_ENTRY.
-  */
-@@ -84,7 +90,7 @@ SECTIONS
-     /* The HEAD_TEXT section must be the first section! */
-     HEAD_TEXT
+  * Fast-handler for alloca exceptions
+  *
+@@ -1024,7 +1027,7 @@ ENDPROC(fast_alloca)
+ ENTRY(fast_illegal_instruction_user)
  
--#ifndef CONFIG_VECTORS_OFFSET
-+#if MERGED_VECTORS
-     . = ALIGN(PAGE_SIZE);
-     _vecbase = .;
+ 	rsr	a0, ps
+-	bbsi.l	a0, PS_WOE_BIT, user_exception
++	bbsi.l	a0, PS_WOE_BIT, 1f
+ 	s32i	a3, a2, PT_AREG3
+ 	movi	a3, PS_WOE_MASK
+ 	or	a0, a0, a3
+@@ -1033,6 +1036,8 @@ ENTRY(fast_illegal_instruction_user)
+ 	l32i	a0, a2, PT_AREG0
+ 	rsr	a2, depc
+ 	rfe
++1:
++	call0	user_exception
  
-@@ -159,7 +165,7 @@ SECTIONS
-     . = ALIGN(16);
-     __boot_reloc_table_start = ABSOLUTE(.);
+ ENDPROC(fast_illegal_instruction_user)
+ #endif
+@@ -1071,7 +1076,7 @@ ENTRY(fast_syscall_user)
+ 	_beqz	a0, fast_syscall_spill_registers
+ 	_beqi	a0, __NR_xtensa, fast_syscall_xtensa
  
--#ifdef CONFIG_VECTORS_OFFSET
-+#if !MERGED_VECTORS
-     RELOCATE_ENTRY(_WindowVectors_text,
- 		   .WindowVectors.text);
+-	j	user_exception
++	call0	user_exception
+ 
+ ENDPROC(fast_syscall_user)
+ 
+@@ -1762,8 +1767,8 @@ ENTRY(fast_second_level_miss)
+ 
+ 	rsr	a2, ps
+ 	bbsi.l	a2, PS_UM_BIT, 1f
+-	j	_kernel_exception
+-1:	j	_user_exception
++	call0	_kernel_exception
++1:	call0	_user_exception
+ 
+ ENDPROC(fast_second_level_miss)
+ 
+@@ -1859,13 +1864,14 @@ ENTRY(fast_store_prohibited)
+ 
+ 	rsr	a2, ps
+ 	bbsi.l	a2, PS_UM_BIT, 1f
+-	j	_kernel_exception
+-1:	j	_user_exception
++	call0	_kernel_exception
++1:	call0	_user_exception
+ 
+ ENDPROC(fast_store_prohibited)
+ 
+ #endif /* CONFIG_MMU */
+ 
++	.text
+ /*
+  * System Calls.
+  *
+diff --git a/arch/xtensa/kernel/setup.c b/arch/xtensa/kernel/setup.c
+index 0f93b67c7a5a..9f8e702faf75 100644
+--- a/arch/xtensa/kernel/setup.c
++++ b/arch/xtensa/kernel/setup.c
+@@ -284,6 +284,8 @@ extern char _UserExceptionVector_text_start;
+ extern char _UserExceptionVector_text_end;
+ extern char _DoubleExceptionVector_text_start;
+ extern char _DoubleExceptionVector_text_end;
++extern char _handler_text_start;
++extern char _handler_text_end;
  #if XCHAL_EXCM_LEVEL >= 2
-@@ -220,7 +226,7 @@ SECTIONS
- #undef LAST
- #define LAST	.dummy
+ extern char _Level2InterruptVector_text_start;
+ extern char _Level2InterruptVector_text_end;
+@@ -363,6 +365,8 @@ void __init setup_arch(char **cmdline_p)
+ 	mem_reserve(__pa(&_DoubleExceptionVector_text_start),
+ 		    __pa(&_DoubleExceptionVector_text_end));
  
--#ifdef CONFIG_VECTORS_OFFSET
-+#if !MERGED_VECTORS
-   /* The vectors are relocated to the real position at startup time */
++	mem_reserve(__pa(&_handler_text_start),
++		    __pa(&_handler_text_end));
+ #if XCHAL_EXCM_LEVEL >= 2
+ 	mem_reserve(__pa(&_Level2InterruptVector_text_start),
+ 		    __pa(&_Level2InterruptVector_text_end));
+diff --git a/arch/xtensa/kernel/vectors.S b/arch/xtensa/kernel/vectors.S
+index 841503d3307c..95ad1e773991 100644
+--- a/arch/xtensa/kernel/vectors.S
++++ b/arch/xtensa/kernel/vectors.S
+@@ -43,6 +43,7 @@
+  */
  
-   SECTION_VECTOR4 (_WindowVectors_text,
-@@ -299,7 +305,7 @@ SECTIONS
- #define LAST .SecondaryResetVector.text
+ #include <linux/linkage.h>
++#include <asm/asmmacro.h>
+ #include <asm/ptrace.h>
+ #include <asm/current.h>
+ #include <asm/asm-offsets.h>
+@@ -477,7 +478,6 @@ _DoubleExceptionVector_handle_exception:
+ 
+ ENDPROC(_DoubleExceptionVector)
+ 
+-	.text
+ /*
+  * Fixup handler for TLB miss in double exception handler for window owerflow.
+  * We get here with windowbase set to the window that was being spilled and
+@@ -505,6 +505,7 @@ ENDPROC(_DoubleExceptionVector)
+  * a3: exctable, original value in excsave1
+  */
+ 
++	__XTENSA_HANDLER
+ 	.literal_position
+ 
+ ENTRY(window_overflow_restore_a0_fixup)
+diff --git a/arch/xtensa/kernel/vmlinux.lds.S b/arch/xtensa/kernel/vmlinux.lds.S
+index 409c05cac15e..251713fac774 100644
+--- a/arch/xtensa/kernel/vmlinux.lds.S
++++ b/arch/xtensa/kernel/vmlinux.lds.S
+@@ -110,6 +110,8 @@ SECTIONS
+   SECTION_VECTOR (.KernelExceptionVector.text, KERNEL_VECTOR_VADDR)
+   SECTION_VECTOR (.UserExceptionVector.text, USER_VECTOR_VADDR)
+   SECTION_VECTOR (.DoubleExceptionVector.text, DOUBLEEXC_VECTOR_VADDR)
++
++  *(.handler.text)
+ #endif
+ 
+     IRQENTRY_TEXT
+@@ -190,6 +192,8 @@ SECTIONS
+ 		   .DoubleExceptionVector.text);
+     RELOCATE_ENTRY(_DebugInterruptVector_text,
+ 		   .DebugInterruptVector.text);
++    RELOCATE_ENTRY(_handler_text,
++		   .handler.text);
+ #endif
+ #ifdef CONFIG_XIP_KERNEL
+     RELOCATE_ENTRY(_xip_data, .data);
+@@ -282,8 +286,7 @@ SECTIONS
+ 		  .DoubleExceptionVector.text,
+ 		  DOUBLEEXC_VECTOR_VADDR,
+ 		  .UserExceptionVector.text)
+-
+-  . = (LOADADDR( .DoubleExceptionVector.text ) + SIZEOF( .DoubleExceptionVector.text ) + 3) & ~ 3;
++#define LAST .DoubleExceptionVector.text
  
  #endif
--#ifdef CONFIG_VECTORS_OFFSET
-+#if !MERGED_VECTORS
-   SECTION_VECTOR4 (_handler_text,
- 		  .handler.text,
- 		  ,
-@@ -310,6 +316,7 @@ SECTIONS
- #endif
-   . = (LOADADDR(LAST) + SIZEOF(LAST) + 3) & ~ 3;
+ #if !defined(CONFIG_XIP_KERNEL) && defined(CONFIG_SMP)
+@@ -292,10 +295,20 @@ SECTIONS
+ 		  .SecondaryResetVector.text,
+ 		  RESET_VECTOR1_VADDR,
+ 		  .DoubleExceptionVector.text)
++#undef LAST
++#define LAST .SecondaryResetVector.text
  
-+  .dummy1 : AT(ADDR(.dummy1)) { LONG(0) }
+-  . = LOADADDR(.SecondaryResetVector.text)+SIZEOF(.SecondaryResetVector.text);
++#endif
++#ifdef CONFIG_VECTORS_OFFSET
++  SECTION_VECTOR (_handler_text,
++		  .handler.text,
++		  ,
++		  LAST)
++#undef LAST
++#define LAST .handler.text
+ 
+ #endif
++  . = (LOADADDR(LAST) + SIZEOF(LAST) + 3) & ~ 3;
+ 
    . = ALIGN(PAGE_SIZE);
  
- #ifndef CONFIG_XIP_KERNEL
-@@ -327,7 +334,7 @@ SECTIONS
- 
- #undef LOAD_OFFSET
- #define LOAD_OFFSET \
--  (CONFIG_XIP_DATA_ADDR - (LOADADDR(.dummy) + SIZEOF(.dummy) + 3) & ~ 3)
-+  (CONFIG_XIP_DATA_ADDR - (LOADADDR(.dummy1) + SIZEOF(.dummy1) + 3) & ~ 3)
- 
-   _xip_data_start = .;
-   _sdata = .;
 -- 
 2.20.1
 
