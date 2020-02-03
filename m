@@ -2,58 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FDF5151222
-	for <lists+linux-xtensa@lfdr.de>; Mon,  3 Feb 2020 22:55:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD400151229
+	for <lists+linux-xtensa@lfdr.de>; Mon,  3 Feb 2020 22:57:52 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 078E64240;
-	Mon,  3 Feb 2020 21:44:52 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 43E736436;
+	Mon,  3 Feb 2020 21:46:58 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lj1-f194.google.com (mail-lj1-f194.google.com
- [209.85.208.194])
- by linux-xtensa.org (Postfix) with ESMTPS id CBFC73AD5
- for <linux-xtensa@linux-xtensa.org>; Mon,  3 Feb 2020 21:44:50 +0000 (UTC)
-Received: by mail-lj1-f194.google.com with SMTP id f25so16284945ljg.12
- for <linux-xtensa@linux-xtensa.org>; Mon, 03 Feb 2020 13:55:44 -0800 (PST)
+Received: from mail-lj1-f196.google.com (mail-lj1-f196.google.com
+ [209.85.208.196])
+ by linux-xtensa.org (Postfix) with ESMTPS id D45B95878
+ for <linux-xtensa@linux-xtensa.org>; Mon,  3 Feb 2020 21:46:56 +0000 (UTC)
+Received: by mail-lj1-f196.google.com with SMTP id r19so16338298ljg.3
+ for <linux-xtensa@linux-xtensa.org>; Mon, 03 Feb 2020 13:57:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=JcDDIqcfJawaSmDJHmbv9kK4ohGI6BQ6+ghiyE4fyag=;
- b=AAtV2z7/ICaxGdzbk0KfzqAI41XlVJ6G3ZetaADJcTJNKbECpRIglm0N3fAAuRv/Q9
- iJc0iWTze0CTHAmztvjAnrnPj25YMspbaP22w7QGF57LR1MQgCdwAq/4D2oT4PO6cg9u
- kEQY9cCmAEW3abUWY4WMDRRweWOkuB4hGn2bt3MVu97vyWY2+Unogd9NoSk9v1OEypUo
- wynJjHaZjHXtGVcfgMKWghPsREhnSABb5Hn00bxfF5Sv/2QTvgz8q2gT6oTOosTCD4BA
- 743ycyJswOxKe7zLyHmqBBurxrb7zu9uU0chJxkZJKrzgB1WeR6rkL72iZL/by8dhgJP
- 7HHw==
+ bh=SWXOL/jp5aNFAi2fHP4h0Qn+G77aE2/UVzbGA8pgKKI=;
+ b=QTOk8+Vxo8PCrWTkIpeByukrLpCJzh+x73QEy9ueDBUwSPgbikN3DFh+d2oThXcItM
+ /g0KvfVi5knWZAMdWSv4KrkHvLYPs8WMf1jZqQ03JQvZWWwNFBEKDRzlNTnDVFkOr48j
+ E2HLDkkGDXrh3gEHjNBEpnrw/SxQ831k6ZTI2yB0m1FwqVlSQugLYSQEr7iTlTzZ0dT0
+ tixf9EtzdqZKtSymuoSbixLqVdNAh/C0vgnCgg7bH+R1rbalcOI7BSTgploFVddE7vS5
+ gdF3RhTzuZdmbnJss6JaEJ7STvZOsBbL1L/6UidfpIMe53+3BcOjha87n6hHVexchfnP
+ dUuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=JcDDIqcfJawaSmDJHmbv9kK4ohGI6BQ6+ghiyE4fyag=;
- b=IC6/lW+C7SowYk9dQUmjZkilp/qYz6QJxRWm/FwwIo0522zQatc25nUS/CNasG9Ir9
- xdFAFPFkIGnva8ySobbOjUYqTrMiIgZ28zZXjQKZjKNkcyP7tFIOZapzE+fpHpZ6VOez
- rMzCW1VZe0hvbHafNGU68O6SYfKJNnNTCb8jynGbTru7zpddOzdhCluecEaSUQnUPUHM
- IG4roHiXqxKbIXegthAlnRrN9jzBVbPHduYYgC7cQ/K1IR7gj/JPvOuFa+CwhUGJIaJ/
- PO1AqqXaoANFyNI2j96xUNbX19nWJAzJ85EbZFCsW6usG0S0KhIKjCJOJLTHTnS29bGm
- IPUA==
-X-Gm-Message-State: APjAAAVbpGKhTDwoOTB+rnOHe0fztB+TmR4DiVdO9LzVDvyMqeIjY6we
- Ixs6qbRouPplUZ+aBkt8E8c=
-X-Google-Smtp-Source: APXvYqz0oGuHd0HTE2Lszw8h7ish29GQ6/eDTOTJV3gyNoSkg71K18X+THHKp3qyXEDu6aPfj0DtPA==
-X-Received: by 2002:a2e:884f:: with SMTP id z15mr15544335ljj.46.1580766943244; 
- Mon, 03 Feb 2020 13:55:43 -0800 (PST)
+ bh=SWXOL/jp5aNFAi2fHP4h0Qn+G77aE2/UVzbGA8pgKKI=;
+ b=t6mq2KMF0/k/9afXKqJz2bEv+aCTgtdzXmFXmuowcfnxUyTUmFikLP2iSo8cQeAHGB
+ AHw1FUoAJUOwu9ZopNXszeeOrKiD3SR5q8EttUywcgkah5m4YbE64ORif7C0worAkHoV
+ AXrrdhCbew0137j2+pQM4GtQ56jPMPyL/m73j3DaihxRPzAeF7Y92atzENRraMm4F0QD
+ NkIsUubUy/tkprqBQoy0sFUoYCOmO79mp0lHEtlfBB1uTqFteTE9BSPObYo3vyj2rvjG
+ zxp3szvhA+u8AWZKtPxv45gVUqPWajWVhRZA9hvDSitrTgfzdWBdmZ1Dg2Z6ozPVbzVC
+ 6+Vg==
+X-Gm-Message-State: APjAAAVUuu+JX4v9cdYEshu16mP8WpfwKy6NBzFwtWdjCEQrQk2Xu53J
+ jgdH0vj/2zqkLLTHvjfWs/0=
+X-Google-Smtp-Source: APXvYqwmn/DMdAwPmtGrdSl+NiLMsjED2WeGLMSyG/F2oExidk1QvUXKQkdRE597zRdnH0QYMKVrSA==
+X-Received: by 2002:a2e:8916:: with SMTP id d22mr15646896lji.19.1580767069478; 
+ Mon, 03 Feb 2020 13:57:49 -0800 (PST)
 Received: from octofox.cadence.com
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id l22sm10554150lje.40.2020.02.03.13.55.41
+ by smtp.gmail.com with ESMTPSA id t21sm10108423ljh.14.2020.02.03.13.57.47
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 Feb 2020 13:55:42 -0800 (PST)
+ Mon, 03 Feb 2020 13:57:48 -0800 (PST)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: devel@uclibc-ng.org
-Date: Mon,  3 Feb 2020 13:55:31 -0800
-Message-Id: <20200203215531.15516-1-jcmvbkbc@gmail.com>
+Date: Mon,  3 Feb 2020 13:57:32 -0800
+Message-Id: <20200203215732.15601-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org
-Subject: [Linux-Xtensa] [PATCH] include/ctype.h: drop is*_l macro definitions
+Subject: [Linux-Xtensa] [PATCH v2] include/ctype.h: drop is*_l macro
+	definitions
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -81,14 +82,17 @@ This change fixes parted-3.3 build with uClibc-ng:
 
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- include/ctype.h | 32 --------------------------------
- 1 file changed, 32 deletions(-)
+Changes v1->v2:
+- also drop __isctype_l macro.
+
+ include/ctype.h | 33 ---------------------------------
+ 1 file changed, 33 deletions(-)
 
 diff --git a/include/ctype.h b/include/ctype.h
-index ecd5e730886a..05f21c553e5a 100644
+index ecd5e730886a..e934cf3321a6 100644
 --- a/include/ctype.h
 +++ b/include/ctype.h
-@@ -350,46 +350,14 @@ libc_hidden_proto(tolower_l)
+@@ -350,46 +350,13 @@ libc_hidden_proto(tolower_l)
  /* Return the uppercase version of C.  */
  extern int toupper_l (int __c, __locale_t __l) __THROW;
  
@@ -98,7 +102,7 @@ index ecd5e730886a..05f21c553e5a 100644
 -# endif	/* Optimizing gcc */
 -
 -
- # define __isctype_l(c, type, locale) ((locale)->__ctype_b[(int) (c)] & (__ctype_mask_t) type)
+-# define __isctype_l(c, type, locale) ((locale)->__ctype_b[(int) (c)] & (__ctype_mask_t) type)
  # ifndef __NO_CTYPE
 -#  define __isalnum_l(c,l)	__isctype_l((c), _ISalnum, (l))
 -#  define __isalpha_l(c,l)	__isctype_l((c), _ISalpha, (l))
