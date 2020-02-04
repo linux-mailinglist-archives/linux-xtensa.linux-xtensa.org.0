@@ -2,59 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id BD400151229
-	for <lists+linux-xtensa@lfdr.de>; Mon,  3 Feb 2020 22:57:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4553315219C
+	for <lists+linux-xtensa@lfdr.de>; Tue,  4 Feb 2020 21:53:52 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 43E736436;
-	Mon,  3 Feb 2020 21:46:58 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id F35E13A8A;
+	Tue,  4 Feb 2020 20:42:55 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lj1-f196.google.com (mail-lj1-f196.google.com
- [209.85.208.196])
- by linux-xtensa.org (Postfix) with ESMTPS id D45B95878
- for <linux-xtensa@linux-xtensa.org>; Mon,  3 Feb 2020 21:46:56 +0000 (UTC)
-Received: by mail-lj1-f196.google.com with SMTP id r19so16338298ljg.3
- for <linux-xtensa@linux-xtensa.org>; Mon, 03 Feb 2020 13:57:50 -0800 (PST)
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
+ [209.85.208.195])
+ by linux-xtensa.org (Postfix) with ESMTPS id B2A593A7D
+ for <linux-xtensa@linux-xtensa.org>; Tue,  4 Feb 2020 20:42:54 +0000 (UTC)
+Received: by mail-lj1-f195.google.com with SMTP id w1so89775ljh.5
+ for <linux-xtensa@linux-xtensa.org>; Tue, 04 Feb 2020 12:53:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=SWXOL/jp5aNFAi2fHP4h0Qn+G77aE2/UVzbGA8pgKKI=;
- b=QTOk8+Vxo8PCrWTkIpeByukrLpCJzh+x73QEy9ueDBUwSPgbikN3DFh+d2oThXcItM
- /g0KvfVi5knWZAMdWSv4KrkHvLYPs8WMf1jZqQ03JQvZWWwNFBEKDRzlNTnDVFkOr48j
- E2HLDkkGDXrh3gEHjNBEpnrw/SxQ831k6ZTI2yB0m1FwqVlSQugLYSQEr7iTlTzZ0dT0
- tixf9EtzdqZKtSymuoSbixLqVdNAh/C0vgnCgg7bH+R1rbalcOI7BSTgploFVddE7vS5
- gdF3RhTzuZdmbnJss6JaEJ7STvZOsBbL1L/6UidfpIMe53+3BcOjha87n6hHVexchfnP
- dUuQ==
+ bh=XGw9Wx48OKqeNnYi+RLHHnKp7pVid3+5LH/C2zZtrt8=;
+ b=TyPSv8vGchI1QFAhjqj0qj1EBTH2dSA2MkWr7K3eswC4BIGuE2RV3YgDdos186MsaE
+ G5rNZl+9J057xoRHizAsQs6aOsQMr8JUwv+WyYSqnP44NqkMy9BmEWDsUyvlrybbnQBh
+ pvMmOlzvsICnNyQN5yspm+yKx/omtF6Y4JLctQBLYGVRDLFZWGD9mlqSfALeuQ4RVrDp
+ B1y81kVSL8LAjr7k16PfEA+2cKKuMVrRT11nzPl2yur5f5Cw0wL0GAoXTVGRoFmVlcB5
+ jr8dilVi2urb1H2GDQFw2yy+GeDEHlqG2nPi6FN1/79Nj2yl/kkTqg4ZjX9krjQgCuK4
+ rD/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=SWXOL/jp5aNFAi2fHP4h0Qn+G77aE2/UVzbGA8pgKKI=;
- b=t6mq2KMF0/k/9afXKqJz2bEv+aCTgtdzXmFXmuowcfnxUyTUmFikLP2iSo8cQeAHGB
- AHw1FUoAJUOwu9ZopNXszeeOrKiD3SR5q8EttUywcgkah5m4YbE64ORif7C0worAkHoV
- AXrrdhCbew0137j2+pQM4GtQ56jPMPyL/m73j3DaihxRPzAeF7Y92atzENRraMm4F0QD
- NkIsUubUy/tkprqBQoy0sFUoYCOmO79mp0lHEtlfBB1uTqFteTE9BSPObYo3vyj2rvjG
- zxp3szvhA+u8AWZKtPxv45gVUqPWajWVhRZA9hvDSitrTgfzdWBdmZ1Dg2Z6ozPVbzVC
- 6+Vg==
-X-Gm-Message-State: APjAAAVUuu+JX4v9cdYEshu16mP8WpfwKy6NBzFwtWdjCEQrQk2Xu53J
- jgdH0vj/2zqkLLTHvjfWs/0=
-X-Google-Smtp-Source: APXvYqwmn/DMdAwPmtGrdSl+NiLMsjED2WeGLMSyG/F2oExidk1QvUXKQkdRE597zRdnH0QYMKVrSA==
-X-Received: by 2002:a2e:8916:: with SMTP id d22mr15646896lji.19.1580767069478; 
- Mon, 03 Feb 2020 13:57:49 -0800 (PST)
+ bh=XGw9Wx48OKqeNnYi+RLHHnKp7pVid3+5LH/C2zZtrt8=;
+ b=DJyGwfdz/w9qB6oMPNzR6W/kGvs5oU+EPlbLcly2uQt3Cc6mY8Td5231uY/qtW/u5Q
+ 047R5UErSJxXRGmfm5r03gr4Xg3XQai/MdfsigFNZdf+dgV/Z8O8b1Ll7FPGSjP7j1yg
+ we52b45BYD1MQhlCGQtm8X7xSUHtIWXDBfW1kpVhmiaK03SN061ozF0yCSZelX6HTFj7
+ YkMm7Y1msFHAUNt2z0YA6tV3/xLnoaOVojA/jMaXPevCn9+WtpRaRoj+YEdvl+3fvqBz
+ yiynIVVtAoF8S1qLLxKG+i0uIm+N0McZvz+/FIgkQpTduttHLGV0sitPX81V1VgIK17x
+ qtvw==
+X-Gm-Message-State: APjAAAUH/t2JUC3y7cLvzCAGjNQ/BR1xQnR591myYZLrQDbkNgP9vu7p
+ N3amJ6PeC+/ts7aivBCAH7PSP9b3Wf4=
+X-Google-Smtp-Source: APXvYqysRN6sKxpVLbGmg/3Mc5htHi7LmUG3oBsarjTqAl7kYYWrAG+JZRUsIub5Ge6cFI+RVVqqLQ==
+X-Received: by 2002:a05:651c:1bb:: with SMTP id
+ c27mr19107818ljn.277.1580849628650; 
+ Tue, 04 Feb 2020 12:53:48 -0800 (PST)
 Received: from octofox.cadence.com
  (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id t21sm10108423ljh.14.2020.02.03.13.57.47
+ by smtp.gmail.com with ESMTPSA id y5sm10913112lfl.6.2020.02.04.12.53.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 Feb 2020 13:57:48 -0800 (PST)
+ Tue, 04 Feb 2020 12:53:47 -0800 (PST)
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: devel@uclibc-ng.org
-Date: Mon,  3 Feb 2020 13:57:32 -0800
-Message-Id: <20200203215732.15601-1-jcmvbkbc@gmail.com>
+To: linux-xtensa@linux-xtensa.org
+Date: Tue,  4 Feb 2020 12:53:37 -0800
+Message-Id: <20200204205337.32547-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org
-Subject: [Linux-Xtensa] [PATCH v2] include/ctype.h: drop is*_l macro
-	definitions
+Cc: Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: ISS: improve simcall assembly
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -72,73 +72,41 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-ctype locale-specific macro definitions are broken because they result
-in dereference of pointer to structure of incomplete type.
-Drop these macros since they are optional and let applications use
-functions with the same names.
-
-This change fixes parted-3.3 build with uClibc-ng:
-  http://autobuild.buildroot.net/results/b7ba1210d5aa184b133f0171da621d2b0083ec39/build-end.log
+Drop redundant result moving from inline assembly, use a1 and b1 values
+as return value and errno value respectively.
 
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
-Changes v1->v2:
-- also drop __isctype_l macro.
+ arch/xtensa/platforms/iss/include/platform/simcall.h | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
 
- include/ctype.h | 33 ---------------------------------
- 1 file changed, 33 deletions(-)
-
-diff --git a/include/ctype.h b/include/ctype.h
-index ecd5e730886a..e934cf3321a6 100644
---- a/include/ctype.h
-+++ b/include/ctype.h
-@@ -350,46 +350,13 @@ libc_hidden_proto(tolower_l)
- /* Return the uppercase version of C.  */
- extern int toupper_l (int __c, __locale_t __l) __THROW;
+diff --git a/arch/xtensa/platforms/iss/include/platform/simcall.h b/arch/xtensa/platforms/iss/include/platform/simcall.h
+index 2ba45858e50a..111bcc5d0dc0 100644
+--- a/arch/xtensa/platforms/iss/include/platform/simcall.h
++++ b/arch/xtensa/platforms/iss/include/platform/simcall.h
+@@ -66,19 +66,17 @@ static int errno;
  
--# if __GNUC__ >= 2 && defined __OPTIMIZE__ && !defined __cplusplus
--#  define tolower_l(c, locale) __tobody(c, tolower_l, (locale)->__ctype_tolower, (c, locale))
--#  define toupper_l(c, locale) __tobody(c, toupper_l, (locale)->__ctype_toupper, (c, locale))
--# endif	/* Optimizing gcc */
--
--
--# define __isctype_l(c, type, locale) ((locale)->__ctype_b[(int) (c)] & (__ctype_mask_t) type)
- # ifndef __NO_CTYPE
--#  define __isalnum_l(c,l)	__isctype_l((c), _ISalnum, (l))
--#  define __isalpha_l(c,l)	__isctype_l((c), _ISalpha, (l))
--#  define __iscntrl_l(c,l)	__isctype_l((c), _IScntrl, (l))
--#  define __isdigit_l(c,l)	__isctype_l((c), _ISdigit, (l))
--#  define __islower_l(c,l)	__isctype_l((c), _ISlower, (l))
--#  define __isgraph_l(c,l)	__isctype_l((c), _ISgraph, (l))
--#  define __isprint_l(c,l)	__isctype_l((c), _ISprint, (l))
--#  define __ispunct_l(c,l)	__isctype_l((c), _ISpunct, (l))
--#  define __isspace_l(c,l)	__isctype_l((c), _ISspace, (l))
--#  define __isupper_l(c,l)	__isctype_l((c), _ISupper, (l))
--#  define __isxdigit_l(c,l)	__isctype_l((c), _ISxdigit, (l))
--#  define __isblank_l(c,l)	__isctype_l((c), _ISblank, (l))
--
- #  if (defined __USE_SVID || defined __USE_MISC || defined __USE_XOPEN) \
- 	&& defined __UCLIBC_SUSV4_LEGACY__
- #   define __isascii_l(c,l)	((l), __isascii (c))
- #   define __toascii_l(c,l)	((l), __toascii (c))
- #  endif
+ static inline int __simc(int a, int b, int c, int d)
+ {
+-	int ret;
+ 	register int a1 asm("a2") = a;
+ 	register int b1 asm("a3") = b;
+ 	register int c1 asm("a4") = c;
+ 	register int d1 asm("a5") = d;
+ 	__asm__ __volatile__ (
+ 			"simcall\n"
+-			"mov %0, a2\n"
+-			"mov %1, a3\n"
+-			: "=a" (ret), "=a" (errno), "+r"(a1), "+r"(b1)
++			: "+r"(a1), "+r"(b1)
+ 			: "r"(c1), "r"(d1)
+ 			: "memory");
+-	return ret;
++	errno = b1;
++	return a1;
+ }
  
--#  define isalnum_l(c,l)	__isalnum_l ((c), (l))
--#  define isalpha_l(c,l)	__isalpha_l ((c), (l))
--#  define iscntrl_l(c,l)	__iscntrl_l ((c), (l))
--#  define isdigit_l(c,l)	__isdigit_l ((c), (l))
--#  define islower_l(c,l)	__islower_l ((c), (l))
--#  define isgraph_l(c,l)	__isgraph_l ((c), (l))
--#  define isprint_l(c,l)	__isprint_l ((c), (l))
--#  define ispunct_l(c,l)	__ispunct_l ((c), (l))
--#  define isspace_l(c,l)	__isspace_l ((c), (l))
--#  define isupper_l(c,l)	__isupper_l ((c), (l))
--#  define isxdigit_l(c,l)	__isxdigit_l ((c), (l))
--#  define isblank_l(c,l)	__isblank_l ((c), (l))
--
- #  if (defined __USE_SVID || defined __USE_MISC || defined __USE_XOPEN) \
- 	&& defined __UCLIBC_SUSV4_LEGACY__
- #   define isascii_l(c,l)	__isascii_l ((c), (l))
+ static inline int simc_exit(int exit_code)
 -- 
 2.20.1
 
