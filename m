@@ -2,59 +2,73 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 0501F15A447
-	for <lists+linux-xtensa@lfdr.de>; Wed, 12 Feb 2020 10:10:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 138F515A490
+	for <lists+linux-xtensa@lfdr.de>; Wed, 12 Feb 2020 10:23:53 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 4223F6494;
-	Wed, 12 Feb 2020 08:59:04 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 48B0F3A81;
+	Wed, 12 Feb 2020 09:12:42 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com
- [209.85.215.193])
- by linux-xtensa.org (Postfix) with ESMTPS id 33CDF6489
- for <linux-xtensa@linux-xtensa.org>; Wed, 12 Feb 2020 08:59:02 +0000 (UTC)
-Received: by mail-pg1-f193.google.com with SMTP id j4so893464pgi.1
- for <linux-xtensa@linux-xtensa.org>; Wed, 12 Feb 2020 01:10:12 -0800 (PST)
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com
+ [209.85.214.195])
+ by linux-xtensa.org (Postfix) with ESMTPS id 3CD882631
+ for <linux-xtensa@linux-xtensa.org>; Wed, 12 Feb 2020 09:12:40 +0000 (UTC)
+Received: by mail-pl1-f195.google.com with SMTP id j7so746548plt.1
+ for <linux-xtensa@linux-xtensa.org>; Wed, 12 Feb 2020 01:23:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=rMWEtLnC4u+GSkpyrMggEcsRqsLKGC5Kgx8RCoWgoP8=;
- b=S3xL0M+iWbah1a5O2X9Ter5DBgCXGP2spoBe9HeyBU9F+JKH06Wyyhjtp44GJAmUmf
- 3/6rdzhHsX3KBDKwzgUYBO2mwQztR6RuS0ZOS5LgRabbo8YvX0WcqTmQigE8PIYstjSG
- m4A4xvsSBQzUKebBqoyei996nGneoiREz8kmx4gOO2IK0E/8vm9C5eRwFOI4jD++hApP
- J1m5Hv8S+H8IkB7fj1mWC9DkKSR7Dw4VhwzffPlgzheUn0lxjHlnojexRA6PooAc5I8H
- z+G8WTgzb5UwWqHYiJp2gAmH2a1oCcDq35n4azrD8wvuJytckCaU0Ur10YkzLksVFP5E
- idSw==
+ :cc; bh=sDe1AgAtZMTBswle0D6FGWKTb7hbTE9PCf3WEVHRGts=;
+ b=NTmZWD45lEPn6L7REaUGWdMZAGXUIsVeAXTcDm09kMdQPRZkDnK1ZnJiAxj8cH8tFz
+ g2xSmoyEdJdU7x1X/DgPqY9ERd8rMB+Aftc4CKnB4nUfUSkB73us/ujbjCiEhZUT2HxJ
+ zBhjq6QYgtWoT+Gip38EWBgPkVbrMcT6Tj3+YZ23iIZzdKSkDo9g5WCj3tnR0ISuGbhJ
+ cUC7DpE3d8+6UxrBQXIe312wuKs5guDtoWhid3vJfpP2Gzh0N0CZyrCojASPbY9pRvq6
+ 2Zh5QNldMzhDsdJxitNi88nCyBmmWgX5WF5D5x/NX9Y5G++ggIYBAGfPkiIVguw8H03M
+ 2gDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=rMWEtLnC4u+GSkpyrMggEcsRqsLKGC5Kgx8RCoWgoP8=;
- b=gAkt9dS2kNS/ds66mFTsHgGP4+druMNY3k9x6Tx4VNyJMs7AvY6KygGe45GOZbvBCM
- xk6xyfG0DFWgdVng3+IDVaW7U5m3oJhNEK/ItxtEWbJFrZ6TG7wjI8OICJnoEFCrdm+k
- cbUJPEB894iYDuYgYOfcTbxCuNMS6A21Ss0UEZ3RmFfyncCa0C7SYMrrzYVcKNGGoOtU
- qc7TT1XUuTn/6KFKH2mS/eh1QwRsrG73pM702rCNeKnom7pkws38GD6itg3iPS8Y8SbN
- ZkV4UvhKDTQpV1pAzoAv+BstQb8Y1f+Tb4iobDkUyHASy7z7dkRucQaIah4f5Qgk+SZZ
- oEPg==
-X-Gm-Message-State: APjAAAVvFdU45bVtlravHg0M2xwW0GzMGbByVbWuVVOFSBLb12O5TDAH
- RXJPllWwqVlFfWojj88ajwjKy2a3OQrWB87TsKk=
-X-Google-Smtp-Source: APXvYqzTyTPBy6ErJ7sdnn64C7zYEpu4NkgvC94ld48iVT2BcZSQyrHuPKvNYehhj2FTj2NFitd4ubKoO4TcYjWQO2s=
-X-Received: by 2002:a63:fc0c:: with SMTP id j12mr11223909pgi.378.1581498611254; 
- Wed, 12 Feb 2020 01:10:11 -0800 (PST)
+ bh=sDe1AgAtZMTBswle0D6FGWKTb7hbTE9PCf3WEVHRGts=;
+ b=sk85a0m/R2DIErW2Br1a6/cRiokUze4t9Cwbp9XQw+IlRuve9aNABavIjDVwiWkrKp
+ 7YuHhsC7A7Tut6IMwCPKrS0xoMfQUTnxG+oOmdfmTeOnPPCakLtoGMo+zlvCRxUB4guh
+ Eo4AOkvrksfqQF4IiXOIaFR9uaa+gOlQQTnYCqFTWMzPL2dFrs4+QXnGdSjSWyozy2IG
+ iw1fD6OTVbGTamWV8nO7+01EhUa0+VQlpcOHUPxae8JnZ+vwcElePZ5cyEyqidQeG1QQ
+ vZeb1AehM9poeLROEmKHpEkHhEwtxtx5tDx0ewWAUB3M3Ba2U0ltS1tVGUI/C2MgIU2k
+ KNVw==
+X-Gm-Message-State: APjAAAXOkjAyrmzPJ03BTeKirsvZVc3u5BdB7sFOAHdD5HNlsAgHF4Fs
+ PwLnkrT+NsZtKPsjaMsEHHoHDi2eN+mJydKof9U=
+X-Google-Smtp-Source: APXvYqyZ4tXa/Bz1TU2WB8Qw8s2ub4TYrIldIrHS/DRv6Hw7VztBunHuynb35UMhAgrhnK6n/IvcD4LLg/cdxO9Jwbc=
+X-Received: by 2002:a17:902:a588:: with SMTP id
+ az8mr7671909plb.123.1581499429334; 
+ Wed, 12 Feb 2020 01:23:49 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1581478323.git.afzal.mohd.ma@gmail.com>
- <85574e1ae1e6870ef01b6e61c5b1c5f393c2ac4b.1581478324.git.afzal.mohd.ma@gmail.com>
-In-Reply-To: <85574e1ae1e6870ef01b6e61c5b1c5f393c2ac4b.1581478324.git.afzal.mohd.ma@gmail.com>
+References: <dcdd615f77dacf8a98e18950b66fb5a675277f38.1581498987.git.michal.simek@xilinx.com>
+In-Reply-To: <dcdd615f77dacf8a98e18950b66fb5a675277f38.1581498987.git.michal.simek@xilinx.com>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Wed, 12 Feb 2020 01:10:00 -0800
-Message-ID: <CAMo8BfJU5Uz7uDcbX8QZX=16JJNKvaZvDoS1fqK1fsOaKQ-0mg@mail.gmail.com>
-To: afzal mohammed <afzal.mohd.ma@gmail.com>
-Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, Kees Cook <keescook@chromium.org>,
- Sinan Kaya <okaya@kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+Date: Wed, 12 Feb 2020 01:23:38 -0800
+Message-ID: <CAMo8BfLYM-_SbqmMUCVjwqL7MpA2W7toTg_F6HTY4Sg5QxGzfw@mail.gmail.com>
+To: Michal Simek <michal.simek@xilinx.com>
+Cc: Rich Felker <dalias@libc.org>,
+ "open list:IA64 \(Itanium\) PL..." <linux-ia64@vger.kernel.org>,
+ "open list:SUPERH" <linux-sh@vger.kernel.org>,
+ "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+ "open list:SPARC + UltraSPAR..." <sparclinux@vger.kernel.org>,
+ Stefan Asserhall <stefan.asserhall@xilinx.com>,
+ Yoshinori Sato <ysato@users.sourceforge.jp>, Helge Deller <deller@gmx.de>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Matt Turner <mattst88@gmail.com>,
+ Fenghua Yu <fenghua.yu@intel.com>, Arnd Bergmann <arnd@arndb.de>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)" <linux-xtensa@linux-xtensa.org>,
+ "open list:M68K ARCHITECTURE" <linux-m68k@lists.linux-m68k.org>,
+ Ivan Kokshaysky <ink@jurassic.park.msu.ru>, git@xilinx.com,
+ Richard Henderson <rth@twiddle.net>, Michal Simek <monstr@monstr.eu>,
+ Tony Luck <tony.luck@intel.com>,
+ "open list:PARISC ARCHITECTURE" <linux-parisc@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ "open list:ALPHA PORT" <linux-alpha@vger.kernel.org>,
  Andrew Morton <akpm@linux-foundation.org>,
- Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [Linux-Xtensa] [PATCH 15/18] xtensa: replace setup_irq() by
-	request_irq()
+ "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Linux-Xtensa] [PATCH v2] asm-generic: Fix unistd_32.h
+	generation format
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -72,29 +86,53 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Wed, Feb 12, 2020 at 12:05 AM afzal mohammed <afzal.mohd.ma@gmail.com> wrote:
+On Wed, Feb 12, 2020 at 1:16 AM Michal Simek <michal.simek@xilinx.com> wrote:
 >
-> request_irq() is preferred over setup_irq(). Existing callers of
-> setup_irq() reached mostly via 'init_IRQ()' & 'time_init()', while
-> memory allocators are ready by 'mm_init()'.
+> Generated files are also checked by sparse that's why add newline
+> to remove sparse (C=1) warning.
 >
-> Per tglx[1], setup_irq() existed in olden days when allocators were not
-> ready by the time early interrupts were initialized.
+> The issue was found on Microblaze and reported like this:
+> ./arch/microblaze/include/generated/uapi/asm/unistd_32.h:438:45:
+> warning: no newline at end of file
 >
-> Hence replace setup_irq() by request_irq().
->
-> Seldom remove_irq() usage has been observed coupled with setup_irq(),
-> wherever that has been found, it too has been replaced by free_irq().
->
-> [1] https://lkml.kernel.org/r/alpine.DEB.2.20.1710191609480.1971@nanos
->
-> Signed-off-by: afzal mohammed <afzal.mohd.ma@gmail.com>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> Reviewed-by: Stefan Asserhall <stefan.asserhall@xilinx.com>
 > ---
->  arch/xtensa/kernel/smp.c  |  8 ++------
->  arch/xtensa/kernel/time.c | 10 +++-------
->  2 files changed, 5 insertions(+), 13 deletions(-)
+>
+> Changes in v2:
+> - Update also others archs not just microblaze - Arnd
+> - Align subject and description to match multiarch chagne
+>
+>  arch/alpha/kernel/syscalls/syscallhdr.sh      | 1 +
+>  arch/ia64/kernel/syscalls/syscallhdr.sh       | 1 +
+>  arch/m68k/kernel/syscalls/syscallhdr.sh       | 1 +
+>  arch/microblaze/kernel/syscalls/syscallhdr.sh | 1 +
+>  arch/parisc/kernel/syscalls/syscallhdr.sh     | 1 +
+>  arch/sh/kernel/syscalls/syscallhdr.sh         | 1 +
+>  arch/sparc/kernel/syscalls/syscallhdr.sh      | 1 +
+>  arch/xtensa/kernel/syscalls/syscallhdr.sh     | 1 +
+>  8 files changed, 8 insertions(+)
 
+For xtensa:
 Acked-by: Max Filippov <jcmvbkbc@gmail.com>
+
+...
+
+> diff --git a/arch/m68k/kernel/syscalls/syscallhdr.sh b/arch/m68k/kernel/syscalls/syscallhdr.sh
+> index 6f357d68ef44..8ac15be01ac2 100644
+> --- a/arch/m68k/kernel/syscalls/syscallhdr.sh
+> +++ b/arch/m68k/kernel/syscalls/syscallhdr.sh
+> @@ -33,4 +33,5 @@ grep -E "^[0-9A-Fa-fXx]+[[:space:]]+${my_abis}" "$in" | sort -n | (
+>         printf "#endif\n"
+>         printf "\n"
+>         printf "#endif /* %s */\n" "${fileguard}"
+
+Here there's already \n at the end, so no need for another one?
+
+> +       printf "\n"
+>  ) > "$out"
+
+...
 
 -- 
 Thanks.
