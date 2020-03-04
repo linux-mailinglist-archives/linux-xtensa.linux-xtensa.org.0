@@ -2,57 +2,55 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id ACF2915B22E
-	for <lists+linux-xtensa@lfdr.de>; Wed, 12 Feb 2020 21:52:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 293DB178895
+	for <lists+linux-xtensa@lfdr.de>; Wed,  4 Mar 2020 03:42:08 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 058FC52C1;
-	Wed, 12 Feb 2020 20:41:28 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id D7ADB655E;
+	Wed,  4 Mar 2020 02:30:18 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com
- [209.85.214.194])
- by linux-xtensa.org (Postfix) with ESMTPS id A1EAE524A
- for <linux-xtensa@linux-xtensa.org>; Wed, 12 Feb 2020 20:41:26 +0000 (UTC)
-Received: by mail-pl1-f194.google.com with SMTP id c23so1411323plz.4
- for <linux-xtensa@linux-xtensa.org>; Wed, 12 Feb 2020 12:52:37 -0800 (PST)
+Received: from mail-pj1-f68.google.com (mail-pj1-f68.google.com
+ [209.85.216.68])
+ by linux-xtensa.org (Postfix) with ESMTPS id 653406556
+ for <linux-xtensa@linux-xtensa.org>; Wed,  4 Mar 2020 02:30:17 +0000 (UTC)
+Received: by mail-pj1-f68.google.com with SMTP id s8so235013pjq.0
+ for <linux-xtensa@linux-xtensa.org>; Tue, 03 Mar 2020 18:42:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ktEu+4lqCDbKO9qnX2sTlUigBje7mt6XvSgw9jTL1Mk=;
- b=uTDlFixc9E3zW4wTk0TrpEQ2A3Yli1behriN27YAL8w35rHbk2z+09sIys8fE4GSiO
- L5jyVxcLE5sYowM0Mkb+TgFO66yvc5H+CjNsF6nlPAmfrH3NwrA4aDcqMslox3XL7AMm
- FdSXPyFcop/k3XTrwwTNEkf5kayQUlnEUq/7/suKwCn92RI0hVjsPXI0+rXxHqVC3NLb
- 3xDXT9x7DXMJBdrxZH1KxnezomenMaoz7H4Xe3kv13FwzwM3nYKwN+BA8VB+3dPOKErS
- iuLTXzw8ztaXWV7aW62YauSfz9ya4Txr9pikwo20YqYEBHddQNVuPeNnBjY+2TLeKe1P
- meww==
+ :cc; bh=0gnzUT6IfMkAevkPG6epW/0WW8fFX/S7HOzubTrdA+s=;
+ b=nVFh8gi7N77XyRa+b63fYk+I0vUvemTDtUd5kSi2V/DAsh0HIkXMm2G7QPnEknsEuU
+ AewvPoJmlX3zPpdVnF4UNBM8bDjV10nYjpEasiLm92k/I15EiIPdpx2mhwfGesyJL4hh
+ iTSJpf28PySMw9AyfGfppFxfEGhZ7DTFC7OqvLogUEuPKs2GLHFTKw7/thmBLWxZIPXA
+ hb7PfokEpMBXDZoPkg4qxFo35/LDVDwXJP6jwLFha8GyuFZOQLim2pdfTlvadRePhDWY
+ U6ZKW8gzvamzf86U3vO8jmVHyZzvMzaajP+qu8FdDSQdj/QRHzGayCRDY7Fzl6o625fp
+ +C3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=ktEu+4lqCDbKO9qnX2sTlUigBje7mt6XvSgw9jTL1Mk=;
- b=UECvEK3NWfdDYbXZJs8NCcftq9JI7VHoJayPWRLvVD7/lPOAW+Nf0VDTwoXdzOu9/L
- GYiErzRI3+M9noROyzWJUZWyLZHBtqeXar2r2hlD4yPEw/S/dK6OGw8ZgMujcan9UtjU
- zWwp6DjmMF5KHIdnoIWG2Y5dsuDMZRiKvpFaoDJKAmrW4ZHhvtCxY4fh24k+VzwTMpl1
- kjXWgO+dyRAhduHvsyoS6heMn8MjO6maT9PhhNeUJnD15HBmBnEQGmsGGi6Ds9wskn/k
- Osk2XgwT5MmoCSgA/sSBo1HdMwz0SAFm2/iqoHF9mIBvLXTxrREfRMCpsIwdBlVmua7s
- tIoQ==
-X-Gm-Message-State: APjAAAXSAs1l53u4mi9MLOB95S1zo5mG/xbUpX0P1BmAsgaRxjjeJH+R
- /Aec7oMiJwun3UAPmHj8GJoqpkFONulcFRW/u2U=
-X-Google-Smtp-Source: APXvYqwxpkbf0L8zsRg5l2ML4V17u7r9J3ky+ezHWyvI6+qF3r5FN6i0X2ddHsr1cxJGlD0sr2lEoIiUu0uJATfEkKs=
-X-Received: by 2002:a17:90b:f06:: with SMTP id
- br6mr974150pjb.125.1581540756516; 
- Wed, 12 Feb 2020 12:52:36 -0800 (PST)
+ bh=0gnzUT6IfMkAevkPG6epW/0WW8fFX/S7HOzubTrdA+s=;
+ b=khKjVijt4T2VmmdVupH5V5vmmgdI8FxKx2GTAJWzh7BoQcLrLfpKlhuwhesRHZ/O+L
+ 6jKshla+XsjVvPbTsUm49Kg3pwjI13BJX0stVQNtdoBhO78oxuGNFzySvf/WjDznmDlw
+ Hx0rD6ISk69dLBdyBuMgPoffKzQ4VSufsqeDlZY+FUFaBJ6Dhbk/ZFCim82rNyUL8YB2
+ av5jBcxigMzfX8iS830YIBo+s/Zan9viLcrLSHIDKFfzJxDaZhr4RA1bMlkSKOwoYHDd
+ 0cQzthhpLUaP+mvFa/cC4eWV4YZXTs6ID5F5KcHC06+gGNxBBd4rYfIXB2TzX/+DosVd
+ lXKg==
+X-Gm-Message-State: ANhLgQ2bdLFP59BKloPEXvJAEyIyGVnIHx2fcLFQbBdgiQE6FAyBQZmp
+ SAEFK591pU3UX8+GvfecvRiSnYuSBpdzp4a7tzs=
+X-Google-Smtp-Source: ADFU+vvsJSXksvOHwF2Z5jx7XbZeF5IkgdGQtpqkIcGOMQXX3UZJiunOWG6yBfioCy+TibzaTkQ9lN+XnNK7gz4UjNQ=
+X-Received: by 2002:a17:90a:d205:: with SMTP id o5mr699361pju.46.1583289725111; 
+ Tue, 03 Mar 2020 18:42:05 -0800 (PST)
 MIME-Version: 1.0
-References: <20200212101947.9534-1-geert+renesas@glider.be>
-In-Reply-To: <20200212101947.9534-1-geert+renesas@glider.be>
+References: <20200304004112.3848-1-afzal.mohd.ma@gmail.com>
+In-Reply-To: <20200304004112.3848-1-afzal.mohd.ma@gmail.com>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Wed, 12 Feb 2020 12:52:24 -0800
-Message-ID: <CAMo8BfK9LFfopJcNUDruFK-G_KqYP=7u9zdpNgZ5OZ_Ty7rO8w@mail.gmail.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: linux-clk@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: Replace <linux/clk-provider.h>
-	by <linux/of_clk.h>
+Date: Tue, 3 Mar 2020 18:41:53 -0800
+Message-ID: <CAMo8BfLxQ_zmTSPS1En7BxCXORKh3wBK2KnKoUBDFVgOufuEGQ@mail.gmail.com>
+To: afzal mohammed <afzal.mohd.ma@gmail.com>
+Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [Linux-Xtensa] [PATCH v3] xtensa: replace setup_irq() by
+	request_irq()
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -70,22 +68,28 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Wed, Feb 12, 2020 at 2:19 AM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
+On Tue, Mar 3, 2020 at 4:41 PM afzal mohammed <afzal.mohd.ma@gmail.com> wrote:
 >
-> The Xtensa time code is not a clock provider, and just needs to call
-> of_clk_init().
+> request_irq() is preferred over setup_irq(). Invocations of setup_irq()
+> occur after memory allocators are ready.
 >
-> Hence it can include <linux/of_clk.h> instead of <linux/clk-provider.h>.
+> Per tglx[1], setup_irq() existed in olden days when allocators were not
+> ready by the time early interrupts were initialized.
 >
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Hence replace setup_irq() by request_irq().
+>
+> [1] https://lkml.kernel.org/r/alpine.DEB.2.20.1710191609480.1971@nanos
+>
+> Signed-off-by: afzal mohammed <afzal.mohd.ma@gmail.com>
 > ---
->  arch/xtensa/kernel/time.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Hi Max Filippov,
+>
+> i believe you are the maintainer of xtensa, if you are okay w/ this change,
+> please consider taking it thr' your tree, else please let me know.
 
-Acked-by: Max Filippov <jcmvbkbc@gmail.com>
+Sure. Applied to my xtensa tree.
 
--- 
+--
 Thanks.
 -- Max
 _______________________________________________
