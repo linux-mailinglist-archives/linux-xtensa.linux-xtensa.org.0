@@ -2,55 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 293DB178895
-	for <lists+linux-xtensa@lfdr.de>; Wed,  4 Mar 2020 03:42:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F08C179EC0
+	for <lists+linux-xtensa@lfdr.de>; Thu,  5 Mar 2020 05:53:49 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id D7ADB655E;
-	Wed,  4 Mar 2020 02:30:18 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id B52F664B2;
+	Thu,  5 Mar 2020 04:41:57 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pj1-f68.google.com (mail-pj1-f68.google.com
- [209.85.216.68])
- by linux-xtensa.org (Postfix) with ESMTPS id 653406556
- for <linux-xtensa@linux-xtensa.org>; Wed,  4 Mar 2020 02:30:17 +0000 (UTC)
-Received: by mail-pj1-f68.google.com with SMTP id s8so235013pjq.0
- for <linux-xtensa@linux-xtensa.org>; Tue, 03 Mar 2020 18:42:05 -0800 (PST)
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
+ [209.85.208.195])
+ by linux-xtensa.org (Postfix) with ESMTPS id 0700564A7
+ for <linux-xtensa@linux-xtensa.org>; Thu,  5 Mar 2020 04:41:56 +0000 (UTC)
+Received: by mail-lj1-f195.google.com with SMTP id u26so4542745ljd.8
+ for <linux-xtensa@linux-xtensa.org>; Wed, 04 Mar 2020 20:53:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=0gnzUT6IfMkAevkPG6epW/0WW8fFX/S7HOzubTrdA+s=;
- b=nVFh8gi7N77XyRa+b63fYk+I0vUvemTDtUd5kSi2V/DAsh0HIkXMm2G7QPnEknsEuU
- AewvPoJmlX3zPpdVnF4UNBM8bDjV10nYjpEasiLm92k/I15EiIPdpx2mhwfGesyJL4hh
- iTSJpf28PySMw9AyfGfppFxfEGhZ7DTFC7OqvLogUEuPKs2GLHFTKw7/thmBLWxZIPXA
- hb7PfokEpMBXDZoPkg4qxFo35/LDVDwXJP6jwLFha8GyuFZOQLim2pdfTlvadRePhDWY
- U6ZKW8gzvamzf86U3vO8jmVHyZzvMzaajP+qu8FdDSQdj/QRHzGayCRDY7Fzl6o625fp
- +C3A==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=tYNHbddtUs2E70iGSRPE7rk3ZdXX6C3AwCcA/K65mhM=;
+ b=bw39y8L3qQpVAidVRKwAUlYAA4tLyKWdGIUc99l2RdeoMP2x4Tsn9ctplKI3S2XOBU
+ zmps1piSR4GqUvWKqgxj8ZXGfjc/6hMt+Bg6mnViGgx80EYm62KObZDj52UOnPtGk9mj
+ 01VPncHyUvojj3lWzvEy7aHcb3sCtSpjv8XS2NKMRyJisa3lW9wjjHzBQKziXTJuwQ97
+ YB3Y4AV4gjmTdsuX5di2mB9LQctCHm/4vqfOYzh7ajNSmYBg00IZFHlfD8GGdnT7qUC7
+ D7bB8lb9aBZlCQ46/wlhRvdBeMdnsP8MrHV0SGfHDCJmng3rYab3b8JKr9545t7YRAdV
+ EC7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=0gnzUT6IfMkAevkPG6epW/0WW8fFX/S7HOzubTrdA+s=;
- b=khKjVijt4T2VmmdVupH5V5vmmgdI8FxKx2GTAJWzh7BoQcLrLfpKlhuwhesRHZ/O+L
- 6jKshla+XsjVvPbTsUm49Kg3pwjI13BJX0stVQNtdoBhO78oxuGNFzySvf/WjDznmDlw
- Hx0rD6ISk69dLBdyBuMgPoffKzQ4VSufsqeDlZY+FUFaBJ6Dhbk/ZFCim82rNyUL8YB2
- av5jBcxigMzfX8iS830YIBo+s/Zan9viLcrLSHIDKFfzJxDaZhr4RA1bMlkSKOwoYHDd
- 0cQzthhpLUaP+mvFa/cC4eWV4YZXTs6ID5F5KcHC06+gGNxBBd4rYfIXB2TzX/+DosVd
- lXKg==
-X-Gm-Message-State: ANhLgQ2bdLFP59BKloPEXvJAEyIyGVnIHx2fcLFQbBdgiQE6FAyBQZmp
- SAEFK591pU3UX8+GvfecvRiSnYuSBpdzp4a7tzs=
-X-Google-Smtp-Source: ADFU+vvsJSXksvOHwF2Z5jx7XbZeF5IkgdGQtpqkIcGOMQXX3UZJiunOWG6yBfioCy+TibzaTkQ9lN+XnNK7gz4UjNQ=
-X-Received: by 2002:a17:90a:d205:: with SMTP id o5mr699361pju.46.1583289725111; 
- Tue, 03 Mar 2020 18:42:05 -0800 (PST)
-MIME-Version: 1.0
-References: <20200304004112.3848-1-afzal.mohd.ma@gmail.com>
-In-Reply-To: <20200304004112.3848-1-afzal.mohd.ma@gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=tYNHbddtUs2E70iGSRPE7rk3ZdXX6C3AwCcA/K65mhM=;
+ b=mNAFGPkjY7KpZbqFtPiy04PZ69Uf8mOG1X5adNFeAGbhHssyLbABRpVhUcBwth87qb
+ xrQCc+9//k+H57eNipEVHfvV7KBnVwHO2D8UyDxu8eIM/sNfJoRiN2mPicg2rhWthspr
+ u6PigJR5HUzX83cqoaf2lbpEriHhJ4U9+WICano6drO7Chz+cf6ylSu/C3fnC07h+Q9R
+ C/X7+mLcRv/tu3ULLXlhYL/qDnU5FC8ZmW2KJzg7ZDg6LVCh79xG1vKo3ZxD4jCy/byt
+ WOdM3k+8ry2PpPCMvj5dIja5EiaEO9++O5IPr7j5BrDcip1kovnOVx1ckiL+CsTUGuCk
+ iyfw==
+X-Gm-Message-State: ANhLgQ0VEXcDyUG9EId8/jtymOaRctBxs/yYxsCoPteAsfQKVS58MJzF
+ qnL4B7L985o9FMJp4EDwpt0=
+X-Google-Smtp-Source: ADFU+vsCKAc5fMMae8ra+DaddlEURqh6WIdDEVaQerpWu4RhO5g/7vZbKrep/97rIUwRdXZiaBtg/w==
+X-Received: by 2002:a2e:8898:: with SMTP id k24mr1313778lji.36.1583384025285; 
+ Wed, 04 Mar 2020 20:53:45 -0800 (PST)
+Received: from octofox.hsd1.ca.comcast.net
+ (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
+ by smtp.gmail.com with ESMTPSA id r25sm16278524lfn.36.2020.03.04.20.53.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 04 Mar 2020 20:53:44 -0800 (PST)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Tue, 3 Mar 2020 18:41:53 -0800
-Message-ID: <CAMo8BfLxQ_zmTSPS1En7BxCXORKh3wBK2KnKoUBDFVgOufuEGQ@mail.gmail.com>
-To: afzal mohammed <afzal.mohd.ma@gmail.com>
-Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [Linux-Xtensa] [PATCH v3] xtensa: replace setup_irq() by
-	request_irq()
+To: binutils@sourceware.org
+Date: Wed,  4 Mar 2020 20:53:28 -0800
+Message-Id: <20200305045328.11298-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: Sterling Augustine <augustine.sterling@gmail.com>,
+ Eric Tsai <erictsai@cadence.com>, Max Filippov <jcmvbkbc@gmail.com>,
+ linux-xtensa@linux-xtensa.org
+Subject: [Linux-Xtensa] [PATCH] bfd: xtensa: fix PR ld/25630
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -68,30 +73,36 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Tue, Mar 3, 2020 at 4:41 PM afzal mohammed <afzal.mohd.ma@gmail.com> wrote:
->
-> request_irq() is preferred over setup_irq(). Invocations of setup_irq()
-> occur after memory allocators are ready.
->
-> Per tglx[1], setup_irq() existed in olden days when allocators were not
-> ready by the time early interrupts were initialized.
->
-> Hence replace setup_irq() by request_irq().
->
-> [1] https://lkml.kernel.org/r/alpine.DEB.2.20.1710191609480.1971@nanos
->
-> Signed-off-by: afzal mohammed <afzal.mohd.ma@gmail.com>
-> ---
-> Hi Max Filippov,
->
-> i believe you are the maintainer of xtensa, if you are okay w/ this change,
-> please consider taking it thr' your tree, else please let me know.
+bfd/
+2020-03-05  Max Filippov  <jcmvbkbc@gmail.com>
 
-Sure. Applied to my xtensa tree.
+	* elf32-xtensa.c (shrink_dynamic_reloc_sections): Shrink dynamic
+	relocation sections for any removed reference to a dynamic symbol.
+---
+ bfd/elf32-xtensa.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
---
-Thanks.
--- Max
+diff --git a/bfd/elf32-xtensa.c b/bfd/elf32-xtensa.c
+index 12ff9f772aaf..65e14d87940c 100644
+--- a/bfd/elf32-xtensa.c
++++ b/bfd/elf32-xtensa.c
+@@ -10148,10 +10148,9 @@ shrink_dynamic_reloc_sections (struct bfd_link_info *info,
+ 
+   if ((r_type == R_XTENSA_32 || r_type == R_XTENSA_PLT)
+       && (input_section->flags & SEC_ALLOC) != 0
+-      && (dynamic_symbol || bfd_link_pic (info))
+-      && (!h || h->root.type != bfd_link_hash_undefweak
+-	  || (dynamic_symbol
+-	      && (bfd_link_dll (info) || info->export_dynamic))))
++      && (dynamic_symbol
++	  || (bfd_link_pic (info)
++	      && (!h || h->root.type != bfd_link_hash_undefweak))))
+     {
+       asection *srel;
+       bfd_boolean is_plt = FALSE;
+-- 
+2.20.1
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
