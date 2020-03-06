@@ -2,60 +2,57 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F08C179EC0
-	for <lists+linux-xtensa@lfdr.de>; Thu,  5 Mar 2020 05:53:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3256617B520
+	for <lists+linux-xtensa@lfdr.de>; Fri,  6 Mar 2020 04:52:02 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id B52F664B2;
-	Thu,  5 Mar 2020 04:41:57 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 18794423C;
+	Fri,  6 Mar 2020 03:40:09 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
- [209.85.208.195])
- by linux-xtensa.org (Postfix) with ESMTPS id 0700564A7
- for <linux-xtensa@linux-xtensa.org>; Thu,  5 Mar 2020 04:41:56 +0000 (UTC)
-Received: by mail-lj1-f195.google.com with SMTP id u26so4542745ljd.8
- for <linux-xtensa@linux-xtensa.org>; Wed, 04 Mar 2020 20:53:46 -0800 (PST)
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com
+ [209.85.214.196])
+ by linux-xtensa.org (Postfix) with ESMTPS id 97CBC2628
+ for <linux-xtensa@linux-xtensa.org>; Fri,  6 Mar 2020 03:40:07 +0000 (UTC)
+Received: by mail-pl1-f196.google.com with SMTP id b8so295844plx.4
+ for <linux-xtensa@linux-xtensa.org>; Thu, 05 Mar 2020 19:51:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=tYNHbddtUs2E70iGSRPE7rk3ZdXX6C3AwCcA/K65mhM=;
- b=bw39y8L3qQpVAidVRKwAUlYAA4tLyKWdGIUc99l2RdeoMP2x4Tsn9ctplKI3S2XOBU
- zmps1piSR4GqUvWKqgxj8ZXGfjc/6hMt+Bg6mnViGgx80EYm62KObZDj52UOnPtGk9mj
- 01VPncHyUvojj3lWzvEy7aHcb3sCtSpjv8XS2NKMRyJisa3lW9wjjHzBQKziXTJuwQ97
- YB3Y4AV4gjmTdsuX5di2mB9LQctCHm/4vqfOYzh7ajNSmYBg00IZFHlfD8GGdnT7qUC7
- D7bB8lb9aBZlCQ46/wlhRvdBeMdnsP8MrHV0SGfHDCJmng3rYab3b8JKr9545t7YRAdV
- EC7Q==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=YxeRd5XSIaeUn43WQGWARqLK4HMbMbnVMcjMJ4XSsnw=;
+ b=gmBhp/L7BDY/KIDGcsA5IUH4AKoGs7FiudYdVkUZ9SrjCsB/Jn65dvVZjmUNE0tvWK
+ qTyMXCXzAvfs+DGO7eUm9TfPQXJG07PREvIjqxwQbI6N21BT+EedDccEjmPjj6/e/LMy
+ 7LsC0AVgLlz6nbpaCipyK3uJ+y7os8hbAsppUAmCcqSHq6niYa5bU1JlwqHj0/WcqYVU
+ BqBI+wlWqf8OFTLozxSaTdUE4/3OWQYqlXLp8T4+cP0UO4UvTs5vClX5YmQ8tdG8c9Bh
+ zfoNeC5+9oLdUg9jpKLo2XzHT2joFINadCvl5xMv2etdP2EJ5lRPjxhRn2HPJdhpIhqO
+ aG7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=tYNHbddtUs2E70iGSRPE7rk3ZdXX6C3AwCcA/K65mhM=;
- b=mNAFGPkjY7KpZbqFtPiy04PZ69Uf8mOG1X5adNFeAGbhHssyLbABRpVhUcBwth87qb
- xrQCc+9//k+H57eNipEVHfvV7KBnVwHO2D8UyDxu8eIM/sNfJoRiN2mPicg2rhWthspr
- u6PigJR5HUzX83cqoaf2lbpEriHhJ4U9+WICano6drO7Chz+cf6ylSu/C3fnC07h+Q9R
- C/X7+mLcRv/tu3ULLXlhYL/qDnU5FC8ZmW2KJzg7ZDg6LVCh79xG1vKo3ZxD4jCy/byt
- WOdM3k+8ry2PpPCMvj5dIja5EiaEO9++O5IPr7j5BrDcip1kovnOVx1ckiL+CsTUGuCk
- iyfw==
-X-Gm-Message-State: ANhLgQ0VEXcDyUG9EId8/jtymOaRctBxs/yYxsCoPteAsfQKVS58MJzF
- qnL4B7L985o9FMJp4EDwpt0=
-X-Google-Smtp-Source: ADFU+vsCKAc5fMMae8ra+DaddlEURqh6WIdDEVaQerpWu4RhO5g/7vZbKrep/97rIUwRdXZiaBtg/w==
-X-Received: by 2002:a2e:8898:: with SMTP id k24mr1313778lji.36.1583384025285; 
- Wed, 04 Mar 2020 20:53:45 -0800 (PST)
-Received: from octofox.hsd1.ca.comcast.net
- (jcmvbkbc-1-pt.tunnel.tserv24.sto1.ipv6.he.net. [2001:470:27:1fa::2])
- by smtp.gmail.com with ESMTPSA id r25sm16278524lfn.36.2020.03.04.20.53.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 04 Mar 2020 20:53:44 -0800 (PST)
-From: Max Filippov <jcmvbkbc@gmail.com>
-To: binutils@sourceware.org
-Date: Wed,  4 Mar 2020 20:53:28 -0800
-Message-Id: <20200305045328.11298-1-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.20.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=YxeRd5XSIaeUn43WQGWARqLK4HMbMbnVMcjMJ4XSsnw=;
+ b=kMGG9lDf7QI20lltmHm6cw7W/d78mRLY0Hlo/rQX6ySiFXPXSD3zktha8mjVDURS7d
+ rqx4A2hxAMM0Z5J6G29FFhObaFz3dqnM2GfogC2mLwdISlj7IeM3itI4JKzviizGzGkU
+ 0Jfx6nU3lAr3P4yZMINpvb82umTWDNq/oLP8n/CBEJ/QX/evffBSyY9mjs3kcCuYBjL5
+ WP41Pybi6j6d0ypjc9QwnV8IUQj6Oe/pXLtROA7c0xEa34qdCat7E489sg9VFTFQuUIJ
+ mLRmLudRTrE2lNeTf/R1FEIIyimQN8j+Q3Z9FuIASCjpkZFB7U77cG7V8Tg8T1EvJQRu
+ yPrQ==
+X-Gm-Message-State: ANhLgQ1JPs/gCfw7fJJjIxCb1sk2QF94JuxDT4nNMUynbl/4N+6mn4+3
+ arisPpV4ltHHiW+V7K8HjmXl20hdeSOGF/pb34U=
+X-Google-Smtp-Source: ADFU+vsk6T8YHyZOAYZRVVXtFu/9fcXXSHpkYd/+s4B/kNr5GmjxOhe2MbmEAaPL36K8wWtY0rArZApyNMdAo/xzfGU=
+X-Received: by 2002:a17:90a:d205:: with SMTP id
+ o5mr1473884pju.46.1583466718940; 
+ Thu, 05 Mar 2020 19:51:58 -0800 (PST)
 MIME-Version: 1.0
-Cc: Sterling Augustine <augustine.sterling@gmail.com>,
- Eric Tsai <erictsai@cadence.com>, Max Filippov <jcmvbkbc@gmail.com>,
- linux-xtensa@linux-xtensa.org
-Subject: [Linux-Xtensa] [PATCH] bfd: xtensa: fix PR ld/25630
+References: <20200305045328.11298-1-jcmvbkbc@gmail.com>
+ <CAGSvup_1CbtFO2tTiW7UJGaKYC4q0u7=Qt_RFUsGL4iS9wuoUg@mail.gmail.com>
+In-Reply-To: <CAGSvup_1CbtFO2tTiW7UJGaKYC4q0u7=Qt_RFUsGL4iS9wuoUg@mail.gmail.com>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Thu, 5 Mar 2020 19:51:44 -0800
+Message-ID: <CAMo8BfL7zZoSM+1fDinSDmT7yzY0BWGs9hycgncv36qx5SNMbA@mail.gmail.com>
+To: "augustine.sterling@gmail.com" <augustine.sterling@gmail.com>
+Cc: Eric Tsai <erictsai@cadence.com>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>, Binutils <binutils@sourceware.org>
+Subject: Re: [Linux-Xtensa] [PATCH] bfd: xtensa: fix PR ld/25630
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -73,36 +70,22 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-bfd/
-2020-03-05  Max Filippov  <jcmvbkbc@gmail.com>
+On Thu, Mar 5, 2020 at 9:36 AM augustine.sterling@gmail.com
+<augustine.sterling@gmail.com> wrote:
+>
+> On Wed, Mar 4, 2020 at 8:53 PM Max Filippov <jcmvbkbc@gmail.com> wrote:
+> >
+> > bfd/
+> > 2020-03-05  Max Filippov  <jcmvbkbc@gmail.com>
+> >
+> >         * elf32-xtensa.c (shrink_dynamic_reloc_sections): Shrink dynamic
+> >         relocation sections for any removed reference to a dynamic symbol.
+>
+> Looks good. Thanks for the fix.
 
-	* elf32-xtensa.c (shrink_dynamic_reloc_sections): Shrink dynamic
-	relocation sections for any removed reference to a dynamic symbol.
----
- bfd/elf32-xtensa.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+Thanks. Applied to master.
 
-diff --git a/bfd/elf32-xtensa.c b/bfd/elf32-xtensa.c
-index 12ff9f772aaf..65e14d87940c 100644
---- a/bfd/elf32-xtensa.c
-+++ b/bfd/elf32-xtensa.c
-@@ -10148,10 +10148,9 @@ shrink_dynamic_reloc_sections (struct bfd_link_info *info,
- 
-   if ((r_type == R_XTENSA_32 || r_type == R_XTENSA_PLT)
-       && (input_section->flags & SEC_ALLOC) != 0
--      && (dynamic_symbol || bfd_link_pic (info))
--      && (!h || h->root.type != bfd_link_hash_undefweak
--	  || (dynamic_symbol
--	      && (bfd_link_dll (info) || info->export_dynamic))))
-+      && (dynamic_symbol
-+	  || (bfd_link_pic (info)
-+	      && (!h || h->root.type != bfd_link_hash_undefweak))))
-     {
-       asection *srel;
-       bfd_boolean is_plt = FALSE;
--- 
-2.20.1
-
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
