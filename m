@@ -2,59 +2,57 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 97BAB17B7C8
-	for <lists+linux-xtensa@lfdr.de>; Fri,  6 Mar 2020 08:54:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05DF617F086
+	for <lists+linux-xtensa@lfdr.de>; Tue, 10 Mar 2020 07:35:01 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 0FDDD52CD;
-	Fri,  6 Mar 2020 07:42:22 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 3FBC66506;
+	Tue, 10 Mar 2020 06:23:00 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com
- [209.85.214.194])
- by linux-xtensa.org (Postfix) with ESMTPS id 987195249
- for <linux-xtensa@linux-xtensa.org>; Fri,  6 Mar 2020 07:42:19 +0000 (UTC)
-Received: by mail-pl1-f194.google.com with SMTP id w12so522695pll.13
- for <linux-xtensa@linux-xtensa.org>; Thu, 05 Mar 2020 23:54:12 -0800 (PST)
+Received: from mail-pj1-f67.google.com (mail-pj1-f67.google.com
+ [209.85.216.67])
+ by linux-xtensa.org (Postfix) with ESMTPS id 8762364FB
+ for <linux-xtensa@linux-xtensa.org>; Tue, 10 Mar 2020 06:22:58 +0000 (UTC)
+Received: by mail-pj1-f67.google.com with SMTP id o21so9449pjs.0
+ for <linux-xtensa@linux-xtensa.org>; Mon, 09 Mar 2020 23:34:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=UWIoMeEB2CUV9mwiKAX71h5fko7k2os2QipVNvf6bCo=;
- b=PNrX6AM0uaL/bBdobe7dNADUo+F4/G1hUMaxudkNpBcH04picEhD9scb8esJBu6Q8a
- A7NTB9tyLFjUqB0Vb41KIuF5FxaKvLvWhw+T3Vo62B3dpWk75cmacDwHBt3zF1aizmPG
- N6NQ0FxUXTlZL+gPZkCLmVzv/rkU2ShqN9g8ELn3yjtOxdhMkq8ZuTaMeuEEjZNG+KZj
- qPvK7hZhtn27i/JgwlrAdko9a3PCR3Eq7bYcoaTGUGV/FdXuzzbksDpnqZK+fe0HFbD5
- 3bwKi8/YJ227AsaLnnoEwW575gt7UXxRPjLV4V8wyTXWk+4KsQFkWq2K8S72dKjhXnVV
- XQLg==
+ :cc; bh=bGWhlBnTQCg9+tiKpri2VWMC+y1op1Nt19f6ZhKfJYA=;
+ b=GxSAYlGCXeh43hPNRDPHqDFdspD0YDrMVU2NIgVXwKJtapFOATDRQ0R/nqQw40fTkj
+ kzOfk+wx9BggRwzKU2SV/YqTWl3N/qtAkkN6wQq2nYhfSFe1LexX03KojL5sq+K3qTcx
+ TM4O9JbkAmtoSm4y/XVnxB0EKhMfe7GKpBF5eOAs1vtVQz7f4sYcXzfxGzTyIoRtyDdu
+ hWP1XBNVU1Fvu7I+szxaociVb8JpEpGno/Lb+rzkuSnsJP7EZMk77NcYSwJTgPJyV7pO
+ 6v9U/sDvQ9ecbJytSGvwnAkCmfiUPpTLkCuOoUNh5WJbG6ThoXm13ilfqcX2ViDOsEH6
+ EZQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=UWIoMeEB2CUV9mwiKAX71h5fko7k2os2QipVNvf6bCo=;
- b=P3H6mzKNy5cXGr+2Drw16tdEHTx8ssbYZTEcggJtK/M0n0hLTVIkAXh7sJgkGsxrYT
- gDYKPeNOBGTwBHf5ALFsd+FXWklTB5xNBWAdWjjUbY7Xj55Sy1zpIly0cuhnU/ACip7n
- qlBtDTYOoneBniXPlbLrIXpLsh4dW8iov2xVTCXAoH8NzeMCbGINm12JrA+XdFjQns5R
- DJtTpCgdKFTqq+z2PEzACY5DR1mIAzRZOBp42TtVHriCb0Zit+LCa0vI5blVi+NJGSyQ
- QdyZa5lYYBQqNh8cmqdtfilZoxYQ5jlykKvANbTtOSmcuHekGdVwR8kxCqs8SO/qDvnG
- J/QQ==
-X-Gm-Message-State: ANhLgQ0jYuFEpE3clC/rVfeVburkMauud04F4jjh8/ZFWKiHHi3f3Do8
- vXqbI1bqPghr7Bxatv1gCeUSDE1/aRb/mK4RdfE=
-X-Google-Smtp-Source: ADFU+vvQFehPqcFAEG48yvZ7aCbXwYyl9wcrvV8Hrk3L/zkur4PN0je35ufuF1mZ6Z0WKNa8hjuWx2TxU5yX8MAX2j0=
-X-Received: by 2002:a17:90a:d205:: with SMTP id
- o5mr2271425pju.46.1583481251417; 
- Thu, 05 Mar 2020 23:54:11 -0800 (PST)
+ bh=bGWhlBnTQCg9+tiKpri2VWMC+y1op1Nt19f6ZhKfJYA=;
+ b=BnKuiJhqxwd/dOwzNx6OT6R+msDD9Rs+RrX+aJbBqhk0/5n9aFCuBifAbzfPReHWQO
+ tkH0RY+U1lUwQP4Su0LZ8y2X1zpBp2KjTxq0yfPUe8yBCq6/W3DdQjFDxPdPThvEePxv
+ qAfq6TKZZQb/EQkTUpcjtM3aKYBJ1x02k6akeGpO4u+CjK5F65NuTrXANWQkifgHFqsl
+ tEWV7Q8vECzQ9qUpCsQ5t2DR5OOKd1fJnnMDjELfdrWeAecMUe7UxJGvJQwRAlPhOHuE
+ awDDHTHkUuedXuRE14XbJh3vmQnxoqSxyojj4A/B5BFET+EEfnAvlV9Deme2voxGOQPi
+ AeUw==
+X-Gm-Message-State: ANhLgQ0ILRO90YphGWE2V4AYnNQa9MEUI5q/GJxY51qM9zRq0UjM3g98
+ l23k1tslKWiWzyQEZ7/nqFaaX/fENgQVS5Dz7UM=
+X-Google-Smtp-Source: ADFU+vsh2DTPbuDRsemIdTyt+pljDxJrkb9G1oGyBBc2JnwQGWDQ48zTeNg0Ii3dC/Nrzr0jhM5tkg05/xZyknk2mk8=
+X-Received: by 2002:a17:902:8647:: with SMTP id
+ y7mr19292031plt.224.1583822097536; 
+ Mon, 09 Mar 2020 23:34:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <202003021038.8F0369D907@keescook>
- <20200305151144.836824-1-nivedita@alum.mit.edu>
-In-Reply-To: <20200305151144.836824-1-nivedita@alum.mit.edu>
+References: <20200310045925.25396-1-masahiroy@kernel.org>
+In-Reply-To: <20200310045925.25396-1-masahiroy@kernel.org>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Thu, 5 Mar 2020 23:54:00 -0800
-Message-ID: <CAMo8BfKDF+6uw_jxMa2BuNScJS=PMiwFhb9YhH4DWD+jo4+dyg@mail.gmail.com>
-To: Arvind Sankar <nivedita@alum.mit.edu>
-Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, Tycho Andersen <tycho@tycho.ws>,
- Kees Cook <keescook@chromium.org>, kernel-hardening@lists.openwall.com,
- LKML <linux-kernel@vger.kernel.org>, "Tobin C . Harding" <me@tobin.cc>
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa/mm: Stop printing the virtual
-	memory layout
+Date: Mon, 9 Mar 2020 23:34:46 -0700
+Message-ID: <CAMo8BfLLacwcBOhZfkuRziPOYbRzUHRf+BjVo_tV1r6xJZ7+4Q@mail.gmail.com>
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>
+Subject: Re: [Linux-Xtensa] [PATCH] xtensa: remove meaningless export
+	ccflags-y
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -72,16 +70,21 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Thu, Mar 5, 2020 at 7:11 AM Arvind Sankar <nivedita@alum.mit.edu> wrote:
+On Mon, Mar 9, 2020 at 10:00 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
 >
-> For security, don't display the kernel's virtual memory layout.
+> arch/xtensa/boot/Makefile does not define ccflags-y at all.
+>
+> Please do not export ccflags-y because it is meant to be effective
+> only in the current Makefile.
+>
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> ---
+>
+>  arch/xtensa/boot/Makefile | 1 -
+>  1 file changed, 1 deletion(-)
 
-Given that primary users of xtensa linux kernels are developers
-removing this information, and even disabling it by default doesn't
-sound reasonable to me.
+Thanks! Applied to my xtensa tree.
 
--- 
-Thanks.
 -- Max
 _______________________________________________
 linux-xtensa mailing list
