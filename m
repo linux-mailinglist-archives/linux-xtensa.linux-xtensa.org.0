@@ -2,57 +2,56 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 05DF617F086
-	for <lists+linux-xtensa@lfdr.de>; Tue, 10 Mar 2020 07:35:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37803198568
+	for <lists+linux-xtensa@lfdr.de>; Mon, 30 Mar 2020 22:33:55 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 3FBC66506;
-	Tue, 10 Mar 2020 06:23:00 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 2EB0952BA;
+	Mon, 30 Mar 2020 20:21:15 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pj1-f67.google.com (mail-pj1-f67.google.com
- [209.85.216.67])
- by linux-xtensa.org (Postfix) with ESMTPS id 8762364FB
- for <linux-xtensa@linux-xtensa.org>; Tue, 10 Mar 2020 06:22:58 +0000 (UTC)
-Received: by mail-pj1-f67.google.com with SMTP id o21so9449pjs.0
- for <linux-xtensa@linux-xtensa.org>; Mon, 09 Mar 2020 23:34:58 -0700 (PDT)
+Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
+ [209.85.210.196])
+ by linux-xtensa.org (Postfix) with ESMTPS id 17DDE33BC
+ for <linux-xtensa@linux-xtensa.org>; Mon, 30 Mar 2020 20:21:14 +0000 (UTC)
+Received: by mail-pf1-f196.google.com with SMTP id 23so9198178pfj.1
+ for <linux-xtensa@linux-xtensa.org>; Mon, 30 Mar 2020 13:33:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=bGWhlBnTQCg9+tiKpri2VWMC+y1op1Nt19f6ZhKfJYA=;
- b=GxSAYlGCXeh43hPNRDPHqDFdspD0YDrMVU2NIgVXwKJtapFOATDRQ0R/nqQw40fTkj
- kzOfk+wx9BggRwzKU2SV/YqTWl3N/qtAkkN6wQq2nYhfSFe1LexX03KojL5sq+K3qTcx
- TM4O9JbkAmtoSm4y/XVnxB0EKhMfe7GKpBF5eOAs1vtVQz7f4sYcXzfxGzTyIoRtyDdu
- hWP1XBNVU1Fvu7I+szxaociVb8JpEpGno/Lb+rzkuSnsJP7EZMk77NcYSwJTgPJyV7pO
- 6v9U/sDvQ9ecbJytSGvwnAkCmfiUPpTLkCuOoUNh5WJbG6ThoXm13ilfqcX2ViDOsEH6
- EZQw==
+ :cc; bh=SAka+afRnaX/ZKYZXYNGXTAgpgy0/w8V+P2H1maC28M=;
+ b=OAYuBRztVNI6QkMYDgfMScWINgazrjd7nqaQt1VP4/JIezme1Azu4u6KQCd8q2ooBC
+ evqIq1WXLUGY104DtbqXII7QGPctmwATPb7ajGGATjHT5PjASxYbzoKcrih4RIVqGTbc
+ lEN4wKNu0C1GxCxdBMYMvucJuPYZualHOTRes/emNr05WtUV03zRGdUVRTbF9GCFGpX8
+ iFuoyxH4Sw68EYD0DqXNzVSpOzYAXiHGmGJltHrVL4xHELR5XA6lgdr65/X/25VBHpxo
+ WCKx4j0nrmzr3kG8nlTGfOOEBVbbtproDCJMLtdYFE7zVaj9IxhNR0kbRe9DINxnbotU
+ KxCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=bGWhlBnTQCg9+tiKpri2VWMC+y1op1Nt19f6ZhKfJYA=;
- b=BnKuiJhqxwd/dOwzNx6OT6R+msDD9Rs+RrX+aJbBqhk0/5n9aFCuBifAbzfPReHWQO
- tkH0RY+U1lUwQP4Su0LZ8y2X1zpBp2KjTxq0yfPUe8yBCq6/W3DdQjFDxPdPThvEePxv
- qAfq6TKZZQb/EQkTUpcjtM3aKYBJ1x02k6akeGpO4u+CjK5F65NuTrXANWQkifgHFqsl
- tEWV7Q8vECzQ9qUpCsQ5t2DR5OOKd1fJnnMDjELfdrWeAecMUe7UxJGvJQwRAlPhOHuE
- awDDHTHkUuedXuRE14XbJh3vmQnxoqSxyojj4A/B5BFET+EEfnAvlV9Deme2voxGOQPi
- AeUw==
-X-Gm-Message-State: ANhLgQ0ILRO90YphGWE2V4AYnNQa9MEUI5q/GJxY51qM9zRq0UjM3g98
- l23k1tslKWiWzyQEZ7/nqFaaX/fENgQVS5Dz7UM=
-X-Google-Smtp-Source: ADFU+vsh2DTPbuDRsemIdTyt+pljDxJrkb9G1oGyBBc2JnwQGWDQ48zTeNg0Ii3dC/Nrzr0jhM5tkg05/xZyknk2mk8=
-X-Received: by 2002:a17:902:8647:: with SMTP id
- y7mr19292031plt.224.1583822097536; 
- Mon, 09 Mar 2020 23:34:57 -0700 (PDT)
+ bh=SAka+afRnaX/ZKYZXYNGXTAgpgy0/w8V+P2H1maC28M=;
+ b=Emj3m9jxHWfYRy9GzIWlREX26/DIk3qU8Kx3q+7fK8FMxaFUgk4F0Hpowq6Rn35Lm/
+ YDJ6KevMItwYbfRYvgZoOowQFXN/oFTWlmDnGgf6AR+RkPgvX0FYY/kwH3/4cYb2sSI4
+ YEzlzmjrES3fMHc1mXK8B1YoW4zSoqXtDYQJK22wRlTsI9O7wOzNykoKJWoE9bk1dujV
+ 18h4HL0Toqn7ug2zG4XYGDzI/iJEvGdtyrT3kwgvX8GxI7k537FGNBwJKb2ZquXmnrCO
+ Pm7tZQOCT9lHX3uAf8wFiEAdVdeXJEIjyCF6QaikTOC9qatCBiOmFr34XZ9vmyui/mYN
+ w+Hg==
+X-Gm-Message-State: ANhLgQ2svlNrcT4d3NzQ5/ZqAKRI4XgiU3RP5kOPoNZLrFU1pYqebBsa
+ d7TUBgJB4X9pV4t7CLXTp9zudYFc3nG1xjJclDU=
+X-Google-Smtp-Source: ADFU+vu2tg8gJ7kLYAl7nWMJb48d7OIqT5mNfZrMCzL0YQvOscWqjzviXMI3DhHC75s9EINUwjGWrIXeu6A6naCSwFY=
+X-Received: by 2002:a63:9d0c:: with SMTP id i12mr14358603pgd.378.1585600431631; 
+ Mon, 30 Mar 2020 13:33:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200310045925.25396-1-masahiroy@kernel.org>
-In-Reply-To: <20200310045925.25396-1-masahiroy@kernel.org>
+References: <20200330045436.12645-1-xianfengting221@163.com>
+In-Reply-To: <20200330045436.12645-1-xianfengting221@163.com>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Mon, 9 Mar 2020 23:34:46 -0700
-Message-ID: <CAMo8BfLLacwcBOhZfkuRziPOYbRzUHRf+BjVo_tV1r6xJZ7+4Q@mail.gmail.com>
-To: Masahiro Yamada <masahiroy@kernel.org>
+Date: Mon, 30 Mar 2020 13:33:40 -0700
+Message-ID: <CAMo8BfLQuKHsqM5yb0N6cfquCoXR17rnkt+TXG01Fkz-Po1pqw@mail.gmail.com>
+To: Hu Haowen <xianfengting221@163.com>
 Cc: LKML <linux-kernel@vger.kernel.org>,
  "open list:TENSILICA XTENSA PORT \(xtensa\)"
  <linux-xtensa@linux-xtensa.org>
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: remove meaningless export
-	ccflags-y
+Subject: Re: [Linux-Xtensa] [PATCH] arch/xtensa: correct an ungrammatical
+	word
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -70,20 +69,17 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Mon, Mar 9, 2020 at 10:00 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
+On Sun, Mar 29, 2020 at 9:55 PM Hu Haowen <xianfengting221@163.com> wrote:
 >
-> arch/xtensa/boot/Makefile does not define ccflags-y at all.
+> The word "Dont" is not grammatical. Maybe it means "Don't".
 >
-> Please do not export ccflags-y because it is meant to be effective
-> only in the current Makefile.
->
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> Signed-off-by: Hu Haowen <xianfengting221@163.com>
 > ---
->
->  arch/xtensa/boot/Makefile | 1 -
->  1 file changed, 1 deletion(-)
+>  arch/xtensa/Kconfig | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks! Applied to my xtensa tree.
+Thanks, applied to my xtensa tree with a slightly modified subject
+line/description.
 
 -- Max
 _______________________________________________
