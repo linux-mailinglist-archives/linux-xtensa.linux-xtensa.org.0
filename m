@@ -2,56 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 37803198568
-	for <lists+linux-xtensa@lfdr.de>; Mon, 30 Mar 2020 22:33:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4BB71A4AD6
+	for <lists+linux-xtensa@lfdr.de>; Fri, 10 Apr 2020 21:53:48 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 2EB0952BA;
-	Mon, 30 Mar 2020 20:21:15 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id B64232263;
+	Fri, 10 Apr 2020 19:40:46 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
- [209.85.210.196])
- by linux-xtensa.org (Postfix) with ESMTPS id 17DDE33BC
- for <linux-xtensa@linux-xtensa.org>; Mon, 30 Mar 2020 20:21:14 +0000 (UTC)
-Received: by mail-pf1-f196.google.com with SMTP id 23so9198178pfj.1
- for <linux-xtensa@linux-xtensa.org>; Mon, 30 Mar 2020 13:33:52 -0700 (PDT)
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com
+ [209.85.210.175])
+ by linux-xtensa.org (Postfix) with ESMTPS id BE0862258
+ for <linux-xtensa@linux-xtensa.org>; Fri, 10 Apr 2020 19:40:44 +0000 (UTC)
+Received: by mail-pf1-f175.google.com with SMTP id q3so1435880pff.13
+ for <linux-xtensa@linux-xtensa.org>; Fri, 10 Apr 2020 12:53:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=SAka+afRnaX/ZKYZXYNGXTAgpgy0/w8V+P2H1maC28M=;
- b=OAYuBRztVNI6QkMYDgfMScWINgazrjd7nqaQt1VP4/JIezme1Azu4u6KQCd8q2ooBC
- evqIq1WXLUGY104DtbqXII7QGPctmwATPb7ajGGATjHT5PjASxYbzoKcrih4RIVqGTbc
- lEN4wKNu0C1GxCxdBMYMvucJuPYZualHOTRes/emNr05WtUV03zRGdUVRTbF9GCFGpX8
- iFuoyxH4Sw68EYD0DqXNzVSpOzYAXiHGmGJltHrVL4xHELR5XA6lgdr65/X/25VBHpxo
- WCKx4j0nrmzr3kG8nlTGfOOEBVbbtproDCJMLtdYFE7zVaj9IxhNR0kbRe9DINxnbotU
- KxCQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=GnS+iKPshB2H+iJx2B0bBeNxXYNge8mXSC0GNXOAR6E=;
+ b=qAg92dm1m90uJbKfYO0c0g0rgZ3OyQah5Ijz3Nx2D7DW9+pNksOZBVrn6JtbETCaup
+ QVTWEdPHIf8gAcaZJExiXN7j8owgBiGl0/9c+aqvFUWIrCLnvu9AvqJRfwQndqsXxV96
+ zueVO/zOpS/xkC0zEgDXwm2Jnz1+pfnODPV5iwLbrwkNg8diNhhl0dlLaELC3PjlxGLt
+ PCXN+Ab5Pr3GB6D3NnyGPFYrA2/9fx1VP7z6cTvD5IaTEcQsAZOnbrgDyaZrtHGTXooI
+ 7+6v0TZiL1GYqwWSZUpywkSn/1iG/LoEbPp5gMmbBsmHvQV8buJvcSX//wx9w6jcYxJq
+ hlDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=SAka+afRnaX/ZKYZXYNGXTAgpgy0/w8V+P2H1maC28M=;
- b=Emj3m9jxHWfYRy9GzIWlREX26/DIk3qU8Kx3q+7fK8FMxaFUgk4F0Hpowq6Rn35Lm/
- YDJ6KevMItwYbfRYvgZoOowQFXN/oFTWlmDnGgf6AR+RkPgvX0FYY/kwH3/4cYb2sSI4
- YEzlzmjrES3fMHc1mXK8B1YoW4zSoqXtDYQJK22wRlTsI9O7wOzNykoKJWoE9bk1dujV
- 18h4HL0Toqn7ug2zG4XYGDzI/iJEvGdtyrT3kwgvX8GxI7k537FGNBwJKb2ZquXmnrCO
- Pm7tZQOCT9lHX3uAf8wFiEAdVdeXJEIjyCF6QaikTOC9qatCBiOmFr34XZ9vmyui/mYN
- w+Hg==
-X-Gm-Message-State: ANhLgQ2svlNrcT4d3NzQ5/ZqAKRI4XgiU3RP5kOPoNZLrFU1pYqebBsa
- d7TUBgJB4X9pV4t7CLXTp9zudYFc3nG1xjJclDU=
-X-Google-Smtp-Source: ADFU+vu2tg8gJ7kLYAl7nWMJb48d7OIqT5mNfZrMCzL0YQvOscWqjzviXMI3DhHC75s9EINUwjGWrIXeu6A6naCSwFY=
-X-Received: by 2002:a63:9d0c:: with SMTP id i12mr14358603pgd.378.1585600431631; 
- Mon, 30 Mar 2020 13:33:51 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200330045436.12645-1-xianfengting221@163.com>
-In-Reply-To: <20200330045436.12645-1-xianfengting221@163.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=GnS+iKPshB2H+iJx2B0bBeNxXYNge8mXSC0GNXOAR6E=;
+ b=Rkw7I3U8Fx66OWN+8d8961SyDD4+ZpkC+swlScbiZo/lI2ex1yoPjhPTC8eJAT7tHI
+ ljjg4szh1ecA10fBQUqzzEaex/P1Twnc0tm6Ouq7zB79FiR/DZL1MwrNO2aVta1oswN+
+ MIQOJvDtdFJ08ET4KtOnYiH4TfkjUvK6dFH6G7hhdV77CF5CpKELLKMvAwZgTFPlCGng
+ KJYL8G2Me1NihlN0PG0iapKbjqOaENVr+/1RCdyrdcj3tu+8Nq7egJp+laQmcTd/s15F
+ nz4RN8y64IgJCYl2VdMztG/GcjZsubv/P54yeKPxonX1AytVFoi9+lvp+VGb7SUn1RsW
+ frEg==
+X-Gm-Message-State: AGi0PuZ6UbSfcSkIxCcZnJ0p1WFBI3/rAIzN0pwDVJ+UPd7xPtyIWMrP
+ dX+zQt0/ytH6yfA/xrEKcqw=
+X-Google-Smtp-Source: APiQypKtqv3FkYH83kX4elGfmQtsEbuXFeu29FerD++flwUmaRjooBkKO+s8F/RccjUYQxUoI3jMCQ==
+X-Received: by 2002:a62:5341:: with SMTP id h62mr6375982pfb.183.1586548422818; 
+ Fri, 10 Apr 2020 12:53:42 -0700 (PDT)
+Received: from octofox.hsd1.ca.comcast.net
+ ([2601:641:400:63f0:a487:3b8:7ffc:c9e4])
+ by smtp.gmail.com with ESMTPSA id w142sm2468983pff.111.2020.04.10.12.53.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 10 Apr 2020 12:53:42 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Mon, 30 Mar 2020 13:33:40 -0700
-Message-ID: <CAMo8BfLQuKHsqM5yb0N6cfquCoXR17rnkt+TXG01Fkz-Po1pqw@mail.gmail.com>
-To: Hu Haowen <xianfengting221@163.com>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>
-Subject: Re: [Linux-Xtensa] [PATCH] arch/xtensa: correct an ungrammatical
-	word
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Fri, 10 Apr 2020 12:53:31 -0700
+Message-Id: <20200410195331.12735-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
+ linux-kernel@vger.kernel.org
+Subject: [Linux-Xtensa] [PULL 0/3] xtensa updates for v5.7
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -69,18 +72,46 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Sun, Mar 29, 2020 at 9:55 PM Hu Haowen <xianfengting221@163.com> wrote:
->
-> The word "Dont" is not grammatical. Maybe it means "Don't".
->
-> Signed-off-by: Hu Haowen <xianfengting221@163.com>
-> ---
->  arch/xtensa/Kconfig | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Hi Linus,
 
-Thanks, applied to my xtensa tree with a slightly modified subject
-line/description.
+please pull the following Xtensa architecture updates for v5.7:
 
+The following changes since commit 98d54f81e36ba3bf92172791eba5ca5bd813989b:
+
+  Linux 5.6-rc4 (2020-03-01 16:38:46 -0600)
+
+are available in the Git repository at:
+
+  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20200410
+
+for you to fetch changes up to 70cbddb973859158731ce77ab20cd5e53822c089:
+
+  arch/xtensa: fix grammar in Kconfig help text (2020-03-30 13:35:31 -0700)
+
+----------------------------------------------------------------
+Xtensa updates for v5.7:
+
+- replace setup_irq() by request_irq();
+- cosmetic fixes in xtensa Kconfig and boot/Makefile.
+
+----------------------------------------------------------------
+Hu Haowen (1):
+      arch/xtensa: fix grammar in Kconfig help text
+
+Masahiro Yamada (1):
+      xtensa: remove meaningless export ccflags-y
+
+afzal mohammed (1):
+      xtensa: replace setup_irq() by request_irq()
+
+ arch/xtensa/Kconfig       |  2 +-
+ arch/xtensa/boot/Makefile |  1 -
+ arch/xtensa/kernel/smp.c  |  8 ++------
+ arch/xtensa/kernel/time.c | 12 +++++-------
+ 4 files changed, 8 insertions(+), 15 deletions(-)
+
+-- 
+Thanks.
 -- Max
 _______________________________________________
 linux-xtensa mailing list
