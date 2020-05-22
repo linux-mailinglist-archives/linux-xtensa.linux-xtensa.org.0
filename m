@@ -2,59 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id A69F61C1080
-	for <lists+linux-xtensa@lfdr.de>; Fri,  1 May 2020 11:50:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 247EE1DF15E
+	for <lists+linux-xtensa@lfdr.de>; Fri, 22 May 2020 23:42:20 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 5FC0764A6;
-	Fri,  1 May 2020 09:37:03 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 6AAA064F0;
+	Fri, 22 May 2020 21:27:58 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com
- [209.85.210.195])
- by linux-xtensa.org (Postfix) with ESMTPS id 7C82E647D
- for <linux-xtensa@linux-xtensa.org>; Fri,  1 May 2020 09:37:01 +0000 (UTC)
-Received: by mail-pf1-f195.google.com with SMTP id 18so1392161pfv.8
- for <linux-xtensa@linux-xtensa.org>; Fri, 01 May 2020 02:50:38 -0700 (PDT)
+Received: from mail-pg1-f194.google.com (mail-pg1-f194.google.com
+ [209.85.215.194])
+ by linux-xtensa.org (Postfix) with ESMTPS id 792AC648E
+ for <linux-xtensa@linux-xtensa.org>; Fri, 22 May 2020 21:27:56 +0000 (UTC)
+Received: by mail-pg1-f194.google.com with SMTP id n11so5600921pgl.9
+ for <linux-xtensa@linux-xtensa.org>; Fri, 22 May 2020 14:42:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=LSN/uXLfkt9QeDBMNRjLOHKj5ObcWSm4DpZ/UNYnR+s=;
- b=mRAIwwXYuvw012YcKxlesqHwYppo4C/8KTWbbVLbRqmzEU9DZVsDICONE4NG6JgNKU
- PWBfSkxawaq+lu9QZLv+t60NLjd/A5+M4OD3+GqC4sOE2+LpNzONWIBKHjtKa/YAnrya
- yFboZ7hjvfhktEBDEheqMgu4IWMmLdGy16IuGSAFmTxoDJK8M7jrpTmj/VuQFZXmKi+D
- dIvU/Jy8Ey1PEIfuZfyM+iB6tKdUINzZ7C4ZD9Gj6cKtHsZARCL79TDama4ziN9WYacn
- eBcs3+VYQDTX+AU5IXTUJyV+C1bLPDj+WdYgYnZb8/rHN7JyRNxM7bAAqKFkCaJ0BYLm
- dNlQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=OiuX+6uU7dplATziC7RpCrG4th92FcbfoR1QRsJspzA=;
+ b=S36MNoi9Vry7VUvzuC8akd9HrlW9CvNONK1CvQg7TBeWxwpnNipFYwhP6hQrLnQfoA
+ CYrzz2dqjcmPtjcBHtjb0/xG5BGlMdBGvUzpEg+4yLqk9ZXdToZo/VaHkwv2Hd2TKylM
+ 4Wri/Ogai8IhhgWSY8IPo+p3jXoyYd8tesdZMlGdDrTOjak3nuO5RPVHD2h54/v8lYcf
+ TRQB/TYrVALBLE7wz5g0PZqr9nk8+CVzTs5CeTkXd0Sm0Jd5N6to4Rh9ud7V7RJrlauh
+ fSveQ6PFrtDmozzQ6PTo9w6lNfpVyQu6cO5lrLO7iMXaPKUlKR0NrzFlhPjWja4qEFzX
+ FdcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=LSN/uXLfkt9QeDBMNRjLOHKj5ObcWSm4DpZ/UNYnR+s=;
- b=D2s9B2zP8K65vCYdB40xXB5zHW6+PcMI62YdYTAIKEHvOFZHP97ibs+NcvwI51UvOm
- bXI9ccNI2+v5JZtn33uhvapDL1DChHWb+j9W5J2Jf13p2uaBruK5lpZ8q6maq4DSC2r9
- rtps0sXKt1fOFhiLU8AIZwwCR+CP758WzUzsc70DvFHeQhG9bfMmKij5YK8lK1cALSZ1
- Q48TInsokmtbUga1Y0OUffQdb/qOfAR2A4wHwGc5r7ZBVyMSMiGIT8j1NYyCOIm57mep
- /comIo4Q5SwyetNDgh17/M8uLT1A/gJA5KY8oxlTkUUQoq5SBPK3JmJJaRdm3o8+smou
- pGFw==
-X-Gm-Message-State: AGi0PuaBsjNN09qPbqmfXDaNGRv3p/U3gJBLdUCQoCRRfAW+yUkJOv4v
- ildL89jW5CtzDWcXhxJHQhseCfrPDDaIyUkl9no=
-X-Google-Smtp-Source: APiQypLnhT57tLSV4RshVGa2uDo12bLGVyRHB51uzZVNE32LSc2WXh3Vopse607pRrP4bNpqHqj8youmiiYHAiyFXV0=
-X-Received: by 2002:a63:b549:: with SMTP id u9mr3346778pgo.159.1588326637995; 
- Fri, 01 May 2020 02:50:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200430203845.582900-1-ira.weiny@intel.com>
- <20200501084634.GH27858@infradead.org>
- <CAMo8Bf+Mvvg_f1-33iQhTqZPVw1civX94KS2mf4uSkcpEVx55Q@mail.gmail.com>
- <20200501091933.GA3084@infradead.org>
-In-Reply-To: <20200501091933.GA3084@infradead.org>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=OiuX+6uU7dplATziC7RpCrG4th92FcbfoR1QRsJspzA=;
+ b=Tlogz13RmQXBHrQ48XOPELgNZDqc8EhJv2V65ZHbRBbvPs599NhVtoOWyVkNLU0W9R
+ MiZtw/uUHJ7rzL4UTKyto1yAdox27oMx4qHMELH8U6gjr9c1o9i/c0UaoVcQttHyJ56W
+ AQCO3mxvfBF0JZIfg4AGZ6Q1/RMwteQd4MMp9U93380iFRPwbhjrnVjxCiQhBz/9sKqy
+ zTCCSV25jND0XqRyGhOEtIkwqsQf9tFqIqYud+73Xway+U6JiWdQaHHnMdF087ANPFJU
+ r36i282+0Ao+iJhbm9XAPn2XlKJftQp63OXPS6BaZOjItSd8c//Fa5YSvoPqdispxmfK
+ aD6g==
+X-Gm-Message-State: AOAM531lMdzB6h3/ZDNRAUMPR+eZXD0oEEOVI6zj3dw3nrVGqxYVQ++v
+ uIzZQ4jlD6zAoKFJIXuQr9WhQFby
+X-Google-Smtp-Source: ABdhPJyncLF4FCA7MiLj+vo/jkNd/ZatPEi5dWPqOWL3ATw7UCNgkD4lWnaoI6Lgu1u3K2/xS89hcw==
+X-Received: by 2002:a63:3756:: with SMTP id g22mr15416483pgn.304.1590183733064; 
+ Fri, 22 May 2020 14:42:13 -0700 (PDT)
+Received: from octofox.hsd1.ca.comcast.net
+ ([2601:641:400:e00:d0d2:96ff:22ac:b8e6])
+ by smtp.gmail.com with ESMTPSA id 4sm7625098pff.18.2020.05.22.14.42.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 22 May 2020 14:42:12 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Fri, 1 May 2020 02:50:27 -0700
-Message-ID: <CAMo8BfKYii4=_rQK22x4F4n-59KYY9JHKQ6E3H5iJ-N3J63rwg@mail.gmail.com>
-To: Christoph Hellwig <hch@infradead.org>
-Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, ira.weiny@intel.com,
- LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [Linux-Xtensa] xtensa question,
-	was Re: [PATCH V1 00/10] Remove duplicated kmap code
+To: linux-xtensa@linux-xtensa.org
+Date: Fri, 22 May 2020 14:41:50 -0700
+Message-Id: <20200522214153.30163-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: Max Filippov <jcmvbkbc@gmail.com>, Al Viro <viro@zeniv.linux.org.uk>,
+ Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org
+Subject: [Linux-Xtensa] [PATCH 0/3] xtensa: clean up __user annotations in
+	asm/uaccess.h
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -72,31 +73,23 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Fri, May 1, 2020 at 2:19 AM Christoph Hellwig <hch@infradead.org> wrote:
->
-> On Fri, May 01, 2020 at 02:02:19AM -0700, Max Filippov wrote:
-> > Hi Christoph,
-> >
-> > On Fri, May 1, 2020 at 1:46 AM Christoph Hellwig <hch@infradead.org> wrote:
-> > > any idea why xtensa uses PAGE_KERNEL_EXEC instead of PAGE_KERNEL
-> > > for kmap_prot?  Mapping all mapped highmem as executable seems rather
-> > > dangerous.
-> >
-> > I sure do: to allow instruction cache flushing when writing to high user
-> > pages temporarily mapped with kmap. Instruction cache management
-> > opcodes that operate on virtual addresses would raise an exception if
-> > the address is not executable.
->
-> Seems like this should use kmap_atomic_prot with PAGE_KERNEL_EXEC just
-> for that case.  Which of course didn't exist on xtensa so far, but with
-> this series will.
+Hello,
 
-Yeah, except it's the __access_remote_vm that does the kmap and then
-calls copy_to_user_page...
+this series adds missing __user annotations to functions in
+asm/uaccess.h. It fixes a bunch of sparse warnings for otherwise correct
+code.
+
+Max Filippov (3):
+  xtensa: add missing __user annotations to __{get,put}_user_check
+  xtensa: fix type conversion in __get_user_size
+  xtensa: add missing __user annotations to asm/uaccess.h
+
+ arch/xtensa/include/asm/uaccess.h | 24 +++++++++++-------------
+ 1 file changed, 11 insertions(+), 13 deletions(-)
 
 -- 
-Thanks.
--- Max
+2.20.1
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
