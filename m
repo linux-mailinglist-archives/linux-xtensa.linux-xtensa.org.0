@@ -2,62 +2,63 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id D78EE1DF160
-	for <lists+linux-xtensa@lfdr.de>; Fri, 22 May 2020 23:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 378A21DF161
+	for <lists+linux-xtensa@lfdr.de>; Fri, 22 May 2020 23:42:21 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 9B7AF6524;
+	by linux-xtensa.org (Postfix) with ESMTP id B66416547;
 	Fri, 22 May 2020 21:28:02 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com
- [209.85.215.196])
- by linux-xtensa.org (Postfix) with ESMTPS id 335BF648E
- for <linux-xtensa@linux-xtensa.org>; Fri, 22 May 2020 21:27:58 +0000 (UTC)
-Received: by mail-pg1-f196.google.com with SMTP id t11so5621636pgg.2
- for <linux-xtensa@linux-xtensa.org>; Fri, 22 May 2020 14:42:16 -0700 (PDT)
+Received: from mail-pj1-f68.google.com (mail-pj1-f68.google.com
+ [209.85.216.68])
+ by linux-xtensa.org (Postfix) with ESMTPS id 54A2C6524
+ for <linux-xtensa@linux-xtensa.org>; Fri, 22 May 2020 21:27:59 +0000 (UTC)
+Received: by mail-pj1-f68.google.com with SMTP id q9so5622094pjm.2
+ for <linux-xtensa@linux-xtensa.org>; Fri, 22 May 2020 14:42:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=GgtkiazwQoiTvdTYPMpf28KQw+7R+qBoN6rSS4orM1s=;
- b=HjRVxmVf1ldbdQQ4jNcadad7e/KmN7zX/mXlPZvNTiCYkFgoNVyaBwqVVZufsT5Kzv
- WeRED5ZDTFO1Dq1gsi2RuHgeAOWVlGDpU92OdtXKa8vmBBsOEwYT9GzhXt/+8ihBHXM6
- neVBMtFF5nkFfjdhHFAEKbr9wYKK2dX/z7VhUV9TeMSXXAGvhVJ9JCjKuo0Uic6EUVtv
- LWJzMPhHlcO5oQUCnLf0nV5bR9LhIbpiyGEB1GrhHTGk7f1GlG03kWyFwbz3r8J3oont
- RiHHjbG37wSn1RwjIDl3jfQsst2KEODtihMM7EnQBz2PWRKIPcUd3pVAZ24OKYizQHHY
- blgQ==
+ bh=2fVUAtXSaWXKY2QT13OooGchGaVr8PVTqlkJIqIUCls=;
+ b=cy4Iv1dKrgmFf8HFHiIihXeT9oWaLOFcX1u1xNS9Unjy3U9g7biDlL4hxe7LkC719J
+ FkNVSCdFQwEML09RQPogyqLJF7hZonYdZrgu15BM52spOiyUe3YyKKRv5wh/hCiPVWMA
+ sRITXFqyl4JxmJQPmbVQk9YiW2pb7BX1K5UxwM+BR9pfgXKlOlFglFW/7aGbqlI7ammv
+ MZWvNtpLIVPyFv5psFYbpRL2iowWwVVe0UUhgs0I90tUqHZsEYFrIk3cosGX9kmhvWos
+ USZpLWnCmaHoNlbyoMPtENvVpECQp7NrVPImq2t0nfV/BxjRrJ5ZKEsw4qOZ/jki0p8u
+ QdWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=GgtkiazwQoiTvdTYPMpf28KQw+7R+qBoN6rSS4orM1s=;
- b=RNgruhCcz0WCKdSdthuyFRWqs509fTTi9dzFMsbu8WmNJunls26fsVrMb3f1L2DLx3
- /h08mbKuGvGXKS8B/wpDSL3lCaxnUDRvMPnEPEfjF/1MC0VJQOpMNuo8PZ2USx9atoSz
- J45ncCgXacjbeLFgspUdEeWucZ+CP1QFVvIUPQb7Rl3O2FXKO2LFzkKgExJ6Jm4HpigA
- VB9wrZbTAsDcRhPrjoKKC+xbAyG3xDdESMJlKNlq9jqwDhpOtByx2FG5N4Bf8WMh5y8F
- 4B93oeT8cJqFg45W0GgwmyowRkobGnbm+dtJo3NdszTUdSBz6uHw2M2tahxoRlqysZHw
- y/3Q==
-X-Gm-Message-State: AOAM5339i/OrBrABD6bYbx72PHKmPVcVuFIgwJF7bDwnIhvQgDDHIqSp
- 2HGq5ps/ohQT64Ih9CSoPjD4Kw8B
-X-Google-Smtp-Source: ABdhPJxNTB8cdqBhGd0hJ8o5xV7Aiz2GsTjFcgw9TWk0AHBHzHgdRbaBU2e3vbs1ORg87i+p/WW6Gw==
-X-Received: by 2002:a63:3449:: with SMTP id b70mr16118674pga.289.1590183735190; 
- Fri, 22 May 2020 14:42:15 -0700 (PDT)
+ bh=2fVUAtXSaWXKY2QT13OooGchGaVr8PVTqlkJIqIUCls=;
+ b=XkXhjM8QMlTKW0+soU8ZANrPyxeLcLrI+NIoq2gJ7WJUHk4mUWe51B5rBqV50M3TGs
+ IythuN+ttNX0lCOCmLGhaOkwQSRc05OZWkflW5xb6A3jC1AOVW2bf9tDv1qvksKRpywT
+ QHQmkAX0BufrhxZ/O0ClF2Tag8371+hRmUBYzNB27LCB/ehsZIywmotiu1Gt1ZpHFOK8
+ v2TdJmOfhj9Zhui6m3u9tXyO22KGf9YXxeoDoWlkDrCMjlgEJ9wWJiJScYxarif2eeUT
+ zWoftCh8INLHBynrceXe7KDwd1hgNjsjSp4ZWAwdT2SKYl572SVIa7CLD1fqvl/U0dRD
+ 423w==
+X-Gm-Message-State: AOAM531zNlFivVTkSCLIdxW2ZRYW6XCeHKytNsNfV6TZ0G98xmCeXgyR
+ B89eUurVUJxh0wBXh1rmwh5fIPnt
+X-Google-Smtp-Source: ABdhPJyWoqBNAKwmwX2jgA3ybB8t3HseB65aDPJiYRmvuQhMYa7q3wo6oJvsLtPe9Q8F9aOSJpBfiw==
+X-Received: by 2002:a17:90b:f0e:: with SMTP id
+ br14mr6547467pjb.78.1590183736327; 
+ Fri, 22 May 2020 14:42:16 -0700 (PDT)
 Received: from octofox.hsd1.ca.comcast.net
  ([2601:641:400:e00:d0d2:96ff:22ac:b8e6])
- by smtp.gmail.com with ESMTPSA id 4sm7625098pff.18.2020.05.22.14.42.14
+ by smtp.gmail.com with ESMTPSA id 4sm7625098pff.18.2020.05.22.14.42.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 22 May 2020 14:42:14 -0700 (PDT)
+ Fri, 22 May 2020 14:42:15 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Fri, 22 May 2020 14:41:52 -0700
-Message-Id: <20200522214153.30163-3-jcmvbkbc@gmail.com>
+Date: Fri, 22 May 2020 14:41:53 -0700
+Message-Id: <20200522214153.30163-4-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200522214153.30163-1-jcmvbkbc@gmail.com>
 References: <20200522214153.30163-1-jcmvbkbc@gmail.com>
 MIME-Version: 1.0
 Cc: Max Filippov <jcmvbkbc@gmail.com>, Al Viro <viro@zeniv.linux.org.uk>,
  Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org
-Subject: [Linux-Xtensa] [PATCH 2/3] xtensa: fix type conversion in
-	__get_user_size
+Subject: [Linux-Xtensa] [PATCH 3/3] xtensa: add missing __user annotations
+	to asm/uaccess.h
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -75,33 +76,69 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-8-byte access in __get_user_size converts pointer to temporary variable
-to the type of original user pointer and then dereferences it, resulting
-in the following sparse warning:
-
-  sparse: warning: dereference of noderef expression
-
-Instead dereference the original user pointer under the __typeof__ and
-add indirection outside.
+clear_user, strncpy_user, strnlen_user and their helpers operate on user
+pointers, but don't have their arguments marked as __user.
+Add __user annotation to userspace pointers of those functions.
+Fix open-coded access check in the strnlen_user while at it.
 
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- arch/xtensa/include/asm/uaccess.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/xtensa/include/asm/uaccess.h | 18 ++++++++----------
+ 1 file changed, 8 insertions(+), 10 deletions(-)
 
 diff --git a/arch/xtensa/include/asm/uaccess.h b/arch/xtensa/include/asm/uaccess.h
-index 754a7c96b9da..445bb4cf3c28 100644
+index 445bb4cf3c28..e933ded0d07b 100644
 --- a/arch/xtensa/include/asm/uaccess.h
 +++ b/arch/xtensa/include/asm/uaccess.h
-@@ -204,7 +204,7 @@ do {									\
- 			retval = -EFAULT;				\
- 			(x) = 0;					\
- 		} else {						\
--			(x) = *(__force __typeof__((ptr)))&__x;		\
-+			(x) = *(__force __typeof__(*(ptr)) *)&__x;	\
- 		}							\
- 		break;							\
- 	}								\
+@@ -270,15 +270,15 @@ raw_copy_to_user(void __user *to, const void *from, unsigned long n)
+  */
+ 
+ static inline unsigned long
+-__xtensa_clear_user(void *addr, unsigned long size)
++__xtensa_clear_user(void __user *addr, unsigned long size)
+ {
+-	if (!__memset(addr, 0, size))
++	if (!__memset((void __force *)addr, 0, size))
+ 		return size;
+ 	return 0;
+ }
+ 
+ static inline unsigned long
+-clear_user(void *addr, unsigned long size)
++clear_user(void __user *addr, unsigned long size)
+ {
+ 	if (access_ok(addr, size))
+ 		return __xtensa_clear_user(addr, size);
+@@ -290,10 +290,10 @@ clear_user(void *addr, unsigned long size)
+ 
+ #ifndef CONFIG_GENERIC_STRNCPY_FROM_USER
+ 
+-extern long __strncpy_user(char *, const char *, long);
++extern long __strncpy_user(char *dst, const char __user *src, long count);
+ 
+ static inline long
+-strncpy_from_user(char *dst, const char *src, long count)
++strncpy_from_user(char *dst, const char __user *src, long count)
+ {
+ 	if (access_ok(src, 1))
+ 		return __strncpy_user(dst, src, count);
+@@ -306,13 +306,11 @@ long strncpy_from_user(char *dst, const char *src, long count);
+ /*
+  * Return the size of a string (including the ending 0!)
+  */
+-extern long __strnlen_user(const char *, long);
++extern long __strnlen_user(const char __user *str, long len);
+ 
+-static inline long strnlen_user(const char *str, long len)
++static inline long strnlen_user(const char __user *str, long len)
+ {
+-	unsigned long top = __kernel_ok ? ~0UL : TASK_SIZE - 1;
+-
+-	if ((unsigned long)str > top)
++	if (!access_ok(str, 1))
+ 		return 0;
+ 	return __strnlen_user(str, len);
+ }
 -- 
 2.20.1
 
