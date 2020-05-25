@@ -2,61 +2,62 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D5971DF2BC
-	for <lists+linux-xtensa@lfdr.de>; Sat, 23 May 2020 01:11:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B2711E17B9
+	for <lists+linux-xtensa@lfdr.de>; Tue, 26 May 2020 00:16:19 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 812DB64F8;
-	Fri, 22 May 2020 22:56:57 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 142626548;
+	Mon, 25 May 2020 22:01:54 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com
- [209.85.214.196])
- by linux-xtensa.org (Postfix) with ESMTPS id D02C164F2
- for <linux-xtensa@linux-xtensa.org>; Fri, 22 May 2020 22:56:54 +0000 (UTC)
-Received: by mail-pl1-f196.google.com with SMTP id m7so5016141plt.5
- for <linux-xtensa@linux-xtensa.org>; Fri, 22 May 2020 16:11:12 -0700 (PDT)
+Received: from mail-pj1-f66.google.com (mail-pj1-f66.google.com
+ [209.85.216.66])
+ by linux-xtensa.org (Postfix) with ESMTPS id D0C176541
+ for <linux-xtensa@linux-xtensa.org>; Mon, 25 May 2020 22:01:52 +0000 (UTC)
+Received: by mail-pj1-f66.google.com with SMTP id n15so391358pjt.4
+ for <linux-xtensa@linux-xtensa.org>; Mon, 25 May 2020 15:16:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=XwLJSYwASLEYgULcmxjHMYHm0gclCEZFExWcoADNDfk=;
- b=iqA7xGFH7nRzZSARF8J/6I87gXVGh2PeDk3JEKv2iZubsvfzUBXuI4+LMaQN/t5r73
- GxdIq3VmZYudQHfuCUBKXnoOEGklNrGsoBld+BCQJuSPZ5puYurVTAtOvqGVEizDcfnO
- dKZUzJA5p+9vV8xarJqChzjMdOUsTQnJzK3J9QWkk54jp7awFsugw4+nAjBNMkZT1rOp
- RAxAprQIszHXmayLMUAMIb7XqpQYhRwbqmJR69p7VJ56HF3l4Eoa4NSFxfSeS7TSjcHp
- 4jMlmdQt34zQIhx5j8tuLcqneY31xwXOV+gzEpToqFrpH5koOfnGUMO/ZhzDvR6bv94X
- XJBA==
+ bh=eSpEFVbG8JUdSrBIflNKicdqqYEQz8d5l9KuD7qZZcM=;
+ b=O3y125lYcfZznF8AdnHsBuu/pezAvAh4K/OW3m8ETYoqnVQqxBeNIYO5FvhJmamZKE
+ 483QrLedr8lgEJr5C7+miL2JM8u5iyi1FB6qb949HD5ZZM5yF+Um7SkUE+82nlHfkRR0
+ 4R+vASNN8jyTIZGeNmSy+nIz8otmu1TA7pMCiRRUglkZJoSfNSUKcrgZRVZbrPZPq0tZ
+ V1KjfzJDc0CmyQ1NyoNwuDTJZXWZwSWKdEoYu6eSRwaqnO7EJwLtzyUH7jCMNvFzjGj1
+ AU7RIOb1zFoRY4h2IygAuvvQQkEilsyBHcQrCd2JhGh9Gl6m19tw96kHWe2KJtMR6zJq
+ +eNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=XwLJSYwASLEYgULcmxjHMYHm0gclCEZFExWcoADNDfk=;
- b=ZkR0/uaCmgKspiL0s4X0yqp1vGV7KfyA4KFL7tAor2hZf2SU+L1oWTjtsk9EG/7jCO
- 2xOGdmzWM7mSpt+YlrYfMJFLm8WKnrCMpbd5uDoegJhAo7Yoo/WPD4npbrPp8UQEgZrt
- WmK+gH9Go3WjRItdV+KZl2yxsUtFgVxX/ns68T5gNx9RFJLdYZQEKdzNuTHhFmh9qyUq
- DhoKJ7wZ3SSYXocGNN7h2Cl9neggiAX62sZzWZP+2yLTB8sJTWeZ6iV9ZM8ZYDLTElUt
- l1Q1QlZi+28MGB1LaxA0O2gnxf6okjcFVYK46vcSLdQWQmsgR0AFzg4iqa5gXYBtuqh4
- GOtA==
-X-Gm-Message-State: AOAM533M0W4EH1zmcg1MJsb8TNrtr4h0cifQTP5QFMnqOJIV/9oqdyEK
- ZfPlPRrE3KJ2KRcPBruoXQMkKQyN
-X-Google-Smtp-Source: ABdhPJzWH+H30rB22gfRPrtAIbrZkJvP48IdUiW2B/+G2yBfRKCZi6tlnmd0/ESwRg3CPpeax+pm0Q==
-X-Received: by 2002:a17:90a:ce17:: with SMTP id
- f23mr7495181pju.51.1590189071893; 
- Fri, 22 May 2020 16:11:11 -0700 (PDT)
+ bh=eSpEFVbG8JUdSrBIflNKicdqqYEQz8d5l9KuD7qZZcM=;
+ b=Cw0KJiulCKL2bqIeBObOxtq7Kja83ESOqqrutMVHJIZsZuhiqYa4taS1WEa4rcukAq
+ VLzgoP9ardVZ4wpovV6JT4ExJ6/luJd4ljvdLYWpKG45bkdAWH78BwqNsu4Xjxss/QYf
+ lbugqrO/oYhtJkuVCN5RX9T9R9OkFjTpFIRIJlWTNRrOJ35KAvTvHI1ZrxPWza6TtRFl
+ Xo1xg6xrrq8O/1q+EynmfWMKtNbgluiyqqJvnnbBCG5IZ3DEgfgoQFQsg2TwcH0jzkTl
+ J4gq++IkxhiVCsP/W1NWMOw1/+tRCk/bvs5cr3jp4t2Y1yQr39zKsLEsGylgGPNsh1ld
+ 34hw==
+X-Gm-Message-State: AOAM530CCiSrJkwwfWwumKdU71NsvaUxe87YLfM8X0OLjKakLHI4z7wN
+ sAXvpnJaWKPnQQfZF47jZ58ut+BP
+X-Google-Smtp-Source: ABdhPJzQ3P0vqWJRY6AQI6xSDmGSBZjsIw41fa3CVPrEXXshOerRfEW4ULTGkJlQo+SAqILMhumhhA==
+X-Received: by 2002:a17:90a:bf92:: with SMTP id
+ d18mr9741928pjs.120.1590444975572; 
+ Mon, 25 May 2020 15:16:15 -0700 (PDT)
 Received: from octofox.hsd1.ca.comcast.net
- ([2601:641:400:e00:d0d2:96ff:22ac:b8e6])
- by smtp.gmail.com with ESMTPSA id b24sm7454401pfi.4.2020.05.22.16.11.10
+ ([2601:641:400:e00:7571:e536:944d:12bc])
+ by smtp.gmail.com with ESMTPSA id z13sm14160865pfj.153.2020.05.25.15.16.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 22 May 2020 16:11:11 -0700 (PDT)
+ Mon, 25 May 2020 15:16:15 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Fri, 22 May 2020 16:10:56 -0700
-Message-Id: <20200522231056.27879-1-jcmvbkbc@gmail.com>
+Date: Mon, 25 May 2020 15:15:56 -0700
+Message-Id: <20200525221556.4270-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>, Al Viro <viro@zeniv.linux.org.uk>,
- Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org
-Subject: [Linux-Xtensa] [PATCH] xtensa: fix error paths in __get_user_{check,
-	size}
+Cc: Max Filippov <jcmvbkbc@gmail.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Christoph Hellwig <hch@lst.de>,
+ linux-kernel@vger.kernel.org
+Subject: [Linux-Xtensa] [PATCH] xtensa: fix flush_icache_user_range in noMMU
+	configs
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -69,58 +70,36 @@ List-Post: <mailto:linux-xtensa@linux-xtensa.org>
 List-Help: <mailto:linux-xtensa-request@linux-xtensa.org?subject=help>
 List-Subscribe: <http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa>, 
  <mailto:linux-xtensa-request@linux-xtensa.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Error paths in __get_user_check and __get_user_size directly assing 0 to
-the result. It causes the following sparse warnings:
-
-  sparse: warning: Using plain integer as NULL pointer
-
-Convert 0 to the type pointed to by the user pointer before assigning it.
-
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
- arch/xtensa/include/asm/uaccess.h | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
-
-diff --git a/arch/xtensa/include/asm/uaccess.h b/arch/xtensa/include/asm/uaccess.h
-index 445bb4cf3c28..0fd9b4086ae2 100644
---- a/arch/xtensa/include/asm/uaccess.h
-+++ b/arch/xtensa/include/asm/uaccess.h
-@@ -184,7 +184,7 @@ __asm__ __volatile__(					\
- 	if (access_ok(__gu_addr, size))					\
- 		__get_user_size((x), __gu_addr, (size), __gu_err);	\
- 	else								\
--		(x) = 0;						\
-+		(x) = (__typeof__(*(ptr)))0;				\
- 	__gu_err;							\
- })
- 
-@@ -202,13 +202,15 @@ do {									\
- 		u64 __x;						\
- 		if (unlikely(__copy_from_user(&__x, ptr, 8))) {		\
- 			retval = -EFAULT;				\
--			(x) = 0;					\
-+			(x) = (__typeof__(*(ptr)))0;			\
- 		} else {						\
- 			(x) = *(__force __typeof__(*(ptr)) *)&__x;	\
- 		}							\
- 		break;							\
- 	}								\
--	default: (x) = 0; __get_user_bad();				\
-+	default:							\
-+		(x) = (__typeof__(*(ptr)))0;				\
-+		__get_user_bad();					\
- 	}								\
- } while (0)
- 
--- 
-2.20.1
-
-_______________________________________________
-linux-xtensa mailing list
-linux-xtensa@linux-xtensa.org
-http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa
+Zmx1c2hfaWNhY2hlX3VzZXJfcmFuZ2UgZGVmaW5pdGlvbiBmb3IgeHRlbnNhIGlzIHBsYWNlZCB1
+bmRlcgpwcmVwcm9jZXNzb3IgY29uZGl0aW9uIHRoYXQgaXMgbm90IHByb2Nlc3NlZCBpbiBub01N
+VSBjb25maWd1cmF0aW9ucywKcmVzdWx0aW5nIGluIHRoZSBmb2xsb3dpbmcgYnVpbGQgZXJyb3Jz
+OgoKICBmcy9leGVjLmM6MTA2NTozOiBlcnJvcjogaW1wbGljaXQgZGVjbGFyYXRpb24gb2YgZnVu
+Y3Rpb24KICDigJhmbHVzaF9pY2FjaGVfdXNlcl9yYW5nZeKAmQogIGZzL2JpbmZtdF9mbGF0LmM6
+ODU3OjI6IGVycm9yOiBpbXBsaWNpdCBkZWNsYXJhdGlvbiBvZiBmdW5jdGlvbgogIOKAmGZsdXNo
+X2ljYWNoZV91c2VyX3Jhbmdl4oCZCgpNb3ZlIGRlZmluaXRpb24gb3V0c2lkZSBjb25kaXRpb25h
+bCBjb21waWxhdGlvbiBibG9jay4KCkZpeGVzOiAxMzRkOTZkMDVkMzAgKCJ4dGVuc2E6IGltcGxl
+bWVudCBmbHVzaF9pY2FjaGVfdXNlcl9yYW5nZSIpClNpZ25lZC1vZmYtYnk6IE1heCBGaWxpcHBv
+diA8amNtdmJrYmNAZ21haWwuY29tPgotLS0KIGFyY2gveHRlbnNhL2luY2x1ZGUvYXNtL2NhY2hl
+Zmx1c2guaCB8IDQgKystLQogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxl
+dGlvbnMoLSkKCmRpZmYgLS1naXQgYS9hcmNoL3h0ZW5zYS9pbmNsdWRlL2FzbS9jYWNoZWZsdXNo
+LmggYi9hcmNoL3h0ZW5zYS9pbmNsdWRlL2FzbS9jYWNoZWZsdXNoLmgKaW5kZXggNDYwZTY2NmFk
+MDc2Li5jZjkwN2U1YmYyZjIgMTAwNjQ0Ci0tLSBhL2FyY2gveHRlbnNhL2luY2x1ZGUvYXNtL2Nh
+Y2hlZmx1c2guaAorKysgYi9hcmNoL3h0ZW5zYS9pbmNsdWRlL2FzbS9jYWNoZWZsdXNoLmgKQEAg
+LTEwNyw4ICsxMDcsNiBAQCB2b2lkIGZsdXNoX2NhY2hlX3BhZ2Uoc3RydWN0IHZtX2FyZWFfc3Ry
+dWN0KiwKICNkZWZpbmUgZmx1c2hfY2FjaGVfcGFnZSAgbG9jYWxfZmx1c2hfY2FjaGVfcGFnZQog
+I2VuZGlmCiAKLSNkZWZpbmUgZmx1c2hfaWNhY2hlX3VzZXJfcmFuZ2UgZmx1c2hfaWNhY2hlX3Jh
+bmdlCi0KICNkZWZpbmUgbG9jYWxfZmx1c2hfY2FjaGVfYWxsKCkJCQkJCQlcCiAJZG8gewkJCQkJ
+CQkJXAogCQlfX2ZsdXNoX2ludmFsaWRhdGVfZGNhY2hlX2FsbCgpOwkJCVwKQEAgLTE0Nyw2ICsx
+NDUsOCBAQCB2b2lkIGxvY2FsX2ZsdXNoX2NhY2hlX3BhZ2Uoc3RydWN0IHZtX2FyZWFfc3RydWN0
+ICp2bWEsCiAKICNlbmRpZgogCisjZGVmaW5lIGZsdXNoX2ljYWNoZV91c2VyX3JhbmdlIGZsdXNo
+X2ljYWNoZV9yYW5nZQorCiAvKiBFbnN1cmUgY29uc2lzdGVuY3kgYmV0d2VlbiBkYXRhIGFuZCBp
+bnN0cnVjdGlvbiBjYWNoZS4gKi8KICNkZWZpbmUgbG9jYWxfZmx1c2hfaWNhY2hlX3JhbmdlKHN0
+YXJ0LCBlbmQpCQkJCVwKIAlkbyB7CQkJCQkJCQlcCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LXh0ZW5zYSBtYWlsaW5nIGxp
+c3QKbGludXgteHRlbnNhQGxpbnV4LXh0ZW5zYS5vcmcKaHR0cDovL2xpc3RzLmxpbnV4LXh0ZW5z
+YS5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC14dGVuc2EK
