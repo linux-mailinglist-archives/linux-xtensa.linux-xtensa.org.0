@@ -2,56 +2,58 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 026D41E1829
-	for <lists+linux-xtensa@lfdr.de>; Tue, 26 May 2020 01:14:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B1731E2A3F
+	for <lists+linux-xtensa@lfdr.de>; Tue, 26 May 2020 20:43:50 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 4719D6542;
-	Mon, 25 May 2020 22:59:52 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 829D06472;
+	Tue, 26 May 2020 18:29:23 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
- [209.85.210.196])
- by linux-xtensa.org (Postfix) with ESMTPS id A054E6523
- for <linux-xtensa@linux-xtensa.org>; Mon, 25 May 2020 22:59:50 +0000 (UTC)
-Received: by mail-pf1-f196.google.com with SMTP id e11so8349423pfn.3
- for <linux-xtensa@linux-xtensa.org>; Mon, 25 May 2020 16:14:14 -0700 (PDT)
+Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com
+ [209.85.210.195])
+ by linux-xtensa.org (Postfix) with ESMTPS id D16EB645D
+ for <linux-xtensa@linux-xtensa.org>; Tue, 26 May 2020 18:29:21 +0000 (UTC)
+Received: by mail-pf1-f195.google.com with SMTP id n15so10566648pfd.0
+ for <linux-xtensa@linux-xtensa.org>; Tue, 26 May 2020 11:43:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=KXpZjtA33KSAeFBaMx/sZjzq8ek7b0BlnIZs8ZtFBd8=;
- b=M8NyCoapxGL6SWf0daXRYDmbgp5ssA6kTPKh5ITwM+xeslbVaXqYT7rgLg8lCnJmoA
- td6+wHgKupdXmsTcpt5Xrn/nXopGpLE0dsYztyd3Ax5eRf4XMujfFfVUx88ZVIkzv0O1
- A0WHJwJjCO5OnYI8C0/2P0EncOUZYQn2CRBCBYNLtYbNGNUYmwZDz5pvxSXikN7hooWE
- GLdG3EQgI87fYy4aAuaTOzz+vY6IYXZavZSLR/GcZKSrY9CwI3NEykfnuWbdoD/i5wko
- OT9Tjz5cqMhkT91vAFAuv2jyg9yWUS7x5ZgSQtcZ3NJqdPooJfECPOvtxMxXa3Vmf36H
- x57w==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=sYuVSuHkK0QB/HkLKRMzYYA4s+PbC029mrD8xxwWfQ8=;
+ b=huIY35A9VlokiXUv02+WwYqBtNh421rFcbpq8dFnJbzJPAEYzTFxn5SEKrIyAlBwfm
+ mlcnwivx34+mtEEO+NX5VCr22eLsSBBBG7bMSconE+Th2lZr3fFqFvzCHSad0ORnD3gD
+ sZQ1k6gIuqzv58o1g9esMnNqBIAmNYJ2GP/acHPLtHbH4Dm8LPjWIzepxL7Gr4pet8xh
+ ru8L2sUtBW8EYd4wqEM6e8a3NNJPLT9bveKdHovfdma0uWdKexcJrhg/NyXqNc/t/HXx
+ tboxaNWqB276rMtpcEY9vI6lQEfl3cbDPswtGSmF3x6BqhAZpZzF3+KVxFn8sHS4UZzy
+ NnwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=KXpZjtA33KSAeFBaMx/sZjzq8ek7b0BlnIZs8ZtFBd8=;
- b=tu8KbvGsG77+663HyAIhTF7/No6f3hDyObOAsLp6BeMjuN1tU8iwpI3z6ksVk7lVMT
- JyKScfQYR9z6T54BOK1Ydts8QXNQqKukG3fspIqYBS6N/FLALYNZ26RbqUTPNP2uVFGL
- RT926jQwy/Z+7B5usoEDBoalrCu5VH62nwtHL7YZrEqA6YthGJW3MgtQ1V9CpXy2p83T
- tkdBy4WNvsRiFn7U8J/3/tsgGlUgLYmyfnN2R0f1KBaBDXwAZoPMN7/dHGnI35Hblxqj
- kxqxzGXXLV2LALV4lKkDYBTgYKSXKEO9ZNutGAEPZfjSUVP3c9XCv/8pavjFX/h3zfuj
- aS+w==
-X-Gm-Message-State: AOAM530/Fmz1PHXJe0omPkdt8+lgtQDZb6APPr8ZLx/M/Gva9H2G/jH+
- lzAMLLebjV9NG1eZHA3FTh2SJ/Cg33WNk/Zu7ts=
-X-Google-Smtp-Source: ABdhPJySfBrqM7zjNHR2FOLFfzyepOL9+NQCt7U2EIMocpDsguLzLAczK7MGk94iz9VneIQwOqzKHmSXJVYiha5JTYQ=
-X-Received: by 2002:a63:a36e:: with SMTP id v46mr28099593pgn.378.1590448453647; 
- Mon, 25 May 2020 16:14:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200525230413.15551-1-chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20200525230413.15551-1-chris.packham@alliedtelesis.co.nz>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=sYuVSuHkK0QB/HkLKRMzYYA4s+PbC029mrD8xxwWfQ8=;
+ b=UCdzCtDpUVFhSG1amg0GPobyyWEysHFT3jNzvh4g8kiEnmXdC/MY5imJUbTzw74VhC
+ A+tFsrH2b2UEt/u6JmyWvK2p/4VwRzfKQz6Hl+UDgnUpRszCDYKwIDxoD74JssfaFtx2
+ d962kEycSGSLJiHTAq3K811zADUO/JRDFsAM3iMOrVFBLe+EAIatPQ163y6v7wJFvO5u
+ r7F3+ZIxr8bq4rsaLMTGpCIAVt1g1ftQkGH94RjzM4VvRTq4oTMzIo+L0/A5lEMfUXS6
+ PlMv/D/uTX7GuiI/h3YFFN9TF2YG6ewhboP0b+225NrZ7RFgybr2E4/iKXdsq5/j1adc
+ mPVg==
+X-Gm-Message-State: AOAM531SsBeeZnkKvWqVwZ03rNQQVDQlh8OsFIKfSNK9MUCvFrmnKNGg
+ 8wwy3qBlULbBNos8bcQEhbc=
+X-Google-Smtp-Source: ABdhPJw93u9zk+g7lNGkI9GzMPVDK4jySLbaqHndV1QXIW1RRPbc59UCQ/3PhJIdblbAnbuXm1xoLg==
+X-Received: by 2002:a62:7c94:: with SMTP id x142mr167141pfc.155.1590518626446; 
+ Tue, 26 May 2020 11:43:46 -0700 (PDT)
+Received: from octofox.cadence.com ([2601:641:400:e00:7571:e536:944d:12bc])
+ by smtp.gmail.com with ESMTPSA id t21sm319206pgu.39.2020.05.26.11.43.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 26 May 2020 11:43:45 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Mon, 25 May 2020 16:14:02 -0700
-Message-ID: <CAMo8BfLtdfKYBm_b93i9tVsz5a_YyJaR3XmKMNbT37A1smpR5Q@mail.gmail.com>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, trivial@kernel.org,
- LKML <linux-kernel@vger.kernel.org>,
- 0001-xtensa-Fix-spelling-grammar-in-comment.patch@alliedtelesis.co.nz
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: Fix spelling/grammar in comment
+To: gcc-patches@gcc.gnu.org
+Date: Tue, 26 May 2020 11:43:37 -0700
+Message-Id: <20200526184337.19874-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: Sterling Augustine <augustine.sterling@gmail.com>,
+ linux-xtensa@linux-xtensa.org, Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] gcc: xtensa: delegitimize UNSPEC_PLT
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -69,43 +71,68 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Mon, May 25, 2020 at 4:04 PM Chris Packham
-<chris.packham@alliedtelesis.co.nz> wrote:
->
-> Change 'excpetion' to 'exception', 'handeled' to 'handled' and 'the the'
-> to 'the'.
->
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
->  arch/xtensa/kernel/entry.S | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+This fixes 'non-delegitimized UNSPEC 3 found in variable location' notes
+issued when building libraries which interferes with running tests.
 
-Thanks, applied to my xtensa tree with an additional fix:
+2020-05-24  Max Filippov  <jcmvbkbc@gmail.com>
+gcc/
+	* config/xtensa/xtensa.c (xtensa_delegitimize_address): New
+	function.
+	(TARGET_DELEGITIMIZE_ADDRESS): New macro.
+---
+ gcc/config/xtensa/xtensa.c | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-> diff --git a/arch/xtensa/kernel/entry.S b/arch/xtensa/kernel/entry.S
-> index 06fbb0a171f1..696b1e4b1a67 100644
-> --- a/arch/xtensa/kernel/entry.S
-> +++ b/arch/xtensa/kernel/entry.S
-> @@ -959,14 +959,14 @@ ENDPROC(unrecoverable_exception)
->   * of the proper size instead.
->   *
->   * This algorithm simply backs out the register changes started by the user
-> - * excpetion handler, makes it appear that we have started a window underflow
-> + * exception handler, makes it appear that we have started a window underflow
->   * by rotating the window back and then setting the old window base (OWB) in
->   * the 'ps' register with the rolled back window base. The 'movsp' instruction
->   * will be re-executed and this time since the next window frames is in the
->   * active AR registers it won't cause an exception.
->   *
->   * If the WindowUnderflow code gets a TLB miss the page will get mapped
-> - * the the partial windeowUnderflow will be handeled in the double exception
-> + * the partial windeowUnderflow will be handled in the double exception
-
-I've changed windeowUnderflow here to WindowUnderflow.
-
+diff --git a/gcc/config/xtensa/xtensa.c b/gcc/config/xtensa/xtensa.c
+index 5696951fb655..e3afb70cdf04 100644
+--- a/gcc/config/xtensa/xtensa.c
++++ b/gcc/config/xtensa/xtensa.c
+@@ -188,6 +188,8 @@ static bool xtensa_can_eliminate (const int from ATTRIBUTE_UNUSED,
+ static HOST_WIDE_INT xtensa_starting_frame_offset (void);
+ static unsigned HOST_WIDE_INT xtensa_asan_shadow_offset (void);
+ 
++static rtx xtensa_delegitimize_address (rtx);
++
+ 
+ 
+ /* These hooks specify assembly directives for creating certain kinds
+@@ -338,6 +340,9 @@ static unsigned HOST_WIDE_INT xtensa_asan_shadow_offset (void);
+ #undef TARGET_HAVE_SPECULATION_SAFE_VALUE
+ #define TARGET_HAVE_SPECULATION_SAFE_VALUE speculation_safe_value_not_needed
+ 
++#undef TARGET_DELEGITIMIZE_ADDRESS
++#define TARGET_DELEGITIMIZE_ADDRESS xtensa_delegitimize_address
++
+ struct gcc_target targetm = TARGET_INITIALIZER;
+ 
+ 
+@@ -4440,4 +4445,23 @@ xtensa_asan_shadow_offset (void)
+   return HOST_WIDE_INT_UC (0x10000000);
+ }
+ 
++static rtx
++xtensa_delegitimize_address (rtx op)
++{
++  switch (GET_CODE (op))
++    {
++    case CONST:
++      return xtensa_delegitimize_address (XEXP (op, 0));
++
++    case UNSPEC:
++      if (XINT (op, 1) == UNSPEC_PLT)
++	return XVECEXP(op, 0, 0);
++      break;
++
++    default:
++      break;
++    }
++  return op;
++}
++
+ #include "gt-xtensa.h"
 -- 
-Thanks.
--- Max
+2.20.1
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
