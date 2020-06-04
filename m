@@ -2,60 +2,58 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 225801ECC7E
-	for <lists+linux-xtensa@lfdr.de>; Wed,  3 Jun 2020 11:23:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 567511EECC6
+	for <lists+linux-xtensa@lfdr.de>; Thu,  4 Jun 2020 23:05:02 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id A461D2264;
-	Wed,  3 Jun 2020 09:09:08 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 63D2D33BC;
+	Thu,  4 Jun 2020 20:50:17 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
- [209.85.215.177])
- by linux-xtensa.org (Postfix) with ESMTPS id E53672261
- for <linux-xtensa@linux-xtensa.org>; Wed,  3 Jun 2020 09:09:03 +0000 (UTC)
-Received: by mail-pg1-f177.google.com with SMTP id e9so1339351pgo.9
- for <linux-xtensa@linux-xtensa.org>; Wed, 03 Jun 2020 02:23:44 -0700 (PDT)
+Received: from mail-pf1-f193.google.com (mail-pf1-f193.google.com
+ [209.85.210.193])
+ by linux-xtensa.org (Postfix) with ESMTPS id BEC5C2625
+ for <linux-xtensa@linux-xtensa.org>; Thu,  4 Jun 2020 20:50:14 +0000 (UTC)
+Received: by mail-pf1-f193.google.com with SMTP id h185so3842342pfg.2
+ for <linux-xtensa@linux-xtensa.org>; Thu, 04 Jun 2020 14:04:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=sRW5SDnwIIr3cbppv0Ovv932qqur7lY5ZkGh2JacUsk=;
- b=SrC6qUm/64CLgN3/RvGv1EbqL2YSyzHZIpP6OHKPon7X0WlfEKShW4M8gx5w8aMmOU
- dZddmkrbX9131LFUbWJoZo5VU+WARINRbsQHUTPweB2EwruDc7vnM+v1WTUiU+fYigsU
- GwV0LiOA55GXJEP5TJV8WlhiOK+BBjpAVo0XCxcL2TrjBpxTzRwbdLGw68MtzEDiQJAB
- mNEzcygjYmM2vbT8bwlrd+jeFsb1JkhY0g4O80GQNtU9OyW4h23ov8J6cTOcyGbSPOkM
- R0AM3Jg4DDM+I6iMEmtRdcgcy9tqJ8xJAoUOC9vtoh20S2qMk4tb5RuC8pCRyjLeeibm
- uRPg==
+ bh=XBJYShmotA42AknxFeQiFnGD/xpeL/Yx/og7zLDcGJo=;
+ b=Ri//yKDogM1FWaC5oVlNoFqQQIK88pfC2P4WxvEFwQlrBvsCnkt+wmpF8Ah2eGPj9/
+ tp1AnwjJuO+2G1/9DNf9cbZGYRpm573AUjUmSmfyRpJaLxF/JMzmv9RyzQhuUM0zqOkk
+ EeeKsDVaOBcCl+6KN/tWmFVF9NuVMFvIuMtRF7Ykl7WUv/h4xlmiBDFqN7WjZzEwym/W
+ NFg7PI7w+RMyGPB3+HENdHUkD7lJG15RId6uv38UZNLKOPvoVm/aWXn8lin5XzsucIBJ
+ i16xqpLaJrg3JEUhnTCd6n3+Y38SmZ2OdsGJSyO6jlQIfhQJ4SaAQ4AcsTg6MFfFOwrZ
+ a0EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=sRW5SDnwIIr3cbppv0Ovv932qqur7lY5ZkGh2JacUsk=;
- b=ZXb5aiOdoxxFEa0YTwvnrzsR3eTy7CUC7liy4OyHXKb+j8ov/3uXCt79ru9B1tN5oD
- h/nF1hx/qOPM5s3tbmFC3UE8PdFWzXgC7HjjduN5Cw7Jf6pnJjf7s/vjh4Yzg9S/kSI7
- 6/FtrrOOhZ1lDZbMcQ5pMRgpHImPbW4G1bzr57NqeWM9Kdh/VkIFuHV1y+C+nfdu+sfY
- Quql9T/x63jzdo0tgSQoIl9SS8ptJoOxIxAxrtUyn+j5svlbbou/jebCLdVZWsHN1lDB
- Pj9mvfqlLseAVoHYFmVzDHzT/W0cSqyo4cPg8sxD4hLKq+x3+9CJM/phfsQhEqIBXsCk
- bz4w==
-X-Gm-Message-State: AOAM532J4mVeXuwrokp7dce2i1ZqDddOyNf8kRj/T9zaiRawfI1ja9cR
- XPtU9NeVnzr/RtMejSo8vd4=
-X-Google-Smtp-Source: ABdhPJyDo2fa0sS2MRLPdXgs/OGzNP9/ZnQfPHnPnHRSdq0RnJSa0rQFN7bQJH8W+muWs2lOpKgt+g==
-X-Received: by 2002:a17:90b:1244:: with SMTP id
- gx4mr973127pjb.136.1591176223846; 
- Wed, 03 Jun 2020 02:23:43 -0700 (PDT)
-Received: from octofox.hsd1.ca.comcast.net
- ([2601:641:400:e00:7571:e536:944d:12bc])
- by smtp.gmail.com with ESMTPSA id h20sm1313260pfo.105.2020.06.03.02.23.42
+ bh=XBJYShmotA42AknxFeQiFnGD/xpeL/Yx/og7zLDcGJo=;
+ b=ENqmwqiSuKEsiNI1duM/cq69app/0hfyS0wpuF3yiFAIiDn6FNFfyxB+GfYRHmPXiR
+ 6PC+VOpREfEQDZo42Q42yh1VO/yrQHUDwCeRSF9882sBMtInTdDj/CBQnUQiKEJwpQx6
+ xkQ1b1H0QLYGdqgm/Qv1Gx5hxJQ1dJInjA8+HzhaYXu417d7UUL1gXEqf5EGhOE+4B4V
+ qzxtP2TUq02LLZHY6UVEZ4zl5ndG7mn4ph0PV3VUWfjIXkZoDNTMAVjwv9P6TyqAxQoK
+ DlnKtawywnYeYBktfP71z+6L6uz+6KLiTEfILyei8Cth2oSfYytXyeq+HrKZvYKbtJR7
+ yj2Q==
+X-Gm-Message-State: AOAM531l8mHZrdAL7QpsRTn7OJiviHQTwpS7SVmPrAS8KUh25n+LJmkl
+ AQncMY9ySD66bXtdyAwMix4c2DdN
+X-Google-Smtp-Source: ABdhPJww9n3nybtlnzGlA+3h/lkb5gZcNQthVIr5O11KQjwdZ2fnx/BkZfwWk/1TJXzvVKJ1CVv1vQ==
+X-Received: by 2002:a63:da11:: with SMTP id c17mr6084254pgh.71.1591304697750; 
+ Thu, 04 Jun 2020 14:04:57 -0700 (PDT)
+Received: from octofox.cadence.com ([2601:641:400:e00:7571:e536:944d:12bc])
+ by smtp.gmail.com with ESMTPSA id ev20sm6604078pjb.8.2020.06.04.14.04.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 03 Jun 2020 02:23:43 -0700 (PDT)
+ Thu, 04 Jun 2020 14:04:57 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Wed,  3 Jun 2020 02:23:29 -0700
-Message-Id: <20200603092329.10427-1-jcmvbkbc@gmail.com>
+To: linux-xtensa@linux-xtensa.org
+Date: Thu,  4 Jun 2020 14:04:43 -0700
+Message-Id: <20200604210443.16961-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
- linux-kernel@vger.kernel.org
-Subject: [Linux-Xtensa] [PULL 0/5] xtensa updates for v5.8
+Cc: Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: fix __sync_fetch_and_{and,
+	or}_4 declarations
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -68,51 +66,36 @@ List-Post: <mailto:linux-xtensa@linux-xtensa.org>
 List-Help: <mailto:linux-xtensa-request@linux-xtensa.org?subject=help>
 List-Subscribe: <http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa>, 
  <mailto:linux-xtensa-request@linux-xtensa.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Hi Linus,
-
-please pull the following Xtensa architecture updates for v5.8:
-
-The following changes since commit b9bbe6ed63b2b9f2c9ee5cbd0f2c946a2723f4ce:
-
-  Linux 5.7-rc6 (2020-05-17 16:48:37 -0700)
-
-are available in the Git repository at:
-
-  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20200603
-
-for you to fetch changes up to 3ead2f97bd44a9a106572d306cb04a878c569cb2:
-
-  xtensa: Fix spelling/grammar in comment (2020-05-25 16:11:43 -0700)
-
-----------------------------------------------------------------
-Xtensa updates for v5.8:
-
-- fix __user annotations in asm/uaccess.h
-- fix comments in entry.S
-
-----------------------------------------------------------------
-Chris Packham (1):
-      xtensa: Fix spelling/grammar in comment
-
-Max Filippov (4):
-      xtensa: add missing __user annotations to __{get,put}_user_check
-      xtensa: fix type conversion in __get_user_size
-      xtensa: fix error paths in __get_user_{check,size}
-      xtensa: add missing __user annotations to asm/uaccess.h
-
- arch/xtensa/include/asm/uaccess.h | 32 ++++++++++++++++----------------
- arch/xtensa/kernel/entry.S        |  4 ++--
- 2 files changed, 18 insertions(+), 18 deletions(-)
-
--- 
-Thanks.
--- Max
-_______________________________________________
-linux-xtensa mailing list
-linux-xtensa@linux-xtensa.org
-http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa
+QnVpbGRpbmcgeHRlbnNhIGtlcm5lbCB3aXRoIGdjYy0xMCBwcm9kdWNlcyB0aGUgZm9sbG93aW5n
+IHdhcm5pbmdzOgogIGFyY2gveHRlbnNhL2tlcm5lbC94dGVuc2Ffa3N5bXMuYzo5MDoxNTogd2Fy
+bmluZzogY29uZmxpY3RpbmcgdHlwZXMKICAgIGZvciBidWlsdC1pbiBmdW5jdGlvbiDigJhfX3N5
+bmNfZmV0Y2hfYW5kX2FuZF804oCZOwogICAgZXhwZWN0ZWQg4oCYdW5zaWduZWQgaW50KHZvbGF0
+aWxlIHZvaWQgKiwgdW5zaWduZWQgaW50KeKAmQogICAgWy1XYnVpbHRpbi1kZWNsYXJhdGlvbi1t
+aXNtYXRjaF0KICBhcmNoL3h0ZW5zYS9rZXJuZWwveHRlbnNhX2tzeW1zLmM6OTY6MTU6IHdhcm5p
+bmc6IGNvbmZsaWN0aW5nIHR5cGVzCiAgICBmb3IgYnVpbHQtaW4gZnVuY3Rpb24g4oCYX19zeW5j
+X2ZldGNoX2FuZF9vcl804oCZOwogICAgZXhwZWN0ZWQg4oCYdW5zaWduZWQgaW50KHZvbGF0aWxl
+IHZvaWQgKiwgdW5zaWduZWQgaW50KeKAmQogICAgWy1XYnVpbHRpbi1kZWNsYXJhdGlvbi1taXNt
+YXRjaF0KCkZpeCBkZWNsYXJhdGlvbnMgb2YgdGhlc2UgZnVuY3Rpb25zIHRvIGF2b2lkIHRoZSB3
+YXJuaW5nLgoKU2lnbmVkLW9mZi1ieTogTWF4IEZpbGlwcG92IDxqY212YmtiY0BnbWFpbC5jb20+
+Ci0tLQogYXJjaC94dGVuc2Eva2VybmVsL3h0ZW5zYV9rc3ltcy5jIHwgNCArKy0tCiAxIGZpbGUg
+Y2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2Fy
+Y2gveHRlbnNhL2tlcm5lbC94dGVuc2Ffa3N5bXMuYyBiL2FyY2gveHRlbnNhL2tlcm5lbC94dGVu
+c2Ffa3N5bXMuYwppbmRleCA0MDkyNTU1ODI4YjEuLjI0Y2Y2OTcyZWFjZSAxMDA2NDQKLS0tIGEv
+YXJjaC94dGVuc2Eva2VybmVsL3h0ZW5zYV9rc3ltcy5jCisrKyBiL2FyY2gveHRlbnNhL2tlcm5l
+bC94dGVuc2Ffa3N5bXMuYwpAQCAtODcsMTMgKzg3LDEzIEBAIHZvaWQgX194dGVuc2FfbGliZ2Nj
+X3dpbmRvd19zcGlsbCh2b2lkKQogfQogRVhQT1JUX1NZTUJPTChfX3h0ZW5zYV9saWJnY2Nfd2lu
+ZG93X3NwaWxsKTsKIAotdW5zaWduZWQgbG9uZyBfX3N5bmNfZmV0Y2hfYW5kX2FuZF80KHVuc2ln
+bmVkIGxvbmcgKnAsIHVuc2lnbmVkIGxvbmcgdikKK3Vuc2lnbmVkIGludCBfX3N5bmNfZmV0Y2hf
+YW5kX2FuZF80KHZvbGF0aWxlIHZvaWQgKnAsIHVuc2lnbmVkIGludCB2KQogewogCUJVRygpOwog
+fQogRVhQT1JUX1NZTUJPTChfX3N5bmNfZmV0Y2hfYW5kX2FuZF80KTsKIAotdW5zaWduZWQgbG9u
+ZyBfX3N5bmNfZmV0Y2hfYW5kX29yXzQodW5zaWduZWQgbG9uZyAqcCwgdW5zaWduZWQgbG9uZyB2
+KQordW5zaWduZWQgaW50IF9fc3luY19mZXRjaF9hbmRfb3JfNCh2b2xhdGlsZSB2b2lkICpwLCB1
+bnNpZ25lZCBpbnQgdikKIHsKIAlCVUcoKTsKIH0KLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgteHRlbnNhIG1haWxpbmcgbGlz
+dApsaW51eC14dGVuc2FAbGludXgteHRlbnNhLm9yZwpodHRwOi8vbGlzdHMubGludXgteHRlbnNh
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LXh0ZW5zYQo=
