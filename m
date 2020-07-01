@@ -2,60 +2,58 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id E35561FA3F7
-	for <lists+linux-xtensa@lfdr.de>; Tue, 16 Jun 2020 01:13:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55AA8211420
+	for <lists+linux-xtensa@lfdr.de>; Wed,  1 Jul 2020 22:14:34 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 28F5C5874;
-	Mon, 15 Jun 2020 22:58:12 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 97D476454;
+	Wed,  1 Jul 2020 19:58:53 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
- [209.85.210.196])
- by linux-xtensa.org (Postfix) with ESMTPS id 5E20F5856
- for <linux-xtensa@linux-xtensa.org>; Mon, 15 Jun 2020 22:58:10 +0000 (UTC)
-Received: by mail-pf1-f196.google.com with SMTP id s23so8546768pfh.7
- for <linux-xtensa@linux-xtensa.org>; Mon, 15 Jun 2020 16:13:16 -0700 (PDT)
+Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
+ [209.85.210.194])
+ by linux-xtensa.org (Postfix) with ESMTPS id 0E60D6447
+ for <linux-xtensa@linux-xtensa.org>; Wed,  1 Jul 2020 19:58:51 +0000 (UTC)
+Received: by mail-pf1-f194.google.com with SMTP id t11so6607483pfq.11
+ for <linux-xtensa@linux-xtensa.org>; Wed, 01 Jul 2020 13:14:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=gCN6TnTiCi8K0gBGCrSWRSdQxoTqdDw82hOjy8EbDD4=;
- b=Z8KpbfQz2lb+n+zm+c8pXwrgXG+ypStjQfRPk5R72bJVqDqaBh55FpRZlx8RX2b4C0
- uqZyiqoiYD8X1Sf+qCjasry8UVlhsEZ9KnLNtqCmzrBi8RA1KkK1lZ2j9I09OXpemvwI
- /U2Be+AeGmDW5+xNbU/79+/OsT5aCNXx0xQYxSFcMjqpmk8cGHiuh9QYCW341zqFe1zY
- 4AXWxfOKeNF3DV4mOqErPSQIiBQXc/7QS6QwWzAZZqALF/SmaFgM/XZsIU28jRiwZaRx
- akVyy2zrWI7UHcTSbfRlD7hYOhDI+jlP5mau0PvDUb6WatsBEeyJa1BJoD71ZVF2X/6b
- wJ1Q==
+ :cc; bh=j3XX45xXL2ckQCryqen8G8xqi1VBzikcTk3+0I72HLY=;
+ b=Z6vdH9ZkagZcUlBeTb3Wb+OYJP8Of8UMSLBsvIZfVVMyI0fB4CvWQFbRRfqZlt3MZf
+ SysGd8bwRPRSMClVpd89Yjmkpu/idYcGibwdQlCb3teJ1lEGS3ip+L5eWB/kQoXjFqkc
+ RtIpppZrTJcASvarISUfx4CFSiyTTvVxna7HnJldj5BKcS0vySUv7MneDvF30wdQWKaA
+ ks55RgQw/cU7Ue/d9V09C/mLR+UgLf1u4HNeadUYxFkXS82SIsMOio18h9PP6upex+VJ
+ TZbQYZOg43ZGOukob8QzLfBOg6MGec1hXR521puYqEBLBREvAgZd/lj/f5uglDFi0wC2
+ ceQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=gCN6TnTiCi8K0gBGCrSWRSdQxoTqdDw82hOjy8EbDD4=;
- b=LRfzMCdidAds46qU8hXXHpwdfgjfCLgh5GVRAyXGAyK94S1bJ++HznE08Bn1xSEFPi
- nBfGkGnbELA9k4ZSXJ6GDrdO47TUyPVNbrnK8ncHBbKeCNJ3+8y3vXAmujwWQScgs3W2
- b+03tx8/IrGEhrFRP/O6FhMqkfQAAQsL7ZhYeI4xY0mM+aJlpDJPQFty8NJIOHe442YV
- icSA60K9WB2zxSPHbUaGdVrsRoGsasv68itNJv1t1X21F0fiLpxbqiORI5aOiD7BdLts
- kK15MuN4xx7sUsaNJrWXA/UzhTc8jtxPWWhieuR4HW3HC4kOfLipU4iVkkoMQK167AJq
- KT5A==
-X-Gm-Message-State: AOAM531egwMZbgBYBk+s6ei8O0FCTCscmNtjzqNgCO3/nHlFVlyKPec1
- F1n5guITNbSrAr7yndaqayr8IV3AGYTLsL+rntM=
-X-Google-Smtp-Source: ABdhPJzRKk2HjvNyBI7fVWuqOXrE1rxaTm/7+1ZDhLgwPpEvjVzcdKcg5b6dnnvptoOfIf2kolRLemepl1Cnyw9LRVk=
-X-Received: by 2002:a63:d501:: with SMTP id c1mr8848877pgg.159.1592262796111; 
- Mon, 15 Jun 2020 16:13:16 -0700 (PDT)
+ bh=j3XX45xXL2ckQCryqen8G8xqi1VBzikcTk3+0I72HLY=;
+ b=kwjE77Pdxe8i3U11YUzozrZIsl2yP6jvGDcjBowWdbKuperSnoeaVgi7CB3GkeQKEy
+ 074DWiRHh+4Zf4MwoeSzVO8OAxd7mAYH5MlZ8glncymQukwBXRwpS+GtJUVcYxXtNeVb
+ Bn1ijdwnMyodB5IBzQlD9wjXSKYZOpF/kXdOXNjsM2jKa4Xy2pE0JXGlfjp4m6hn4FCb
+ oiAlQyPj4BFrj2ivp1oGMTT9QODbMIqsleObKEQBMiqv747qwONhSieXa5cJb4RdqBYF
+ uiQyrIx4av8Pv4i/ajGA6wwxWH4e4zXJfzs1DDlQmn8d5Z2EJX/LMCdlYqup2d6R4Q+8
+ 9BnA==
+X-Gm-Message-State: AOAM5312ktZG2QdaMiOfXYWv2gAckwrABgtoSvlNnL9qPuLehfqSvsSq
+ 5QYntc+sZBa9IT6I+/Aojchc6A01drVLq8WschU=
+X-Google-Smtp-Source: ABdhPJwTpVRP0s9Kdt9Cl+CTlfdKHbWBuJdGoK2cC7YIaeI4bE2S1sLDFWylEo6otv0/ysiPMeOeocI+Wb+m9jZ4k/w=
+X-Received: by 2002:a62:3645:: with SMTP id d66mr26487346pfa.275.1593634469910; 
+ Wed, 01 Jul 2020 13:14:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200615221607.7764-1-peterx@redhat.com>
- <20200615222328.8745-1-peterx@redhat.com>
-In-Reply-To: <20200615222328.8745-1-peterx@redhat.com>
+References: <20200701192936.1397152-1-masahiroy@kernel.org>
+In-Reply-To: <20200701192936.1397152-1-masahiroy@kernel.org>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Mon, 15 Jun 2020 16:13:04 -0700
-Message-ID: <CAMo8BfLPRF5BZV3CS5JKPo3+bDZm3ihXu4bX9b90XNMcYx+SLQ@mail.gmail.com>
-To: Peter Xu <peterx@redhat.com>
-Cc: Andrea Arcangeli <aarcange@redhat.com>,
+Date: Wed, 1 Jul 2020 13:14:18 -0700
+Message-ID: <CAMo8Bf+w2ikVxEJecE_DpAbBQFNhY=K1jWpg9y4uDw9jEb5=MQ@mail.gmail.com>
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: Michal Marek <michal.lkml@markovi.net>,
  "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Gerald Schaefer <gerald.schaefer@de.ibm.com>
-Subject: Re: [Linux-Xtensa] [PATCH 25/25] mm/xtensa: Use
-	mm_fault_accounting()
+ <linux-xtensa@linux-xtensa.org>, Sam Ravnborg <sam@ravnborg.org>,
+ linux-kbuild <linux-kbuild@vger.kernel.org>,
+ Nick Desaulniers <ndesaulniers@google.com>,
+ LKML <linux-kernel@vger.kernel.org>, Guan Xuetao <gxt@pku.edu.cn>
+Subject: Re: [Linux-Xtensa] [PATCH] kbuild: do not export LDFLAGS_vmlinux
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -73,21 +71,27 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Mon, Jun 15, 2020 at 3:23 PM Peter Xu <peterx@redhat.com> wrote:
->
-> Use the new mm_fault_accounting() helper for page fault accounting.
->
-> Avoid doing page fault accounting multiple times if the page fault is retried.
->
-> CC: Chris Zankel <chris@zankel.net>
-> CC: Max Filippov <jcmvbkbc@gmail.com>
-> CC: linux-xtensa@linux-xtensa.org
-> Signed-off-by: Peter Xu <peterx@redhat.com>
-> ---
->  arch/xtensa/mm/fault.c | 14 +++-----------
->  1 file changed, 3 insertions(+), 11 deletions(-)
+On Wed, Jul 1, 2020 at 12:30 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
 
-Acked-by: Max Filippov <jcmvbkbc@gmail.com>
+[...]
+
+> diff --git a/arch/xtensa/boot/boot-elf/Makefile b/arch/xtensa/boot/boot-elf/Makefile
+> index 12ae1e91cb75..c6538d3321b9 100644
+> --- a/arch/xtensa/boot/boot-elf/Makefile
+> +++ b/arch/xtensa/boot/boot-elf/Makefile
+> @@ -25,7 +25,7 @@ $(obj)/Image.o: vmlinux.bin $(OBJS)
+>                 $(OBJS) $@
+>
+>  $(obj)/../Image.elf: $(obj)/Image.o $(obj)/boot.lds
+> -       $(Q)$(LD) $(KBUILD_LDFLAGS) $(LDFLAGS_vmlinux) \
+> +       $(LD) $(KBUILD_LDFLAGS) \
+
+Can that $(Q) be retained, please?
+The rest LGTM.
+
+>                 -T $(obj)/boot.lds \
+>                 --build-id=none \
+>                 -o $@ $(obj)/Image.o
 
 -- 
 Thanks.
