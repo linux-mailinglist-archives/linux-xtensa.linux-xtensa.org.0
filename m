@@ -2,58 +2,58 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 55AA8211420
-	for <lists+linux-xtensa@lfdr.de>; Wed,  1 Jul 2020 22:14:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3EA92127F4
+	for <lists+linux-xtensa@lfdr.de>; Thu,  2 Jul 2020 17:34:55 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 97D476454;
-	Wed,  1 Jul 2020 19:58:53 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 6726D52E1;
+	Thu,  2 Jul 2020 15:19:13 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
- [209.85.210.194])
- by linux-xtensa.org (Postfix) with ESMTPS id 0E60D6447
- for <linux-xtensa@linux-xtensa.org>; Wed,  1 Jul 2020 19:58:51 +0000 (UTC)
-Received: by mail-pf1-f194.google.com with SMTP id t11so6607483pfq.11
- for <linux-xtensa@linux-xtensa.org>; Wed, 01 Jul 2020 13:14:30 -0700 (PDT)
+Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com
+ [209.85.215.196])
+ by linux-xtensa.org (Postfix) with ESMTPS id 6CD545289
+ for <linux-xtensa@linux-xtensa.org>; Thu,  2 Jul 2020 15:19:11 +0000 (UTC)
+Received: by mail-pg1-f196.google.com with SMTP id e18so13637357pgn.7
+ for <linux-xtensa@linux-xtensa.org>; Thu, 02 Jul 2020 08:34:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=j3XX45xXL2ckQCryqen8G8xqi1VBzikcTk3+0I72HLY=;
- b=Z6vdH9ZkagZcUlBeTb3Wb+OYJP8Of8UMSLBsvIZfVVMyI0fB4CvWQFbRRfqZlt3MZf
- SysGd8bwRPRSMClVpd89Yjmkpu/idYcGibwdQlCb3teJ1lEGS3ip+L5eWB/kQoXjFqkc
- RtIpppZrTJcASvarISUfx4CFSiyTTvVxna7HnJldj5BKcS0vySUv7MneDvF30wdQWKaA
- ks55RgQw/cU7Ue/d9V09C/mLR+UgLf1u4HNeadUYxFkXS82SIsMOio18h9PP6upex+VJ
- TZbQYZOg43ZGOukob8QzLfBOg6MGec1hXR521puYqEBLBREvAgZd/lj/f5uglDFi0wC2
- ceQw==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=jdo38+SfnzRZ0irtqUgOk39c1YWhJclooSJtA2eS8B8=;
+ b=CRy/abyUrrPreVwkieYroH/5tLLn3oU1Nr8MfgMXT+lgm0+O4CujQw/WE4O4I4B44Z
+ XxSUmN7rwpkMQD9DlqJh4kghEwQ2P2LBr0xna7ikYBrcoBmbEhLHQElwzNWPOkE3FPfF
+ ASn5tLhRG1/TvYp7Pe4FNKx1nAbo/quDHvqloYvBP8BYfcJ0XVi6kaWBslmqrcfx0xBK
+ hF9yzp20fKmFCgra/+Q9WPPQNVhLPBiDHsRJbFGyEX7lyEXHmjUT6IzOvZuN+lmIiPX1
+ 7HIWB6vTFC3aQ0ht8pdb3+HMOwgSPTA/6QgWv+FrkVJz/1618Ec54JM3Kd+3rf6bplcY
+ NlVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=j3XX45xXL2ckQCryqen8G8xqi1VBzikcTk3+0I72HLY=;
- b=kwjE77Pdxe8i3U11YUzozrZIsl2yP6jvGDcjBowWdbKuperSnoeaVgi7CB3GkeQKEy
- 074DWiRHh+4Zf4MwoeSzVO8OAxd7mAYH5MlZ8glncymQukwBXRwpS+GtJUVcYxXtNeVb
- Bn1ijdwnMyodB5IBzQlD9wjXSKYZOpF/kXdOXNjsM2jKa4Xy2pE0JXGlfjp4m6hn4FCb
- oiAlQyPj4BFrj2ivp1oGMTT9QODbMIqsleObKEQBMiqv747qwONhSieXa5cJb4RdqBYF
- uiQyrIx4av8Pv4i/ajGA6wwxWH4e4zXJfzs1DDlQmn8d5Z2EJX/LMCdlYqup2d6R4Q+8
- 9BnA==
-X-Gm-Message-State: AOAM5312ktZG2QdaMiOfXYWv2gAckwrABgtoSvlNnL9qPuLehfqSvsSq
- 5QYntc+sZBa9IT6I+/Aojchc6A01drVLq8WschU=
-X-Google-Smtp-Source: ABdhPJwTpVRP0s9Kdt9Cl+CTlfdKHbWBuJdGoK2cC7YIaeI4bE2S1sLDFWylEo6otv0/ysiPMeOeocI+Wb+m9jZ4k/w=
-X-Received: by 2002:a62:3645:: with SMTP id d66mr26487346pfa.275.1593634469910; 
- Wed, 01 Jul 2020 13:14:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200701192936.1397152-1-masahiroy@kernel.org>
-In-Reply-To: <20200701192936.1397152-1-masahiroy@kernel.org>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=jdo38+SfnzRZ0irtqUgOk39c1YWhJclooSJtA2eS8B8=;
+ b=cLdDqAUSQmVNq5hKrCJBTPtIWC5MjhQdlwxTzhZ/LxHJB1vG7IBs+FX4Lbmo6mPlcQ
+ E0DJVuyIheA1HUdSIWVbCGJUsDQ3RE3YNZv318KZiMzhw1aBcm41hrwE0YcLlO6W2/c0
+ QgvRtx5fKTrbpdBy8ryn5I6Ohrft34B/ll+yDfMR+SGmIuTjvEclwgoXE5iGEIrletLK
+ Lm0peQldfon8nSM8FcRaG7wROte4aKKr1m3isQ4RYa5Pa8e/030ihEOXcgU95lTnAb9b
+ ybBTtlNVxS1BbUTizt1B/gGjw0bF8KS+XzydM4Al4B6ycJg6l1Cqgu8pgJvAfOzSM4SY
+ AQvQ==
+X-Gm-Message-State: AOAM531FFtWDKoIbDCo8W4sNDhyG/Q0nkixKclkWypbSA9erGOog6QH6
+ 00ismSJBHrwLA5qfd6RSiOPpcwuQ
+X-Google-Smtp-Source: ABdhPJyRqzh8RGY+Tqv4Okd2thJp3+UNut3AqT2cXFZhtua+PVXSPIVUKehj+YcwsysWmfbXpZbvfw==
+X-Received: by 2002:a63:455c:: with SMTP id u28mr25890574pgk.374.1593704091996; 
+ Thu, 02 Jul 2020 08:34:51 -0700 (PDT)
+Received: from octofox.hsd1.ca.comcast.net
+ ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
+ by smtp.gmail.com with ESMTPSA id b6sm9247529pfp.0.2020.07.02.08.34.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 02 Jul 2020 08:34:51 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Wed, 1 Jul 2020 13:14:18 -0700
-Message-ID: <CAMo8Bf+w2ikVxEJecE_DpAbBQFNhY=K1jWpg9y4uDw9jEb5=MQ@mail.gmail.com>
-To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: Michal Marek <michal.lkml@markovi.net>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, Sam Ravnborg <sam@ravnborg.org>,
- linux-kbuild <linux-kbuild@vger.kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>,
- LKML <linux-kernel@vger.kernel.org>, Guan Xuetao <gxt@pku.edu.cn>
-Subject: Re: [Linux-Xtensa] [PATCH] kbuild: do not export LDFLAGS_vmlinux
+To: linux-xtensa@linux-xtensa.org
+Date: Thu,  2 Jul 2020 08:34:45 -0700
+Message-Id: <20200702153445.16241-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: update *pos in cpuinfo_op.next
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -71,31 +71,33 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Wed, Jul 1, 2020 at 12:30 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
+Increment *pos in the cpuinfo_op.next to fix the following warning
+triggered by cat /proc/cpuinfo:
 
-[...]
+  seq_file: buggy .next function c_next did not update position index
 
-> diff --git a/arch/xtensa/boot/boot-elf/Makefile b/arch/xtensa/boot/boot-elf/Makefile
-> index 12ae1e91cb75..c6538d3321b9 100644
-> --- a/arch/xtensa/boot/boot-elf/Makefile
-> +++ b/arch/xtensa/boot/boot-elf/Makefile
-> @@ -25,7 +25,7 @@ $(obj)/Image.o: vmlinux.bin $(OBJS)
->                 $(OBJS) $@
->
->  $(obj)/../Image.elf: $(obj)/Image.o $(obj)/boot.lds
-> -       $(Q)$(LD) $(KBUILD_LDFLAGS) $(LDFLAGS_vmlinux) \
-> +       $(LD) $(KBUILD_LDFLAGS) \
+Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+---
+ arch/xtensa/kernel/setup.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Can that $(Q) be retained, please?
-The rest LGTM.
-
->                 -T $(obj)/boot.lds \
->                 --build-id=none \
->                 -o $@ $(obj)/Image.o
-
+diff --git a/arch/xtensa/kernel/setup.c b/arch/xtensa/kernel/setup.c
+index d9204dc2656e..be2c78f71695 100644
+--- a/arch/xtensa/kernel/setup.c
++++ b/arch/xtensa/kernel/setup.c
+@@ -724,7 +724,8 @@ c_start(struct seq_file *f, loff_t *pos)
+ static void *
+ c_next(struct seq_file *f, void *v, loff_t *pos)
+ {
+-	return NULL;
++	++*pos;
++	return c_start(f, pos);
+ }
+ 
+ static void
 -- 
-Thanks.
--- Max
+2.20.1
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
