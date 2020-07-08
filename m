@@ -2,58 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id D3EA92127F4
-	for <lists+linux-xtensa@lfdr.de>; Thu,  2 Jul 2020 17:34:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B936218128
+	for <lists+linux-xtensa@lfdr.de>; Wed,  8 Jul 2020 09:26:27 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 6726D52E1;
-	Thu,  2 Jul 2020 15:19:13 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id DD1842D7F;
+	Wed,  8 Jul 2020 07:10:32 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
 Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com
  [209.85.215.196])
- by linux-xtensa.org (Postfix) with ESMTPS id 6CD545289
- for <linux-xtensa@linux-xtensa.org>; Thu,  2 Jul 2020 15:19:11 +0000 (UTC)
-Received: by mail-pg1-f196.google.com with SMTP id e18so13637357pgn.7
- for <linux-xtensa@linux-xtensa.org>; Thu, 02 Jul 2020 08:34:52 -0700 (PDT)
+ by linux-xtensa.org (Postfix) with ESMTPS id B55B92621
+ for <linux-xtensa@linux-xtensa.org>; Wed,  8 Jul 2020 07:10:30 +0000 (UTC)
+Received: by mail-pg1-f196.google.com with SMTP id e18so21242414pgn.7
+ for <linux-xtensa@linux-xtensa.org>; Wed, 08 Jul 2020 00:26:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=jdo38+SfnzRZ0irtqUgOk39c1YWhJclooSJtA2eS8B8=;
- b=CRy/abyUrrPreVwkieYroH/5tLLn3oU1Nr8MfgMXT+lgm0+O4CujQw/WE4O4I4B44Z
- XxSUmN7rwpkMQD9DlqJh4kghEwQ2P2LBr0xna7ikYBrcoBmbEhLHQElwzNWPOkE3FPfF
- ASn5tLhRG1/TvYp7Pe4FNKx1nAbo/quDHvqloYvBP8BYfcJ0XVi6kaWBslmqrcfx0xBK
- hF9yzp20fKmFCgra/+Q9WPPQNVhLPBiDHsRJbFGyEX7lyEXHmjUT6IzOvZuN+lmIiPX1
- 7HIWB6vTFC3aQ0ht8pdb3+HMOwgSPTA/6QgWv+FrkVJz/1618Ec54JM3Kd+3rf6bplcY
- NlVQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=pKFUgFUqW5gpKv/bMbAh9j1l3R9X9P0qKmhMZ59xEwQ=;
+ b=utMXir49D0P9akytQzu1StGbltgpgfN9ZuZBKD6fgZgD44VQTaNsGnhXcWFm+cGs/0
+ nLMiGFHj0bFHrWS3IfMivAIsfnWj7DOvzD5wLAeDWygtxU3KVV/sKMxvuRp9f/NxM1Uy
+ v4QeHIDA8EstrT57e413u0CMg12c77PUAoD5EWFyA/k2fTm1p86t0F55VabnwnVIXHuX
+ OEMNtUgOZCNV3jhL1NnbK+30VCEotUhb6gPBcc3DpBYHBMeqNH+ashBDXhQRyF40GMnw
+ XrWp9DO69UcVvLyPI7Q1R13c9hciBo11yes84IMUDj1ehnt41VneVHag6hRmzTnv7Y56
+ jz3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=jdo38+SfnzRZ0irtqUgOk39c1YWhJclooSJtA2eS8B8=;
- b=cLdDqAUSQmVNq5hKrCJBTPtIWC5MjhQdlwxTzhZ/LxHJB1vG7IBs+FX4Lbmo6mPlcQ
- E0DJVuyIheA1HUdSIWVbCGJUsDQ3RE3YNZv318KZiMzhw1aBcm41hrwE0YcLlO6W2/c0
- QgvRtx5fKTrbpdBy8ryn5I6Ohrft34B/ll+yDfMR+SGmIuTjvEclwgoXE5iGEIrletLK
- Lm0peQldfon8nSM8FcRaG7wROte4aKKr1m3isQ4RYa5Pa8e/030ihEOXcgU95lTnAb9b
- ybBTtlNVxS1BbUTizt1B/gGjw0bF8KS+XzydM4Al4B6ycJg6l1Cqgu8pgJvAfOzSM4SY
- AQvQ==
-X-Gm-Message-State: AOAM531FFtWDKoIbDCo8W4sNDhyG/Q0nkixKclkWypbSA9erGOog6QH6
- 00ismSJBHrwLA5qfd6RSiOPpcwuQ
-X-Google-Smtp-Source: ABdhPJyRqzh8RGY+Tqv4Okd2thJp3+UNut3AqT2cXFZhtua+PVXSPIVUKehj+YcwsysWmfbXpZbvfw==
-X-Received: by 2002:a63:455c:: with SMTP id u28mr25890574pgk.374.1593704091996; 
- Thu, 02 Jul 2020 08:34:51 -0700 (PDT)
-Received: from octofox.hsd1.ca.comcast.net
- ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
- by smtp.gmail.com with ESMTPSA id b6sm9247529pfp.0.2020.07.02.08.34.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 02 Jul 2020 08:34:51 -0700 (PDT)
-From: Max Filippov <jcmvbkbc@gmail.com>
-To: linux-xtensa@linux-xtensa.org
-Date: Thu,  2 Jul 2020 08:34:45 -0700
-Message-Id: <20200702153445.16241-1-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.20.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=pKFUgFUqW5gpKv/bMbAh9j1l3R9X9P0qKmhMZ59xEwQ=;
+ b=LhFkxWeViBL8kem1h28sqrhbLUw95WGNGHyiMtoNq4juQ/rLfQIJx4SvgVoLEOigsV
+ vtfsOw6meh/oLEZLWnswl9XURFCmEr/ujOXyA8aaZvNK0ny/VRu6lxaYYbrsSqMAalsG
+ Qyl0JztSOlhV9P6XAC3Fga4xpdeZ5dobzRuIoVuIuClRGN3cyDL7FKMoOA1Zphkp6Sjb
+ wZh86sp57xlR6cqnRop6F4kjHA8/8gSxscZR9wQiimaaGHGKpitWT0SKm4aAdcuulGOY
+ bMviIjeRSRkc58z+58WaA6xxwx5nBE5oyvZfiJ8Chwdz8UUe/gwftBaW957kaxtv6pqy
+ ++DA==
+X-Gm-Message-State: AOAM532k/oU5KmULynCMPOaEDYMzHl9aQV2z9IHzEOvmeFLE96bjDIqg
+ 8Z74bfn6XhLBzMytO8iX3h+qXR5x8Wk7G+1agRY=
+X-Google-Smtp-Source: ABdhPJwHuFHFrEqatHcREKGCAo7pP2ZEllY6EBfxvZHdqxG5bxutXfNX+a5k34Ll+QndpGLNkB+RiIpzBpAVp7akwDA=
+X-Received: by 2002:a62:cfc1:: with SMTP id
+ b184mr15025586pfg.153.1594193183635; 
+ Wed, 08 Jul 2020 00:26:23 -0700 (PDT)
 MIME-Version: 1.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: update *pos in cpuinfo_op.next
+References: <20200708062023.7986-1-vulab@iscas.ac.cn>
+In-Reply-To: <20200708062023.7986-1-vulab@iscas.ac.cn>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Wed, 8 Jul 2020 00:26:12 -0700
+Message-ID: <CAMo8BfJ5jCXmenR6Hnsw4QffYFLRQh7-ZrKp8OuZVu7mwKT2Ng@mail.gmail.com>
+To: Xu Wang <vulab@iscas.ac.cn>
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>, Peter Zijlstra <peterz@infradead.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, alexander.shishkin@linux.intel.com,
+ Ingo Molnar <mingo@redhat.com>, namhyung@kernel.org, jolsa@redhat.com
+Subject: Re: [Linux-Xtensa] [PATCH] kernel: perf_event: use
+ for_each_set_bit() to simplify the code
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -71,33 +73,20 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Increment *pos in the cpuinfo_op.next to fix the following warning
-triggered by cat /proc/cpuinfo:
+On Tue, Jul 7, 2020 at 11:59 PM Xu Wang <vulab@iscas.ac.cn> wrote:
+>
+> Using for_each_set_bit() to simplify the code.
+>
+> Signed-off-by: Xu Wang <vulab@iscas.ac.cn>
+> ---
+>  arch/xtensa/kernel/perf_event.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
 
-  seq_file: buggy .next function c_next did not update position index
+Thanks! Applied to my xtensa tree with a slightly edited commit message.
 
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
- arch/xtensa/kernel/setup.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/arch/xtensa/kernel/setup.c b/arch/xtensa/kernel/setup.c
-index d9204dc2656e..be2c78f71695 100644
---- a/arch/xtensa/kernel/setup.c
-+++ b/arch/xtensa/kernel/setup.c
-@@ -724,7 +724,8 @@ c_start(struct seq_file *f, loff_t *pos)
- static void *
- c_next(struct seq_file *f, void *v, loff_t *pos)
- {
--	return NULL;
-+	++*pos;
-+	return c_start(f, pos);
- }
- 
- static void
 -- 
-2.20.1
-
+Thanks.
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
