@@ -2,60 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AB8221CB33
-	for <lists+linux-xtensa@lfdr.de>; Sun, 12 Jul 2020 21:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B040B224E9A
+	for <lists+linux-xtensa@lfdr.de>; Sun, 19 Jul 2020 04:09:24 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 98FCE52C1;
-	Sun, 12 Jul 2020 19:39:35 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 5EDDE644E;
+	Sun, 19 Jul 2020 01:53:06 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com
- [209.85.216.46])
- by linux-xtensa.org (Postfix) with ESMTPS id 941E142EB
- for <linux-xtensa@linux-xtensa.org>; Sun, 12 Jul 2020 19:39:33 +0000 (UTC)
-Received: by mail-pj1-f46.google.com with SMTP id k5so5093159pjg.3
- for <linux-xtensa@linux-xtensa.org>; Sun, 12 Jul 2020 12:55:37 -0700 (PDT)
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com
+ [209.85.214.195])
+ by linux-xtensa.org (Postfix) with ESMTPS id 338B06445
+ for <linux-xtensa@linux-xtensa.org>; Sun, 19 Jul 2020 01:53:04 +0000 (UTC)
+Received: by mail-pl1-f195.google.com with SMTP id d1so7088360plr.8
+ for <linux-xtensa@linux-xtensa.org>; Sat, 18 Jul 2020 19:09:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=BIetUemoKxubLIYPWxy8SSfRsMLA5iGT0+nNiwpoC8E=;
- b=hDJtHFl+cs7wxiwlm/QzWtMohfBYx6eBi9chJv3S6i1ej30kh6SApEDRMKcoBel7j/
- pEwVHjAFsNMGYaw3qx44QHbKs1MXZCTyC10bdU+IMyMKmDKln4SZ667XpNyKhZsyXANy
- 96ne/wRADtz/JeT4w0ej0Q5ZD2YQ3fHnb97m2Kk6O/9xyx/3G9E2HxSMSzvw2eKhQatS
- EEdGKx1dS4W91yvgqXSeN6QaRip+kHwPyh+0j84pSLdT0v/u7tjYzUfc8CqbaKd9wtRK
- 09LOk4XAGwquNkzMZFt1SJAVJwU/KKyRYvlr+CGS3nEvKRAyBfEHKXo2K3GzJtsXsD6w
- 50bQ==
+ bh=QtHrNXMSpyatUvUEtvk0zy0sYC+0CsUTNDsn+37VAVw=;
+ b=RI2u69cAKbx6QZ8BPbBmXTkTXkEOktawEPEaX1J+QA5VSw+EzTA9yQWF2K1pjNPjqU
+ of8yPvby9LmdjPFe33L7fgxNnyC4fQPiIjK/8INhZjXsfxvrQw71eIwiqDlA+yn59WBe
+ Ofp/460HjewE8QhLTVvQZzLseslWQYELmhj8karfKPF2PvazPhV0f9VZpX5Vcl6GR0xt
+ QIBpCtf24Gygt2ilBMACLM3Fe9vIBQWSbqFwKpBj52WWaTLcq406+/fISbqUsgVPPC7x
+ S2GNeaEFZxyQkZtvDdcZfBSyFhvh0KIi/GmO/a2KYXg4HfJ2dLVjH+LAAG7aB/IkrwiU
+ eCtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=BIetUemoKxubLIYPWxy8SSfRsMLA5iGT0+nNiwpoC8E=;
- b=oH5GDC6tusuQ8oEL6yxYhimLnuVrDjjvJOHUjPgDcPiHNIPCsruN64P306a5c3qTsv
- bIVzF93R8hR53gyxYlK3OzRs96zJIR2Xu4mrq4vc8VT+jDiFdhFEcdXRK1TV5iEC/p4O
- 6+00Kh5kgYTp++FyG0sUlgCk919L0FCtwlTusWt1wyCOxT+HK9Z9qwi7o26LqEtim4F0
- 1DceQIvoEDdzp6ImhuQir45fp9niuhFdka/dEOI85Nk/xxaAdVZeT5lCyJjUSR6vqyK/
- KLNlQQr4ghZx+C94U8hoCO+eYCdAzpkp1O122znQJDLo9KqxoKSLyz1Wc1y4nnI6eu/6
- wdmQ==
-X-Gm-Message-State: AOAM5314Z3px9TSEWRDYWkQa18NP1fxolMQ4zUJhgT4z347ARYBUK+IV
- fKkm93+9YbnptltJJMzxb0M=
-X-Google-Smtp-Source: ABdhPJxt/3avMldT/5sRUPLXyx9n2Xa19Em9/z1ugiHkq8+HTiCY6i+RomfItIhd8PA51kYGUbWiUA==
-X-Received: by 2002:a17:902:b204:: with SMTP id
- t4mr69685235plr.132.1594583736545; 
- Sun, 12 Jul 2020 12:55:36 -0700 (PDT)
+ bh=QtHrNXMSpyatUvUEtvk0zy0sYC+0CsUTNDsn+37VAVw=;
+ b=m7fwS6m9pWvSFMhUVVrTxAfHhLBARze3kN8hLnq5x6ASUrqqk3SYYecRf9Leb4WSFp
+ iO7jiybEIpHw8BfczrNQhKgA2jn9wdpxcD7iJMA0okIguezV6BHZBROYl0eKeZb8hUuL
+ oOCQvn9gA3jCqLwqPwcqvGMzJ/HlqYG1v1kU7jjaPMiqHpqSZrkIDNqakMDseu5CZR+6
+ duuVOd78ppCQOVg1DlH2nLTHhz7VNMtcbFKnj6nURzzoh4YBxca4E+ji5qXTW7giTAxe
+ 47poU0L8YGe3cB4MCwMKu0ZQ4QHAGSry9nS0mOVJNwKI8mzio4ASmERxjZaixDp80HO3
+ GFGg==
+X-Gm-Message-State: AOAM533qIM68NEz+1ujvT4g2oOpImez+P6p8UiSWf7UUhA8l1dTb76JX
+ +xAX+/VjqsnkAS5y5vL1+SqeXEtO
+X-Google-Smtp-Source: ABdhPJyDBS0Gryauf7x/s/qj1hi1aRXGhcLlVdBWgIoatOrfH5k5B6FIAGiHE526huC4vqwg2cZ3sA==
+X-Received: by 2002:a17:90a:2681:: with SMTP id
+ m1mr15468157pje.204.1595124560587; 
+ Sat, 18 Jul 2020 19:09:20 -0700 (PDT)
 Received: from octofox.hsd1.ca.comcast.net
  ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
- by smtp.gmail.com with ESMTPSA id nl11sm31314271pjb.0.2020.07.12.12.55.35
+ by smtp.gmail.com with ESMTPSA id b8sm5767459pjd.5.2020.07.18.19.09.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 12 Jul 2020 12:55:35 -0700 (PDT)
+ Sat, 18 Jul 2020 19:09:19 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Sun, 12 Jul 2020 12:55:23 -0700
-Message-Id: <20200712195523.6411-1-jcmvbkbc@gmail.com>
+To: linux-xtensa@linux-xtensa.org
+Date: Sat, 18 Jul 2020 19:09:07 -0700
+Message-Id: <20200719020907.25742-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
- linux-kernel@vger.kernel.org
-Subject: [Linux-Xtensa] [PULL 0/3] xtensa fixes for v5.8
+Cc: linux-kernel@vger.kernel.org, Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: add audit support
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -73,46 +72,86 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Hi Linus,
+All bits needed for syscall audit are present on xtensa. Add
+audit_syscall_entry and audit_syscall_exit calls and select
+HAVE_ARCH_AUDITSYSCALL in Kconfig.
 
-please pull the following Xtensa architecture fixes for v5.8:
+Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+---
+ arch/xtensa/Kconfig                   | 1 +
+ arch/xtensa/include/asm/thread_info.h | 4 +++-
+ arch/xtensa/kernel/ptrace.c           | 6 ++++++
+ 3 files changed, 10 insertions(+), 1 deletion(-)
 
-The following changes since commit 9ebcfadb0610322ac537dd7aa5d9cbc2b2894c68:
-
-  Linux 5.8-rc3 (2020-06-28 15:00:24 -0700)
-
-are available in the Git repository at:
-
-  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20200712
-
-for you to fetch changes up to ee769ebbe9e5fc7219e979fb7c5ed5bb5722649e:
-
-  xtensa: simplify xtensa_pmu_irq_handler (2020-07-08 00:18:15 -0700)
-
-----------------------------------------------------------------
-Xtensa fixes for v5.8:
-
-- fix __sync_fetch_and_{and,or}_4 declarations to avoid build warning
-- update *pos in cpuinfo_op.next to avoid runtime warning
-- use for_each_set_bit in xtensa_pmu_irq_handler instead of open-coding
-  it
-
-----------------------------------------------------------------
-Max Filippov (2):
-      xtensa: fix __sync_fetch_and_{and,or}_4 declarations
-      xtensa: update *pos in cpuinfo_op.next
-
-Xu Wang (1):
-      xtensa: simplify xtensa_pmu_irq_handler
-
- arch/xtensa/kernel/perf_event.c   | 4 +---
- arch/xtensa/kernel/setup.c        | 3 ++-
- arch/xtensa/kernel/xtensa_ksyms.c | 4 ++--
- 3 files changed, 5 insertions(+), 6 deletions(-)
-
+diff --git a/arch/xtensa/Kconfig b/arch/xtensa/Kconfig
+index 3a9f1e80394a..a7def0991a01 100644
+--- a/arch/xtensa/Kconfig
++++ b/arch/xtensa/Kconfig
+@@ -21,6 +21,7 @@ config XTENSA
+ 	select GENERIC_PCI_IOMAP
+ 	select GENERIC_SCHED_CLOCK
+ 	select GENERIC_STRNCPY_FROM_USER if KASAN
++	select HAVE_ARCH_AUDITSYSCALL
+ 	select HAVE_ARCH_JUMP_LABEL if !XIP_KERNEL
+ 	select HAVE_ARCH_KASAN if MMU && !XIP_KERNEL
+ 	select HAVE_ARCH_TRACEHOOK
+diff --git a/arch/xtensa/include/asm/thread_info.h b/arch/xtensa/include/asm/thread_info.h
+index f092cc3f4e66..c49cc4a1f39a 100644
+--- a/arch/xtensa/include/asm/thread_info.h
++++ b/arch/xtensa/include/asm/thread_info.h
+@@ -111,15 +111,17 @@ static inline struct thread_info *current_thread_info(void)
+ #define TIF_RESTORE_SIGMASK	6	/* restore signal mask in do_signal() */
+ #define TIF_NOTIFY_RESUME	7	/* callback before returning to user */
+ #define TIF_DB_DISABLED		8	/* debug trap disabled for syscall */
++#define TIF_SYSCALL_AUDIT	9	/* syscall auditing active */
+ 
+ #define _TIF_SYSCALL_TRACE	(1<<TIF_SYSCALL_TRACE)
+ #define _TIF_SIGPENDING		(1<<TIF_SIGPENDING)
+ #define _TIF_NEED_RESCHED	(1<<TIF_NEED_RESCHED)
+ #define _TIF_SINGLESTEP		(1<<TIF_SINGLESTEP)
+ #define _TIF_SYSCALL_TRACEPOINT	(1<<TIF_SYSCALL_TRACEPOINT)
++#define _TIF_SYSCALL_AUDIT	(1<<TIF_SYSCALL_AUDIT)
+ 
+ #define _TIF_WORK_MASK		(_TIF_SYSCALL_TRACE | _TIF_SINGLESTEP | \
+-				 _TIF_SYSCALL_TRACEPOINT)
++				 _TIF_SYSCALL_TRACEPOINT | _TIF_SYSCALL_AUDIT)
+ 
+ #define THREAD_SIZE KERNEL_STACK_SIZE
+ #define THREAD_SIZE_ORDER (KERNEL_STACK_SHIFT - PAGE_SHIFT)
+diff --git a/arch/xtensa/kernel/ptrace.c b/arch/xtensa/kernel/ptrace.c
+index b4c07bd890fe..0278d7dfb4d6 100644
+--- a/arch/xtensa/kernel/ptrace.c
++++ b/arch/xtensa/kernel/ptrace.c
+@@ -12,6 +12,7 @@
+  * Marc Gauthier<marc@tensilica.com> <marc@alumni.uwaterloo.ca>
+  */
+ 
++#include <linux/audit.h>
+ #include <linux/errno.h>
+ #include <linux/hw_breakpoint.h>
+ #include <linux/kernel.h>
+@@ -562,6 +563,9 @@ int do_syscall_trace_enter(struct pt_regs *regs)
+ 	if (test_thread_flag(TIF_SYSCALL_TRACEPOINT))
+ 		trace_sys_enter(regs, syscall_get_nr(current, regs));
+ 
++	audit_syscall_entry(regs->syscall, regs->areg[6],
++			    regs->areg[3], regs->areg[4],
++			    regs->areg[5]);
+ 	return 1;
+ }
+ 
+@@ -569,6 +573,8 @@ void do_syscall_trace_leave(struct pt_regs *regs)
+ {
+ 	int step;
+ 
++	audit_syscall_exit(regs);
++
+ 	if (test_thread_flag(TIF_SYSCALL_TRACEPOINT))
+ 		trace_sys_exit(regs, regs_return_value(regs));
+ 
 -- 
-Thanks.
--- Max
+2.20.1
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
