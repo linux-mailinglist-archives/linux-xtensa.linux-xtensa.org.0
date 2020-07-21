@@ -2,56 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EB1B228A5E
-	for <lists+linux-xtensa@lfdr.de>; Tue, 21 Jul 2020 23:10:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C14F228BC4
+	for <lists+linux-xtensa@lfdr.de>; Wed, 22 Jul 2020 00:00:46 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 8BF7E5816;
-	Tue, 21 Jul 2020 20:54:09 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id B31AE5800;
+	Tue, 21 Jul 2020 21:44:21 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com
- [209.85.210.195])
- by linux-xtensa.org (Postfix) with ESMTPS id DF0CA5801
- for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 20:54:07 +0000 (UTC)
-Received: by mail-pf1-f195.google.com with SMTP id 1so40370pfn.9
- for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 14:10:31 -0700 (PDT)
+Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com
+ [209.85.214.193])
+ by linux-xtensa.org (Postfix) with ESMTPS id 686D742EB
+ for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 21:44:20 +0000 (UTC)
+Received: by mail-pl1-f193.google.com with SMTP id x8so10839427plm.10
+ for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 15:00:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ZhFDYa4FfOvvUM9wrXOQAjhc4Tt6wbIOg27vSWas00o=;
- b=r4drilcsOVRuoawrOpfhw+dymjFUEvUJ8LUrnZdDYtwr4SUrvK1TOXNWu2AexT/Meh
- uDWLtU6Do3cnH41/8Uo9sOh+kN0BKt68ziFJ0/S5OUoIoMatggCbTlbf2Pi04mWnZ7p5
- 4Jo1rs/LcGOzKFLAIFAg5As8aYZatAvppuO4sgZAjURrnsuT8BR3JdG3URMdy/rgyUkp
- 8Opjs5SX/eadOJhi466+ANacMI7Q4BNFuT6apL8uVaSLfHOdGLvuuzOwmMYCUyxtfz67
- SKprIW4A9lLUkLHJtDMB8LKNZEcN6RC/dMDUvNs6CEH4/CIyCBtOH3jxyYUnTTRr1aJv
- 9Bqw==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=DdNcuQK0NXb9O+sBfaHLVJivIhqCAN5FeOqzQif1mJk=;
+ b=Wskphfs/cMN5rdywSMJMV4e4u/ThVaEMleo4waV8I+8i65tE9ErTUq89Q7RQF9CKNf
+ iQGt8UiObHNjCqCKWfciSW/Eo6TiY+shrgK8EzRJeNZJ3zmEEfEYl1kjTKdD8FSj8JeP
+ Wp7IpCT1WqS2zhRy6Ru28EEUPqHxdKSY567pQIz6Om7ntqpzz60JdWHZnANluR5jfwsM
+ S/vOzD4FDNHuAHDwoRuKOifqTDhxw1k26DuayJqSS1/8AVOHw86LIo1J+5TDuM1DNqQy
+ Z0EEi5fJhwX63P7sRoF+sqmKvIF5ZvL6AhF2tQXbJejOg2XJc5ouz4zKmMBT5QgOdQGv
+ Tg2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ZhFDYa4FfOvvUM9wrXOQAjhc4Tt6wbIOg27vSWas00o=;
- b=E/Q1urqgOubbGaPhYoCTgBWIy9B3pCt3a0WIguguqLkqLSQrEugm3+FnFofSYIY/Fi
- xJqfwUfZqwyR5X5zjLhMNaPBsvFeu7OMnQV8VnKw+TtF8tp7AjknfFl8Fbb+zfxlsXy3
- Mf5Rqoq2bS9GAIGqY/kU0d2aqTIdwn4WQR9YlclIjvKZiNAkNbldy1L/obtS62G49KW5
- jra2/nJfwSbEChMmaS3TdxE6HgcjCMNe/Kh8rI7L3WUDXw1Sc5/rzvwDnPxMFS4n9UD9
- vAciaEo2fgar6ARENkn5h7+V71AX+KJDvlqeKj+MqMsp5FHSxQOoxlJEZJvri2Xb9BFq
- ZEFg==
-X-Gm-Message-State: AOAM530yEbEf+ewfIKHUwv55+92foS7prJlUBdaYDSj+JTLmocuZEL/a
- R+9i8XkK7y4tB1my/IwukLx47L3kgRwm9n08OKY=
-X-Google-Smtp-Source: ABdhPJwoWRbs5GZLbVtYueLHOUh103u+TTXn30QPO7TztEYzA+lP7eK9C1X4VZur6jmAkEvULmrS9QZgaydLUbsPVTc=
-X-Received: by 2002:a62:3645:: with SMTP id d66mr26786035pfa.275.1595365830665; 
- Tue, 21 Jul 2020 14:10:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200721210044.15458-1-rdunlap@infradead.org>
-In-Reply-To: <20200721210044.15458-1-rdunlap@infradead.org>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=DdNcuQK0NXb9O+sBfaHLVJivIhqCAN5FeOqzQif1mJk=;
+ b=QjGRMwvAP4omkX4hFHNj7IHw3YH9OD2Wi/F0k7fugmaXlKPUT2+WX5did7xwgeg8CW
+ tPon41VjLwQYrDCh+QyYkbclty4y0kbvMNGj/zqxScKRronyqHEoQvKj4AO9RL0312RL
+ 2mtbmUPvgCiT3AkbpOVYvThEI7QBb07Y0cPOkABH7RUtehTI7xRlKonnOntk2/1KsoDo
+ LP6YcaFbmV0rW80hWJPMhBBj/jylmZGh1hM3p8Nd9nnqFD8VtgACD85squZcod3oIJQE
+ ZKTreeUORy4bPFjr80Ru2spnD7o990mg6OwmJgCHPaLJnEMvldkjjMDmRyQsjp57uWEa
+ Hlvw==
+X-Gm-Message-State: AOAM5325HxnpIZbe+Mxo7DC8R/jmKJ1QlSZclVmf8zybuf7is+6W79rk
+ K+iCYWX7U2M+AnQhJOVqYqYj1WGh
+X-Google-Smtp-Source: ABdhPJzDxZFymjNgcSR3l18ygAmdv4lsoT9yT3V3JP5Rwk0QYQI7U8yzNU7v1MmO+QQZLJQKl/R+qA==
+X-Received: by 2002:a17:90a:db17:: with SMTP id
+ g23mr7187756pjv.180.1595368842718; 
+ Tue, 21 Jul 2020 15:00:42 -0700 (PDT)
+Received: from octofox.cadence.com ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
+ by smtp.gmail.com with ESMTPSA id q96sm4453920pja.0.2020.07.21.15.00.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 21 Jul 2020 15:00:42 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Tue, 21 Jul 2020 14:10:19 -0700
-Message-ID: <CAMo8Bf+Pnkwu59vhwz21K_qoMHn+44AW3YUmO53dZ5nROaDdzA@mail.gmail.com>
-To: Randy Dunlap <rdunlap@infradead.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: initialize_mmu.h: fix a
-	duplicated word
+To: linux-xtensa@linux-xtensa.org
+Date: Tue, 21 Jul 2020 15:00:35 -0700
+Message-Id: <20200721220035.32584-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: linux-kernel@vger.kernel.org, Al Viro <viro@zeniv.linux.org.uk>,
+ Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: fix access check in
+	csum_and_copy_from_user
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -69,21 +73,34 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Tue, Jul 21, 2020 at 2:00 PM Randy Dunlap <rdunlap@infradead.org> wrote:
->
-> Change "The the" to "For the".
->
-> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-> Cc: Chris Zankel <chris@zankel.net>
-> Cc: Max Filippov <jcmvbkbc@gmail.com>
-> Cc: linux-xtensa@linux-xtensa.org
-> ---
->  arch/xtensa/include/asm/initialize_mmu.h |    2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Commit d341659f470b ("xtensa: switch to providing
+csum_and_copy_from_user()") introduced access check, but incorrectly
+tested dst instead of src.
+Fix access_ok argument in csum_and_copy_from_user.
 
-Thank you! Applied to my xtensa tree.
+Cc: Al Viro <viro@zeniv.linux.org.uk>
+Fixes: d341659f470b ("xtensa: switch to providing csum_and_copy_from_user()")
+Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+---
+ arch/xtensa/include/asm/checksum.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
--- Max
+diff --git a/arch/xtensa/include/asm/checksum.h b/arch/xtensa/include/asm/checksum.h
+index d8292cc9ebdf..243a5fe79d3c 100644
+--- a/arch/xtensa/include/asm/checksum.h
++++ b/arch/xtensa/include/asm/checksum.h
+@@ -57,7 +57,7 @@ static inline
+ __wsum csum_and_copy_from_user(const void __user *src, void *dst,
+ 				   int len, __wsum sum, int *err_ptr)
+ {
+-	if (access_ok(dst, len))
++	if (access_ok(src, len))
+ 		return csum_partial_copy_generic((__force const void *)src, dst,
+ 					len, sum, err_ptr, NULL);
+ 	if (len)
+-- 
+2.20.1
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
