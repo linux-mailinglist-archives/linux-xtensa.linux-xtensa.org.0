@@ -2,62 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 51350224EA6
-	for <lists+linux-xtensa@lfdr.de>; Sun, 19 Jul 2020 04:17:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28E112275FD
+	for <lists+linux-xtensa@lfdr.de>; Tue, 21 Jul 2020 04:48:08 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 7EC8E6494;
-	Sun, 19 Jul 2020 02:00:49 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id AA3E25867;
+	Tue, 21 Jul 2020 02:31:44 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
- [209.85.210.196])
- by linux-xtensa.org (Postfix) with ESMTPS id EDF1E6472
- for <linux-xtensa@linux-xtensa.org>; Sun, 19 Jul 2020 02:00:46 +0000 (UTC)
-Received: by mail-pf1-f196.google.com with SMTP id j20so7306559pfe.5
- for <linux-xtensa@linux-xtensa.org>; Sat, 18 Jul 2020 19:17:04 -0700 (PDT)
+Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com
+ [209.85.214.193])
+ by linux-xtensa.org (Postfix) with ESMTPS id E8B4C5816
+ for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 02:31:42 +0000 (UTC)
+Received: by mail-pl1-f193.google.com with SMTP id x9so9608693plr.2
+ for <linux-xtensa@linux-xtensa.org>; Mon, 20 Jul 2020 19:48:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=kl14Oyojnz7qNzdRV9kI+oI9qkQq4W7peOgG+/MweoU=;
- b=S0w/Q3abVzMaa0Pd0coBL4i43B8ZKc9v9Yen8P4muuNJs1guw3MlR5AoFEWgL7DKe4
- xo8SGd9JNLlv5siZ13SDqNooEUp2Zwrb4InjZmNlUWu2IMuUEy8lJnPo2NGskEoY11pp
- 7nZiKEJ2jLrsSrtZ1X4G4fwMYEW5IVF3WDWQVA47Nl2D7D4mm7OrMySqtSraOUkIC3Ow
- KBNllHlDpR6zZ+8FP1zOKCDi2rAXfF/G9K2R5E8QVAGWWXq0a0g62wLeykkeZAtO+z0K
- wYpVTSv9Uwd+PDuhYi+RCpGJd/z7gpUB8yYxEJDKrXTL1o2Sl5UmL8UU/roe6+fHw/c9
- EWoA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=cksS06U1qnevoEJIlv+grV0Oemjc9a1w0y2kvjgWiuI=;
+ b=HuFuDos0EOAHqmklXCF6gWZVZJzosnL8X6CGvqcgM6Kqt0FAoBhM18o9itrl3wkJ9D
+ gfELwTrd2bcEv7VjAZVmMIIWXZQOh1WHsuk5R4BY1m+gd4sHfU41p72+wqttC/euBOku
+ w4Aq0LdhD98P7K3hM5FSwH5kDcPkvfiVGvlPo4Xr3FmhbrYzyCAPr4JZ4GdKYCg/DZEU
+ BII6Oj/0/CJh2B+PO2MUN/Bh+K8UVqhwykSnDRewsUDKAm+iBqRWKRxu5cn5nf1Tmame
+ MoAZZObOq1ucNhnSXD/cFC8bJ2LyWcHg9kt0MvlSvhvZJ87ct10JOnoa/eOg02L7K4bt
+ TGFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=kl14Oyojnz7qNzdRV9kI+oI9qkQq4W7peOgG+/MweoU=;
- b=GDbekp+SYbfLYfNAcu1mBaxLN6TtgkYRAUvvheDH0jM2Tfha8M7dPN8n5BqFkszcik
- B3YPYV997v5DsfcOcQYb2IxIL6aSsI5GPpiyAdcSzedUJiWESlFOVK3w00x/VdzerWwZ
- XuuR+QrQqFzGKSLiuq56aDFC628lU9sepxUPG5y8swQiir3DJFgvYclfjeUxoDz2J//3
- U88KMGifz8eVC66orjw9cpTfmyrwTUd2Q9/bvAhVEWHvIi948Wg908kcwzioQNaTvNFK
- sdwwuvJDaA7vSYTi/hUAd0EnMPUc6hdFLSc7hc20AnjzCp/ZV8TPo8b0piedOalNWNCz
- 0G1A==
-X-Gm-Message-State: AOAM532jOcK/L/71qodSRpje66YbP8+PTqtDbBk+u0segbPwZYTLu0Ua
- nYfY2NhQaxGH//YE1U10o9R3Sy1B
-X-Google-Smtp-Source: ABdhPJzTUABuF2Vzp+Y9Usd6Hjkm7rZDYp+mvf/3yQZOoG7CAfvk2coMFaxyRLh2S+YAc0Z4L3XduQ==
-X-Received: by 2002:a62:834c:: with SMTP id h73mr14490407pfe.221.1595125023447; 
- Sat, 18 Jul 2020 19:17:03 -0700 (PDT)
-Received: from octofox.hsd1.ca.comcast.net
- ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
- by smtp.gmail.com with ESMTPSA id a68sm6891159pje.35.2020.07.18.19.17.02
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=cksS06U1qnevoEJIlv+grV0Oemjc9a1w0y2kvjgWiuI=;
+ b=NSWgOUjaEnpXIVmRH4A5s/A0G+aQKPk0nW+Af5uI512FixGUqirI7Gte4JzGVSzR0J
+ 7VyLnt12KQepZLnNQuMJW/0XCzVNz23ckR2pGrz1xEf5Dko6BFLi/GmNLFTXg1wvOUPp
+ DCgTiiMNkW30SxVlEeYh8X7n7mV3rIkkMaD/80E/sAFy25eD5M+b3HXVV0KB5UY39VTk
+ LMilkb8fsWtoWS7P0oGPHzX4kR1fNwcU+IlQrxkAtwqJleLlwTAB0kIEw6AP5ZNNypRS
+ A8rEgFDJ9uHmrQIQJZZyus94buSCCrOBNlfqJ5pTRlruk2NyQTrMdc1yOFUNqQvkcliN
+ w2UA==
+X-Gm-Message-State: AOAM531fBJ7PBHx5J+0t+MSOzxEim33LD8OvMecjdGgzROaHsU+Be8uu
+ h4g16dVrAgSr5AiGQaeQKC//xj5N
+X-Google-Smtp-Source: ABdhPJzEYBvW4gWqRIZtm8Q/iIG1zLRgwM7HyAYiumOOM4fHYbUEO6Z81UKPatzXGRlfXb10duvBtg==
+X-Received: by 2002:a17:90a:d684:: with SMTP id
+ x4mr2375673pju.62.1595299683886; 
+ Mon, 20 Jul 2020 19:48:03 -0700 (PDT)
+Received: from octofox.cadence.com ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
+ by smtp.gmail.com with ESMTPSA id p9sm14336962pgc.77.2020.07.20.19.48.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 18 Jul 2020 19:17:03 -0700 (PDT)
+ Mon, 20 Jul 2020 19:48:03 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Sat, 18 Jul 2020 19:16:54 -0700
-Message-Id: <20200719021654.25922-4-jcmvbkbc@gmail.com>
+Date: Mon, 20 Jul 2020 19:47:51 -0700
+Message-Id: <20200721024751.1257-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200719021654.25922-1-jcmvbkbc@gmail.com>
-References: <20200719021654.25922-1-jcmvbkbc@gmail.com>
 MIME-Version: 1.0
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- Max Filippov <jcmvbkbc@gmail.com>, linux-kselftest@vger.kernel.org,
- bpf@vger.kernel.org
-Subject: [Linux-Xtensa] [PATCH 3/3] selftests/seccomp: add xtensa support
+Cc: Mike Rapoport <rppt@linux.ibm.com>, linux-kernel@vger.kernel.org,
+ Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: fix closing endif comment
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -75,64 +72,31 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Xtensa returns syscall number can be obtained and changed through the
-struct user_pt_regs. Syscall return value register is fixed relatively
-to the current register window in the user_pt_regs, so it needs a bit of
-special treatment.
+Commit 8f74afa22d9b ("xtensa: switch to generic version of pte
+allocation") introduced the following build warning for xtensa
+  arch/xtensa/include/asm/pgalloc.h:67:8: warning: extra tokens at end of
+  #endif directive [-Wendif-labels]
+Fix #endif comment.
 
+Cc: Mike Rapoport <rppt@linux.ibm.com>
+Fixes: 8f74afa22d9b ("xtensa: switch to generic version of pte allocation")
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- tools/testing/selftests/seccomp/seccomp_bpf.c | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
+ arch/xtensa/include/asm/pgalloc.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/tools/testing/selftests/seccomp/seccomp_bpf.c b/tools/testing/selftests/seccomp/seccomp_bpf.c
-index 252140a52553..1b445c2e7fbe 100644
---- a/tools/testing/selftests/seccomp/seccomp_bpf.c
-+++ b/tools/testing/selftests/seccomp/seccomp_bpf.c
-@@ -122,6 +122,8 @@ struct seccomp_data {
- #  define __NR_seccomp 358
- # elif defined(__s390__)
- #  define __NR_seccomp 348
-+# elif defined(__xtensa__)
-+#  define __NR_seccomp 337
- # else
- #  warning "seccomp syscall number unknown for this architecture"
- #  define __NR_seccomp 0xffff
-@@ -1622,6 +1624,14 @@ TEST_F(TRACE_poke, getpid_runs_normally)
- # define SYSCALL_SYSCALL_NUM regs[4]
- # define SYSCALL_RET	regs[2]
- # define SYSCALL_NUM_RET_SHARE_REG
-+#elif defined(__xtensa__)
-+# define ARCH_REGS	struct user_pt_regs
-+# define SYSCALL_NUM	syscall
-+/*
-+ * On xtensa syscall return value is in the register
-+ * a2 of the current window which is not fixed.
-+ */
-+#define SYSCALL_RET(reg) a[(reg).windowbase * 4 + 2]
- #else
- # error "Do not know how to find your architecture's registers and syscalls"
- #endif
-@@ -1693,7 +1703,8 @@ void change_syscall(struct __test_metadata *_metadata,
- 	EXPECT_EQ(0, ret) {}
+diff --git a/arch/xtensa/include/asm/pgalloc.h b/arch/xtensa/include/asm/pgalloc.h
+index 699a8fdf9005..d3a22da4d2c9 100644
+--- a/arch/xtensa/include/asm/pgalloc.h
++++ b/arch/xtensa/include/asm/pgalloc.h
+@@ -64,6 +64,6 @@ static inline pgtable_t pte_alloc_one(struct mm_struct *mm)
+ }
  
- #if defined(__x86_64__) || defined(__i386__) || defined(__powerpc__) || \
--	defined(__s390__) || defined(__hppa__) || defined(__riscv)
-+	defined(__s390__) || defined(__hppa__) || defined(__riscv) || \
-+	defined(__xtensa__)
- 	{
- 		regs.SYSCALL_NUM = syscall;
- 	}
-@@ -1736,6 +1747,9 @@ void change_syscall(struct __test_metadata *_metadata,
- 	if (syscall == -1)
- #ifdef SYSCALL_NUM_RET_SHARE_REG
- 		TH_LOG("Can't modify syscall return on this architecture");
-+
-+#elif defined(__xtensa__)
-+		regs.SYSCALL_RET(regs) = result;
- #else
- 		regs.SYSCALL_RET = result;
- #endif
+ #define pmd_pgtable(pmd) pmd_page(pmd)
+-#endif CONFIG_MMU
++#endif /* CONFIG_MMU */
+ 
+ #endif /* _XTENSA_PGALLOC_H */
 -- 
 2.20.1
 
