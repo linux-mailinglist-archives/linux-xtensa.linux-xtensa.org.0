@@ -2,59 +2,58 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 28E112275FD
-	for <lists+linux-xtensa@lfdr.de>; Tue, 21 Jul 2020 04:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD285227853
+	for <lists+linux-xtensa@lfdr.de>; Tue, 21 Jul 2020 07:47:01 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id AA3E25867;
-	Tue, 21 Jul 2020 02:31:44 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 9F2E45867;
+	Tue, 21 Jul 2020 05:30:38 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com
- [209.85.214.193])
- by linux-xtensa.org (Postfix) with ESMTPS id E8B4C5816
- for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 02:31:42 +0000 (UTC)
-Received: by mail-pl1-f193.google.com with SMTP id x9so9608693plr.2
- for <linux-xtensa@linux-xtensa.org>; Mon, 20 Jul 2020 19:48:04 -0700 (PDT)
+Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com
+ [209.85.215.193])
+ by linux-xtensa.org (Postfix) with ESMTPS id CDE9B582F
+ for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 05:30:37 +0000 (UTC)
+Received: by mail-pg1-f193.google.com with SMTP id l63so11417374pge.12
+ for <linux-xtensa@linux-xtensa.org>; Mon, 20 Jul 2020 22:46:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=cksS06U1qnevoEJIlv+grV0Oemjc9a1w0y2kvjgWiuI=;
- b=HuFuDos0EOAHqmklXCF6gWZVZJzosnL8X6CGvqcgM6Kqt0FAoBhM18o9itrl3wkJ9D
- gfELwTrd2bcEv7VjAZVmMIIWXZQOh1WHsuk5R4BY1m+gd4sHfU41p72+wqttC/euBOku
- w4Aq0LdhD98P7K3hM5FSwH5kDcPkvfiVGvlPo4Xr3FmhbrYzyCAPr4JZ4GdKYCg/DZEU
- BII6Oj/0/CJh2B+PO2MUN/Bh+K8UVqhwykSnDRewsUDKAm+iBqRWKRxu5cn5nf1Tmame
- MoAZZObOq1ucNhnSXD/cFC8bJ2LyWcHg9kt0MvlSvhvZJ87ct10JOnoa/eOg02L7K4bt
- TGFA==
+ bh=6bWhgtkGXl6Kr1YSJF6to7Kggw6JeAK3tzV29Pot9eE=;
+ b=GpsYhtzNWnN0HW+fNwL7PAgSnz2F9w1gv/tLKcveDJgBQDYxUBUIW6gU5JOOUvk4gq
+ amQNfoE0TPH/tgmQdNg7PiG2xDLyq81+78VOrdMoWyy8v3ataKm75lqQV7oNxr46xUiz
+ GXvukLmAed2o9wya4/8gkYJMixGJjDSyhUDzFqSYVWHDMzdqR6WlhifWKCH2Ukyr3Ixm
+ eupKPDtf3dt7R8lBIIHmbg+sFNGmvUYGZfjOzHugwyjp6mIZcBXsxIrQdIUdFv28WmY4
+ ZrDBbvbbZUwVBLCvzpyLOdGcxr85p0BkLTqqkP3d6Bly3HTKzj0QVjB1W6vusWL0+m4P
+ 5g2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=cksS06U1qnevoEJIlv+grV0Oemjc9a1w0y2kvjgWiuI=;
- b=NSWgOUjaEnpXIVmRH4A5s/A0G+aQKPk0nW+Af5uI512FixGUqirI7Gte4JzGVSzR0J
- 7VyLnt12KQepZLnNQuMJW/0XCzVNz23ckR2pGrz1xEf5Dko6BFLi/GmNLFTXg1wvOUPp
- DCgTiiMNkW30SxVlEeYh8X7n7mV3rIkkMaD/80E/sAFy25eD5M+b3HXVV0KB5UY39VTk
- LMilkb8fsWtoWS7P0oGPHzX4kR1fNwcU+IlQrxkAtwqJleLlwTAB0kIEw6AP5ZNNypRS
- A8rEgFDJ9uHmrQIQJZZyus94buSCCrOBNlfqJ5pTRlruk2NyQTrMdc1yOFUNqQvkcliN
- w2UA==
-X-Gm-Message-State: AOAM531fBJ7PBHx5J+0t+MSOzxEim33LD8OvMecjdGgzROaHsU+Be8uu
- h4g16dVrAgSr5AiGQaeQKC//xj5N
-X-Google-Smtp-Source: ABdhPJzEYBvW4gWqRIZtm8Q/iIG1zLRgwM7HyAYiumOOM4fHYbUEO6Z81UKPatzXGRlfXb10duvBtg==
-X-Received: by 2002:a17:90a:d684:: with SMTP id
- x4mr2375673pju.62.1595299683886; 
- Mon, 20 Jul 2020 19:48:03 -0700 (PDT)
+ bh=6bWhgtkGXl6Kr1YSJF6to7Kggw6JeAK3tzV29Pot9eE=;
+ b=Sg5w4JbLsrlkYYAAaXaAZCygDpsoIfMeDzTEV1MzM0fa1PfNDyFmqKMH4k1uEiX0nt
+ Y6UmTMlQuy25aDn5lHbSiTftuQNqG6bTDjcNwDOcj8mRbR70z+nYqCNolDKbSFcOxM1p
+ xLfg7nN9rOm9cXLekUs8yBj+FLaI0vndPo4ywP+B9TL/qVsYcdn5qIe7vHIqPGAwHtnH
+ 5MgGbtWycAw0bUvnJc2wWlIra5TNx98uNCasFwAUYJu7EEONG1M8IesdRTH4yOD4rWM5
+ f6Jgb/13Q782jb1+jjzQNRL9kPdvvQ/wbjEBMxG3RF7BWIHLNx/s1xtVYBEpvAzxNwbW
+ 7QCA==
+X-Gm-Message-State: AOAM533hkd9vr7fOKvUJz+yP31Ryjm+k5CjF4V84/tWW4/+fH2AKSWeJ
+ PMEqDsSBNhqPyCsCFef3jrCue+ly
+X-Google-Smtp-Source: ABdhPJzgNyDdEMqcJeYOIQMZCmFsOTkWrzjdoFB6sWgk19l9PRscppjrynFmSdft/NL58YhFviHVkw==
+X-Received: by 2002:a62:346:: with SMTP id 67mr23020674pfd.111.1595310418976; 
+ Mon, 20 Jul 2020 22:46:58 -0700 (PDT)
 Received: from octofox.cadence.com ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
- by smtp.gmail.com with ESMTPSA id p9sm14336962pgc.77.2020.07.20.19.48.03
+ by smtp.gmail.com with ESMTPSA id h18sm19110280pfr.186.2020.07.20.22.46.58
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Jul 2020 19:48:03 -0700 (PDT)
+ Mon, 20 Jul 2020 22:46:58 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Mon, 20 Jul 2020 19:47:51 -0700
-Message-Id: <20200721024751.1257-1-jcmvbkbc@gmail.com>
+Date: Mon, 20 Jul 2020 22:46:46 -0700
+Message-Id: <20200721054646.18497-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: Mike Rapoport <rppt@linux.ibm.com>, linux-kernel@vger.kernel.org,
+Cc: Masahiro Yamada <masahiroy@kernel.org>, linux-kernel@vger.kernel.org,
  Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: fix closing endif comment
+Subject: [Linux-Xtensa] [PATCH] xtensa: add boot-elf targets to extra-y
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -72,31 +71,36 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Commit 8f74afa22d9b ("xtensa: switch to generic version of pte
-allocation") introduced the following build warning for xtensa
-  arch/xtensa/include/asm/pgalloc.h:67:8: warning: extra tokens at end of
-  #endif directive [-Wendif-labels]
-Fix #endif comment.
+The commit 8fe87a92f262 ("kbuild: always create directories of targets")
+exposed an issue in the xtensa makefiles that results in the following
+build error in a clean directory:
+  scripts/Makefile.build:374: arch/xtensa/boot/boot-elf/boot.lds] Error 1
+    arch/xtensa/boot/boot-elf/bootstrap.S:21: fatal error:
+    opening dependency file arch/xtensa/boot/boot-elf/.bootstrap.o.d:
+    No such file or directory
 
-Cc: Mike Rapoport <rppt@linux.ibm.com>
-Fixes: 8f74afa22d9b ("xtensa: switch to generic version of pte allocation")
+Intermediate targets in arch/xtensa/boot/boot-elf don't get into
+'targets' and build directory is not created for them.
+Add boot.lds and bootstrap.o to extra-y.
+
+Cc: Masahiro Yamada <masahiroy@kernel.org>
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- arch/xtensa/include/asm/pgalloc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/xtensa/boot/boot-elf/Makefile | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/xtensa/include/asm/pgalloc.h b/arch/xtensa/include/asm/pgalloc.h
-index 699a8fdf9005..d3a22da4d2c9 100644
---- a/arch/xtensa/include/asm/pgalloc.h
-+++ b/arch/xtensa/include/asm/pgalloc.h
-@@ -64,6 +64,6 @@ static inline pgtable_t pte_alloc_one(struct mm_struct *mm)
- }
+diff --git a/arch/xtensa/boot/boot-elf/Makefile b/arch/xtensa/boot/boot-elf/Makefile
+index a62a25506536..eb952d809d81 100644
+--- a/arch/xtensa/boot/boot-elf/Makefile
++++ b/arch/xtensa/boot/boot-elf/Makefile
+@@ -15,6 +15,7 @@ export CPPFLAGS_boot.lds += -P -C
+ export KBUILD_AFLAGS += -mtext-section-literals
  
- #define pmd_pgtable(pmd) pmd_page(pmd)
--#endif CONFIG_MMU
-+#endif /* CONFIG_MMU */
+ boot-y		:= bootstrap.o
++extra-y		:= boot.lds $(boot-y)
  
- #endif /* _XTENSA_PGALLOC_H */
+ OBJS		:= $(addprefix $(obj)/,$(boot-y))
+ 
 -- 
 2.20.1
 
