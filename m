@@ -2,60 +2,56 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 83DC3227BE4
-	for <lists+linux-xtensa@lfdr.de>; Tue, 21 Jul 2020 11:38:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EB1B228A5E
+	for <lists+linux-xtensa@lfdr.de>; Tue, 21 Jul 2020 23:10:34 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 1A62C5801;
-	Tue, 21 Jul 2020 09:21:38 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 8BF7E5816;
+	Tue, 21 Jul 2020 20:54:09 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com
- [209.85.214.193])
- by linux-xtensa.org (Postfix) with ESMTPS id 7BF0B57E1
- for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 09:21:34 +0000 (UTC)
-Received: by mail-pl1-f193.google.com with SMTP id d7so1247397plq.13
- for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 02:37:56 -0700 (PDT)
+Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com
+ [209.85.210.195])
+ by linux-xtensa.org (Postfix) with ESMTPS id DF0CA5801
+ for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 20:54:07 +0000 (UTC)
+Received: by mail-pf1-f195.google.com with SMTP id 1so40370pfn.9
+ for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 14:10:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=WYIe/jy5Dqr0y+oNjQbbwYu6KlJ30fL8Fok/qL9XnPk=;
- b=n+8EdCnYpI9w4QjiWRKAVS54jZ1Ps1uRqRUyeMZnXiDcZEXJSAelRlHz0Ml+F1dB9w
- fFBlVhu/3eQb2wXD3+96Bq2XlO0LoLyLpTLnOlg0yzKgsjkrjvtCmnVlbgvV+0ieLAZG
- CCTT0VONfgMu7+hMbwOVSaEHRYGxzqLHap34kqpqy2TsGBDWt/1WQb9AlK7/MTXPg41D
- 8r44xA1GEWt/a0JFPXlZi4JR7h7DwAHMkFxofBpBZDDl15x0BlC/vPRcLCUmVnND6Tyc
- sDWmNFj604AKKYHszuohS7nTxYkpwr9WcQkGONHCI4XCtw7bYnECs7HfoJIpf2kvKtlX
- h0vA==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ZhFDYa4FfOvvUM9wrXOQAjhc4Tt6wbIOg27vSWas00o=;
+ b=r4drilcsOVRuoawrOpfhw+dymjFUEvUJ8LUrnZdDYtwr4SUrvK1TOXNWu2AexT/Meh
+ uDWLtU6Do3cnH41/8Uo9sOh+kN0BKt68ziFJ0/S5OUoIoMatggCbTlbf2Pi04mWnZ7p5
+ 4Jo1rs/LcGOzKFLAIFAg5As8aYZatAvppuO4sgZAjURrnsuT8BR3JdG3URMdy/rgyUkp
+ 8Opjs5SX/eadOJhi466+ANacMI7Q4BNFuT6apL8uVaSLfHOdGLvuuzOwmMYCUyxtfz67
+ SKprIW4A9lLUkLHJtDMB8LKNZEcN6RC/dMDUvNs6CEH4/CIyCBtOH3jxyYUnTTRr1aJv
+ 9Bqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=WYIe/jy5Dqr0y+oNjQbbwYu6KlJ30fL8Fok/qL9XnPk=;
- b=fgpE0oBRrxSjJwcgY0VZmfJPRAIqX8a7w0QS76ygF4TWxo70n/zKKVZWqvpfkkYNdh
- M2sxsvLFsQ6JrIlt8M8I5AODY9A0z56DO4yYy1wB2FgCoBG+MnbIgGp3oU9ARbTSPRpY
- jaC+c7cihfLOFaYQSXDaiORY5DVhioEEc9N+HFa+sYP/D4WGDj/4AT6RnGooUrAIe29E
- KeXwsqOORpUer3hyYQz2QzgtrJLa0hA+Gqnk5hvw+j2gZhkM9whB84A1Tn7c79JF8YZC
- MQP+l+vKTTZxkJEgdh8vV4Mo9/PLymP9L3gUCQNM4EwnQSjhvoXUEIJ4JE1ofWYfOt5r
- 2/cQ==
-X-Gm-Message-State: AOAM532PABeeqodLDpYLBnyKl/k2zFdSl60hhxRgdpbd7y7oGczEQbWz
- o/IUr4BOKw5UWrXjm5zArVlLODlg
-X-Google-Smtp-Source: ABdhPJx3q2vePBy0C8LqpkO73icb5tIVTFbRJ/bGDIEVo3L/J0CavOVeYQJOv7m9OLf97F7tw0lBEw==
-X-Received: by 2002:a17:90b:30d7:: with SMTP id
- hi23mr2989543pjb.69.1595324275934; 
- Tue, 21 Jul 2020 02:37:55 -0700 (PDT)
-Received: from octofox.cadence.com ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
- by smtp.gmail.com with ESMTPSA id g8sm17653264pgr.70.2020.07.21.02.37.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Jul 2020 02:37:55 -0700 (PDT)
-From: Max Filippov <jcmvbkbc@gmail.com>
-To: linux-xtensa@linux-xtensa.org
-Date: Tue, 21 Jul 2020 02:37:48 -0700
-Message-Id: <20200721093748.26627-1-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.20.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ZhFDYa4FfOvvUM9wrXOQAjhc4Tt6wbIOg27vSWas00o=;
+ b=E/Q1urqgOubbGaPhYoCTgBWIy9B3pCt3a0WIguguqLkqLSQrEugm3+FnFofSYIY/Fi
+ xJqfwUfZqwyR5X5zjLhMNaPBsvFeu7OMnQV8VnKw+TtF8tp7AjknfFl8Fbb+zfxlsXy3
+ Mf5Rqoq2bS9GAIGqY/kU0d2aqTIdwn4WQR9YlclIjvKZiNAkNbldy1L/obtS62G49KW5
+ jra2/nJfwSbEChMmaS3TdxE6HgcjCMNe/Kh8rI7L3WUDXw1Sc5/rzvwDnPxMFS4n9UD9
+ vAciaEo2fgar6ARENkn5h7+V71AX+KJDvlqeKj+MqMsp5FHSxQOoxlJEZJvri2Xb9BFq
+ ZEFg==
+X-Gm-Message-State: AOAM530yEbEf+ewfIKHUwv55+92foS7prJlUBdaYDSj+JTLmocuZEL/a
+ R+9i8XkK7y4tB1my/IwukLx47L3kgRwm9n08OKY=
+X-Google-Smtp-Source: ABdhPJwoWRbs5GZLbVtYueLHOUh103u+TTXn30QPO7TztEYzA+lP7eK9C1X4VZur6jmAkEvULmrS9QZgaydLUbsPVTc=
+X-Received: by 2002:a62:3645:: with SMTP id d66mr26786035pfa.275.1595365830665; 
+ Tue, 21 Jul 2020 14:10:30 -0700 (PDT)
 MIME-Version: 1.0
-Cc: Masahiro Yamada <masahiroy@kernel.org>, linux-kernel@vger.kernel.org,
- Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH v2] xtensa: add boot subdirectories targets
-	to extra-y
+References: <20200721210044.15458-1-rdunlap@infradead.org>
+In-Reply-To: <20200721210044.15458-1-rdunlap@infradead.org>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Tue, 21 Jul 2020 14:10:19 -0700
+Message-ID: <CAMo8Bf+Pnkwu59vhwz21K_qoMHn+44AW3YUmO53dZ5nROaDdzA@mail.gmail.com>
+To: Randy Dunlap <rdunlap@infradead.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>
+Subject: Re: [Linux-Xtensa] [PATCH] xtensa: initialize_mmu.h: fix a
+	duplicated word
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -73,56 +69,21 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-The commit 8fe87a92f262 ("kbuild: always create directories of targets")
-exposed an issue in the xtensa makefiles that results in the following
-build error in a clean directory:
-  scripts/Makefile.build:374: arch/xtensa/boot/boot-elf/boot.lds] Error 1
-    arch/xtensa/boot/boot-elf/bootstrap.S:21: fatal error:
-    opening dependency file arch/xtensa/boot/boot-elf/.bootstrap.o.d:
-    No such file or directory
+On Tue, Jul 21, 2020 at 2:00 PM Randy Dunlap <rdunlap@infradead.org> wrote:
+>
+> Change "The the" to "For the".
+>
+> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+> Cc: Chris Zankel <chris@zankel.net>
+> Cc: Max Filippov <jcmvbkbc@gmail.com>
+> Cc: linux-xtensa@linux-xtensa.org
+> ---
+>  arch/xtensa/include/asm/initialize_mmu.h |    2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Intermediate targets in arch/xtensa/boot/boot-elf don't get into
-'targets' and build directory is not created for them.
-Add boot.lds and bootstrap.o to extra-y in subdirectories of
-arch/xtensa/boot.
+Thank you! Applied to my xtensa tree.
 
-Cc: Masahiro Yamada <masahiroy@kernel.org>
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
-Changes v1->v2:
-- update boot-redboot/Makefile in the same manner as boot-elf/Makefile.
-
- arch/xtensa/boot/boot-elf/Makefile     | 1 +
- arch/xtensa/boot/boot-redboot/Makefile | 1 +
- 2 files changed, 2 insertions(+)
-
-diff --git a/arch/xtensa/boot/boot-elf/Makefile b/arch/xtensa/boot/boot-elf/Makefile
-index 12ae1e91cb75..ad341c0fff15 100644
---- a/arch/xtensa/boot/boot-elf/Makefile
-+++ b/arch/xtensa/boot/boot-elf/Makefile
-@@ -15,6 +15,7 @@ export CPPFLAGS_boot.lds += -P -C
- export KBUILD_AFLAGS += -mtext-section-literals
- 
- boot-y		:= bootstrap.o
-+extra-y		:= boot.lds $(boot-y)
- 
- OBJS		:= $(addprefix $(obj)/,$(boot-y))
- 
-diff --git a/arch/xtensa/boot/boot-redboot/Makefile b/arch/xtensa/boot/boot-redboot/Makefile
-index 8632473ad319..022a76a2282a 100644
---- a/arch/xtensa/boot/boot-redboot/Makefile
-+++ b/arch/xtensa/boot/boot-redboot/Makefile
-@@ -13,6 +13,7 @@ endif
- LD_ARGS	= -T $(srctree)/$(obj)/boot.ld
- 
- boot-y	:= bootstrap.o
-+extra-y	:= $(boot-y)
- 
- OBJS	:= $(addprefix $(obj)/,$(boot-y))
- LIBS	:= arch/xtensa/boot/lib/lib.a arch/xtensa/lib/lib.a
--- 
-2.20.1
-
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
