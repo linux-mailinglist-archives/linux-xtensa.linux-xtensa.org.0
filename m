@@ -2,58 +2,58 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id B4FD4228EDA
-	for <lists+linux-xtensa@lfdr.de>; Wed, 22 Jul 2020 06:00:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BA0B228FB7
+	for <lists+linux-xtensa@lfdr.de>; Wed, 22 Jul 2020 07:34:34 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id C80954241;
-	Wed, 22 Jul 2020 03:44:25 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id B0915262C;
+	Wed, 22 Jul 2020 05:18:09 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com
- [209.85.214.194])
- by linux-xtensa.org (Postfix) with ESMTPS id 980082D7F
- for <linux-xtensa@linux-xtensa.org>; Wed, 22 Jul 2020 03:44:24 +0000 (UTC)
-Received: by mail-pl1-f194.google.com with SMTP id q17so302310pls.9
- for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 21:00:48 -0700 (PDT)
+Received: from mail-pg1-f194.google.com (mail-pg1-f194.google.com
+ [209.85.215.194])
+ by linux-xtensa.org (Postfix) with ESMTPS id 511AD261F
+ for <linux-xtensa@linux-xtensa.org>; Wed, 22 Jul 2020 05:18:08 +0000 (UTC)
+Received: by mail-pg1-f194.google.com with SMTP id n5so594753pgf.7
+ for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 22:34:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=xa3ZZYGnoP85/3zV1lZZil7QKFpmT3uyhbiDkzmb3pw=;
- b=d7qkkZzBvWH2EGTJl6d/xeU0OZVDjSrLJ0nJ9h+STGVXGF2EOVqbTk7CSjMjiON26V
- M0LwvjihL4Vm/tB7kntykC0gcYIEyVe4rJ+F4xJN7YKkmJ9pIZQ6WV8ABzM0AjYgNMSu
- /pSoTz+NB+wDP/hvAhMUfF3f+yh5RPf6Q6z3NYGDWAa/ruh7OkmiToFTCAcxl3AdZ2AR
- V7lBXEDYIeMkNe6eTzGsTfWP+LEgeSuFVXA4wr2BO40XXyyQgK8ZsILcysIJePJCb7Wq
- PA3492XWoXkhab/RVxAyvIcbXxc1NezI07/4N5tVAah3lUxgpE9pNLJuVwBG12azvHfi
- nqhQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=0ZfWlwCH54AqAy5SVcPssePKiah1fkND2uxw3IEAeNg=;
+ b=gevWZ7JVCnYoPCBeQKrhjOSlMv8Lhy+c7ihXuPF76RsyyJ9555v+HOOEe4yzWqGKQm
+ lOaxmoSjNXM6eQ4g1VXrx2lhnhcHkPT+q2K/KK5eIIeq9LL4qLm9tcahmwYGBI0l+S/H
+ Bhp84Mp3/OpWAe/9NFDVOWwSqJwGheqOXGWO4qv/omL8hiNpfCyKeDTX+jB4dmx6dR61
+ 0+S+mSgHMvT5Ndhb2JhKnvwwllkSJPkJWE+rD5VkcLJ2k5Pa01EooyTF2bMfAwQxe8De
+ Y4yI5YFg+lueod6AV/TV//G48CXnGTousPsd1pah7jVATavV6Vi3ZxazEza/UVN5JKH7
+ X0ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=xa3ZZYGnoP85/3zV1lZZil7QKFpmT3uyhbiDkzmb3pw=;
- b=RTrn+0e0j+XqFiekuPkbu+z31S7wEhj4PNyvEqnzSqoH0Kg6/GFfjOdPUuUxwhtKgN
- 7TyPQ6bSF48YYSCKq7XZhoNjism2WtnyH4d35d7kkrVcLfYAyxod2rL5bXNBsX1tllf/
- +DM1yeykfZjHzbp8Lg+p8wJEnpjd1CSNdOHimTJcx4xSbm+2JWSp0LIHRnes531+tzA0
- tywkwSfjaHhnjzNeFPDWSdNFwj9Kg0waqSZqMEInEXW9Vyp6umIrMLaz8+16M21Had5z
- IH7UqJHj2Vpu/ksNVn+s67Vv6wlx0kN1dARvGDGMvDd38XEY99AYzERciXJStLEwQM/z
- 6tfQ==
-X-Gm-Message-State: AOAM532Kj1KWR/rIma1AdlUipoBIWyt2t9/4/6Vi+p145YDf16WWUEBz
- wWpYDFGu6vZZ2b4GwpXC0vR8+985TdLcQHFCnA0C1g==
-X-Google-Smtp-Source: ABdhPJxMnoMbokZoyYXBiE1wvxWIhZnR0lnPeJYdNlzCOuI35DjncY/cX4KxwfkPDilk9thENiU4THsQoZzGthKL3D4=
-X-Received: by 2002:a17:90a:20e9:: with SMTP id
- f96mr8129677pjg.13.1595390448025; 
- Tue, 21 Jul 2020 21:00:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200721093748.26627-1-jcmvbkbc@gmail.com>
- <CAK7LNARtTZD5x3CYLVj48dwC9n7Z4kMx1gCLq3aD2_OfQKuXnA@mail.gmail.com>
-In-Reply-To: <CAK7LNARtTZD5x3CYLVj48dwC9n7Z4kMx1gCLq3aD2_OfQKuXnA@mail.gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=0ZfWlwCH54AqAy5SVcPssePKiah1fkND2uxw3IEAeNg=;
+ b=Zkj/OzCv8iyeN9Czw3fT4VF5YGRzVwL/VYS7cHuOqoNaNqf5f+pGveEXS7bVftKSix
+ pmyZQSgJZDuKo9fuuB8zBWvy3CNCu9JSgZe8yaD+pfN4Vw9rveV2eHvr6TYDjVJoYZ32
+ 4f2yyrVgxQv6xt7AzgdiyIuBl75Ag05XuzO6vC2HCv1hd6/XHhsm6cmhx+vnc0FdJVoA
+ z98V3JRG5YF0xbpqSBmSh1vT91B2OlosqtxQzb6hNOkS76C5zyjeoEbBImiD7PcKxWhv
+ qkkJuoj8Tg+qT9jYjftJUl32/EVeZ7Ac7Muul/PpBXuRRq8pBb/6+x7N8M/gnphNcSRo
+ Z6gQ==
+X-Gm-Message-State: AOAM533BgGgzwxGaxuKzbO7t+UMl5iEc+zppId6pUCRf1io53RwsqqLG
+ o69SwJLfKAzfoYFCQz+2nOX7yzTS
+X-Google-Smtp-Source: ABdhPJxoDuOnhLaDsDsJSfYHskC9/Di/I/7obMVU5KcpT3nsNyDo/y7XOyuTxXeavF5eftOIRIpa/w==
+X-Received: by 2002:a63:b956:: with SMTP id v22mr25304322pgo.242.1595396071675; 
+ Tue, 21 Jul 2020 22:34:31 -0700 (PDT)
+Received: from octofox.cadence.com ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
+ by smtp.gmail.com with ESMTPSA id q5sm22536608pfc.130.2020.07.21.22.34.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 21 Jul 2020 22:34:31 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Tue, 21 Jul 2020 21:00:37 -0700
-Message-ID: <CAMo8BfKS=nJi_BdOCYTzRutKBSHwZ8ZNOuk=+ZGD_mi6zwJ=Bw@mail.gmail.com>
-To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [Linux-Xtensa] [PATCH v2] xtensa: add boot subdirectories
-	targets to extra-y
+To: linux-xtensa@linux-xtensa.org
+Date: Tue, 21 Jul 2020 22:34:15 -0700
+Message-Id: <20200722053417.5915-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-kbuild <linux-kbuild@vger.kernel.org>
+Subject: [Linux-Xtensa] [PATCH 0/2] xtensa: boot targets cleanup
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -71,26 +71,23 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Tue, Jul 21, 2020 at 5:53 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
-> On Tue, Jul 21, 2020 at 6:37 PM Max Filippov <jcmvbkbc@gmail.com> wrote:
-> > The commit 8fe87a92f262 ("kbuild: always create directories of targets")
-> > exposed an issue in the xtensa makefiles that results in the following
-> > build error in a clean directory:
->
-> But, we need to fix this in the kbuild tree
-> to retain the bisectability.
->
-> I will insert the following before the offending commit.
-> https://patchwork.kernel.org/patch/11676883/
->
-> I used 'targets' instead of 'extra-y'
-> because they are built on demand
-> while building the final boot image.
+Hello,
 
-Sure, please go ahead with your version.
-Thank you for taking care of it.
+this small clean up in the xtensa boot subdirectory adds more targets to
+the 'targets' variable to avoid unnecessary rebuils.
 
--- Max
+Max Filippov (2):
+  xtensa: move vmlinux.bin[.gz] to boot subdirectory
+  xtensa: add uImage and xipImage to targets
+
+ arch/xtensa/boot/Makefile              | 12 +++++++-----
+ arch/xtensa/boot/boot-elf/Makefile     |  4 ++--
+ arch/xtensa/boot/boot-redboot/Makefile |  4 ++--
+ 3 files changed, 11 insertions(+), 9 deletions(-)
+
+-- 
+2.20.1
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
