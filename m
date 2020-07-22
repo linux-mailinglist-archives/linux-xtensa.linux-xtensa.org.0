@@ -2,57 +2,57 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 24058228EC7
-	for <lists+linux-xtensa@lfdr.de>; Wed, 22 Jul 2020 05:54:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28B79228ED4
+	for <lists+linux-xtensa@lfdr.de>; Wed, 22 Jul 2020 05:57:06 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id EE1835865;
-	Wed, 22 Jul 2020 03:37:47 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 6F7D9348C;
+	Wed, 22 Jul 2020 03:40:41 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com
- [209.85.214.195])
- by linux-xtensa.org (Postfix) with ESMTPS id BFAB9584B
- for <linux-xtensa@linux-xtensa.org>; Wed, 22 Jul 2020 03:37:45 +0000 (UTC)
-Received: by mail-pl1-f195.google.com with SMTP id 72so312864ple.0
- for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 20:54:09 -0700 (PDT)
+Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com
+ [209.85.214.193])
+ by linux-xtensa.org (Postfix) with ESMTPS id 2BB65262C
+ for <linux-xtensa@linux-xtensa.org>; Wed, 22 Jul 2020 03:40:40 +0000 (UTC)
+Received: by mail-pl1-f193.google.com with SMTP id m16so305102pls.5
+ for <linux-xtensa@linux-xtensa.org>; Tue, 21 Jul 2020 20:57:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Kv16/ZtjvsqzwhA67RXGlNKlymdPTZgYcbB4t9a+XQQ=;
- b=teU76l4onNGxGGAkHnfmRlYyyoNjrAl9sepXE+/Q09UB3kodYSezX/yBSJS+QYvmNa
- rveHjIAqpceNwjoChgvGHRZc/hnLc9EB7NI7dtGueridPlvY10dO856x0XkjS7tWECEE
- tVH7ySR5EdkQQtKFM62MYFe0IgX4VMKj2lpFGVI9keCTmxOTfV65woEDPjrsPLkvR5LJ
- x+FvkLyBB9D4Mw03wpJH6B+05Otq8WappntG5IUU2LIcCjclzqC8nJsEtGJkxPMhjFkG
- VoEhVcA/8PfcbbNxQYhyg0EcdY/nqDwa2oOpkh6w16ESpfoybMuLkNtPcJK5rM9EclS1
- yMmg==
+ :cc; bh=Ejoo3rO99IZBQPRKW1OTgn8zf/3hAJuMMg27TmWfP+Q=;
+ b=VXVhWK8MlscmTy1bvIXvmKuFGU44qSqaAtvdMosv9fuyjE2YXLfjBezi75DjdgNsI6
+ WetaYfdjiLVp+vV7tL135FtWDYArPWzyoRuYPS44KnuP8JCwAwZ8nJx6mKdsGcmjFN4O
+ UdkHFqQ74wK3M6V2WZi7iKlzKXXXBmyBR8MujScSCmAuBO4CTBw6eJ0+KGgZCpmT/5Eb
+ mFzXvIR/so+VjJbj5nVz+DoxYKffQKoBmq/MSu9pHRzD3o3y9BBC4ZmEJy5Lvp1U9l8z
+ Q+ShxUIx22H7nCkH3yCHWO8EU+hta5wyCOcUImjBbvx5+r+PSnNMPkk+pwiNClDgM5u6
+ Zwpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Kv16/ZtjvsqzwhA67RXGlNKlymdPTZgYcbB4t9a+XQQ=;
- b=iLFWJkZpz0fx/jEGxU3Y8t94ZoEoFGvAgj0gNl2kb73uiHLahG2PKW1EaSThjQcp15
- NQzXes5l0ej2XlyNtUseEuuPdBOQm9LHlaa0Jj8jwHWaquxm5jCyAfpeCN91dgIKkYyx
- 2icdP5n5PSaTTvL2RiP5dp0LQjZXay4Zfa9eYxRh9Ro5wS2OhqtYCL1kmWWTw1HJi1VJ
- 3gLwI4U7QonEF0MJgHwF0/axiPHBynfjdtMle3S1fPblU8l8RPF2kGdCtK2I3eXWLcfk
- 6Uv6vtE7kcX7EybJx0xq6CYpquSTg9CxP87rL2cS8br5C81IQJwTqi5y400R6zJjeK+U
- rkpg==
-X-Gm-Message-State: AOAM531NiwQtToUOirX42fhxkwhX+h3zZupA0tOo0kkC7ZOVGmXgfzqf
- 03w45DF2/+nLs3i1/ijo/340pU4TN6H64d46KtU=
-X-Google-Smtp-Source: ABdhPJwLXKXlBkbUAozr7t276aXIY29yYGr0q6JEskKQGLgYu10nsGdUytlaq69xIjhcH2qrdUFm/wzJ96H8ikmYiS4=
-X-Received: by 2002:a17:90b:1045:: with SMTP id
- gq5mr8043357pjb.30.1595390049137; 
- Tue, 21 Jul 2020 20:54:09 -0700 (PDT)
+ bh=Ejoo3rO99IZBQPRKW1OTgn8zf/3hAJuMMg27TmWfP+Q=;
+ b=lmKdud/bW0FCVGm84XVSCpTCF4DsczdvnvlLQrkv7wl33XOnmBFrC10IlmOgcuTIAI
+ SEpuDRslc6vvUjSW4QhxDI4+TZ1Hdx0L3P1oo/CtcY79YoeL9aErjYNSJiMOyQLBwmwH
+ K3Sz2T6q7b2n2w5L22wtCBLgb8XGAUpIK3wXgRb9fX6A8Z4VafF6043vif9wrqscQ9p7
+ OIY5js0msasPUxBSTBwHXB6ofr3ojwfVMmA/omMYDBcLP3wbNmw4//bC1/PBKgEBhgX5
+ b0pBiXQEVYqJ75u2AY8KghRAIUrEj+5Yjeu8C+bX3BaW1u1W3H4MbLZs2Rik/Y0nuG/y
+ npxg==
+X-Gm-Message-State: AOAM5307wSfhXY5jKicAEAIMAn7f2B4AkJNEPoWU97YUyX/zPMxD3OvS
+ uRCGr3ViRWY5r7H6fU70DhI94IGTcJgFhHuHB08=
+X-Google-Smtp-Source: ABdhPJzsrWI6yfXZXfqTDdc6Eemz6SwGqaWtrigchgHMM/oN4Qj11ro+26f0+OFV8IV1aztKYu4E5wJ36htkctlhZ90=
+X-Received: by 2002:a17:902:8ecb:: with SMTP id
+ x11mr19444104plo.123.1595390223558; 
+ Tue, 21 Jul 2020 20:57:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200721220035.32584-1-jcmvbkbc@gmail.com>
- <20200721230426.GC2786714@ZenIV.linux.org.uk>
-In-Reply-To: <20200721230426.GC2786714@ZenIV.linux.org.uk>
+References: <20200722004707.779601-1-masahiroy@kernel.org>
+In-Reply-To: <20200722004707.779601-1-masahiroy@kernel.org>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Tue, 21 Jul 2020 20:53:57 -0700
-Message-ID: <CAMo8BfJeM0_MHcZWc4aZs0XVv9XH3vXwpiU0xjmU1G24fXV4tw@mail.gmail.com>
-To: Al Viro <viro@zeniv.linux.org.uk>
+Date: Tue, 21 Jul 2020 20:56:52 -0700
+Message-ID: <CAMo8BfJv38cPOAOOMGn8R7-CtBy2BCbMRkMAeXNZ=A4YbtTPbw@mail.gmail.com>
+To: Masahiro Yamada <masahiroy@kernel.org>
 Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: fix access check in
-	csum_and_copy_from_user
+ <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>,
+ linux-kbuild <linux-kbuild@vger.kernel.org>
+Subject: Re: [Linux-Xtensa] [PATCH] xtensa: add boot subdirectories build
+	artifacts to 'targets'
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -70,19 +70,25 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Tue, Jul 21, 2020 at 4:04 PM Al Viro <viro@zeniv.linux.org.uk> wrote:
+On Tue, Jul 21, 2020 at 5:47 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
 >
-> On Tue, Jul 21, 2020 at 03:00:35PM -0700, Max Filippov wrote:
-> > Commit d341659f470b ("xtensa: switch to providing
-> > csum_and_copy_from_user()") introduced access check, but incorrectly
-> > tested dst instead of src.
-> > Fix access_ok argument in csum_and_copy_from_user.
+> Xtensa always rebuilds the following even if nothing in the source code
+> has been changed. Passing V=2 shows the reason.
 >
-> Applied, with apologies...  Which tree do you want it to go through?
-> I'm dropping it into vfs.git#fixes, will send to Linus unless you
-> prefer it to go some other way...
+>   AS      arch/xtensa/boot/boot-elf/bootstrap.o - due to bootstrap.o not in $(targets)
+>   LDS     arch/xtensa/boot/boot-elf/boot.lds - due to boot.lds not in $(targets)
+>
+> They are built by if_changed(_dep). Add them to 'targets' so .*.cmd files
+> are included.
+>
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> ---
+>
+>  arch/xtensa/boot/boot-elf/Makefile     | 1 +
+>  arch/xtensa/boot/boot-redboot/Makefile | 1 +
+>  2 files changed, 2 insertions(+)
 
-NP. Anything that will go into 5.8 is good.
+Acked-by: Max Filippov <jcmvbkbc@gmail.com>
 
 -- 
 Thanks.
