@@ -2,64 +2,80 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 76E6E22FFAC
-	for <lists+linux-xtensa@lfdr.de>; Tue, 28 Jul 2020 04:39:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 482772304FB
+	for <lists+linux-xtensa@lfdr.de>; Tue, 28 Jul 2020 10:10:00 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 7AF442631;
-	Tue, 28 Jul 2020 02:22:42 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id BF22F586D;
+	Tue, 28 Jul 2020 07:53:21 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com
- [209.85.215.193])
- by linux-xtensa.org (Postfix) with ESMTPS id 0023F2623
- for <linux-xtensa@linux-xtensa.org>; Tue, 28 Jul 2020 02:22:39 +0000 (UTC)
-Received: by mail-pg1-f193.google.com with SMTP id d4so11061388pgk.4
- for <linux-xtensa@linux-xtensa.org>; Mon, 27 Jul 2020 19:39:17 -0700 (PDT)
+Received: from mail-pj1-f67.google.com (mail-pj1-f67.google.com
+ [209.85.216.67])
+ by linux-xtensa.org (Postfix) with ESMTPS id 259A05865
+ for <linux-xtensa@linux-xtensa.org>; Tue, 28 Jul 2020 07:53:20 +0000 (UTC)
+Received: by mail-pj1-f67.google.com with SMTP id lx9so190703pjb.2
+ for <linux-xtensa@linux-xtensa.org>; Tue, 28 Jul 2020 01:09:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=oUYI/adhyPiJsueR+/blXGuxT74bedpBLyWN5AzH71w=;
- b=CsMPMGwi5qjh99+swfSsReaiMN1qq+LT1t0y0ZOTQIXJLGdNORymR9nu4xE/IM1dER
- 79j83O+lMV2cp1RWIIPguXuX+QHPsKMq63S9aoFkycDHNEdPrriBG2+gJ/6SJrVZkfm4
- tfYaVpb3mfRA94cNvS8CbW1Irh15z/HBoVXu0AdcMTsh2ADSw+N8Ie9FefhGNSS1BvLg
- AADSh17QNCD6+1s9Jq/GgXPT8IAaEjbDtCXhxGekzj3TAXbRg5IDlYynSgZU4sGkT2Nq
- i+uNetnqlvLrGcPY7wg5cGkRgPKJbv8IGpyw0rWoOpDYzODQIdxcKZljBtnCQ5VbBNr4
- aBwg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=mO4UW6jhce2IwLYWJIjyNoNVa+Gr5PBQ2rV1LkhhIeA=;
+ b=bNG6JL/O5TVQki3sHfHEOfTczEIMUXR0OLqZGWSVnVXN0YvSLXQj4R1CZin1hIrLmj
+ rDRSSHKktD8YAK18dQ3Ix7Lo07yJ8erIxBxxxxqVLyUXKDeyjbkBvyU6KTuEXDNL+VQr
+ 1QQzuFpqB0CYmf+5pX3A4eJDz9R/FeezQPycBuGnXY4EFLSYZVijwWE1t6E2M5B99qAH
+ FniHRX5RxN1gZw65OKCdqnG/UzIrS3ICQ278hYR6IoGyzyd6ykow+PajTtCN7ldzFD83
+ Hcz6o03i9dPHjv0yz+B7ucVCSupfsp/DKM7XkQQq14g4beE60uqTFBLLU79wWmkWweg4
+ xE4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=oUYI/adhyPiJsueR+/blXGuxT74bedpBLyWN5AzH71w=;
- b=N69hkqgtqI1pKxgOTrU4Xvfdlm3nKRwNk954Uvtq+G3hleGgc6PUxJDgMrmhJO+Ylp
- rzBZiTCdWIzs6w79AwgplcdnJB3BKJNMXlneMJomWjly+an2ZcoxwGjMD6T0BiyrKf29
- 9yYN5vVawxr1pa9BLuh+OMhhoHBSiCqUlxlZXhUi1rupUsbhAa5ba1r6eKFjM5orV+Am
- 3+lKkc1RGsNNvOqzKqT7cjp0EpLdP+W6HRPW3fX6WfHuGj5Uze95G+xqJOaQgcO7Zwi+
- hi7nggmfam1NX46VxZcXnq1uPte2Z5ZitKsDgrv5fcASS+tm+YkZ4Z7GMFDEvHSMg52C
- SxRQ==
-X-Gm-Message-State: AOAM530jM2IVH8tb6knv2d9rmjiqK2hMSrX+TNL3LB2l70+UcQabUgfX
- X/3nlIx6HyC2Q/IeMPPXvNZ3GlRo
-X-Google-Smtp-Source: ABdhPJwEW/i6cr8yKGUV4iUrV+oc9zuODe5AZFGhlurHT47TWT1ZKuVR/jgiS2zUyWoOzg6xYrAKag==
-X-Received: by 2002:a63:df54:: with SMTP id h20mr21931159pgj.319.1595903956116; 
- Mon, 27 Jul 2020 19:39:16 -0700 (PDT)
-Received: from octofox.cadence.com ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
- by smtp.gmail.com with ESMTPSA id q66sm16428921pga.29.2020.07.27.19.39.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 27 Jul 2020 19:39:15 -0700 (PDT)
-From: Max Filippov <jcmvbkbc@gmail.com>
-To: linux-xtensa@linux-xtensa.org
-Date: Mon, 27 Jul 2020 19:38:53 -0700
-Message-Id: <20200721024751.1257-1-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.20.1
-Received: from octofox.cadence.com ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
- by smtp.gmail.com with ESMTPSA id p9sm14336962pgc.77.2020.07.20.19.48.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Jul 2020 19:48:03 -0700 (PDT)
-X-Mailer: git-send-email 2.20.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=mO4UW6jhce2IwLYWJIjyNoNVa+Gr5PBQ2rV1LkhhIeA=;
+ b=mlXzO0mN79+/jmfvHaB3FTTOF1xVpW5uLT+fZu7B16A+I5uIVRhM+w8iWHarYaLkoE
+ y6cLQWw/BlFOHe5G8OPZU+pi6gXhowBTln4rWk8JMOHfpKgReiJ6tY2hO05Y+aJP6aPC
+ cbrlEQWTDT0AQFtesQmXHzWIeaeCZFNad2qBLBPlfGv3W2bmoHxrmnN89LDSRVnhQEqk
+ tvX8BJuW3HbabRw1t8JYa20yzpcNpVgAgI9kHq+wQCM5Sl4b+R8sTq5xChC+Q0GpgF3k
+ DX08kMnMyh60Xm3TQstzzzNny55wrD9XY4wj1gZ/pkNpTtaateuN/UjY9Vo22YqhE2kb
+ IWlA==
+X-Gm-Message-State: AOAM533Ib/861bMDZTTjfo4H4cml1R2GjrzR1CuVmsoqmN3mbkHfyx7O
+ 8lIxzNSUzx7GoEiMTUxy0QrlrDNO1S4sKk77EZU=
+X-Google-Smtp-Source: ABdhPJwl2tr9ClL3asn7D0daWCLxpbWcicGBHl3RglmUadciWpYNtKvtb4F0xzOXS215QqSA9z2se3QNEhc8iGYlMEA=
+X-Received: by 2002:a17:90a:8918:: with SMTP id
+ u24mr3082134pjn.7.1595923796912; 
+ Tue, 28 Jul 2020 01:09:56 -0700 (PDT)
 MIME-Version: 1.0
-Cc: Andrew Morton <akpm@linux-foundation.org>,
- Mike Rapoport <rppt@linux.ibm.com>, linux-kernel@vger.kernel.org,
- Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: fix closing endif comment
+References: <20200728051153.1590-1-rppt@kernel.org>
+ <20200728051153.1590-4-rppt@kernel.org>
+In-Reply-To: <20200728051153.1590-4-rppt@kernel.org>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Tue, 28 Jul 2020 01:09:45 -0700
+Message-ID: <CAMo8Bf+VKHmAm1GV=0D9Um2mpsxjnwp9WrAJq_eKW1MK+_8r6g@mail.gmail.com>
+To: Mike Rapoport <rppt@kernel.org>
+Cc: "open list:SUPERH" <linux-sh@vger.kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Dave Hansen <dave.hansen@linux.intel.com>, linux-mips@vger.kernel.org,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ Paul Mackerras <paulus@samba.org>,
+ "open list:SPARC + UltraSPAR..." <sparclinux@vger.kernel.org>,
+ linux-riscv@lists.infradead.org, Will Deacon <will@kernel.org>,
+ Stafford Horne <shorne@gmail.com>, Marek Szyprowski <m.szyprowski@samsung.com>,
+ linux-s390 <linux-s390@vger.kernel.org>, linux-c6x-dev@linux-c6x.org,
+ Yoshinori Sato <ysato@users.sourceforge.jp>,
+ Michael Ellerman <mpe@ellerman.id.au>,
+ "maintainer:X86 ARCHITECTURE..." <x86@kernel.org>,
+ Russell King <linux@armlinux.org.uk>, Mike Rapoport <rppt@linux.ibm.com>,
+ clang-built-linux@googlegroups.com, Ingo Molnar <mingo@redhat.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ "moderated list:H8/300 ARCHITECTURE" <uclinux-h8-devel@lists.sourceforge.jp>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)" <linux-xtensa@linux-xtensa.org>,
+ openrisc@lists.librecores.org, Borislav Petkov <bp@alien8.de>,
+ Andy Lutomirski <luto@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org,
+ Michal Simek <monstr@monstr.eu>, linuxppc-dev@lists.ozlabs.org,
+ LKML <linux-kernel@vger.kernel.org>, iommu@lists.linux-foundation.org,
+ Palmer Dabbelt <palmer@dabbelt.com>, Andrew Morton <akpm@linux-foundation.org>,
+ Christoph Hellwig <hch@lst.de>
+Subject: Re: [Linux-Xtensa] [PATCH 03/15] arm,
+	xtensa: simplify initialization of high memory pages
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -77,38 +93,30 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Commit 8f74afa22d9b ("xtensa: switch to generic version of pte
-allocation") introduced the following build warning for xtensa
-  arch/xtensa/include/asm/pgalloc.h:67:8: warning: extra tokens at end of
-  #endif directive [-Wendif-labels]
-Fix #endif comment.
+On Mon, Jul 27, 2020 at 10:12 PM Mike Rapoport <rppt@kernel.org> wrote:
+>
+> From: Mike Rapoport <rppt@linux.ibm.com>
+>
+> The function free_highpages() in both arm and xtensa essentially open-code
+> for_each_free_mem_range() loop to detect high memory pages that were not
+> reserved and that should be initialized and passed to the buddy allocator.
+>
+> Replace open-coded implementation of for_each_free_mem_range() with usage
+> of memblock API to simplify the code.
+>
+> Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
+> ---
+>  arch/arm/mm/init.c    | 48 +++++++------------------------------
+>  arch/xtensa/mm/init.c | 55 ++++++++-----------------------------------
+>  2 files changed, 18 insertions(+), 85 deletions(-)
 
-Cc: Mike Rapoport <rppt@linux.ibm.com>
-Reviewed-by: Mike Rapoport <rppt@linux.ibm.com>
-Fixes: 8f74afa22d9b ("xtensa: switch to generic version of pte allocation")
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
-Andrew, could you please take this patch as the change that it fixes is
-currently in the mm tree?
+For the xtensa part:
+Reviewed-by: Max Filippov <jcmvbkbc@gmail.com>
+Tested-by: Max Filippov <jcmvbkbc@gmail.com>
 
- arch/xtensa/include/asm/pgalloc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/xtensa/include/asm/pgalloc.h b/arch/xtensa/include/asm/pgalloc.h
-index 699a8fdf9005..d3a22da4d2c9 100644
---- a/arch/xtensa/include/asm/pgalloc.h
-+++ b/arch/xtensa/include/asm/pgalloc.h
-@@ -64,6 +64,6 @@ static inline pgtable_t pte_alloc_one(struct mm_struct *mm)
- }
- 
- #define pmd_pgtable(pmd) pmd_page(pmd)
--#endif CONFIG_MMU
-+#endif /* CONFIG_MMU */
- 
- #endif /* _XTENSA_PGALLOC_H */
 -- 
-2.20.1
-
+Thanks.
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
