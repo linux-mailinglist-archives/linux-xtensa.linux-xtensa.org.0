@@ -2,80 +2,58 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 482772304FB
-	for <lists+linux-xtensa@lfdr.de>; Tue, 28 Jul 2020 10:10:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E6CE234CD4
+	for <lists+linux-xtensa@lfdr.de>; Fri, 31 Jul 2020 23:20:15 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id BF22F586D;
-	Tue, 28 Jul 2020 07:53:21 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 4C83164A3;
+	Fri, 31 Jul 2020 21:03:29 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pj1-f67.google.com (mail-pj1-f67.google.com
- [209.85.216.67])
- by linux-xtensa.org (Postfix) with ESMTPS id 259A05865
- for <linux-xtensa@linux-xtensa.org>; Tue, 28 Jul 2020 07:53:20 +0000 (UTC)
-Received: by mail-pj1-f67.google.com with SMTP id lx9so190703pjb.2
- for <linux-xtensa@linux-xtensa.org>; Tue, 28 Jul 2020 01:09:57 -0700 (PDT)
+Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com
+ [209.85.215.195])
+ by linux-xtensa.org (Postfix) with ESMTPS id 67B2564A1
+ for <linux-xtensa@linux-xtensa.org>; Fri, 31 Jul 2020 21:03:27 +0000 (UTC)
+Received: by mail-pg1-f195.google.com with SMTP id m22so16661335pgv.9
+ for <linux-xtensa@linux-xtensa.org>; Fri, 31 Jul 2020 14:20:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=mO4UW6jhce2IwLYWJIjyNoNVa+Gr5PBQ2rV1LkhhIeA=;
- b=bNG6JL/O5TVQki3sHfHEOfTczEIMUXR0OLqZGWSVnVXN0YvSLXQj4R1CZin1hIrLmj
- rDRSSHKktD8YAK18dQ3Ix7Lo07yJ8erIxBxxxxqVLyUXKDeyjbkBvyU6KTuEXDNL+VQr
- 1QQzuFpqB0CYmf+5pX3A4eJDz9R/FeezQPycBuGnXY4EFLSYZVijwWE1t6E2M5B99qAH
- FniHRX5RxN1gZw65OKCdqnG/UzIrS3ICQ278hYR6IoGyzyd6ykow+PajTtCN7ldzFD83
- Hcz6o03i9dPHjv0yz+B7ucVCSupfsp/DKM7XkQQq14g4beE60uqTFBLLU79wWmkWweg4
- xE4g==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=2m8bxGCf+gpIPT9ul2HDHjNGeJCBm38FKDdWisVHgKI=;
+ b=l5Earp68wcfJil4yyIni/DwT8pjkau0mElKuIw8rHR0DoIEBDXb06cnyTb0Yb3BvYT
+ hJIU6w3yGx2SgUYizL0sTaUDvbKcMfARYDIOimjJYGFS+Zwhi1eyM/MDSXLBL2X72vDK
+ ZyNxE+Y42Bk0LGLGn/xTDoUyYy5wR9QC0FlqAjB2616RnUNRjTs4wPQ5E+xxu4JtFLvE
+ m9/Ut3Pt5UZK5dfxk3vDLrYLqYMhInXbpxHYrGiapI2MVPeOgh2r5oYQ4B0VC1/8ZHHv
+ 8t2jf6pTfIQKeDirT41isCr+pTNamOnKVQJmbVL7roOaXTeUcJKEqLQe3Syo5REPj50Q
+ Pw1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=mO4UW6jhce2IwLYWJIjyNoNVa+Gr5PBQ2rV1LkhhIeA=;
- b=mlXzO0mN79+/jmfvHaB3FTTOF1xVpW5uLT+fZu7B16A+I5uIVRhM+w8iWHarYaLkoE
- y6cLQWw/BlFOHe5G8OPZU+pi6gXhowBTln4rWk8JMOHfpKgReiJ6tY2hO05Y+aJP6aPC
- cbrlEQWTDT0AQFtesQmXHzWIeaeCZFNad2qBLBPlfGv3W2bmoHxrmnN89LDSRVnhQEqk
- tvX8BJuW3HbabRw1t8JYa20yzpcNpVgAgI9kHq+wQCM5Sl4b+R8sTq5xChC+Q0GpgF3k
- DX08kMnMyh60Xm3TQstzzzNny55wrD9XY4wj1gZ/pkNpTtaateuN/UjY9Vo22YqhE2kb
- IWlA==
-X-Gm-Message-State: AOAM533Ib/861bMDZTTjfo4H4cml1R2GjrzR1CuVmsoqmN3mbkHfyx7O
- 8lIxzNSUzx7GoEiMTUxy0QrlrDNO1S4sKk77EZU=
-X-Google-Smtp-Source: ABdhPJwl2tr9ClL3asn7D0daWCLxpbWcicGBHl3RglmUadciWpYNtKvtb4F0xzOXS215QqSA9z2se3QNEhc8iGYlMEA=
-X-Received: by 2002:a17:90a:8918:: with SMTP id
- u24mr3082134pjn.7.1595923796912; 
- Tue, 28 Jul 2020 01:09:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200728051153.1590-1-rppt@kernel.org>
- <20200728051153.1590-4-rppt@kernel.org>
-In-Reply-To: <20200728051153.1590-4-rppt@kernel.org>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=2m8bxGCf+gpIPT9ul2HDHjNGeJCBm38FKDdWisVHgKI=;
+ b=iKmWWnOiO+X3PfkhFQwbTx7QyvGafAbtFViH74MLBEVadDC+bObpGHcqOrLWpF7QxG
+ pCQrc1k4BlLXrrVRxLqFgz2CYcQ3UT6/G1vkBfgNkN8HQI8UYvpZGzdBbL9AfVxW4gWf
+ wm5i8Y1yM8stRuJJTiBlXV43yaKbEQJZ63/yqUHFf/ASoQU6EDt+FYSAppSOU59tlo9E
+ 21HXohZFMz7JLGDPvFQmGEUQqrpaEUxkSGuUGCk09E0sT0eApoVkoBZoyGqlo7/7MDMD
+ TqROUT9En9cAHY8UJ5dSHn52ubBtWLmqaoIPG5m7iNGwi2+uUxA6B1InyVhpToGNXlqR
+ 3b2Q==
+X-Gm-Message-State: AOAM530YT/2P2z6TRwQGxbKdwUzNTsDGVQPJB5RZk1rvtRJ4CXU24Xc5
+ ocUam1YjhOeyEYtzRw4tNtinccsk
+X-Google-Smtp-Source: ABdhPJztbF7d7FxQwrIjj1SdW8MB0sElEnBNafOSNFVht7V8dcXYE8tZmv6k/D4EYLNo49zSBAnGHQ==
+X-Received: by 2002:a62:1ccb:: with SMTP id c194mr5377357pfc.277.1596230411764; 
+ Fri, 31 Jul 2020 14:20:11 -0700 (PDT)
+Received: from octofox.cadence.com ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
+ by smtp.gmail.com with ESMTPSA id s22sm5687449pfh.16.2020.07.31.14.20.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 31 Jul 2020 14:20:11 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Tue, 28 Jul 2020 01:09:45 -0700
-Message-ID: <CAMo8Bf+VKHmAm1GV=0D9Um2mpsxjnwp9WrAJq_eKW1MK+_8r6g@mail.gmail.com>
-To: Mike Rapoport <rppt@kernel.org>
-Cc: "open list:SUPERH" <linux-sh@vger.kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Dave Hansen <dave.hansen@linux.intel.com>, linux-mips@vger.kernel.org,
- Linux Memory Management List <linux-mm@kvack.org>,
- Paul Mackerras <paulus@samba.org>,
- "open list:SPARC + UltraSPAR..." <sparclinux@vger.kernel.org>,
- linux-riscv@lists.infradead.org, Will Deacon <will@kernel.org>,
- Stafford Horne <shorne@gmail.com>, Marek Szyprowski <m.szyprowski@samsung.com>,
- linux-s390 <linux-s390@vger.kernel.org>, linux-c6x-dev@linux-c6x.org,
- Yoshinori Sato <ysato@users.sourceforge.jp>,
- Michael Ellerman <mpe@ellerman.id.au>,
- "maintainer:X86 ARCHITECTURE..." <x86@kernel.org>,
- Russell King <linux@armlinux.org.uk>, Mike Rapoport <rppt@linux.ibm.com>,
- clang-built-linux@googlegroups.com, Ingo Molnar <mingo@redhat.com>,
- Catalin Marinas <catalin.marinas@arm.com>,
- "moderated list:H8/300 ARCHITECTURE" <uclinux-h8-devel@lists.sourceforge.jp>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)" <linux-xtensa@linux-xtensa.org>,
- openrisc@lists.librecores.org, Borislav Petkov <bp@alien8.de>,
- Andy Lutomirski <luto@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org,
- Michal Simek <monstr@monstr.eu>, linuxppc-dev@lists.ozlabs.org,
- LKML <linux-kernel@vger.kernel.org>, iommu@lists.linux-foundation.org,
- Palmer Dabbelt <palmer@dabbelt.com>, Andrew Morton <akpm@linux-foundation.org>,
- Christoph Hellwig <hch@lst.de>
-Subject: Re: [Linux-Xtensa] [PATCH 03/15] arm,
-	xtensa: simplify initialization of high memory pages
+To: linux-xtensa@linux-xtensa.org
+Date: Fri, 31 Jul 2020 14:19:52 -0700
+Message-Id: <20200731211952.26802-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: fix xtensa_pmu_setup prototype
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -88,36 +66,27 @@ List-Post: <mailto:linux-xtensa@linux-xtensa.org>
 List-Help: <mailto:linux-xtensa-request@linux-xtensa.org?subject=help>
 List-Subscribe: <http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa>, 
  <mailto:linux-xtensa-request@linux-xtensa.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Mon, Jul 27, 2020 at 10:12 PM Mike Rapoport <rppt@kernel.org> wrote:
->
-> From: Mike Rapoport <rppt@linux.ibm.com>
->
-> The function free_highpages() in both arm and xtensa essentially open-code
-> for_each_free_mem_range() loop to detect high memory pages that were not
-> reserved and that should be initialized and passed to the buddy allocator.
->
-> Replace open-coded implementation of for_each_free_mem_range() with usage
-> of memblock API to simplify the code.
->
-> Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
-> ---
->  arch/arm/mm/init.c    | 48 +++++++------------------------------
->  arch/xtensa/mm/init.c | 55 ++++++++-----------------------------------
->  2 files changed, 18 insertions(+), 85 deletions(-)
-
-For the xtensa part:
-Reviewed-by: Max Filippov <jcmvbkbc@gmail.com>
-Tested-by: Max Filippov <jcmvbkbc@gmail.com>
-
--- 
-Thanks.
--- Max
-_______________________________________________
-linux-xtensa mailing list
-linux-xtensa@linux-xtensa.org
-http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa
+Rml4IHRoZSBmb2xsb3dpbmcgYnVpbGQgZXJyb3IgaW4gY29uZmlndXJhdGlvbnMgd2l0aApDT05G
+SUdfWFRFTlNBX1ZBUklBTlRfSEFWRV9QRVJGX0VWRU5UUz15OgoKICBhcmNoL3h0ZW5zYS9rZXJu
+ZWwvcGVyZl9ldmVudC5jOjQyMDoyOTogZXJyb3I6IHBhc3NpbmcgYXJndW1lbnQgMyBvZgogIOKA
+mGNwdWhwX3NldHVwX3N0YXRl4oCZIGZyb20gaW5jb21wYXRpYmxlIHBvaW50ZXIgdHlwZQoKQ2M6
+IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcKRml4ZXM6IDI1YTc3YjU1ZTc0YyAoInh0ZW5zYS9wZXJm
+OiBDb252ZXJ0IHRoZSBob3RwbHVnIG5vdGlmaWVyIHRvIHN0YXRlIG1hY2hpbmUgY2FsbGJhY2tz
+IikKU2lnbmVkLW9mZi1ieTogTWF4IEZpbGlwcG92IDxqY212YmtiY0BnbWFpbC5jb20+Ci0tLQog
+YXJjaC94dGVuc2Eva2VybmVsL3BlcmZfZXZlbnQuYyB8IDIgKy0KIDEgZmlsZSBjaGFuZ2VkLCAx
+IGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2FyY2gveHRlbnNhL2tl
+cm5lbC9wZXJmX2V2ZW50LmMgYi9hcmNoL3h0ZW5zYS9rZXJuZWwvcGVyZl9ldmVudC5jCmluZGV4
+IDk5ZmNkNjNjZTU5Ny4uYTBkMDVjODU5OGQwIDEwMDY0NAotLS0gYS9hcmNoL3h0ZW5zYS9rZXJu
+ZWwvcGVyZl9ldmVudC5jCisrKyBiL2FyY2gveHRlbnNhL2tlcm5lbC9wZXJmX2V2ZW50LmMKQEAg
+LTM5OSw3ICszOTksNyBAQCBzdGF0aWMgc3RydWN0IHBtdSB4dGVuc2FfcG11ID0gewogCS5yZWFk
+ID0geHRlbnNhX3BtdV9yZWFkLAogfTsKIAotc3RhdGljIGludCB4dGVuc2FfcG11X3NldHVwKGlu
+dCBjcHUpCitzdGF0aWMgaW50IHh0ZW5zYV9wbXVfc2V0dXAodW5zaWduZWQgaW50IGNwdSkKIHsK
+IAl1bnNpZ25lZCBpOwogCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmxpbnV4LXh0ZW5zYSBtYWlsaW5nIGxpc3QKbGludXgteHRlbnNh
+QGxpbnV4LXh0ZW5zYS5vcmcKaHR0cDovL2xpc3RzLmxpbnV4LXh0ZW5zYS5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9saW51eC14dGVuc2EK
