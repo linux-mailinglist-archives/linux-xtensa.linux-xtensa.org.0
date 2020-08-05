@@ -2,59 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 20C11234CD5
-	for <lists+linux-xtensa@lfdr.de>; Fri, 31 Jul 2020 23:20:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B82C823CC02
+	for <lists+linux-xtensa@lfdr.de>; Wed,  5 Aug 2020 18:18:23 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 612E164A3;
-	Fri, 31 Jul 2020 21:03:49 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id E819E6464;
+	Wed,  5 Aug 2020 16:01:26 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com
- [209.85.215.195])
- by linux-xtensa.org (Postfix) with ESMTPS id DE9B964A1
- for <linux-xtensa@linux-xtensa.org>; Fri, 31 Jul 2020 21:03:47 +0000 (UTC)
-Received: by mail-pg1-f195.google.com with SMTP id s15so5126970pgc.8
- for <linux-xtensa@linux-xtensa.org>; Fri, 31 Jul 2020 14:20:33 -0700 (PDT)
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
+ [209.85.214.182])
+ by linux-xtensa.org (Postfix) with ESMTPS id 1B322644A
+ for <linux-xtensa@linux-xtensa.org>; Wed,  5 Aug 2020 16:01:25 +0000 (UTC)
+Received: by mail-pl1-f182.google.com with SMTP id o1so25534579plk.1
+ for <linux-xtensa@linux-xtensa.org>; Wed, 05 Aug 2020 09:18:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=6huKTddjtAjrZ/iwRFjM+2AULsbiPYjTMrOwzG3sgfE=;
- b=BREcwqEOTjsBQUAipx7bV4+HTi3foe1OxegRgGmMPapX6mED1n8qS4/3saXXj37b7p
- SP+YUhZnEeCjWCg32Wl2s/yI976/UAJ+kosL4yPJQr6WccuTRjUpgZ3Ng3r3BKM9eFZi
- alYcmW84eGjNXIbTdK7KxmmMxhFKBSJCmg+X0SgRf56Wata50NZ8CSlrOk+1v+rg2vB+
- zNnuXQvBwHMqt+GhGeKOOCc+4HSc6kxabBhJkzbOXQY5toHO59xSx8Js6lFHJND7LIlO
- b3iavsrfBQs07BTrlOd4iAKOsFj1webFzeLx6alFaR7NydCNZnXIOHttxk19q/H7jMuU
- cqjQ==
+ bh=xqOtscQ7oL8M2OV7/AS+H9zd7WlGhrndY3fKEhcVkr8=;
+ b=Z16S5uzNX2DvMz74/erd60XfGe/qiJuePgZbU2/7UfhnQ/Qoymj6EdculFdgg2vGEX
+ 3fTmauJt1sMneAs8tuDbHwWDS+31gQTsUEdZXymQKlE1ejSnpzSsvpc4R92U92Krqgle
+ MMowi9Pq+WB4jaAMMfguxv9c/+9o9hYNXu/eHcwKpo6AX+fFPX+Me8YYGEeQIyZrkNk3
+ KwiQexVYYlrZGJlKULnx4ClxyPM8fRrj33Rp2fmvttuvITxCIUvZFfPRc0NhPEjaXiZF
+ rgtrA3e7hjEdgOxdVYJ9v8G6rhl+QzqKUY8Va286aepOq2TtIMXP2+TIOYWIstIVYtdz
+ 1vWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=6huKTddjtAjrZ/iwRFjM+2AULsbiPYjTMrOwzG3sgfE=;
- b=ecpxBLgn2PWs7DW5KQUwWPTVefU+RRH6UnDpEoE9yBLhV7UXXtjAyHYaGoZzmyXcph
- 9LcPD2t4dIGn6n3HJRA/jJsv+LFLVojI6VHwJpWWUm+kxcVYYQlfpD2vdd1k1V+PtpOy
- Hz4Nuq6jVKQciyGWZ6OfnacUfPDCFeF0zMczYQbr7uPSxGsXJ76m831WDKd3+MPREzYI
- JxRVMcO0TpCR/pelVgWz4MiwHFBKpkeJmPIrNs/Grr+2EYjNISKSaLxR0whk0lPMaVX7
- 6wFqeku+EJkCPnijyi0bu8ee08CwgpwirFCBoLbSzyQ+5FLTze5qx1GJPKuQSLml4ek0
- ECeg==
-X-Gm-Message-State: AOAM532MlD9QnZDjHzIb9lnaI9MTy7nRrx2WW2IRkzkmwFbKl5xm+OtU
- ct5teEcPfxMcpgYD4BWDefyhZA3H
-X-Google-Smtp-Source: ABdhPJyt/di1ICCZrqqjM7cJwVLyYlymB8Td3iv6afRKt9ktK5weCZ+Hw5PQt4s3Kp+sDPtGpEhWfw==
-X-Received: by 2002:aa7:952d:: with SMTP id c13mr5713978pfp.198.1596230432315; 
- Fri, 31 Jul 2020 14:20:32 -0700 (PDT)
-Received: from octofox.cadence.com ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
- by smtp.gmail.com with ESMTPSA id g23sm11163855pfo.95.2020.07.31.14.20.31
+ bh=xqOtscQ7oL8M2OV7/AS+H9zd7WlGhrndY3fKEhcVkr8=;
+ b=N14QGv7DJrxgWN3spgzKF/Hae8sFV+VkrYRAdxwep561KjnXhceaPYEZ8dtbQMAyou
+ cypbw5z3GFD4TC/9ni5xhpLGt8rZD4fAT1DTkN0dHtGb7inYbDCPiHOwmvnBGoGm0y0u
+ O6euH7WUDzV2UL3Fsk4HBgCEpttqoB/QPXnUeIUYWhqwrhRBU87woWwxoUvCTwizxDuU
+ UwUQlbzeFTKzkeXWKmTzn4rlwvLPZ0/tX1vWEOCX/1lYPAkir9tCc2Tn3UlP5CVxBds+
+ NLbx+lqVT/Kv2kAOpChdBdsYkjktBOv3hN0aSaZjwM6/v295SIAQRBhmdWx/lMylIlTY
+ JXfw==
+X-Gm-Message-State: AOAM532GcEzxLmnLV8pD4RUu4xWP3cgjJCdCDfDCXCfSz5+Y8OpXzLAq
+ nO5TfupTY02FSfAq9obQopc=
+X-Google-Smtp-Source: ABdhPJxnvCWGyOLOGhyjS1AovH1VKezcgn5lf5r4MjNi2ROoheSsEQeaohrlkMnWfJWyLEVc8tmGGw==
+X-Received: by 2002:a17:902:6b03:: with SMTP id
+ o3mr3737409plk.69.1596644300042; 
+ Wed, 05 Aug 2020 09:18:20 -0700 (PDT)
+Received: from octofox.metropolis ([2607:fb90:a68f:7793:eeed:6380:da93:8dbc])
+ by smtp.gmail.com with ESMTPSA id
+ q17sm4061261pfh.32.2020.08.05.09.18.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Jul 2020 14:20:31 -0700 (PDT)
+ Wed, 05 Aug 2020 09:18:19 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: linux-xtensa@linux-xtensa.org
-Date: Fri, 31 Jul 2020 14:20:17 -0700
-Message-Id: <20200731212017.26851-1-jcmvbkbc@gmail.com>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Wed,  5 Aug 2020 09:17:13 -0700
+Message-Id: <20200805161713.7476-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: add missing exclusive access state
-	management
+Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
+ linux-kernel@vger.kernel.org
+Subject: [Linux-Xtensa] [PULL 00/10] xtensa updates for v5.9
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -72,84 +73,69 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-The result of the s32ex opcode is recorded in the ATOMCTL special
-register and must be retrieved with the getex opcode. Context switch
-between s32ex and getex may trash the ATOMCTL register and result in
-duplicate update or missing update of the atomic variable.
-Add atomctl8 field to the struct thread_info and use getex to swap
-ATOMCTL bit 8 as a part of context switch.
-Clear exclusive access monitor on kernel entry.
+Hi Linus,
 
-Cc: stable@vger.kernel.org
-Fixes: f7c34874f04a ("xtensa: add exclusive atomics support")
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
- arch/xtensa/include/asm/thread_info.h |  4 ++++
- arch/xtensa/kernel/asm-offsets.c      |  3 +++
- arch/xtensa/kernel/entry.S            | 11 +++++++++++
- 3 files changed, 18 insertions(+)
+please pull the following Xtensa architecture updates for v5.9.
+There are trivial conflicts in the seccomp selftests with the csky
+and sh trees.
 
-diff --git a/arch/xtensa/include/asm/thread_info.h b/arch/xtensa/include/asm/thread_info.h
-index 8918f0f20c53..6acbbe0d87d3 100644
---- a/arch/xtensa/include/asm/thread_info.h
-+++ b/arch/xtensa/include/asm/thread_info.h
-@@ -55,6 +55,10 @@ struct thread_info {
- 	mm_segment_t		addr_limit;	/* thread address space */
- 
- 	unsigned long		cpenable;
-+#if XCHAL_HAVE_EXCLUSIVE
-+	/* result of the most recent exclusive store */
-+	unsigned long		atomctl8;
-+#endif
- 
- 	/* Allocate storage for extra user states and coprocessor states. */
- #if XTENSA_HAVE_COPROCESSORS
-diff --git a/arch/xtensa/kernel/asm-offsets.c b/arch/xtensa/kernel/asm-offsets.c
-index 33a257b33723..dc5c83cad9be 100644
---- a/arch/xtensa/kernel/asm-offsets.c
-+++ b/arch/xtensa/kernel/asm-offsets.c
-@@ -93,6 +93,9 @@ int main(void)
- 	DEFINE(THREAD_RA, offsetof (struct task_struct, thread.ra));
- 	DEFINE(THREAD_SP, offsetof (struct task_struct, thread.sp));
- 	DEFINE(THREAD_CPENABLE, offsetof (struct thread_info, cpenable));
-+#if XCHAL_HAVE_EXCLUSIVE
-+	DEFINE(THREAD_ATOMCTL8, offsetof (struct thread_info, atomctl8));
-+#endif
- #if XTENSA_HAVE_COPROCESSORS
- 	DEFINE(THREAD_XTREGS_CP0, offsetof(struct thread_info, xtregs_cp.cp0));
- 	DEFINE(THREAD_XTREGS_CP1, offsetof(struct thread_info, xtregs_cp.cp1));
-diff --git a/arch/xtensa/kernel/entry.S b/arch/xtensa/kernel/entry.S
-index 98515c24d9b2..703cf6205efe 100644
---- a/arch/xtensa/kernel/entry.S
-+++ b/arch/xtensa/kernel/entry.S
-@@ -374,6 +374,11 @@ common_exception:
- 	s32i	a2, a1, PT_LCOUNT
- #endif
- 
-+#if XCHAL_HAVE_EXCLUSIVE
-+	/* Clear exclusive access monitor set by interrupted code */
-+	clrex
-+#endif
-+
- 	/* It is now save to restore the EXC_TABLE_FIXUP variable. */
- 
- 	rsr	a2, exccause
-@@ -2020,6 +2025,12 @@ ENTRY(_switch_to)
- 	s32i	a3, a4, THREAD_CPENABLE
- #endif
- 
-+#if XCHAL_HAVE_EXCLUSIVE
-+	l32i	a3, a5, THREAD_ATOMCTL8
-+	getex	a3
-+	s32i	a3, a4, THREAD_ATOMCTL8
-+#endif
-+
- 	/* Flush register file. */
- 
- 	spill_registers_kernel
+The following changes since commit 92ed301919932f777713b9172e525674157e983d:
+
+  Linux 5.8-rc7 (2020-07-26 14:14:06 -0700)
+
+are available in the Git repository at:
+
+  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20200805
+
+for you to fetch changes up to a0fc1436f1f4f84e93144480bf30e0c958d135b6:
+
+  xtensa: add missing exclusive access state management (2020-07-31 14:15:57 -0700)
+
+----------------------------------------------------------------
+Xtensa updates for v5.9:
+
+- add syscall audit support
+- add seccomp filter support
+- clean up make rules under arch/xtensa/boot
+- fix state management for exclusive access opcodes
+- fix build with PMU enabled
+
+----------------------------------------------------------------
+Masahiro Yamada (1):
+      xtensa: add boot subdirectories build artifacts to 'targets'
+
+Max Filippov (8):
+      xtensa: add audit support
+      xtensa: expose syscall through user_pt_regs
+      xtensa: add seccomp support
+      selftests/seccomp: add xtensa support
+      xtensa: move vmlinux.bin[.gz] to boot subdirectory
+      xtensa: add uImage and xipImage to targets
+      xtensa: fix xtensa_pmu_setup prototype
+      xtensa: add missing exclusive access state management
+
+Randy Dunlap (1):
+      xtensa: initialize_mmu.h: fix a duplicated word
+
+ .../features/seccomp/seccomp-filter/arch-support.txt     |  2 +-
+ arch/xtensa/Kconfig                                      | 16 ++++++++++++++++
+ arch/xtensa/boot/Makefile                                | 12 +++++++-----
+ arch/xtensa/boot/boot-elf/Makefile                       |  5 +++--
+ arch/xtensa/boot/boot-redboot/Makefile                   |  5 +++--
+ arch/xtensa/include/asm/Kbuild                           |  1 +
+ arch/xtensa/include/asm/initialize_mmu.h                 |  2 +-
+ arch/xtensa/include/asm/thread_info.h                    | 11 ++++++++++-
+ arch/xtensa/include/uapi/asm/ptrace.h                    |  3 ++-
+ arch/xtensa/kernel/asm-offsets.c                         |  3 +++
+ arch/xtensa/kernel/entry.S                               | 11 +++++++++++
+ arch/xtensa/kernel/perf_event.c                          |  2 +-
+ arch/xtensa/kernel/ptrace.c                              | 14 +++++++++++++-
+ tools/testing/selftests/seccomp/seccomp_bpf.c            | 16 +++++++++++++++-
+ 14 files changed, 87 insertions(+), 16 deletions(-)
+
 -- 
-2.20.1
-
+Thanks.
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
