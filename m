@@ -2,60 +2,61 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id B82C823CC02
-	for <lists+linux-xtensa@lfdr.de>; Wed,  5 Aug 2020 18:18:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFE4A23F87B
+	for <lists+linux-xtensa@lfdr.de>; Sat,  8 Aug 2020 20:37:37 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id E819E6464;
-	Wed,  5 Aug 2020 16:01:26 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 67A224242;
+	Sat,  8 Aug 2020 18:20:34 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
- [209.85.214.182])
- by linux-xtensa.org (Postfix) with ESMTPS id 1B322644A
- for <linux-xtensa@linux-xtensa.org>; Wed,  5 Aug 2020 16:01:25 +0000 (UTC)
-Received: by mail-pl1-f182.google.com with SMTP id o1so25534579plk.1
- for <linux-xtensa@linux-xtensa.org>; Wed, 05 Aug 2020 09:18:20 -0700 (PDT)
+Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
+ [209.85.210.194])
+ by linux-xtensa.org (Postfix) with ESMTPS id 82C143A8A
+ for <linux-xtensa@linux-xtensa.org>; Sat,  8 Aug 2020 18:20:32 +0000 (UTC)
+Received: by mail-pf1-f194.google.com with SMTP id a79so2881572pfa.8
+ for <linux-xtensa@linux-xtensa.org>; Sat, 08 Aug 2020 11:37:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=xqOtscQ7oL8M2OV7/AS+H9zd7WlGhrndY3fKEhcVkr8=;
- b=Z16S5uzNX2DvMz74/erd60XfGe/qiJuePgZbU2/7UfhnQ/Qoymj6EdculFdgg2vGEX
- 3fTmauJt1sMneAs8tuDbHwWDS+31gQTsUEdZXymQKlE1ejSnpzSsvpc4R92U92Krqgle
- MMowi9Pq+WB4jaAMMfguxv9c/+9o9hYNXu/eHcwKpo6AX+fFPX+Me8YYGEeQIyZrkNk3
- KwiQexVYYlrZGJlKULnx4ClxyPM8fRrj33Rp2fmvttuvITxCIUvZFfPRc0NhPEjaXiZF
- rgtrA3e7hjEdgOxdVYJ9v8G6rhl+QzqKUY8Va286aepOq2TtIMXP2+TIOYWIstIVYtdz
- 1vWg==
+ bh=E2HEcTXnQvxfyOU/9ep7TLdb0ZWR8Mv/2sU679c6wow=;
+ b=hreHI/4z4gnMY2MsrUHeUlwsPkiZWg5h72Fy63z5HJTURdX0b/EDfhyL+3V/iECZL0
+ 8EWb5a1vq2nZkIrjs6zbBVrKHymnm1f3YH9DSPB7jcWuXbgc1eABRjVRr6PulL5u32+Z
+ XtKD9YNv4/h+bwVMbFCqtfavMWn5tMZwrYgKpBBjLPlR8Iv3tAAmo4I8W7io6rfZnpJG
+ 7z1FqihIxrtRPdvmHFnQPpXcvbFOE+KHk5nNmruZeHxP88/0eeTjpTPdT3L/0Q3coDUY
+ er+FJi7aOvW2r/DKmWGhUCzMVGuv4Il/ApdihfubGbjPn6DyNKIjqVk2y4PDeFZ1VPlS
+ LCIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=xqOtscQ7oL8M2OV7/AS+H9zd7WlGhrndY3fKEhcVkr8=;
- b=N14QGv7DJrxgWN3spgzKF/Hae8sFV+VkrYRAdxwep561KjnXhceaPYEZ8dtbQMAyou
- cypbw5z3GFD4TC/9ni5xhpLGt8rZD4fAT1DTkN0dHtGb7inYbDCPiHOwmvnBGoGm0y0u
- O6euH7WUDzV2UL3Fsk4HBgCEpttqoB/QPXnUeIUYWhqwrhRBU87woWwxoUvCTwizxDuU
- UwUQlbzeFTKzkeXWKmTzn4rlwvLPZ0/tX1vWEOCX/1lYPAkir9tCc2Tn3UlP5CVxBds+
- NLbx+lqVT/Kv2kAOpChdBdsYkjktBOv3hN0aSaZjwM6/v295SIAQRBhmdWx/lMylIlTY
- JXfw==
-X-Gm-Message-State: AOAM532GcEzxLmnLV8pD4RUu4xWP3cgjJCdCDfDCXCfSz5+Y8OpXzLAq
- nO5TfupTY02FSfAq9obQopc=
-X-Google-Smtp-Source: ABdhPJxnvCWGyOLOGhyjS1AovH1VKezcgn5lf5r4MjNi2ROoheSsEQeaohrlkMnWfJWyLEVc8tmGGw==
-X-Received: by 2002:a17:902:6b03:: with SMTP id
- o3mr3737409plk.69.1596644300042; 
- Wed, 05 Aug 2020 09:18:20 -0700 (PDT)
-Received: from octofox.metropolis ([2607:fb90:a68f:7793:eeed:6380:da93:8dbc])
- by smtp.gmail.com with ESMTPSA id
- q17sm4061261pfh.32.2020.08.05.09.18.18
+ bh=E2HEcTXnQvxfyOU/9ep7TLdb0ZWR8Mv/2sU679c6wow=;
+ b=XDAVsG/B3DbHYf4Kda44fVz9LV4a2eYuowbC/xzMAOsTVQARadY9jTmOmJLJ9du3Jw
+ nqP6oU/M5wLJ/91mSfcSZEnNjPKPdFWOilfZKiDr3+6qCOZ9j8P8f1GJwxla3iR1+Qta
+ 4Wd3RPWWSKHO9/7DPhWE+H7S1ZhLpIW3P7xYUns2oz5n+bcLjadzZsnx3aaNvdDksprI
+ 8alBN81nRHBDh6fDajV5GDgnCBAs3uGjsEeJSJxYLQi++ubI5+UZMGNzpSQh8rLbBSlJ
+ Qxb1kgIhWuY+IgPCKNf7IdrJ3CpGpJrCJCIuWtaLtK82uI/Mzo9w6cdXvfbJdDDJu/W8
+ cCIg==
+X-Gm-Message-State: AOAM530Kmb3W2N6LgWPVll9AdeQV0totsxiHXckCrNd/BgMSlgkaBUoe
+ rsq9ghtAM+zI6AMqOE9E0msDYJ20
+X-Google-Smtp-Source: ABdhPJz3FrHRgj5GwEumJjVbaMn5fGL88iRBUP3Q9C6cKXPRZ/gU+kCYqJLXbfdmfUDrLxLU24vqtQ==
+X-Received: by 2002:a65:58c4:: with SMTP id e4mr15939810pgu.108.1596911853996; 
+ Sat, 08 Aug 2020 11:37:33 -0700 (PDT)
+Received: from octofox.hsd1.ca.comcast.net
+ ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
+ by smtp.gmail.com with ESMTPSA id q2sm17066767pff.107.2020.08.08.11.37.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 05 Aug 2020 09:18:19 -0700 (PDT)
+ Sat, 08 Aug 2020 11:37:33 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Wed,  5 Aug 2020 09:17:13 -0700
-Message-Id: <20200805161713.7476-1-jcmvbkbc@gmail.com>
+To: linux-xtensa@linux-xtensa.org
+Date: Sat,  8 Aug 2020 11:37:13 -0700
+Message-Id: <20200808183713.12425-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
- linux-kernel@vger.kernel.org
-Subject: [Linux-Xtensa] [PULL 00/10] xtensa updates for v5.9
+Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ Christoph Hellwig <hch@lst.de>, Max Filippov <jcmvbkbc@gmail.com>,
+ Greg Ungerer <gerg@linux-m68k.org>
+Subject: [Linux-Xtensa] [PATCH] binfmt_flat: revert "binfmt_flat: don't
+	offset the data start"
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -73,69 +74,92 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Hi Linus,
+binfmt_flat loader uses the gap between text and data to store data
+segment pointers for the libraries. Even in the absence of shared
+libraries it stores at least one pointer to the executable's own data
+segment. Text and data can go back to back in the flat binary image and
+without offsetting data segment last few instructions in the text
+segment may get corrupted by the data segment pointer.
 
-please pull the following Xtensa architecture updates for v5.9.
-There are trivial conflicts in the seccomp selftests with the csky
-and sh trees.
+Fix it by reverting commit a2357223c50a ("binfmt_flat: don't offset the
+data start").
 
-The following changes since commit 92ed301919932f777713b9172e525674157e983d:
+Cc: stable@vger.kernel.org
+Fixes: a2357223c50a ("binfmt_flat: don't offset the data start")
+Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+---
+ fs/binfmt_flat.c | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
 
-  Linux 5.8-rc7 (2020-07-26 14:14:06 -0700)
-
-are available in the Git repository at:
-
-  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20200805
-
-for you to fetch changes up to a0fc1436f1f4f84e93144480bf30e0c958d135b6:
-
-  xtensa: add missing exclusive access state management (2020-07-31 14:15:57 -0700)
-
-----------------------------------------------------------------
-Xtensa updates for v5.9:
-
-- add syscall audit support
-- add seccomp filter support
-- clean up make rules under arch/xtensa/boot
-- fix state management for exclusive access opcodes
-- fix build with PMU enabled
-
-----------------------------------------------------------------
-Masahiro Yamada (1):
-      xtensa: add boot subdirectories build artifacts to 'targets'
-
-Max Filippov (8):
-      xtensa: add audit support
-      xtensa: expose syscall through user_pt_regs
-      xtensa: add seccomp support
-      selftests/seccomp: add xtensa support
-      xtensa: move vmlinux.bin[.gz] to boot subdirectory
-      xtensa: add uImage and xipImage to targets
-      xtensa: fix xtensa_pmu_setup prototype
-      xtensa: add missing exclusive access state management
-
-Randy Dunlap (1):
-      xtensa: initialize_mmu.h: fix a duplicated word
-
- .../features/seccomp/seccomp-filter/arch-support.txt     |  2 +-
- arch/xtensa/Kconfig                                      | 16 ++++++++++++++++
- arch/xtensa/boot/Makefile                                | 12 +++++++-----
- arch/xtensa/boot/boot-elf/Makefile                       |  5 +++--
- arch/xtensa/boot/boot-redboot/Makefile                   |  5 +++--
- arch/xtensa/include/asm/Kbuild                           |  1 +
- arch/xtensa/include/asm/initialize_mmu.h                 |  2 +-
- arch/xtensa/include/asm/thread_info.h                    | 11 ++++++++++-
- arch/xtensa/include/uapi/asm/ptrace.h                    |  3 ++-
- arch/xtensa/kernel/asm-offsets.c                         |  3 +++
- arch/xtensa/kernel/entry.S                               | 11 +++++++++++
- arch/xtensa/kernel/perf_event.c                          |  2 +-
- arch/xtensa/kernel/ptrace.c                              | 14 +++++++++++++-
- tools/testing/selftests/seccomp/seccomp_bpf.c            | 16 +++++++++++++++-
- 14 files changed, 87 insertions(+), 16 deletions(-)
-
+diff --git a/fs/binfmt_flat.c b/fs/binfmt_flat.c
+index f2f9086ebe98..b9c658e0548e 100644
+--- a/fs/binfmt_flat.c
++++ b/fs/binfmt_flat.c
+@@ -576,7 +576,7 @@ static int load_flat_file(struct linux_binprm *bprm,
+ 			goto err;
+ 		}
+ 
+-		len = data_len + extra;
++		len = data_len + extra + MAX_SHARED_LIBS * sizeof(unsigned long);
+ 		len = PAGE_ALIGN(len);
+ 		realdatastart = vm_mmap(NULL, 0, len,
+ 			PROT_READ|PROT_WRITE|PROT_EXEC, MAP_PRIVATE, 0);
+@@ -590,7 +590,9 @@ static int load_flat_file(struct linux_binprm *bprm,
+ 			vm_munmap(textpos, text_len);
+ 			goto err;
+ 		}
+-		datapos = ALIGN(realdatastart, FLAT_DATA_ALIGN);
++		datapos = ALIGN(realdatastart +
++				MAX_SHARED_LIBS * sizeof(unsigned long),
++				FLAT_DATA_ALIGN);
+ 
+ 		pr_debug("Allocated data+bss+stack (%u bytes): %lx\n",
+ 			 data_len + bss_len + stack_len, datapos);
+@@ -620,7 +622,7 @@ static int load_flat_file(struct linux_binprm *bprm,
+ 		memp_size = len;
+ 	} else {
+ 
+-		len = text_len + data_len + extra;
++		len = text_len + data_len + extra + MAX_SHARED_LIBS * sizeof(u32);
+ 		len = PAGE_ALIGN(len);
+ 		textpos = vm_mmap(NULL, 0, len,
+ 			PROT_READ | PROT_EXEC | PROT_WRITE, MAP_PRIVATE, 0);
+@@ -635,7 +637,9 @@ static int load_flat_file(struct linux_binprm *bprm,
+ 		}
+ 
+ 		realdatastart = textpos + ntohl(hdr->data_start);
+-		datapos = ALIGN(realdatastart, FLAT_DATA_ALIGN);
++		datapos = ALIGN(realdatastart +
++				MAX_SHARED_LIBS * sizeof(u32),
++				FLAT_DATA_ALIGN);
+ 
+ 		reloc = (__be32 __user *)
+ 			(datapos + (ntohl(hdr->reloc_start) - text_len));
+@@ -652,9 +656,8 @@ static int load_flat_file(struct linux_binprm *bprm,
+ 					 (text_len + full_data
+ 						  - sizeof(struct flat_hdr)),
+ 					 0);
+-			if (datapos != realdatastart)
+-				memmove((void *)datapos, (void *)realdatastart,
+-						full_data);
++			memmove((void *) datapos, (void *) realdatastart,
++					full_data);
+ #else
+ 			/*
+ 			 * This is used on MMU systems mainly for testing.
+@@ -710,7 +713,8 @@ static int load_flat_file(struct linux_binprm *bprm,
+ 		if (IS_ERR_VALUE(result)) {
+ 			ret = result;
+ 			pr_err("Unable to read code+data+bss, errno %d\n", ret);
+-			vm_munmap(textpos, text_len + data_len + extra);
++			vm_munmap(textpos, text_len + data_len + extra +
++				MAX_SHARED_LIBS * sizeof(u32));
+ 			goto err;
+ 		}
+ 	}
 -- 
-Thanks.
--- Max
+2.20.1
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
