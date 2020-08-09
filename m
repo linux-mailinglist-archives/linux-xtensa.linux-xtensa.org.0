@@ -2,61 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id DFE4A23F87B
-	for <lists+linux-xtensa@lfdr.de>; Sat,  8 Aug 2020 20:37:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C360B23FCFE
+	for <lists+linux-xtensa@lfdr.de>; Sun,  9 Aug 2020 08:23:30 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 67A224242;
-	Sat,  8 Aug 2020 18:20:34 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 4863E64A7;
+	Sun,  9 Aug 2020 06:06:26 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
- [209.85.210.194])
- by linux-xtensa.org (Postfix) with ESMTPS id 82C143A8A
- for <linux-xtensa@linux-xtensa.org>; Sat,  8 Aug 2020 18:20:32 +0000 (UTC)
-Received: by mail-pf1-f194.google.com with SMTP id a79so2881572pfa.8
- for <linux-xtensa@linux-xtensa.org>; Sat, 08 Aug 2020 11:37:34 -0700 (PDT)
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
+ [209.85.216.49])
+ by linux-xtensa.org (Postfix) with ESMTPS id F3BD46496
+ for <linux-xtensa@linux-xtensa.org>; Sun,  9 Aug 2020 06:06:22 +0000 (UTC)
+Received: by mail-pj1-f49.google.com with SMTP id mt12so3090328pjb.4
+ for <linux-xtensa@linux-xtensa.org>; Sat, 08 Aug 2020 23:23:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=E2HEcTXnQvxfyOU/9ep7TLdb0ZWR8Mv/2sU679c6wow=;
- b=hreHI/4z4gnMY2MsrUHeUlwsPkiZWg5h72Fy63z5HJTURdX0b/EDfhyL+3V/iECZL0
- 8EWb5a1vq2nZkIrjs6zbBVrKHymnm1f3YH9DSPB7jcWuXbgc1eABRjVRr6PulL5u32+Z
- XtKD9YNv4/h+bwVMbFCqtfavMWn5tMZwrYgKpBBjLPlR8Iv3tAAmo4I8W7io6rfZnpJG
- 7z1FqihIxrtRPdvmHFnQPpXcvbFOE+KHk5nNmruZeHxP88/0eeTjpTPdT3L/0Q3coDUY
- er+FJi7aOvW2r/DKmWGhUCzMVGuv4Il/ApdihfubGbjPn6DyNKIjqVk2y4PDeFZ1VPlS
- LCIg==
+ bh=MJ5BX7u/X+u1PFa2yEZCCUhUPq+xEIdELVI96l0k3JY=;
+ b=QCXRWAyMmPwD6FaU9R6lhumdciudOi7nhhnJTcuEBMKZ9f1ajZwZDawMwMqxxRAyF9
+ TNsob1TnkbnDweE6XGRwYJLva7a/jJq8lJL++aSjA5VOB3EqFp7MxGilkawVpH5nPyy1
+ uFrYDhV8gZ4qkRWearXjYWH0OB7vEe2g8euCrvmP4EBOOeUKz9SyE2vfkAWnwIJ1yRM0
+ pwsQ31ZGPRyfmeHkbHSqBj8Zg55chl0OqMCGC0f6Q+k/5oPId3jJxOP90sQ1d4jsP6Vh
+ 0qcMJlAxcl491UXSVVFcJWkkRk0cBvzlnzj+4q1xC94SW6+voyKVTKtN2w0v0NwpV5i4
+ TYmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=E2HEcTXnQvxfyOU/9ep7TLdb0ZWR8Mv/2sU679c6wow=;
- b=XDAVsG/B3DbHYf4Kda44fVz9LV4a2eYuowbC/xzMAOsTVQARadY9jTmOmJLJ9du3Jw
- nqP6oU/M5wLJ/91mSfcSZEnNjPKPdFWOilfZKiDr3+6qCOZ9j8P8f1GJwxla3iR1+Qta
- 4Wd3RPWWSKHO9/7DPhWE+H7S1ZhLpIW3P7xYUns2oz5n+bcLjadzZsnx3aaNvdDksprI
- 8alBN81nRHBDh6fDajV5GDgnCBAs3uGjsEeJSJxYLQi++ubI5+UZMGNzpSQh8rLbBSlJ
- Qxb1kgIhWuY+IgPCKNf7IdrJ3CpGpJrCJCIuWtaLtK82uI/Mzo9w6cdXvfbJdDDJu/W8
- cCIg==
-X-Gm-Message-State: AOAM530Kmb3W2N6LgWPVll9AdeQV0totsxiHXckCrNd/BgMSlgkaBUoe
- rsq9ghtAM+zI6AMqOE9E0msDYJ20
-X-Google-Smtp-Source: ABdhPJz3FrHRgj5GwEumJjVbaMn5fGL88iRBUP3Q9C6cKXPRZ/gU+kCYqJLXbfdmfUDrLxLU24vqtQ==
-X-Received: by 2002:a65:58c4:: with SMTP id e4mr15939810pgu.108.1596911853996; 
- Sat, 08 Aug 2020 11:37:33 -0700 (PDT)
-Received: from octofox.hsd1.ca.comcast.net
- ([2601:641:400:e00:19b7:f650:7bbe:a7fb])
- by smtp.gmail.com with ESMTPSA id q2sm17066767pff.107.2020.08.08.11.37.33
+ bh=MJ5BX7u/X+u1PFa2yEZCCUhUPq+xEIdELVI96l0k3JY=;
+ b=lMinlMW9D4K/Tekozg0mLoj9lOO3+lIyqRICbRWSuYBLlt8XxOwH2ODznj4id9UM6z
+ LIaNcfZrwurikcDWbvE4WbmgjHHrMwW3oaV2CgUe6nN2AtQ6sIt2zlil9XULYYF6dFmd
+ kY71ISVUfXo4Jamo1SNHYDWjW8OwESVGrFpDYJMQ9oODQBa8d9HwuxVVfjWy4W/SFa9O
+ nDcglAPEhpjYz7dfTTpBMxhfOrkYONguXJ93gTcb0tU0fNLOl+oJkGBPXVtB7emI5ukn
+ q5Owo965erAC97vs2XjR1JCKfHfkkaSDGLzbS5YmCMbFwt7kQ0YW9qohOlazntUPbcLK
+ 9r/Q==
+X-Gm-Message-State: AOAM533f8VAVqRrICZwZA0K03RbTjjhqXmgLNNmT6PAkMq9Eo6xe5ZlU
+ e0klDhRTsMh9Z4436Uw5RS4=
+X-Google-Smtp-Source: ABdhPJyt7lAvuj+2khSKpMZWZS3Rbgjwgb/g4wNsSIi+Olm26dE2BhbnU2zAsM2KrJiumLAqTuAtNQ==
+X-Received: by 2002:a17:90a:d78f:: with SMTP id
+ z15mr21405773pju.9.1596954205593; 
+ Sat, 08 Aug 2020 23:23:25 -0700 (PDT)
+Received: from octofox.metropolis ([2607:fb90:4e2a:9849:ec4c:126e:c341:8919])
+ by smtp.gmail.com with ESMTPSA id
+ l17sm19826783pff.126.2020.08.08.23.23.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 08 Aug 2020 11:37:33 -0700 (PDT)
+ Sat, 08 Aug 2020 23:23:25 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: linux-xtensa@linux-xtensa.org
-Date: Sat,  8 Aug 2020 11:37:13 -0700
-Message-Id: <20200808183713.12425-1-jcmvbkbc@gmail.com>
+To: devel@uclibc-ng.org
+Date: Sat,  8 Aug 2020 23:23:11 -0700
+Message-Id: <20200809062311.18961-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- Christoph Hellwig <hch@lst.de>, Max Filippov <jcmvbkbc@gmail.com>,
- Greg Ungerer <gerg@linux-m68k.org>
-Subject: [Linux-Xtensa] [PATCH] binfmt_flat: revert "binfmt_flat: don't
-	offset the data start"
+Cc: linux-xtensa@linux-xtensa.org, Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: relax memory constraint in atomic
+	assembly
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -74,89 +73,177 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-binfmt_flat loader uses the gap between text and data to store data
-segment pointers for the libraries. Even in the absence of shared
-libraries it stores at least one pointer to the executable's own data
-segment. Text and data can go back to back in the flat binary image and
-without offsetting data segment last few instructions in the text
-segment may get corrupted by the data segment pointer.
+Replace "a" constraints with "+m" to avoid forcing atomic variable
+address into a register and let the compiler use non-zero offset in
+load/store opcodes.
 
-Fix it by reverting commit a2357223c50a ("binfmt_flat: don't offset the
-data start").
-
-Cc: stable@vger.kernel.org
-Fixes: a2357223c50a ("binfmt_flat: don't offset the data start")
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- fs/binfmt_flat.c | 20 ++++++++++++--------
- 1 file changed, 12 insertions(+), 8 deletions(-)
+ libc/sysdeps/linux/xtensa/bits/atomic.h       | 49 +++++++++----------
+ .../linuxthreads/sysdeps/xtensa/pt-machine.h  | 15 +++---
+ 2 files changed, 31 insertions(+), 33 deletions(-)
 
-diff --git a/fs/binfmt_flat.c b/fs/binfmt_flat.c
-index f2f9086ebe98..b9c658e0548e 100644
---- a/fs/binfmt_flat.c
-+++ b/fs/binfmt_flat.c
-@@ -576,7 +576,7 @@ static int load_flat_file(struct linux_binprm *bprm,
- 			goto err;
- 		}
+diff --git a/libc/sysdeps/linux/xtensa/bits/atomic.h b/libc/sysdeps/linux/xtensa/bits/atomic.h
+index b2be547f03e9..efc027d1ac25 100644
+--- a/libc/sysdeps/linux/xtensa/bits/atomic.h
++++ b/libc/sysdeps/linux/xtensa/bits/atomic.h
+@@ -56,16 +56,16 @@ typedef uintmax_t uatomic_max_t;
+ #define __arch_compare_and_exchange_val_32_acq(mem, newval, oldval)  \
+   ({__typeof__(*(mem)) __tmp, __value;                               \
+     __asm__ __volatile__(                                            \
+-      "1:     l32i    %1, %2, 0               \n"                    \
++      "1:     l32i    %1, %2                  \n"                    \
+       "       bne     %1, %4, 2f              \n"                    \
+       "       wsr     %1, SCOMPARE1           \n"                    \
+       "       mov     %0, %1                  \n"                    \
+       "       mov     %1, %3                  \n"                    \
+-      "       s32c1i  %1, %2, 0               \n"                    \
++      "       s32c1i  %1, %2                  \n"                    \
+       "       bne     %0, %1, 1b              \n"                    \
+       "2:                                     \n"                    \
+-      : "=&a" (__value), "=&a" (__tmp)                               \
+-      : "a" (mem), "a" (newval), "a" (oldval)                        \
++      : "=&a" (__value), "=&a" (__tmp), "+m" (*(mem))                \
++      : "a" (newval), "a" (oldval)                                   \
+       : "memory" );                                                  \
+     __tmp;                                                           \
+   })
+@@ -76,17 +76,17 @@ typedef uintmax_t uatomic_max_t;
+ #define __arch_compare_and_exchange_bool_32_acq(mem, newval, oldval) \
+   ({__typeof__(*(mem)) __tmp, __value;                               \
+     __asm__ __volatile__(                                            \
+-      "1:     l32i    %0, %2, 0               \n"                    \
++      "1:     l32i    %0, %2                  \n"                    \
+       "       sub     %1, %4, %0              \n"                    \
+       "       bnez    %1, 2f                  \n"                    \
+       "       wsr     %0, SCOMPARE1           \n"                    \
+       "       mov     %1, %3                  \n"                    \
+-      "       s32c1i  %1, %2, 0               \n"                    \
++      "       s32c1i  %1, %2                  \n"                    \
+       "       bne     %0, %1, 1b              \n"                    \
+       "       movi    %1, 0                   \n"                    \
+       "2:                                     \n"                    \
+-      : "=&a" (__value), "=&a" (__tmp)                               \
+-      : "a" (mem), "a" (newval), "a" (oldval)                        \
++      : "=&a" (__value), "=&a" (__tmp), "+m" (*(mem))                \
++      : "a" (newval), "a" (oldval)                                   \
+       : "memory" );                                                  \
+     __tmp != 0;                                                      \
+   })
+@@ -96,13 +96,13 @@ typedef uintmax_t uatomic_max_t;
+ #define __arch_exchange_32_acq(mem, newval)                          \
+   ({__typeof__(*(mem)) __tmp, __value;                               \
+     __asm__ __volatile__(                                            \
+-      "1:     l32i    %0, %2, 0               \n"                    \
++      "1:     l32i    %0, %2                  \n"                    \
+       "       wsr     %0, SCOMPARE1           \n"                    \
+       "       mov     %1, %3                  \n"                    \
+-      "       s32c1i  %1, %2, 0               \n"                    \
++      "       s32c1i  %1, %2                  \n"                    \
+       "       bne     %0, %1, 1b              \n"                    \
+-      : "=&a" (__value), "=&a" (__tmp)                               \
+-      : "a" (mem), "a" (newval)                                      \
++      : "=&a" (__value), "=&a" (__tmp), "+m" (*(mem))                \
++      : "a" (newval)                                                 \
+       : "memory" );                                                  \
+     __tmp;                                                           \
+   })
+@@ -112,13 +112,13 @@ typedef uintmax_t uatomic_max_t;
+ #define __arch_atomic_exchange_and_add_32(mem, value)                \
+   ({__typeof__(*(mem)) __tmp, __value;                               \
+     __asm__ __volatile__(                                            \
+-      "1:     l32i    %0, %2, 0               \n"                    \
++      "1:     l32i    %0, %2                  \n"                    \
+       "       wsr     %0, SCOMPARE1           \n"                    \
+       "       add     %1, %0, %3              \n"                    \
+-      "       s32c1i  %1, %2, 0               \n"                    \
++      "       s32c1i  %1, %2                  \n"                    \
+       "       bne     %0, %1, 1b              \n"                    \
+-      : "=&a" (__value), "=&a" (__tmp)                               \
+-      : "a" (mem), "a" (value)                                       \
++      : "=&a" (__value), "=&a" (__tmp), "+m" (*(mem))                \
++      : "a" (value)                                                  \
+       : "memory" );                                                  \
+     __tmp;                                                           \
+   })
+@@ -128,13 +128,13 @@ typedef uintmax_t uatomic_max_t;
+ #define __arch_atomic_exchange_and_sub_32(mem, value)                \
+   ({__typeof__(*(mem)) __tmp, __value;                               \
+     __asm__ __volatile__(                                            \
+-      "1:     l32i    %0, %2, 0               \n"                    \
++      "1:     l32i    %0, %2                  \n"                    \
+       "       wsr     %0, SCOMPARE1           \n"                    \
+       "       sub     %1, %0, %3              \n"                    \
+-      "       s32c1i  %1, %2, 0               \n"                    \
++      "       s32c1i  %1, %2                  \n"                    \
+       "       bne     %0, %1, 1b              \n"                    \
+-      : "=&a" (__value), "=&a" (__tmp)                               \
+-      : "a" (mem), "a" (value)                                       \
++      : "=&a" (__value), "=&a" (__tmp), "+m" (*(mem))                \
++      : "a" (value)                                                  \
+       : "memory" );                                                  \
+     __tmp;                                                           \
+   })
+@@ -144,16 +144,15 @@ typedef uintmax_t uatomic_max_t;
+ #define __arch_atomic_decrement_if_positive_32(mem)                  \
+   ({__typeof__(*(mem)) __tmp, __value;                               \
+     __asm__ __volatile__(                                            \
+-      "1:     l32i    %0, %2, 0               \n"                    \
++      "1:     l32i    %0, %2                  \n"                    \
+       "       blti    %0, 1, 2f               \n"                    \
+       "       wsr     %0, SCOMPARE1           \n"                    \
+       "       addi    %1, %0, -1              \n"                    \
+-      "       s32c1i  %1, %2, 0               \n"                    \
++      "       s32c1i  %1, %2                  \n"                    \
+       "       bne     %0, %1, 1b              \n"                    \
+       "2:                                     \n"                    \
+-      : "=&a" (__value), "=&a" (__tmp)                               \
+-      : "a" (mem)                                                    \
+-      : "memory" );                                                  \
++      : "=&a" (__value), "=&a" (__tmp), "+m" (*(mem))                \
++      :: "memory" );                                                 \
+     __value;                                                         \
+   })
  
--		len = data_len + extra;
-+		len = data_len + extra + MAX_SHARED_LIBS * sizeof(unsigned long);
- 		len = PAGE_ALIGN(len);
- 		realdatastart = vm_mmap(NULL, 0, len,
- 			PROT_READ|PROT_WRITE|PROT_EXEC, MAP_PRIVATE, 0);
-@@ -590,7 +590,9 @@ static int load_flat_file(struct linux_binprm *bprm,
- 			vm_munmap(textpos, text_len);
- 			goto err;
- 		}
--		datapos = ALIGN(realdatastart, FLAT_DATA_ALIGN);
-+		datapos = ALIGN(realdatastart +
-+				MAX_SHARED_LIBS * sizeof(unsigned long),
-+				FLAT_DATA_ALIGN);
+diff --git a/libpthread/linuxthreads/sysdeps/xtensa/pt-machine.h b/libpthread/linuxthreads/sysdeps/xtensa/pt-machine.h
+index 2c68ddfb5fe1..82d9b540c611 100644
+--- a/libpthread/linuxthreads/sysdeps/xtensa/pt-machine.h
++++ b/libpthread/linuxthreads/sysdeps/xtensa/pt-machine.h
+@@ -43,10 +43,9 @@ testandset (int *spinlock)
+ "	movi	%0, 0			\n"
+ "	wsr	%0, SCOMPARE1		\n"
+ "	movi	%0, 1			\n"
+-"	s32c1i	%0, %1, 0		\n"
+-	: "=&a" (tmp)
+-	: "a" (spinlock)
+-	: "memory"
++"	s32c1i	%0, %1			\n"
++	: "=&a" (tmp), "+m" (*spinlock)
++	:: "memory"
+ 	);
+ 	return tmp;
+ }
+@@ -57,16 +56,16 @@ __compare_and_swap (long int *p, long int oldval, long int newval)
+         unsigned long tmp;
+         unsigned long value;
+         __asm__ volatile (
+-"1:     l32i    %0, %2, 0            \n"
++"1:     l32i    %0, %2               \n"
+ "       bne     %0, %4, 2f           \n"
+ "       wsr     %0, SCOMPARE1        \n"
+ "       mov     %1, %0               \n"
+ "       mov     %0, %3               \n"
+-"       s32c1i  %0, %2, 0            \n"
++"       s32c1i  %0, %2               \n"
+ "       bne     %1, %0, 1b           \n"
+ "2:                                  \n"
+-          : "=&a" (tmp), "=&a" (value)
+-          : "a" (p), "a" (newval), "a" (oldval)
++          : "=&a" (tmp), "=&a" (value), "+m" (*p)
++          : "a" (newval), "a" (oldval)
+           : "memory" );
  
- 		pr_debug("Allocated data+bss+stack (%u bytes): %lx\n",
- 			 data_len + bss_len + stack_len, datapos);
-@@ -620,7 +622,7 @@ static int load_flat_file(struct linux_binprm *bprm,
- 		memp_size = len;
- 	} else {
- 
--		len = text_len + data_len + extra;
-+		len = text_len + data_len + extra + MAX_SHARED_LIBS * sizeof(u32);
- 		len = PAGE_ALIGN(len);
- 		textpos = vm_mmap(NULL, 0, len,
- 			PROT_READ | PROT_EXEC | PROT_WRITE, MAP_PRIVATE, 0);
-@@ -635,7 +637,9 @@ static int load_flat_file(struct linux_binprm *bprm,
- 		}
- 
- 		realdatastart = textpos + ntohl(hdr->data_start);
--		datapos = ALIGN(realdatastart, FLAT_DATA_ALIGN);
-+		datapos = ALIGN(realdatastart +
-+				MAX_SHARED_LIBS * sizeof(u32),
-+				FLAT_DATA_ALIGN);
- 
- 		reloc = (__be32 __user *)
- 			(datapos + (ntohl(hdr->reloc_start) - text_len));
-@@ -652,9 +656,8 @@ static int load_flat_file(struct linux_binprm *bprm,
- 					 (text_len + full_data
- 						  - sizeof(struct flat_hdr)),
- 					 0);
--			if (datapos != realdatastart)
--				memmove((void *)datapos, (void *)realdatastart,
--						full_data);
-+			memmove((void *) datapos, (void *) realdatastart,
-+					full_data);
- #else
- 			/*
- 			 * This is used on MMU systems mainly for testing.
-@@ -710,7 +713,8 @@ static int load_flat_file(struct linux_binprm *bprm,
- 		if (IS_ERR_VALUE(result)) {
- 			ret = result;
- 			pr_err("Unable to read code+data+bss, errno %d\n", ret);
--			vm_munmap(textpos, text_len + data_len + extra);
-+			vm_munmap(textpos, text_len + data_len + extra +
-+				MAX_SHARED_LIBS * sizeof(u32));
- 			goto err;
- 		}
- 	}
+         return tmp == oldval;
 -- 
 2.20.1
 
