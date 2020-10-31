@@ -2,62 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id C448A26A3EE
-	for <lists+linux-xtensa@lfdr.de>; Tue, 15 Sep 2020 13:12:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D2C92A18BD
+	for <lists+linux-xtensa@lfdr.de>; Sat, 31 Oct 2020 17:37:27 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 689EF64A0;
-	Tue, 15 Sep 2020 10:54:15 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 7571252A4;
+	Sat, 31 Oct 2020 16:17:25 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com
- [209.85.218.68])
- by linux-xtensa.org (Postfix) with ESMTPS id 21FB35801
- for <linux-xtensa@linux-xtensa.org>; Tue, 15 Sep 2020 10:54:13 +0000 (UTC)
-Received: by mail-ej1-f68.google.com with SMTP id q13so4409269ejo.9
- for <linux-xtensa@linux-xtensa.org>; Tue, 15 Sep 2020 04:12:37 -0700 (PDT)
+Received: from mail-ed1-f66.google.com (mail-ed1-f66.google.com
+ [209.85.208.66])
+ by linux-xtensa.org (Postfix) with ESMTPS id 63B775299
+ for <linux-xtensa@linux-xtensa.org>; Sat, 31 Oct 2020 16:17:23 +0000 (UTC)
+Received: by mail-ed1-f66.google.com with SMTP id a15so1058344edy.1
+ for <linux-xtensa@linux-xtensa.org>; Sat, 31 Oct 2020 09:37:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=B4bOYSHsWHocnYArElpYthybN5SxC006LAFmz/36FHU=;
- b=Z/MAEsVTEnQKv9yb0HSOEZbJscLkrEI2KA6jePSwMg1TwHWUG2zmL/K+AbtjHO6/2o
- aIcnbhckWr6rgCmNGSrXn/T9XMsHZZKm/PsdMekg45hebYJEoEh6DtSQc6AwPL0FexMQ
- QEcy40U+GKpucQlCREx876BJYFzTaICPrYW4syFH6C95NZecWVgDFi7ziO/VvX17lotJ
- DDZY+9PHfKcooxB486MYcbnHky26yYukszeQjs76Kwm/6X3Co9rV5HLW0BzJkHQ4SNlQ
- 948TjdNG8+d8rKLvuzJokO+1T8T3AZzYmxIxeK7CMSgHmOVQw0cHLexkCCkg+JNIGJLn
- Ny/w==
+ :cc; bh=b+NPfT8JKlCYRXYxFv0mKYw4TjmxjjOYGUynmMasNWs=;
+ b=HKQdcZkK6WB/k/MXp+RFjtk9xh8eLggIn1uWnMTWOiVRLI4xoF8bsLANX0ZwmkLvoX
+ lZmyyN7u7VCtM1TuI/74ZAVp1dFD4buY864JmFrByJQTMaBTCbAN8In/eYve+Cznzcax
+ SrUifVkVu35WMSZEPZEQWm+8hfvsxH0YOpYH5icNL1bkRjQDB5PMcof/5l6yD+wbDK+K
+ N959Enhya263RDXN558/FflJNj9/r/mrAXjb4BYKMx8rC/nJCYYcAptmWwe57AM6rpJh
+ 0CR6hV7rAxOSDiAf9PG20XpUJDWwIJGBdUFpBLgmt+2lYGQ8qyG8Pi6YueZ5QMa5GkHf
+ P0mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=B4bOYSHsWHocnYArElpYthybN5SxC006LAFmz/36FHU=;
- b=ODO8+GNZG1UWyZWZ4p4XbCzAqKZOftyhIFcyhFrePydcFgDVCJFMt/36+pD4tXVIer
- nMbblMJXPfw2pjbuuc705hyq1N8CRBKwxQa/3HSwBo8bw/1CpdOSurZf1kQgD6o4KzKz
- mWCNr5DKSDXG+YQamcZ4ODwP5qBQLR4rJ8mT+Bq4nKzp8Oxhdbadmf1TjP/LfoPPbp+y
- MhYl6+MXJndxS3MqxPYAEvy2yE7+s6Ry78O9JiZHHySbq0/BNW9+FZjuPn/XplTYlnUu
- tPaQD8IrJBLHpqkMEIbq+oIZxyVk8EZ/W+YO+DsJaqfOp4kFn/Y2HVnGsA1fwcpPkhN/
- utTA==
-X-Gm-Message-State: AOAM530ZixAobS5+4fDZHq69StlemXSyDc6AMp+KKGPCTaMvMih7b365
- TreNTbnko4ewX4FNc/OlDhN3DQFS0/XeLWZLYJE=
-X-Google-Smtp-Source: ABdhPJwPU+9ZWIwNO56zgtgygOIdmPreND4z7Ge5DlUnTt0Tfg9IxfvCSMJOXmsXBV/ZabpWxbhtETys6v+wayV6BRQ=
-X-Received: by 2002:a17:906:30c5:: with SMTP id
- b5mr19838526ejb.98.1600168356388; 
- Tue, 15 Sep 2020 04:12:36 -0700 (PDT)
+ bh=b+NPfT8JKlCYRXYxFv0mKYw4TjmxjjOYGUynmMasNWs=;
+ b=PP2vepOLC40nEdriaVr8ixMbByws0TWwfyzoxwFhR4CBatXEOTuJhDIZkRu3eSTdEX
+ YJWIuiSky+q9++JDVKtb0L38FiCL2DziBX39yGOtKzwM+V6cZhQ3ljnK9Kbsr2RwOMQs
+ mUHsNX2PSNUNqYjFl6+nAiKlu6jCuayxw0PkVUpTJgkvwl+D7qe4QUaJwfph5bAh6R/+
+ d+88hOa1tPVtuuOITNtPY2TrlxKv+XoSzJnaPAw1EF8IUcBCWEaDrQGJY7y0r8anb3nj
+ 62ELgCdDpkVP/CYwqH8+X0qL1HVyHDueX7O/qbvmpbx+2y4Wk7Jf7CFE4jKsbEhP026O
+ CV+w==
+X-Gm-Message-State: AOAM532TSl9OoWlX0n6+vkcRCqCNYe+GUVuN6IAlP0zl1zg95AC0VfNs
+ 9CG70Nw+qKKv0Fvj1KRU8qSs3u7r4AqmOQBqbyQ=
+X-Google-Smtp-Source: ABdhPJxIpSPjgXyS13YEIZD5ljPoARHrmOI4hcOBu31gcWonS6angIRDwgk/lV0siRgSia/7Tt/dwMY2SaeGyqMMTpg=
+X-Received: by 2002:aa7:c704:: with SMTP id i4mr8380910edq.51.1604162241771;
+ Sat, 31 Oct 2020 09:37:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200912110820.597135-1-keescook@chromium.org>
- <87wo0wpnah.fsf@mpe.ellerman.id.au> <202009141321.366935EF52@keescook>
-In-Reply-To: <202009141321.366935EF52@keescook>
+References: <20201031094345.6984-1-rppt@kernel.org>
+In-Reply-To: <20201031094345.6984-1-rppt@kernel.org>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Tue, 15 Sep 2020 04:12:24 -0700
-Message-ID: <CAMo8BfK0Jcmt4EJ1R2d_4Hp9siSRrBsgaNDqCVjcQ0GK8XBGZA@mail.gmail.com>
-To: Kees Cook <keescook@chromium.org>
-Cc: Thadeu Lima de Souza Cascardo <cascardo@canonical.com>,
- Will Drewry <wad@chromium.org>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)" <linux-xtensa@linux-xtensa.org>,
- Michael Ellerman <mpe@ellerman.id.au>, LKML <linux-kernel@vger.kernel.org>,
- Andy Lutomirski <luto@amacapital.net>, linux-arm-kernel@lists.infradead.org,
- linux-kselftest@vger.kernel.org, linux-mips@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, Christian Brauner <christian@brauner.io>
-Subject: Re: [Linux-Xtensa] [PATCH 00/15] selftests/seccomp: Refactor
-	change_syscall()
+Date: Sat, 31 Oct 2020 09:37:09 -0700
+Message-ID: <CAMo8BfLCfpZcQC3oqEvExSqZ+dT2sVDjcXoaO_XKALn4rGjoog@mail.gmail.com>
+To: Mike Rapoport <rppt@kernel.org>
+Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>, Florian Fainelli <f.fainelli@gmail.com>,
+ LKML <linux-kernel@vger.kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Russell King <linux@armlinux.org.uk>, Mike Rapoport <rppt@linux.ibm.com>,
+ Ard Biesheuvel <ardb@kernel.org>, linux-arm-kernel@lists.infradead.org
+Subject: Re: [Linux-Xtensa] [PATCH] ARM,
+ xtensa: highmem: avoid clobbering non-page aligned memory
+ reservations
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -75,33 +72,11 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Mon, Sep 14, 2020 at 1:32 PM Kees Cook <keescook@chromium.org> wrote:
-> On Mon, Sep 14, 2020 at 10:15:18PM +1000, Michael Ellerman wrote:
-> > Kees Cook <keescook@chromium.org> writes:
-> However...
->
-> >
-> > cheers
-> >
-> >
-> > ./seccomp_bpf
-> > TAP version 13
-> > 1..86
-> > # Starting 86 tests from 7 test cases.
-> > #  RUN           global.kcmp ...
-> > #            OK  global.kcmp
-> > ok 1 global.kcmp
-> > [...]
-> > #  RUN           global.KILL_thread ...
-> > TAP version 13
-> > 1..86
-> > # Starting 86 tests from 7 test cases.
->
-> Was this a mis-paste, or has something very very bad happened here in
-> global.KILL_one_arg_six finishes?
+On Sat, Oct 31, 2020 at 2:43 AM Mike Rapoport <rppt@kernel.org> wrote:
+> Please let me know how do you prefer to take it upstream.
+> If needed this can go via memblock tree.
 
-I observe similar output corruption on xtensa when I redirect test output
-into a file or pipe it to 'cat'. When it goes to the terminal it looks normal.
+Going through the memblock tree sounds right to me.
 
 -- 
 Thanks.
