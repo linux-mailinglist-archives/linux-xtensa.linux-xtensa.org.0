@@ -2,58 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C7ED2AFA00
-	for <lists+linux-xtensa@lfdr.de>; Wed, 11 Nov 2020 21:47:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A0842AFA0E
+	for <lists+linux-xtensa@lfdr.de>; Wed, 11 Nov 2020 21:54:00 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 1842664C4;
-	Wed, 11 Nov 2020 20:27:11 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id A818164C6;
+	Wed, 11 Nov 2020 20:33:35 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lj1-f196.google.com (mail-lj1-f196.google.com
- [209.85.208.196])
- by linux-xtensa.org (Postfix) with ESMTPS id 13FA864C1
- for <linux-xtensa@linux-xtensa.org>; Wed, 11 Nov 2020 20:27:10 +0000 (UTC)
-Received: by mail-lj1-f196.google.com with SMTP id 11so3629266ljf.2
- for <linux-xtensa@linux-xtensa.org>; Wed, 11 Nov 2020 12:47:32 -0800 (PST)
+Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
+ [209.85.167.66])
+ by linux-xtensa.org (Postfix) with ESMTPS id AC20F64C2
+ for <linux-xtensa@linux-xtensa.org>; Wed, 11 Nov 2020 20:33:34 +0000 (UTC)
+Received: by mail-lf1-f66.google.com with SMTP id j205so5101116lfj.6
+ for <linux-xtensa@linux-xtensa.org>; Wed, 11 Nov 2020 12:53:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=kqXzWPcn/O/4CLOVfdqt2sWTguSFm5QeKMfYExO6Es0=;
- b=GECEhQ1mi8lg9CRGuy+xJpcNXzJmDeYnBwiiuNZcN/mWFilVjdYlB4F6LhtZH6pmJH
- 1HnZyC2Z38vrnyUbjp3jPnWI0nniDsCjZdFRR9ifF2M56scO9VW29NOZhvo6lecArxYI
- /80OM61hLATiEA267w/X7ja34tNhn/NKroYZw2b8SzT9MEsMUzWWQb/YmlnbHGIh+VSZ
- eyebZ+6STGqx4mNKzix1cFBKfMaTZEga7XIVgGCI4mhU6XirWI8lupsdgD1ZmAnHAdPW
- my9XLIlpspU+61ocMhnKv/s9TD4vRUqbWeYTG0gqqe+1rIgTP0u6qQGUTo2LD73oOE3i
- MozA==
+ bh=yNPB2jlKFvbSRV6c6XL32c51PGoINUdAsOUeABtQLYU=;
+ b=j36qxogbv4rKYU+qQ7B3RtrEPZmO7bO/cAnuJgeFFGRp0zL/tzacpUKbHUfmOHq5qB
+ evZCzvdnBnPAbjNM7xgwttjVSu664a7dPe5TJ5VI1fuSUH2JiPfuqtriIStxpvD1l11T
+ /eEA898f1v1YtttWCQmb5Ge79bs+MH3HIUyAnOgUv7/0TpYz3q8GoJXxv+1vfUpxE3OS
+ lKQFT4OzukreB12ElUoDTFQlUTSA5KzrlOHJt2XjKoJ7Zg/CxsC8qwqVa/wFdnoiXi6w
+ XIzdWuI3dJOOZYRlu9p0KEnZUQRPjPrBjUxz/bwFDc7KJjDwp6eKJ/IWwruIWMY7ctzf
+ FL1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=kqXzWPcn/O/4CLOVfdqt2sWTguSFm5QeKMfYExO6Es0=;
- b=EtuFqSCz4JWmGVh9c79KaOOcNo2apeW2HbYkQ5Q9CFpLMyEsuaErXZJ7pEOh1M9FjT
- e686VVHao0xV4D7SN27CU3liP4j89Ng7bQggkfsXKQEgoHOtSWBldQe7XVX3yAeOCk2t
- hbcz8z24tpxuaQAgBqvvdwlqu9mjXwuhvSaOch+7MJRksKWxw5UamoIABMNZnqwKmNcm
- 7mBSQQJReAyiARSuTsSzustsdEaAn8J1Z8GiftGfiN9uVWxEF3NPw2D2OvajFIYDTBcH
- aRwCS5q19ujMq1/BgtVanSgwNuz698G8A+tBkOZXpkOeJyUeOwkWS44CSNkMh/2yCZge
- a0qQ==
-X-Gm-Message-State: AOAM533PA5dg5Ezzy2WpFSLtWBrZ3J6py0U/nyiZNVUAF7fzwUD8Hn1V
- DAL8vAGOyiIo9J7Gs1RNua0uFuYROzIz8g==
-X-Google-Smtp-Source: ABdhPJwqT2b3RDMdIpLUc62Fp4ganTpJzm6XRy/RIgwv2RAwlcc7NslxV3tIBd3qngHgRaGEn9nR2g==
-X-Received: by 2002:a2e:8845:: with SMTP id z5mr10793727ljj.281.1605127651376; 
- Wed, 11 Nov 2020 12:47:31 -0800 (PST)
+ bh=yNPB2jlKFvbSRV6c6XL32c51PGoINUdAsOUeABtQLYU=;
+ b=IKVn8wB2pmEJeWeu9EufS2I65bO6eI0+KP4WpV0AbHOwvCAfbRhujZNj6YEcNgLZqX
+ g/qAo5+yrSV6+XwuUluZ77eiGV+9MzwEoG8268GZYLpvNPJ7tVdGy251ajr92ciVassq
+ 1RuXZQOALbeivcydNMte/cLH9Jy15sOcg/SWjw4LcCQwxYAo8AYQJq1wC34usjUVAWTJ
+ Gx0rkF+UrIKxboCkdBXvTthK5kyXmlflvat2RRyk5J55RWktGOvopCLVU3amq0auZLHF
+ HWrwmYUYipvjRxHTNR1J+ngDmjbB8BSX+hGLiXFX803vS/iCAGGZKm4bGOG2M/ybSBzN
+ 6vpw==
+X-Gm-Message-State: AOAM530FelcSWwf2UZs+A0iOtfW/nIlZLgmUgO4G4FD/J2PUeMCHWyW9
+ RYdx6D3dumkIrkiCaeBbuUHPpryhY7+P3Q==
+X-Google-Smtp-Source: ABdhPJzCo5sUp8St6IlY2ddwi9lEZX/ozXN8Ulor0n283l+kkysMgfoIagpqOQzT9oUsy+auBehyKA==
+X-Received: by 2002:a19:615:: with SMTP id 21mr8938864lfg.99.1605128036069;
+ Wed, 11 Nov 2020 12:53:56 -0800 (PST)
 Received: from octofox.metropolis ([5.19.183.212])
- by smtp.gmail.com with ESMTPSA id f1sm330971ljp.65.2020.11.11.12.47.30
+ by smtp.gmail.com with ESMTPSA id x6sm325457lfn.185.2020.11.11.12.53.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 11 Nov 2020 12:47:30 -0800 (PST)
+ Wed, 11 Nov 2020 12:53:55 -0800 (PST)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Wed, 11 Nov 2020 12:47:23 -0800
-Message-Id: <20201111204723.21634-1-jcmvbkbc@gmail.com>
+Date: Wed, 11 Nov 2020 12:53:49 -0800
+Message-Id: <20201111205349.24815-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Cc: Jens Axboe <axboe@kernel.dk>, linux-kernel@vger.kernel.org,
  Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: fix broken TIF_NOTIFY_SIGNAL assembly
+Subject: [Linux-Xtensa] [PATCH v2] xtensa: fix broken TIF_NOTIFY_SIGNAL
+	assembly
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -89,6 +90,10 @@ Fixes: 4c6a9dcd4d13 ("xtensa: add support for TIF_NOTIFY_SIGNAL")
 Cc: Jens Axboe <axboe@kernel.dk>
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
+Changes v1->v2:
+- use more canonical order of bnone arguments: tested value first,
+  bit mask second.
+
  arch/xtensa/include/asm/thread_info.h | 7 ++++---
  arch/xtensa/kernel/entry.S            | 5 ++---
  2 files changed, 6 insertions(+), 6 deletions(-)
@@ -125,7 +130,7 @@ index 6ea521b8e2ec..a312333a9add 100644
  #define _TIF_WORK_MASK		(_TIF_SYSCALL_TRACE | _TIF_SINGLESTEP | \
  				 _TIF_SYSCALL_TRACEPOINT | \
 diff --git a/arch/xtensa/kernel/entry.S b/arch/xtensa/kernel/entry.S
-index 7f733f40fef0..a367c464217d 100644
+index 7f733f40fef0..647b162f959b 100644
 --- a/arch/xtensa/kernel/entry.S
 +++ b/arch/xtensa/kernel/entry.S
 @@ -500,9 +500,8 @@ common_exception_return:
@@ -136,7 +141,7 @@ index 7f733f40fef0..a367c464217d 100644
 -	_bbci.l	a4, TIF_SIGPENDING, 5f
 -	_bbci.l	a4, TIF_NOTIFY_SIGNAL, 5f
 +	movi	a2, _TIF_SIGPENDING | _TIF_NOTIFY_RESUME | _TIF_NOTIFY_SIGNAL
-+	bnone	a2, a4, 5f
++	bnone	a4, a2, 5f
  
  2:	l32i	a4, a1, PT_DEPC
  	bgeui	a4, VALID_DOUBLE_EXCEPTION_ADDRESS, 4f
