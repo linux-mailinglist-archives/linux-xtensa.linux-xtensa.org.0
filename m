@@ -2,61 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 89B762B4123
-	for <lists+linux-xtensa@lfdr.de>; Mon, 16 Nov 2020 11:31:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B18CC2B4630
+	for <lists+linux-xtensa@lfdr.de>; Mon, 16 Nov 2020 15:47:19 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id B32B1647F;
-	Mon, 16 Nov 2020 10:10:40 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 3E6B364D7;
+	Mon, 16 Nov 2020 14:26:46 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f65.google.com (mail-lf1-f65.google.com
- [209.85.167.65])
- by linux-xtensa.org (Postfix) with ESMTPS id F24525289
- for <linux-xtensa@linux-xtensa.org>; Mon, 16 Nov 2020 10:10:37 +0000 (UTC)
-Received: by mail-lf1-f65.google.com with SMTP id u18so24364175lfd.9
- for <linux-xtensa@linux-xtensa.org>; Mon, 16 Nov 2020 02:31:09 -0800 (PST)
+Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com
+ [209.85.218.68])
+ by linux-xtensa.org (Postfix) with ESMTPS id EF11E64D3
+ for <linux-xtensa@linux-xtensa.org>; Mon, 16 Nov 2020 14:26:43 +0000 (UTC)
+Received: by mail-ej1-f68.google.com with SMTP id cw8so24756788ejb.8
+ for <linux-xtensa@linux-xtensa.org>; Mon, 16 Nov 2020 06:47:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=M8U2uahDK/HgIULrCVBIlkVKMme83q7hHqIjlyyGKkQ=;
- b=SQQMa9VSujfRXEUqaNQwQIUQd5QTRuFGIXmJQR/dzuhoJ+t345Fx5p5lCGmy4gkeV8
- m0ZVLme5Zjb8YgJDqEQo2eDUIP8kSvbQrI+rNwOptqlfcxVQiT+7Y2KFvNHX9u/jAS7H
- HYg395VMyjDVw4xwXMEkkIgJVifg6iH9b6koMH28T2HoqSH6h0nhTuXqS7ddvrDMaCAz
- BF1NAA1hrQxeM3rhtQawnpP3v23lt6zCRSP+6Ygu4j5gIOXIiLNGVKIqH+hkk2lpGtIY
- UGinyjp36GuMeJlFm/lN4wu3rTGdliK6AVi6+huxkCWG/RQQ7LqZ1Y/c5NSRJSYCgHWm
- HY2A==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=37us/O2JuQQ2yWSt9utM2XNcG7HUXMnxEW//yI4vlLg=;
+ b=a9hRi/xbObOHWi15XDluUp/RuCjyo9TWYSNG5gEAfGZ6VbBTqZmZ9YNCZ03u0kWv4c
+ QeRDQYNgwQY+92LUH3CObQJQlkSR1J+uhAhM/I3RsJv1FSHfWkb4vh8QFdwyb62jrShP
+ 4+wEWJnVFduAueJhJ07s0/iWyKS1lKegSBsRMPDhjx5KafioA+0hRv1oO0EZ+Q8sTbSD
+ jcVGlGgPvcg88V59EHvYILaLOu63eMQcA/FHbvfDtY4wBYK+/9YdMN/tDK4YUdiowysL
+ 5/iemqpyYNXMml57MFxKRYN+VwY9lGReknnFNoTLkswUyRJQfzQdqW62MzN282dVnLBB
+ ZOvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=M8U2uahDK/HgIULrCVBIlkVKMme83q7hHqIjlyyGKkQ=;
- b=TaL2N56Kh6gD/5LK6F61v1LkLY9ZuRgoUYXphaHXX//oXH2n4Ag83V6vmOl/idzrFZ
- 9KeyWTz54KiW6dKXfg8P6PG1A89VwfsIwVK2M600DrZAK67ZrW69UCtgvf7yCnbZlg74
- cfT2wLt/WflOHiKcvCaqdfo//gs2VZewPVdZORLUs+q0TBx3CF3OXHb8lLNSJjE/A7v4
- MQ0CUXe54yFFVHWhcRkgDqvo7N41nu2wZnxkXcUsRSmWhUeCsYWD3LAIZHT1qjIXCh+9
- WLjBxVQGSktTxzmQ85Xs8kOux4/79WcQ8Y7uz6KMTDlqoELGuAoahmbxfugA2yJnUoN1
- Bvlg==
-X-Gm-Message-State: AOAM532M2jT9jAJb38NuZyu+9tf+NQpj09qlnsBH4b/X4lEZ0RVt1Mac
- vUFW8ph/3sLXUzvckGb5EPxFmZd/VZxu7Q==
-X-Google-Smtp-Source: ABdhPJzEbY5eNCmIZ+hSKplu6+gcVA08M9MOCaSOpFAXnhkXI8G5tVR56A+mXwi+qvWtNzSgvI2Myg==
-X-Received: by 2002:a19:cc16:: with SMTP id c22mr4778889lfg.75.1605522668657; 
- Mon, 16 Nov 2020 02:31:08 -0800 (PST)
-Received: from octofox.metropolis ([5.19.183.212])
- by smtp.gmail.com with ESMTPSA id f1sm2687362lfm.184.2020.11.16.02.31.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Nov 2020 02:31:07 -0800 (PST)
-From: Max Filippov <jcmvbkbc@gmail.com>
-To: linux-xtensa@linux-xtensa.org
-Date: Mon, 16 Nov 2020 02:30:58 -0800
-Message-Id: <20201116103058.5461-3-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201116103058.5461-1-jcmvbkbc@gmail.com>
-References: <20201116103058.5461-1-jcmvbkbc@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=37us/O2JuQQ2yWSt9utM2XNcG7HUXMnxEW//yI4vlLg=;
+ b=O84P15B/YJtWstRPFd9ek9CJP7arVyko+ecnpteNnxbqxJASUY8UErEQEtXIrjfeB9
+ +WfpRROMBO9grkPGqh5k1P2eYkvzjJ9uMrhvX7EsN9+ZwiBpMZRj3mjr5GUmoGK3cWbi
+ DGR8Yle58MWhq2XpochUS49jonqJ8+VHCsJesdBSUsGIOOHn+GmFjQkQls7AChIKEVT2
+ GpUaSNN/PRC7ZW2pPef0EVPwHCpErK9wMpT/6NsjeHkmU/ssX/D+Eh+ytKLtTXkCC2zo
+ JX/u/ZfbncJ/5qmMhPudRHzUr8EQESIaeyJ9406quUYgwYUUMukiAks3EYnz7Q4+ISq8
+ k6MQ==
+X-Gm-Message-State: AOAM533x+GmYOTIJwwegHssKUJO/GJKrJOC1gWmMq6JS0utYis9QL3jf
+ Ky41RYLmsIhbfRQQH/kwnQFR08t2yb7pfwN5GBo=
+X-Google-Smtp-Source: ABdhPJwpRbMQTvr0CF6s5x8FvX/SZKNXSWOieMKYK1Wr0yMxv/pThUC1Rupo6v3JraBPzPBenM8SMBQEzfFfxpG+++Q=
+X-Received: by 2002:a17:906:2313:: with SMTP id
+ l19mr13373862eja.443.1605538035300; 
+ Mon, 16 Nov 2020 06:47:15 -0800 (PST)
 MIME-Version: 1.0
-Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH 2/2] xtensa: disable preemption around cache
-	alias management calls
+References: <20201113122328.22942-1-jcmvbkbc@gmail.com>
+ <87zh3ll6hw.fsf@nanos.tec.linutronix.de>
+ <CAMo8BfKEr-89awEnV072uWR=4fniDRJ0drWmZrtnyvj-mANk0A@mail.gmail.com>
+ <87sg9dl3xk.fsf@nanos.tec.linutronix.de>
+ <CAMo8Bf+2kGmg_SvJz8R=qXgPWbYWmf-PSeG71xKe5AB2LeyZ4Q@mail.gmail.com>
+ <87mtzklwc7.fsf@nanos.tec.linutronix.de>
+In-Reply-To: <87mtzklwc7.fsf@nanos.tec.linutronix.de>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Mon, 16 Nov 2020 06:47:03 -0800
+Message-ID: <CAMo8BfLFZ_X8y1XLZnBb-VkOPMhXT4Daau9ydKAU9L_64Zap4w@mail.gmail.com>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [Linux-Xtensa] [PATCH] highmem: fix highmem for xtensa
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -74,110 +73,44 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Although cache alias management calls set up and tear down TLB entries
-and fast_second_level_miss is able to restore TLB entry should it be
-evicted they absolutely cannot preempt each other because they use the
-same TLBTEMP area for different purposes.
-Disable preemption around all cache alias management calls to enforce
-that.
+Hi Thomas,
 
-Cc: stable@vger.kernel.org
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
- arch/xtensa/mm/cache.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+On Fri, Nov 13, 2020 at 2:34 PM Thomas Gleixner <tglx@linutronix.de> wrote:
+> I agree that the top down mechanics is not really intuitive, but that
+> does not justify the ifdeffery in the generic code.
 
-diff --git a/arch/xtensa/mm/cache.c b/arch/xtensa/mm/cache.c
-index 5835406b3cec..085b8c77b9d9 100644
---- a/arch/xtensa/mm/cache.c
-+++ b/arch/xtensa/mm/cache.c
-@@ -70,8 +70,10 @@ static inline void kmap_invalidate_coherent(struct page *page,
- 			kvaddr = TLBTEMP_BASE_1 +
- 				(page_to_phys(page) & DCACHE_ALIAS_MASK);
- 
-+			preempt_disable();
- 			__invalidate_dcache_page_alias(kvaddr,
- 						       page_to_phys(page));
-+			preempt_enable();
- 		}
- 	}
- }
-@@ -156,6 +158,7 @@ void flush_dcache_page(struct page *page)
- 		if (!alias && !mapping)
- 			return;
- 
-+		preempt_disable();
- 		virt = TLBTEMP_BASE_1 + (phys & DCACHE_ALIAS_MASK);
- 		__flush_invalidate_dcache_page_alias(virt, phys);
- 
-@@ -166,6 +169,7 @@ void flush_dcache_page(struct page *page)
- 
- 		if (mapping)
- 			__invalidate_icache_page_alias(virt, phys);
-+		preempt_enable();
- 	}
- 
- 	/* There shouldn't be an entry in the cache for this page anymore. */
-@@ -199,8 +203,10 @@ void local_flush_cache_page(struct vm_area_struct *vma, unsigned long address,
- 	unsigned long phys = page_to_phys(pfn_to_page(pfn));
- 	unsigned long virt = TLBTEMP_BASE_1 + (address & DCACHE_ALIAS_MASK);
- 
-+	preempt_disable();
- 	__flush_invalidate_dcache_page_alias(virt, phys);
- 	__invalidate_icache_page_alias(virt, phys);
-+	preempt_enable();
- }
- EXPORT_SYMBOL(local_flush_cache_page);
- 
-@@ -227,11 +233,13 @@ update_mmu_cache(struct vm_area_struct * vma, unsigned long addr, pte_t *ptep)
- 		unsigned long phys = page_to_phys(page);
- 		unsigned long tmp;
- 
-+		preempt_disable();
- 		tmp = TLBTEMP_BASE_1 + (phys & DCACHE_ALIAS_MASK);
- 		__flush_invalidate_dcache_page_alias(tmp, phys);
- 		tmp = TLBTEMP_BASE_1 + (addr & DCACHE_ALIAS_MASK);
- 		__flush_invalidate_dcache_page_alias(tmp, phys);
- 		__invalidate_icache_page_alias(tmp, phys);
-+		preempt_enable();
- 
- 		clear_bit(PG_arch_1, &page->flags);
- 	}
-@@ -265,7 +273,9 @@ void copy_to_user_page(struct vm_area_struct *vma, struct page *page,
- 
- 	if (alias) {
- 		unsigned long t = TLBTEMP_BASE_1 + (vaddr & DCACHE_ALIAS_MASK);
-+		preempt_disable();
- 		__flush_invalidate_dcache_page_alias(t, phys);
-+		preempt_enable();
- 	}
- 
- 	/* Copy data */
-@@ -280,9 +290,11 @@ void copy_to_user_page(struct vm_area_struct *vma, struct page *page,
- 	if (alias) {
- 		unsigned long t = TLBTEMP_BASE_1 + (vaddr & DCACHE_ALIAS_MASK);
- 
-+		preempt_disable();
- 		__flush_invalidate_dcache_range((unsigned long) dst, len);
- 		if ((vma->vm_flags & VM_EXEC) != 0)
- 			__invalidate_icache_page_alias(t, phys);
-+		preempt_enable();
- 
- 	} else if ((vma->vm_flags & VM_EXEC) != 0) {
- 		__flush_dcache_range((unsigned long)dst,len);
-@@ -304,7 +316,9 @@ extern void copy_from_user_page(struct vm_area_struct *vma, struct page *page,
- 
- 	if (alias) {
- 		unsigned long t = TLBTEMP_BASE_1 + (vaddr & DCACHE_ALIAS_MASK);
-+		preempt_disable();
- 		__flush_invalidate_dcache_page_alias(t, phys);
-+		preempt_enable();
- 	}
- 
- 	memcpy(dst, src, len);
+But then maybe xtensa did the right thing where everyone else just
+copied the not really intuitive implementation? If nobody else cares
+then maybe generic fix_to_virt/virt_to_fix can be changed for positive
+indexing?
+
+> xtensa can just use the generic fix_to_virt/virt_to_fix mechanics. All
+> it needs is to adjust the mapping defines and to adjust the color offset
+> to
+>
+>         NR_COLORS - color
+>
+> which is not an unreasonable ask. As a side effect all highmem inflicted
+> systems which do not have the cache aliasing problem can just use the
+> generic code as is. See untested patch below.
+
+Thanks. I'll test this patch and post the result.
+But still this change doesn't look like a step in the right direction to me:
+I can't find the reason why fixmap must be indexed backwards.
+
+> It builds for some configs, but the smp_lx200_defconfig (which has the
+> aliasing) it fails to build even without this patch (highmem.o at least
+> builds).
+>
+> Toolchain is the one from https://mirrors.edge.kernel.org/pub/tools/crosstool/
+
+xtensa toolchain must match the selected CPU core. For smp_lx200_defconfig
+the toolchain is available here:
+https://github.com/foss-xtensa/toolchain/releases/download/2020.07/x86_64-2020.07-xtensa-test_mmuhifi_c3-elf.tar.gz
+
 -- 
-2.20.1
-
+Thanks.
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
