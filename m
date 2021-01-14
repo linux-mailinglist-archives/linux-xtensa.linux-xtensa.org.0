@@ -2,58 +2,64 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 18EBD2ECBDF
-	for <lists+linux-xtensa@lfdr.de>; Thu,  7 Jan 2021 09:46:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6112D2F6C28
+	for <lists+linux-xtensa@lfdr.de>; Thu, 14 Jan 2021 21:38:04 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 18BEF57E0;
-	Thu,  7 Jan 2021 08:23:54 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 389B23AD5;
+	Thu, 14 Jan 2021 20:15:38 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
- [209.85.210.173])
- by linux-xtensa.org (Postfix) with ESMTPS id 127FB262C
- for <linux-xtensa@linux-xtensa.org>; Thu,  7 Jan 2021 08:23:52 +0000 (UTC)
-Received: by mail-pf1-f173.google.com with SMTP id m6so3444116pfm.6
- for <linux-xtensa@linux-xtensa.org>; Thu, 07 Jan 2021 00:46:03 -0800 (PST)
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com
+ [209.85.218.48])
+ by linux-xtensa.org (Postfix) with ESMTPS id 46E5D32AD
+ for <linux-xtensa@linux-xtensa.org>; Thu, 14 Jan 2021 20:15:33 +0000 (UTC)
+Received: by mail-ej1-f48.google.com with SMTP id l9so4451017ejx.3
+ for <linux-xtensa@linux-xtensa.org>; Thu, 14 Jan 2021 12:37:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=HrQdC79g1547Cub9HyNCNkUMm+sW+/UdWIggwNdYI/g=;
- b=NAzRv3tud6PaDOV2l04VQZbdUqv68e2GukP4UKAOdSle/koKsxPgi/RskcRj9QZGSg
- TTLIvAKoiMeKjREt/yRnfg1KgQE76/3Qii13tB2exbSWXCsrCsjMBrPiauJQi10oR18T
- ULKVS1PoCPE2L0ltbBbMAASA71pWGaIt23m/wKdB8Rx0RZ6PvQQx/E+5NOfW26MD9A3M
- HKD9MCPlT2m/gRldc4XCdmz5GJ3uDqeLD8RHNJS+W9l/knHNGmYDQBkz3H1JsHMaGpWa
- WlOugz5D9JQZ5ssMjGrRIrU+a0U7E92qkrBMbiD2ngrm/ltT4+w60LIrcrxTxWGUTfOM
- ETlg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=dnkY8VhBKX7fyLymuaOgh7Kzhqo6/ffCUUZ+3TB9sfk=;
+ b=S1qEdtllkI9bbC4WyizIHS/NrI01+t4naYpVzKo6U7uIUZGgZvp4ipWMMorZBf2JI8
+ xh0YtKXQ2E0LYHNKr7uLeqY96YGydw3iS2kK1XqzqieZedhOVpAHmjk1Tc5+JAQm7Uje
+ Rt5/6I4aMe40Yahclk0iBTPNB+efQ7/HzM/Im7N1SNU53kBndrBGrf2Wj/w4/QkQjBto
+ NNRNWNEOqOsFJV7Nt37Dz5+QR6vVpkpiqqcNCdFeffIPgpHHGYc4PlfMJIQnZYxNITcr
+ Ipfjh8gfcpTz8xWWZhanhRNzDxR8Zu3Oo9J+pq7/oZ6CcU8MEBWVUHpqv41ydH+3ErYy
+ erSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=HrQdC79g1547Cub9HyNCNkUMm+sW+/UdWIggwNdYI/g=;
- b=KbFZ5FgTgLg7/rkPhdRP2WCJGCzlSlaouvK3NMbqegWq1wWSy6Zj7BcDhXgbm1H+yO
- lRBqD3sYsSvJnk77p7cw7sjNR1BJ5BbMOf92+wB94ha9IjWcqUpkxsi8qaJBHo1vXzEe
- JqBL/WdnxlM71F3EXTCm63z7pWz/OPHCDFfcIZ7R9i6kMmjVdZS87pEfhl8hA3kO9/A5
- birFRVl7beD24iurjSSHiQKsl2hCCViN+wAylguAiI2Pnej4IE1xQFipGlANlvhkXdqI
- bsgXTrVILgFD5qT+dTpCBMTFqvPV1ysxFHNzYwVvGVYTdHoV1m1U/o1d85V/eVxJG9NB
- /Kdg==
-X-Gm-Message-State: AOAM531GpJHZhUuItIKD8Bp1SpwUyYIvwJohMyl9opzxf6hOqJeYWrWF
- Ot1xc1EoT/DypOOr176mBEQ=
-X-Google-Smtp-Source: ABdhPJzb3QsiWOXCtiydodgEw43O/exYpWVwr6rLoVbfx080AoG1eYb5lu7njRFVpM9gh3WEVmewHw==
-X-Received: by 2002:a63:2e05:: with SMTP id u5mr804609pgu.239.1610009162152;
- Thu, 07 Jan 2021 00:46:02 -0800 (PST)
-Received: from octofox.cadence.com ([2601:641:401:26c0:5caa:fe49:9c90:e47c])
- by smtp.gmail.com with ESMTPSA id z23sm4822607pfn.202.2021.01.07.00.45.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 Jan 2021 00:46:01 -0800 (PST)
-From: Max Filippov <jcmvbkbc@gmail.com>
-To: devel@uclibc-ng.org
-Date: Thu,  7 Jan 2021 00:45:30 -0800
-Message-Id: <20210107084530.14611-1-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.20.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=dnkY8VhBKX7fyLymuaOgh7Kzhqo6/ffCUUZ+3TB9sfk=;
+ b=VkgFBIh8dn7uG/yDI4/dlFoF/7YlPn3XSl3kWHaxmzprwE5oO6bUYs0t63xMmiyJdd
+ +YHZCfIrgYmhkwxRSKGYclnkNNJJY+2Yi5Trfb09aLk7SGmGdbGOhOy85iUwbLRlPfyc
+ 91QR/mcIkyBxNsW3P4NaONLwzjjQac4+QJwmisridHD3DmhyoexETOjz5RzXAT0M82cg
+ rUr1ZfUmZG1i5FcfjMYzMbPgRTPf271AucurMJ4rL9Udg1skQDCWfaHpHxEfnC9l1+sO
+ 4yBoa3gQEAIYFTJMblpOyEZZnjiLXocfnhPqOPHvr9dye4aZjj128kemJ1C46gveUz5/
+ zcMg==
+X-Gm-Message-State: AOAM5304CONTod6aTi3TQXU2/E1XYDl4qlIoEdTQ0zBe6Q2n765OTIX/
+ CM8gUPKrK5bTf/AmyBELm2BTLO+ooCPjw4DT7x4=
+X-Google-Smtp-Source: ABdhPJwLcgK8nT3QnZuXEL5YzyE4ftItoCDBCpkwUddDRrwlLOcFty5eY+Uv/uYvGGwiA/tT70apTQ8ot7KpJF9Cxig=
+X-Received: by 2002:a17:906:690:: with SMTP id
+ u16mr6536886ejb.186.1610656677483; 
+ Thu, 14 Jan 2021 12:37:57 -0800 (PST)
 MIME-Version: 1.0
-Cc: linux-xtensa@linux-xtensa.org, Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] extra/locale: fix gen_wc8bit diagnostic
-	output
+References: <cover.1610622251.git.viresh.kumar@linaro.org>
+ <193f2f177d23eef62b54b48f80e62fb0169c1db9.1610622251.git.viresh.kumar@linaro.org>
+In-Reply-To: <193f2f177d23eef62b54b48f80e62fb0169c1db9.1610622251.git.viresh.kumar@linaro.org>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Thu, 14 Jan 2021 12:37:45 -0800
+Message-ID: <CAMo8BfLoMhH67ref+uVV4yb22B+c61ewvJaaCsgJgOPc+JWUyA@mail.gmail.com>
+To: Viresh Kumar <viresh.kumar@linaro.org>
+Cc: Arnd Bergmann <arnd@kernel.org>, Robert Richter <rric@kernel.org>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>,
+ anmar.oueja@linaro.org, oprofile-list@lists.sf.net,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Christoph Hellwig <hch@infradead.org>,
+ Vincent Guittot <vincent.guittot@linaro.org>,
+ William Cohen <wcohen@redhat.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>
+Subject: Re: [Linux-Xtensa] [PATCH 16/18] arch: xtensa: Remove
+	CONFIG_OPROFILE support
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -71,31 +77,41 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Diagnostic for missing UTF locale is printed to stdout instead of
-stderr, fix that.
+On Thu, Jan 14, 2021 at 3:36 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+>
+> The "oprofile" user-space tools don't use the kernel OPROFILE support
+> any more, and haven't in a long time. User-space has been converted to
+> the perf interfaces.
+>
+> Remove the old oprofile's architecture specific support.
+>
+> Suggested-by: Christoph Hellwig <hch@infradead.org>
+> Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
+> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> ---
+>  arch/xtensa/Kconfig                         |  1 -
+>  arch/xtensa/Makefile                        |  1 -
+>  arch/xtensa/configs/audio_kc705_defconfig   |  1 -
+>  arch/xtensa/configs/generic_kc705_defconfig |  1 -
+>  arch/xtensa/configs/smp_lx200_defconfig     |  1 -
+>  arch/xtensa/configs/xip_kc705_defconfig     |  1 -
+>  arch/xtensa/kernel/stacktrace.c             |  2 +-
+>  arch/xtensa/oprofile/Makefile               | 10 --------
+>  arch/xtensa/oprofile/backtrace.c            | 27 ---------------------
+>  arch/xtensa/oprofile/init.c                 | 26 --------------------
+>  10 files changed, 1 insertion(+), 70 deletions(-)
+>  delete mode 100644 arch/xtensa/oprofile/Makefile
+>  delete mode 100644 arch/xtensa/oprofile/backtrace.c
+>  delete mode 100644 arch/xtensa/oprofile/init.c
 
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
- extra/locale/gen_wc8bit.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Although I still keep userspace oprofile tools that use this interface,
+I haven't run them for ages.
 
-diff --git a/extra/locale/gen_wc8bit.c b/extra/locale/gen_wc8bit.c
-index 8031df1cf4a5..110541ad5ccc 100644
---- a/extra/locale/gen_wc8bit.c
-+++ b/extra/locale/gen_wc8bit.c
-@@ -121,7 +121,8 @@ int main(int argc, char **argv)
- 		}
- 
-  locale_failure:
--		printf("could not find a UTF8 locale ... please enable en_US.UTF-8\n");
-+		fprintf(stderr,
-+			"could not find a UTF8 locale ... please enable en_US.UTF-8\n");
- 		return EXIT_FAILURE;
-  locale_success:
- 		pclose(fp);
+Acked-by: Max Filippov <jcmvbkbc@gmail.com>
+
 -- 
-2.20.1
-
+Thanks.
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
