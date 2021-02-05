@@ -2,64 +2,63 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 6112D2F6C28
-	for <lists+linux-xtensa@lfdr.de>; Thu, 14 Jan 2021 21:38:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D928F3105EC
+	for <lists+linux-xtensa@lfdr.de>; Fri,  5 Feb 2021 08:35:44 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 389B23AD5;
-	Thu, 14 Jan 2021 20:15:38 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 8D988348C;
+	Fri,  5 Feb 2021 07:12:38 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com
- [209.85.218.48])
- by linux-xtensa.org (Postfix) with ESMTPS id 46E5D32AD
- for <linux-xtensa@linux-xtensa.org>; Thu, 14 Jan 2021 20:15:33 +0000 (UTC)
-Received: by mail-ej1-f48.google.com with SMTP id l9so4451017ejx.3
- for <linux-xtensa@linux-xtensa.org>; Thu, 14 Jan 2021 12:37:58 -0800 (PST)
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
+ [209.85.218.45])
+ by linux-xtensa.org (Postfix) with ESMTPS id F3E282635
+ for <linux-xtensa@linux-xtensa.org>; Fri,  5 Feb 2021 07:12:36 +0000 (UTC)
+Received: by mail-ej1-f45.google.com with SMTP id lg21so10315089ejb.3
+ for <linux-xtensa@linux-xtensa.org>; Thu, 04 Feb 2021 23:35:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=dnkY8VhBKX7fyLymuaOgh7Kzhqo6/ffCUUZ+3TB9sfk=;
- b=S1qEdtllkI9bbC4WyizIHS/NrI01+t4naYpVzKo6U7uIUZGgZvp4ipWMMorZBf2JI8
- xh0YtKXQ2E0LYHNKr7uLeqY96YGydw3iS2kK1XqzqieZedhOVpAHmjk1Tc5+JAQm7Uje
- Rt5/6I4aMe40Yahclk0iBTPNB+efQ7/HzM/Im7N1SNU53kBndrBGrf2Wj/w4/QkQjBto
- NNRNWNEOqOsFJV7Nt37Dz5+QR6vVpkpiqqcNCdFeffIPgpHHGYc4PlfMJIQnZYxNITcr
- Ipfjh8gfcpTz8xWWZhanhRNzDxR8Zu3Oo9J+pq7/oZ6CcU8MEBWVUHpqv41ydH+3ErYy
- erSw==
+ :cc; bh=Wv36x8mtHzmEU9YPki70QUxQfyr8hVegQBKr9eSudfs=;
+ b=jfnYXYEvdfI4h7/UWIZHtNkFsQeIwZ0vVf96h7Ea1vEREN7GDyJQjNQTziqsyK93SM
+ SrllI6oEXxIdij2KhlPTlOCloXdrV9V3GN68mlUKfHyR2LJNUi7MeQJ5Q+xUucB0Dug3
+ 7IWh6T+8XVQdN06sCVefljeOC4iw84lxJ/lnMM3/RGswlYicE2Mv2iYHx/9/uQ4h5Pi7
+ HWfw8qx9SYrBVGnSDuzry+FMQQaRFE+t9+hfgqr02iH2nxF+eS3Ma0WN+LmVvM81HTe4
+ 29u+psiO3lmg/kVK/18SINZgUCqAsMN3vfUb3UxyKgLsEtTRxr285NAmrFCTlI0RZy+R
+ qWRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=dnkY8VhBKX7fyLymuaOgh7Kzhqo6/ffCUUZ+3TB9sfk=;
- b=VkgFBIh8dn7uG/yDI4/dlFoF/7YlPn3XSl3kWHaxmzprwE5oO6bUYs0t63xMmiyJdd
- +YHZCfIrgYmhkwxRSKGYclnkNNJJY+2Yi5Trfb09aLk7SGmGdbGOhOy85iUwbLRlPfyc
- 91QR/mcIkyBxNsW3P4NaONLwzjjQac4+QJwmisridHD3DmhyoexETOjz5RzXAT0M82cg
- rUr1ZfUmZG1i5FcfjMYzMbPgRTPf271AucurMJ4rL9Udg1skQDCWfaHpHxEfnC9l1+sO
- 4yBoa3gQEAIYFTJMblpOyEZZnjiLXocfnhPqOPHvr9dye4aZjj128kemJ1C46gveUz5/
- zcMg==
-X-Gm-Message-State: AOAM5304CONTod6aTi3TQXU2/E1XYDl4qlIoEdTQ0zBe6Q2n765OTIX/
- CM8gUPKrK5bTf/AmyBELm2BTLO+ooCPjw4DT7x4=
-X-Google-Smtp-Source: ABdhPJwLcgK8nT3QnZuXEL5YzyE4ftItoCDBCpkwUddDRrwlLOcFty5eY+Uv/uYvGGwiA/tT70apTQ8ot7KpJF9Cxig=
-X-Received: by 2002:a17:906:690:: with SMTP id
- u16mr6536886ejb.186.1610656677483; 
- Thu, 14 Jan 2021 12:37:57 -0800 (PST)
+ bh=Wv36x8mtHzmEU9YPki70QUxQfyr8hVegQBKr9eSudfs=;
+ b=BaZr5kJpTJidm+Y2Mvfl5nJmPvgDkrAjqdZU3O3rYnToBFxR638V7N/lZKcw0zyRAw
+ 7/fwbLdXatDquiDXJaqWMQPjhhey45awtbRUeFrUxeY6JxQp3da+o7lOW6AkNf1BpTJo
+ 29SVdsOVYwCgVLxZGZXYiZIIsMpG6+RncO4r0H4Mo7tV07KApAqTlDQfGRQJ8cTnkpG0
+ oCdoBaqSMdg2J+qDBH9ASW+XQasqUVN3umLb6NoGzeNB3j9h19CeTbByorGUPISktnUZ
+ QFNwv3ZSpprdcvnwj/KE+5lRINAd0R8Nf84akhCRdMQ+a+a0ZYQVwneswrz+Gmt8yRf7
+ et7g==
+X-Gm-Message-State: AOAM532TJ8lArbVUWhqvCf891Si0s1/TJEwHqczBw/o+g/duoGLOdfWT
+ s4l4C9ccAYWiPbSB726n/kj3eeiPWu8nefwDoGc=
+X-Google-Smtp-Source: ABdhPJwiJI3Hop+xvVQbRaPOon5GbNAbJYLAlRrdHwA+vovQOBasmWF2Yp4Dn9sup2NiIomv4GSH52Fi+5x0Lse0lcE=
+X-Received: by 2002:a17:906:780c:: with SMTP id
+ u12mr2807943ejm.125.1612510541275; 
+ Thu, 04 Feb 2021 23:35:41 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1610622251.git.viresh.kumar@linaro.org>
- <193f2f177d23eef62b54b48f80e62fb0169c1db9.1610622251.git.viresh.kumar@linaro.org>
-In-Reply-To: <193f2f177d23eef62b54b48f80e62fb0169c1db9.1610622251.git.viresh.kumar@linaro.org>
+References: <1612498242-31579-1-git-send-email-anshuman.khandual@arm.com>
+In-Reply-To: <1612498242-31579-1-git-send-email-anshuman.khandual@arm.com>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Thu, 14 Jan 2021 12:37:45 -0800
-Message-ID: <CAMo8BfLoMhH67ref+uVV4yb22B+c61ewvJaaCsgJgOPc+JWUyA@mail.gmail.com>
-To: Viresh Kumar <viresh.kumar@linaro.org>
-Cc: Arnd Bergmann <arnd@kernel.org>, Robert Richter <rric@kernel.org>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>,
- anmar.oueja@linaro.org, oprofile-list@lists.sf.net,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christoph Hellwig <hch@infradead.org>,
- Vincent Guittot <vincent.guittot@linaro.org>,
- William Cohen <wcohen@redhat.com>,
- Linus Torvalds <torvalds@linux-foundation.org>
-Subject: Re: [Linux-Xtensa] [PATCH 16/18] arch: xtensa: Remove
-	CONFIG_OPROFILE support
+Date: Thu, 4 Feb 2021 23:35:29 -0800
+Message-ID: <CAMo8BfLXaycXgy-F=TaWzpEZZJKEhbZecxwvBVd6jTo0RJ8atQ@mail.gmail.com>
+To: Anshuman Khandual <anshuman.khandual@arm.com>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)" <linux-xtensa@linux-xtensa.org>,
+ Michael Ellerman <mpe@ellerman.id.au>, linuxppc-dev@lists.ozlabs.org,
+ LKML <linux-kernel@vger.kernel.org>, Russell King <linux@armlinux.org.uk>,
+ linux-mips@vger.kernel.org, Linux Memory Management List <linux-mm@kvack.org>,
+ Ingo Molnar <mingo@redhat.com>, Paul Mackerras <paulus@samba.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Will Deacon <will@kernel.org>,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [Linux-Xtensa] [PATCH] mm/memtest: Add ARCH_USE_MEMTEST
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -77,37 +76,55 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Thu, Jan 14, 2021 at 3:36 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+On Thu, Feb 4, 2021 at 8:10 PM Anshuman Khandual
+<anshuman.khandual@arm.com> wrote:
 >
-> The "oprofile" user-space tools don't use the kernel OPROFILE support
-> any more, and haven't in a long time. User-space has been converted to
-> the perf interfaces.
+> early_memtest() does not get called from all architectures. Hence enabling
+> CONFIG_MEMTEST and providing a valid memtest=[1..N] kernel command line
+> option might not trigger the memory pattern tests as would be expected in
+> normal circumstances. This situation is misleading.
 >
-> Remove the old oprofile's architecture specific support.
+> The change here prevents the above mentioned problem after introducing a
+> new config option ARCH_USE_MEMTEST that should be subscribed on platforms
+> that call early_memtest(), in order to enable the config CONFIG_MEMTEST.
+> Conversely CONFIG_MEMTEST cannot be enabled on platforms where it would
+> not be tested anyway.
 >
-> Suggested-by: Christoph Hellwig <hch@infradead.org>
-> Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> Cc: Russell King <linux@armlinux.org.uk>
+> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> Cc: Michael Ellerman <mpe@ellerman.id.au>
+> Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+> Cc: Paul Mackerras <paulus@samba.org>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Ingo Molnar <mingo@redhat.com>
+> Cc: Chris Zankel <chris@zankel.net>
+> Cc: Max Filippov <jcmvbkbc@gmail.com>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-mips@vger.kernel.org
+> Cc: linuxppc-dev@lists.ozlabs.org
+> Cc: linux-xtensa@linux-xtensa.org
+> Cc: linux-mm@kvack.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
 > ---
->  arch/xtensa/Kconfig                         |  1 -
->  arch/xtensa/Makefile                        |  1 -
->  arch/xtensa/configs/audio_kc705_defconfig   |  1 -
->  arch/xtensa/configs/generic_kc705_defconfig |  1 -
->  arch/xtensa/configs/smp_lx200_defconfig     |  1 -
->  arch/xtensa/configs/xip_kc705_defconfig     |  1 -
->  arch/xtensa/kernel/stacktrace.c             |  2 +-
->  arch/xtensa/oprofile/Makefile               | 10 --------
->  arch/xtensa/oprofile/backtrace.c            | 27 ---------------------
->  arch/xtensa/oprofile/init.c                 | 26 --------------------
->  10 files changed, 1 insertion(+), 70 deletions(-)
->  delete mode 100644 arch/xtensa/oprofile/Makefile
->  delete mode 100644 arch/xtensa/oprofile/backtrace.c
->  delete mode 100644 arch/xtensa/oprofile/init.c
+> This patch applies on v5.11-rc6 and has been tested on arm64 platform. But
+> it has been just build tested on all other platforms.
+>
+>  arch/arm/Kconfig     | 1 +
+>  arch/arm64/Kconfig   | 1 +
+>  arch/mips/Kconfig    | 1 +
+>  arch/powerpc/Kconfig | 1 +
+>  arch/x86/Kconfig     | 1 +
+>  arch/xtensa/Kconfig  | 1 +
+>  lib/Kconfig.debug    | 9 ++++++++-
+>  7 files changed, 14 insertions(+), 1 deletion(-)
 
-Although I still keep userspace oprofile tools that use this interface,
-I haven't run them for ages.
+Anshuman, entries in arch/*/Konfig files are sorted in alphabetical order,
+please keep them that way.
 
-Acked-by: Max Filippov <jcmvbkbc@gmail.com>
+Reviewed-by: Max Filippov <jcmvbkbc@gmail.com>
 
 -- 
 Thanks.
