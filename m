@@ -2,58 +2,58 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 55481329689
-	for <lists+linux-xtensa@lfdr.de>; Tue,  2 Mar 2021 07:52:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BA6532968C
+	for <lists+linux-xtensa@lfdr.de>; Tue,  2 Mar 2021 07:55:52 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 4E4045861;
-	Tue,  2 Mar 2021 06:28:25 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 9A89C5861;
+	Tue,  2 Mar 2021 06:31:59 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
 Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
  [209.85.208.51])
- by linux-xtensa.org (Postfix) with ESMTPS id 77864585E
- for <linux-xtensa@linux-xtensa.org>; Tue,  2 Mar 2021 06:28:23 +0000 (UTC)
-Received: by mail-ed1-f51.google.com with SMTP id d13so18797382edp.4
- for <linux-xtensa@linux-xtensa.org>; Mon, 01 Mar 2021 22:52:15 -0800 (PST)
+ by linux-xtensa.org (Postfix) with ESMTPS id 69B4A585E
+ for <linux-xtensa@linux-xtensa.org>; Tue,  2 Mar 2021 06:31:58 +0000 (UTC)
+Received: by mail-ed1-f51.google.com with SMTP id w9so7707408edt.13
+ for <linux-xtensa@linux-xtensa.org>; Mon, 01 Mar 2021 22:55:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=rHHguOtq/SsmoWVv767qiYZjS1EduX+s7NH06dTB/5E=;
- b=RJv/UOK1Rl1s7110nIhpxe4b/ond/IgKPJUtMc5UpBqSdc/g7Yswb1SzFmZs4SD7tI
- igbMnrQiho1HeVqBBnZDspMXblybvDrUY0kgRGYI0BFcKamvexM8kT6hsvPxfolS1GCS
- coW5agR7+ctcm6vKT/3bVHNM0FhJN4zIgAKuzuhQLJ33mqLcUX+B8wza/jRBoUxX5Wfh
- pIoxdl8EnKCLs6mRm+Qft5XvnA6SClzlvqfAAEb5w9NmFyPTiJiwH8KgN2HnBBuuCq/y
- 3YFdHzIsYT0FdYPOjPaHw4toWUXjBBVfLTzMCgCTF2m4QInHCv+j88I2zuFNKCQFwPe7
- 6sag==
+ :cc; bh=FkQlyQkx4YlaiWtPjbjtcm8QF/fjSftYDKk5kkfUey0=;
+ b=PFlj/AbLsGqPbk3apdT1uKeW7cFiUGggPb7txtL2cKFfBRSbsjVq7tDgupMkQPci6d
+ /5Dfpsl3vX9oWzTRVuabWzMsmgWHDjBzvWmqsHV8XprenQE/dvM7mFPa/NOnP/ihT08z
+ autad4M91CAFPFT68Iz8XNgOS6s2O2A3oxw/r0QeN+S0ZcMsa2fKXWYmyGt/GpxR4AcV
+ V1bFbBANndmxqnxiJheuZbykHCfz+OCKdxvdfXdGKsdGVMZojiY0Hnq1djYlXz32jwW3
+ AJDi60j6zN59bgJhyp1zd8Ywv73MhRPiWhHcrIMs4mv1hRfAQUP2FnRotdda5+Qekj5u
+ 8CvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=rHHguOtq/SsmoWVv767qiYZjS1EduX+s7NH06dTB/5E=;
- b=oU8Mp/x2ibUQ3jekBLcvoSxUhR4PBvecuPmeyQc+dmcMgC5XdB4csSPAlW5lbopNOL
- 04S2x1ucf2KzC8ZHq6yEQa1xe0tE00iX0OpNVQLWUJHXHr3GpvMsz+rVwSydMDwytEQg
- K/SVAjv7RUPC4G3qElafswIAMf3znw48ItINt6pNoYofhgzihgjTLgAJ33QPmmwFlpWE
- b3HwcZfp9lQQRohliC+txYXsgfY2a3mDs7ilI8wpmvatOpgJi2qiNyvmtxwqUq7Zj5NQ
- Tve35rwoeD0djGrkGUX/oy702ED0aCtgcchbhS+FPB5Yfz9gziuDmWR0E9dZhm7NiYyS
- Od1g==
-X-Gm-Message-State: AOAM533/Bapwcyp5y94lKXDeJJY5U0GV76ItLk1CNhzhDRa2FG9MsFpW
- 4Ky8HzVnAAKAcGDCfUvjR4hXrGUZ07hyprMrR1Ol8l9M
-X-Google-Smtp-Source: ABdhPJzobTXq9iCvVESEdOAEuL6o/ZubpkKJZsWksmzJX34L0rWX2fSOlYOmfHgZ2Aqv1W8s49fkXRvKk98Gtiba5NU=
-X-Received: by 2002:aa7:dd55:: with SMTP id o21mr32367edw.237.1614667934608;
- Mon, 01 Mar 2021 22:52:14 -0800 (PST)
+ bh=FkQlyQkx4YlaiWtPjbjtcm8QF/fjSftYDKk5kkfUey0=;
+ b=DwnJwVsAOjH9Q3UocuaIggS5o7tDgXSeMqs9URvmxGUYKwZPobspDrCGA6bgBdf9SK
+ Ljc7vvddX57XObkXocnpWofOvPlFVuDokIpFgD3QRTkexAe324BILKLQbEJ3ngs2Yudn
+ Xu6iQTUDSgtoh/6iLPAQK/0aP2zHutiXwNZZ9qocVI+wdKZKm8PaisrknOqFJEoF0I6R
+ FALDlL0LtxubzWXA55S8Hkso3UN1ui8rh8RFsn5FpTIr6dt7CrmNlDVyTATE6WKFkghf
+ C2fGFGRBieufEatQKt5qiUjue7m+EPY7rGXDXPL9vPn7uVXziJQ74DQ9ZLTciW4dZw0i
+ XE3g==
+X-Gm-Message-State: AOAM533rpW+IpCNe02RmyfXTFeOqKtvh3qsftS9kVGy4K++U0hv/PFMb
+ b+k8cIf72Dyb3bzp/9WwlPtDtKqkVVTdEComSZI=
+X-Google-Smtp-Source: ABdhPJybh6pmK5GtQmq/c3vvZGuCHaTR3ln7l9rsmzuuQ7BXZx12cEyOKZV8gpU8repWmjDUKkUnlpWFKdYgBsD+7XA=
+X-Received: by 2002:a50:d987:: with SMTP id w7mr19419656edj.350.1614668149868; 
+ Mon, 01 Mar 2021 22:55:49 -0800 (PST)
 MIME-Version: 1.0
 References: <20210302062214.29627-1-jslaby@suse.cz>
- <20210302062214.29627-32-jslaby@suse.cz>
-In-Reply-To: <20210302062214.29627-32-jslaby@suse.cz>
+ <20210302062214.29627-33-jslaby@suse.cz>
+In-Reply-To: <20210302062214.29627-33-jslaby@suse.cz>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Mon, 1 Mar 2021 22:52:03 -0800
-Message-ID: <CAMo8BfJeXxTatB74+4PLed9KZaoRgDgekHdvpWKsfFW-povZWw@mail.gmail.com>
+Date: Mon, 1 Mar 2021 22:55:38 -0800
+Message-ID: <CAMo8BfJ=-ORUowT4aUrQsYyZC+Kvpa6Xk-v5u7ah_GAkcAVpCA@mail.gmail.com>
 To: Jiri Slaby <jslaby@suse.cz>
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  "open list:TENSILICA XTENSA PORT \(xtensa\)"
  <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>,
  linux-serial@vger.kernel.org
-Subject: Re: [Linux-Xtensa] [PATCH 32/44] tty: xtensa/iss,
-	setup the timer statically
+Subject: Re: [Linux-Xtensa] [PATCH 33/44] tty: xtensa/iss,
+	make rs_init static
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -73,15 +73,16 @@ Sender: linux-xtensa-bounces@linux-xtensa.org
 
 On Mon, Mar 1, 2021 at 10:22 PM Jiri Slaby <jslaby@suse.cz> wrote:
 >
-> Use DEFINE_TIMER and avoid runtime initialization of the serial_timer.
+> To fix the warning:
+> warning: no previous prototype for 'rs_init'
 >
 > Signed-off-by: Jiri Slaby <jslaby@suse.cz>
 > Cc: Chris Zankel <chris@zankel.net>
 > Cc: Max Filippov <jcmvbkbc@gmail.com>
 > Cc: linux-xtensa@linux-xtensa.org
 > ---
->  arch/xtensa/platforms/iss/console.c | 11 ++++-------
->  1 file changed, 4 insertions(+), 7 deletions(-)
+>  arch/xtensa/platforms/iss/console.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
 Acked-by: Max Filippov <jcmvbkbc@gmail.com>
 
