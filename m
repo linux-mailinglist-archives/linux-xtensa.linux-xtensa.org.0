@@ -2,58 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BA6532968C
-	for <lists+linux-xtensa@lfdr.de>; Tue,  2 Mar 2021 07:55:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB39D32968D
+	for <lists+linux-xtensa@lfdr.de>; Tue,  2 Mar 2021 07:57:24 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 9A89C5861;
-	Tue,  2 Mar 2021 06:31:59 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 0D4575861;
+	Tue,  2 Mar 2021 06:33:32 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
- [209.85.208.51])
- by linux-xtensa.org (Postfix) with ESMTPS id 69B4A585E
- for <linux-xtensa@linux-xtensa.org>; Tue,  2 Mar 2021 06:31:58 +0000 (UTC)
-Received: by mail-ed1-f51.google.com with SMTP id w9so7707408edt.13
- for <linux-xtensa@linux-xtensa.org>; Mon, 01 Mar 2021 22:55:50 -0800 (PST)
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com
+ [209.85.218.47])
+ by linux-xtensa.org (Postfix) with ESMTPS id C6E18585E
+ for <linux-xtensa@linux-xtensa.org>; Tue,  2 Mar 2021 06:33:29 +0000 (UTC)
+Received: by mail-ej1-f47.google.com with SMTP id lr13so33122343ejb.8
+ for <linux-xtensa@linux-xtensa.org>; Mon, 01 Mar 2021 22:57:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=FkQlyQkx4YlaiWtPjbjtcm8QF/fjSftYDKk5kkfUey0=;
- b=PFlj/AbLsGqPbk3apdT1uKeW7cFiUGggPb7txtL2cKFfBRSbsjVq7tDgupMkQPci6d
- /5Dfpsl3vX9oWzTRVuabWzMsmgWHDjBzvWmqsHV8XprenQE/dvM7mFPa/NOnP/ihT08z
- autad4M91CAFPFT68Iz8XNgOS6s2O2A3oxw/r0QeN+S0ZcMsa2fKXWYmyGt/GpxR4AcV
- V1bFbBANndmxqnxiJheuZbykHCfz+OCKdxvdfXdGKsdGVMZojiY0Hnq1djYlXz32jwW3
- AJDi60j6zN59bgJhyp1zd8Ywv73MhRPiWhHcrIMs4mv1hRfAQUP2FnRotdda5+Qekj5u
- 8CvA==
+ :cc; bh=gKUeJiCjz76ZYfYznUcE/FJF+AgYNAVfjdNl+41kQHM=;
+ b=DSJUrWolKcsUJPc/uOpsS82Fd5ta60KGvcOI5BhLQJhg4BRNQknqSbQl89mvmiaGzW
+ a6NGhlfgMwndx9LH/PVebtAwVtxdafFmRePToI2HugybUOS52TllZMb1EVav1ggkY5iL
+ lw/PWq3eo/8KIebucPB+Rr/xSCCsc2DURjnDcF9wEJ8LZBsWQ/ODeHLqlJL/3/8t2s5s
+ O4i62GN2i2/GSLIwh1bLypX0H5AnocVcjU98WiAEJHGJ2ttH9xWOkeyT2KNO/Ro6u/9p
+ qSBStt5DOeUrlSJn4RDUMjZZCBp5TcrfB5FE7i1YBQ7A3KbniDC3FB7mDwOjR+WiN5xP
+ 54ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=FkQlyQkx4YlaiWtPjbjtcm8QF/fjSftYDKk5kkfUey0=;
- b=DwnJwVsAOjH9Q3UocuaIggS5o7tDgXSeMqs9URvmxGUYKwZPobspDrCGA6bgBdf9SK
- Ljc7vvddX57XObkXocnpWofOvPlFVuDokIpFgD3QRTkexAe324BILKLQbEJ3ngs2Yudn
- Xu6iQTUDSgtoh/6iLPAQK/0aP2zHutiXwNZZ9qocVI+wdKZKm8PaisrknOqFJEoF0I6R
- FALDlL0LtxubzWXA55S8Hkso3UN1ui8rh8RFsn5FpTIr6dt7CrmNlDVyTATE6WKFkghf
- C2fGFGRBieufEatQKt5qiUjue7m+EPY7rGXDXPL9vPn7uVXziJQ74DQ9ZLTciW4dZw0i
- XE3g==
-X-Gm-Message-State: AOAM533rpW+IpCNe02RmyfXTFeOqKtvh3qsftS9kVGy4K++U0hv/PFMb
- b+k8cIf72Dyb3bzp/9WwlPtDtKqkVVTdEComSZI=
-X-Google-Smtp-Source: ABdhPJybh6pmK5GtQmq/c3vvZGuCHaTR3ln7l9rsmzuuQ7BXZx12cEyOKZV8gpU8repWmjDUKkUnlpWFKdYgBsD+7XA=
-X-Received: by 2002:a50:d987:: with SMTP id w7mr19419656edj.350.1614668149868; 
- Mon, 01 Mar 2021 22:55:49 -0800 (PST)
+ bh=gKUeJiCjz76ZYfYznUcE/FJF+AgYNAVfjdNl+41kQHM=;
+ b=gnC5GofeDhcBAE/U6J4aCGfQo4c/w9jwcXKPqvZMMuv7r42zvwZbBuTTFMrs1AJKxs
+ CkaYxcl11XOawmlYEFz/jLXHyI628T1KkdudtmfFO4Z6e/WBRV55Xa2BfL4VxIibAjgH
+ MmEmoXKSd4a5rrprWFtb+cvQwPcdDlzPik4Ykaq8LbU9ldR1vmqwB49RErOTIa66hPR7
+ ILh/EnIedLHOWp2dGxy4DjvOU+Ag8nrtHa0YxVbLJygRM1lmdHzUFF+5w8KLQmVdjEkl
+ 7deMVqDOy06Ujv4a2hPD2t9ukQ4wFcicP1hF5WIlykN6FLpUMsgRArlTjhpfR8d6TvxU
+ k/bw==
+X-Gm-Message-State: AOAM533xtSFLcehCsCc0k5gfKhxVpU5D762FdbJAOQTspK2sOA9KDFhO
+ xDWsTMvgcLuGJW6r+fZv35KTRpWe2KPI+03ZMA8=
+X-Google-Smtp-Source: ABdhPJyZ11FjQVbO8yuH7NZDCm0O4aX40diBY4KJiBSEC2ZlV/UhSlNjI03TY9W42r4dQE6y8dFTRFb3y0R42Q+tJuM=
+X-Received: by 2002:a17:906:5ac2:: with SMTP id
+ x2mr19485321ejs.486.1614668241339; 
+ Mon, 01 Mar 2021 22:57:21 -0800 (PST)
 MIME-Version: 1.0
 References: <20210302062214.29627-1-jslaby@suse.cz>
- <20210302062214.29627-33-jslaby@suse.cz>
-In-Reply-To: <20210302062214.29627-33-jslaby@suse.cz>
+ <20210302062214.29627-34-jslaby@suse.cz>
+In-Reply-To: <20210302062214.29627-34-jslaby@suse.cz>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Mon, 1 Mar 2021 22:55:38 -0800
-Message-ID: <CAMo8BfJ=-ORUowT4aUrQsYyZC+Kvpa6Xk-v5u7ah_GAkcAVpCA@mail.gmail.com>
+Date: Mon, 1 Mar 2021 22:57:10 -0800
+Message-ID: <CAMo8BfKCY2TP43y=EM5CHxoGwRLykUVELvLyCos94PRj6t5RMg@mail.gmail.com>
 To: Jiri Slaby <jslaby@suse.cz>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>,
- linux-serial@vger.kernel.org
-Subject: Re: [Linux-Xtensa] [PATCH 33/44] tty: xtensa/iss,
-	make rs_init static
+Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Kosina <jikos@kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+ linux-serial@vger.kernel.org, David Sterba <dsterba@suse.com>
+Subject: Re: [Linux-Xtensa] [PATCH 34/44] tty: do not check
+	tty_unregister_driver's return value
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -73,18 +75,29 @@ Sender: linux-xtensa-bounces@linux-xtensa.org
 
 On Mon, Mar 1, 2021 at 10:22 PM Jiri Slaby <jslaby@suse.cz> wrote:
 >
-> To fix the warning:
-> warning: no previous prototype for 'rs_init'
+> These drivers check tty_unregister_driver return value. But they don't
+> handle a failure correctly (they free the driver in any case). So stop
+> checking tty_unregister_driver return value and remove also the prints.
+>
+> In the next patch, tty_unregister_driver's return type will be switched
+> to void.
 >
 > Signed-off-by: Jiri Slaby <jslaby@suse.cz>
 > Cc: Chris Zankel <chris@zankel.net>
 > Cc: Max Filippov <jcmvbkbc@gmail.com>
 > Cc: linux-xtensa@linux-xtensa.org
+> Cc: Jiri Kosina <jikos@kernel.org>
+> Cc: David Sterba <dsterba@suse.com>
 > ---
->  arch/xtensa/platforms/iss/console.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/xtensa/platforms/iss/console.c | 6 +-----
+>  drivers/tty/amiserial.c             | 8 ++------
+>  drivers/tty/ipwireless/tty.c        | 7 +------
+>  drivers/tty/moxa.c                  | 4 +---
+>  drivers/tty/serial/kgdb_nmi.c       | 4 +---
+>  drivers/tty/synclink_gt.c           | 5 +----
+>  6 files changed, 7 insertions(+), 27 deletions(-)
 
-Acked-by: Max Filippov <jcmvbkbc@gmail.com>
+Reviewed-by: Max Filippov <jcmvbkbc@gmail.com>
 
 -- 
 Thanks.
