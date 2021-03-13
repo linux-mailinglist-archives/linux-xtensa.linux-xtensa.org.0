@@ -2,57 +2,57 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EB1D333673
-	for <lists+linux-xtensa@lfdr.de>; Wed, 10 Mar 2021 08:35:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AF65339D20
+	for <lists+linux-xtensa@lfdr.de>; Sat, 13 Mar 2021 09:57:57 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 07EEF2635;
-	Wed, 10 Mar 2021 07:11:18 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 5A4A2657E;
+	Sat, 13 Mar 2021 08:33:43 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
- [209.85.218.42])
- by linux-xtensa.org (Postfix) with ESMTPS id 5ACBA2621
- for <linux-xtensa@linux-xtensa.org>; Wed, 10 Mar 2021 07:11:16 +0000 (UTC)
-Received: by mail-ej1-f42.google.com with SMTP id p8so36475615ejb.10
- for <linux-xtensa@linux-xtensa.org>; Tue, 09 Mar 2021 23:35:23 -0800 (PST)
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
+ [209.85.218.53])
+ by linux-xtensa.org (Postfix) with ESMTPS id 348C36577
+ for <linux-xtensa@linux-xtensa.org>; Sat, 13 Mar 2021 08:33:38 +0000 (UTC)
+Received: by mail-ej1-f53.google.com with SMTP id dx17so57892232ejb.2
+ for <linux-xtensa@linux-xtensa.org>; Sat, 13 Mar 2021 00:57:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=BOyazx73bKuDxT9YFQZ+98Lel151zbsjsLGlPaNK1No=;
- b=GQX3w3HgDZ3XpcKbxx6BPNluskMFI30wJnXIqgGw2DCsm14QOrhZ7iU/BMYQ7KZag8
- AUMVg16XZCUGtNVRgI8IOjQy6V2l00Zx9ujX0KW8YjenSiK2A5YbzF4rjl3m6I9I3LmI
- X5JYIWdqwYWzxqLRFNhkxVwi3fbUJF7XRF7ftHNbre+LvkkKhUyJixnwSlxhGVlPUDzv
- +L6WZ0WCBr2ENGzS1+c+iL9oMCDyyB0EiOTJcOxrsm1W6qVZTvAYVb/4WK+mO24xf6RW
- St8cj2sYoR1Sew0wE2TCV/GcKbCiFAgXBwemM81Bm+u6sh0KcKoQXIXIEIphYbsqQA+g
- EcWw==
+ :cc; bh=NfopcM7e7FULIgFg/DNsdzygJHayYXk44PBuqsZGESI=;
+ b=BpYngydZZEENcL2xCAnFTsKhxbD50LBfPWrIDDxWPaXNjZbqsD+ThOvJuisFiQMcKW
+ UwOvr4yMiOF2mB77tWifmvCrRmVsglSPlpzcuRnqE/JxP5l5cyh5mjzSc68TkANeb786
+ zVtYcA5YhqFVf/gqZ49wGy853jfNe8YjIKDwQhwDJGkg/MEvxEQwXt+MTCrvIAg7kYzh
+ 8StXv5+XcDvpZWidhgEEDB8KQGHPD7Eqhsh7e/vBXwlmNfu4aXqHVfy8QGUMpnqH//ZA
+ AUeJrHEFPxVUHZ3A2cgrnA72zYzzDMK7oobRwsMpFEw7DpP00sR/9KcZYDo0snkGvoh5
+ r8jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=BOyazx73bKuDxT9YFQZ+98Lel151zbsjsLGlPaNK1No=;
- b=FBBloWzwYKl0NiepePtrJBIQzZ8CsUvLqNBIzTD6Ml4WAPrU+xg/J22EwqMEcIOulD
- 2nlxyFXeBNdlpq8e0GOGiKjkC4Iu061jLXasyHt46AF7uMqcWf2UbcsSQ4vrK43y/30G
- txNhzdQsYwleoZjkJAK+b/zCBnsgKGkXoskEWW8QCvFAwmz5mn9wJrm6F/iO2ywvygdq
- 5/hw2i2OQAq8S5S/OJkJeuzh2CaxFclowi3lhAeWm3iF+zPZlWVio/TZk8nUrOh45WXy
- tnzqDR91na0QvZwAw/biy3SDigACv2sce7elfWlNbyQ6ZASzxCDNgmy9gvCgpf2lrwT2
- mNfQ==
-X-Gm-Message-State: AOAM532wbYkDH/gXKL+bHzUKHYkoN0jc3CCoKf5eIw586XOjSe9q9aLM
- zEyS1kv7T8lwEAnI89LYiQl3ygGAJltAahNgBkM=
-X-Google-Smtp-Source: ABdhPJzPMz7HPUreJVDfjQKXo8NHbxnL8gyAMIBrPKJN4gvyPKqTZ4D0zTwlg0Qpd7ksTpXGl2yCYahZgyyOGFR2pXc=
+ bh=NfopcM7e7FULIgFg/DNsdzygJHayYXk44PBuqsZGESI=;
+ b=JPB7d49D4BaCgVMOIu4Jj3KLqr0NebsbOWRt45bp0b5e4cWj6eFQD17eCi9tT0OHbz
+ 2QWpBoGc2w5tnwegyPxneWTOw6f3ogQD7qJXBaatyEZPT3JC7Mbruiq5wY0MAnnpZZPj
+ kTkPS6AXNC6bHlcHy0SpsfYd8ImVBRNF2lFdfX+ysyVynHPSxjxlqMPWhXC2YvZj5O3C
+ dBO8mPnsUm60EUtIJE7UxIMN2FtwT03zdjjacZYJziSkW0cOxnVvc1IxBglafsWZwTGH
+ Pj3l63psYiL3MgqDHaL2QkTudVWnpt/kiuHNRyjpJzUL300FQXahuzGFxQpWuGmmGB9G
+ I93A==
+X-Gm-Message-State: AOAM533WREsrKi44U/j/8ejoQQlIVxsTD3dmEKhevDcRrS31PWS8lE90
+ YAk9AoN+fLkwsP42ws6qaviLmEiBkTgr3h69FTc=
+X-Google-Smtp-Source: ABdhPJwfVyA6oCv7ap/msM94zVIf10yLesmM8yd0mQHmMbfW8vkdxgCCs0aNFmip6W07OLiBa0mZmdCjZl3jdg9WLUE=
 X-Received: by 2002:a17:906:30da:: with SMTP id
- b26mr2207660ejb.376.1615361722831; 
- Tue, 09 Mar 2021 23:35:22 -0800 (PST)
+ b26mr12941090ejb.376.1615625870579; 
+ Sat, 13 Mar 2021 00:57:50 -0800 (PST)
 MIME-Version: 1.0
-References: <1615360238-22508-1-git-send-email-jiapeng.chong@linux.alibaba.com>
-In-Reply-To: <1615360238-22508-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+References: <20210312151411.101942-1-masahiroy@kernel.org>
+In-Reply-To: <20210312151411.101942-1-masahiroy@kernel.org>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Tue, 9 Mar 2021 23:35:11 -0800
-Message-ID: <CAMo8BfKwfBXXpkubu=W30S+q0Xt3xYFrD8QBDiWq=H=pLo=bCQ@mail.gmail.com>
-To: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+Date: Sat, 13 Mar 2021 00:57:39 -0800
+Message-ID: <CAMo8BfL3Zx2_uYD6yJQgju90JJj5=occjsDtcXZY0E2jmqUhow@mail.gmail.com>
+To: Masahiro Yamada <masahiroy@kernel.org>
 Cc: LKML <linux-kernel@vger.kernel.org>,
  "open list:TENSILICA XTENSA PORT \(xtensa\)"
  <linux-xtensa@linux-xtensa.org>
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: fix warning comparing pointer to
-	0
+Subject: Re: [Linux-Xtensa] [PATCH] xtensa: move CONFIG_CPU_*_ENDIAN defines
+	to Kconfig
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -70,20 +70,53 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Tue, Mar 9, 2021 at 11:10 PM Jiapeng Chong
-<jiapeng.chong@linux.alibaba.com> wrote:
+On Fri, Mar 12, 2021 at 7:14 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
 >
-> Fix the following coccicheck warning:
+> Move the definition of CONFIG_CPU_*_ENDIAN to Kconfig, the best place
+> for CONFIG options.
 >
-> ./arch/xtensa/kernel/pci.c:79:17-18: WARNING comparing pointer to 0.
+> I slightly simplified the test code. You can use the -P option to suppress
+> linemarker generation. The grep command is unneeded.
 >
-> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-> Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+>   $ echo __XTENSA_EB__ | xtensa-linux-gcc -E -
+>   # 1 "<stdin>"
+>   # 1 "<built-in>"
+>   # 1 "<command-line>"
+>   # 1 "<stdin>"
+>   1
+>
+>   $ echo __XTENSA_EB__ | xtensa-linux-gcc -E -P -
+>   1
+>
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
 > ---
->  arch/xtensa/kernel/pci.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks, applied to my xtensa tree.
+> If I understood correctly, xtensa compilers can support either
+> big-endian or little-endian. We cannot change it via a command option.
+> Actually, it does not understand -mbig-endian or -mlittle-endian.
+> (Is this correct?)
+
+This is correct. The idea is that specific xtensa core has fixed endianness,
+but it can be either little or big. The toolchain is configured for the specific
+xtensa core at build time, so there's no need for a runtime endian switch.
+
+>   $ xtensa-linux-gcc   -mbig-endian  /dev/null  -c -o /dev/null
+>   xtensa-linux-gcc: error: unrecognized command-line option '-mbig-endian'
+>
+> I see -mbig-endian / -mlittle-endian in old GCC manual.
+>   https://gcc.gnu.org/onlinedocs/gcc-3.3.5/gcc/Xtensa-Options.html
+> But, I cannot see them in recent gcc manuals.
+> So, I have no idea better than checking __XTENSA_EB__ or __XTENSA_EL__.
+> I just moved the logic to Kconfig from Makefile.
+>
+>
+>  arch/xtensa/Kconfig  | 6 ++++++
+>  arch/xtensa/Makefile | 9 +--------
+>  2 files changed, 7 insertions(+), 8 deletions(-)
+
+Acked-by: Max Filippov <jcmvbkbc@gmail.com>
+Please let me know if I should take it into the xtensa tree or you will
+carry it in the kbuild tree.
 
 -- 
 Thanks.
