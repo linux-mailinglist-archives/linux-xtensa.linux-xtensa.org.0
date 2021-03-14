@@ -2,57 +2,57 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AF65339D20
-	for <lists+linux-xtensa@lfdr.de>; Sat, 13 Mar 2021 09:57:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E5AC33A52F
+	for <lists+linux-xtensa@lfdr.de>; Sun, 14 Mar 2021 15:33:43 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 5A4A2657E;
-	Sat, 13 Mar 2021 08:33:43 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 3FF4B5842;
+	Sun, 14 Mar 2021 14:09:26 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
- [209.85.218.53])
- by linux-xtensa.org (Postfix) with ESMTPS id 348C36577
- for <linux-xtensa@linux-xtensa.org>; Sat, 13 Mar 2021 08:33:38 +0000 (UTC)
-Received: by mail-ej1-f53.google.com with SMTP id dx17so57892232ejb.2
- for <linux-xtensa@linux-xtensa.org>; Sat, 13 Mar 2021 00:57:51 -0800 (PST)
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
+ [209.85.218.42])
+ by linux-xtensa.org (Postfix) with ESMTPS id 3B847582B
+ for <linux-xtensa@linux-xtensa.org>; Sun, 14 Mar 2021 14:09:25 +0000 (UTC)
+Received: by mail-ej1-f42.google.com with SMTP id r17so61967807ejy.13
+ for <linux-xtensa@linux-xtensa.org>; Sun, 14 Mar 2021 07:33:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=NfopcM7e7FULIgFg/DNsdzygJHayYXk44PBuqsZGESI=;
- b=BpYngydZZEENcL2xCAnFTsKhxbD50LBfPWrIDDxWPaXNjZbqsD+ThOvJuisFiQMcKW
- UwOvr4yMiOF2mB77tWifmvCrRmVsglSPlpzcuRnqE/JxP5l5cyh5mjzSc68TkANeb786
- zVtYcA5YhqFVf/gqZ49wGy853jfNe8YjIKDwQhwDJGkg/MEvxEQwXt+MTCrvIAg7kYzh
- 8StXv5+XcDvpZWidhgEEDB8KQGHPD7Eqhsh7e/vBXwlmNfu4aXqHVfy8QGUMpnqH//ZA
- AUeJrHEFPxVUHZ3A2cgrnA72zYzzDMK7oobRwsMpFEw7DpP00sR/9KcZYDo0snkGvoh5
- r8jw==
+ :cc; bh=bqQ7BWzs0leRC0mvm+I19KmZ7oC1YUe+0V+fLsVPHow=;
+ b=CSqz1Z+qhr2AFvmFjC2pnfSPNn4YcayScF73cKhnFjoiESI4H+ihCQr9X4JAk2tHvh
+ HwvYxw0zVuF2286U4yb7e/rNkfPyyh5jcp+cQXpRZ/Dqd4SWK6NFvptIiI7zTfKtuFSk
+ 91zBhOilifSO/aMEbkC5KrLlv35RcCH/KoSyNgKN2G+jmU+PzVoRbaYUnNwA/1J/AoIg
+ nFmZUCe/wSecZ1ehh9TB5ZbCEzzOMlyNgjILB3/+sXGd2yxJRtu58oEBoSiKbp2oUHRh
+ jdrKaT0mSuM1TxK/rh0KtrIrT4teSq3cE1RNoIKThzY/lenYGrZndZJnABo1CA5D1zy6
+ bwLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=NfopcM7e7FULIgFg/DNsdzygJHayYXk44PBuqsZGESI=;
- b=JPB7d49D4BaCgVMOIu4Jj3KLqr0NebsbOWRt45bp0b5e4cWj6eFQD17eCi9tT0OHbz
- 2QWpBoGc2w5tnwegyPxneWTOw6f3ogQD7qJXBaatyEZPT3JC7Mbruiq5wY0MAnnpZZPj
- kTkPS6AXNC6bHlcHy0SpsfYd8ImVBRNF2lFdfX+ysyVynHPSxjxlqMPWhXC2YvZj5O3C
- dBO8mPnsUm60EUtIJE7UxIMN2FtwT03zdjjacZYJziSkW0cOxnVvc1IxBglafsWZwTGH
- Pj3l63psYiL3MgqDHaL2QkTudVWnpt/kiuHNRyjpJzUL300FQXahuzGFxQpWuGmmGB9G
- I93A==
-X-Gm-Message-State: AOAM533WREsrKi44U/j/8ejoQQlIVxsTD3dmEKhevDcRrS31PWS8lE90
- YAk9AoN+fLkwsP42ws6qaviLmEiBkTgr3h69FTc=
-X-Google-Smtp-Source: ABdhPJwfVyA6oCv7ap/msM94zVIf10yLesmM8yd0mQHmMbfW8vkdxgCCs0aNFmip6W07OLiBa0mZmdCjZl3jdg9WLUE=
-X-Received: by 2002:a17:906:30da:: with SMTP id
- b26mr12941090ejb.376.1615625870579; 
- Sat, 13 Mar 2021 00:57:50 -0800 (PST)
+ bh=bqQ7BWzs0leRC0mvm+I19KmZ7oC1YUe+0V+fLsVPHow=;
+ b=grpn84eeNDkfbJrdbQYQmnBTFo/8fYS2Bq3GNnyYALFoqjnwBpTJ3m4ekk1t1gmf9b
+ 3bx54i01rlK5xAAiJZ4u2H/Ta1SpzrLG6sBX45Nm1XgUDIex1hbuy8V9A1ffqnK+/IfG
+ f8JduNyhAK2Ju6xKq/As7tNWEWdNRuk9uQmiKePBVBdLoczcVnXPVxJKnwGWJBtK0UAY
+ 46bjsnqllDCqRozB4QVSTk+3md1aAMZoFaU/tOWBNuXGa/VL8/KuGkqa7hpsg2+k57Nc
+ dZmxqF2106tU8zdbX7ZBL+OEo9VinV4N9B4mSBe1B4KewXjW/AoKAfQH3lc5MVmTUHid
+ VOng==
+X-Gm-Message-State: AOAM531j0eMvNRjFMNkK9KO8Jn9tFSR1AYVDZgpnuvhgJ5z4oR1YQJBh
+ HBZolPZQP+w/aOd40883LFjzsCblwK8JXORyVfo=
+X-Google-Smtp-Source: ABdhPJxgGpA4SfB0YnHTM5E9/RJ2E0gGVR8MoYLaLsEHXVfngatbugIpVyhG/nUF/Q3gN4JCE304QL+rkork6p0xCfs=
+X-Received: by 2002:a17:906:7150:: with SMTP id
+ z16mr18515701ejj.103.1615732419947; 
+ Sun, 14 Mar 2021 07:33:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210312151411.101942-1-masahiroy@kernel.org>
-In-Reply-To: <20210312151411.101942-1-masahiroy@kernel.org>
+References: <20210313122342.69995-1-masahiroy@kernel.org>
+In-Reply-To: <20210313122342.69995-1-masahiroy@kernel.org>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Sat, 13 Mar 2021 00:57:39 -0800
-Message-ID: <CAMo8BfL3Zx2_uYD6yJQgju90JJj5=occjsDtcXZY0E2jmqUhow@mail.gmail.com>
+Date: Sun, 14 Mar 2021 07:33:28 -0700
+Message-ID: <CAMo8Bf+4qs9O8XhCtbmNP22esuzXuxu3HRWtQbgOWX=hdTSrmQ@mail.gmail.com>
 To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: move CONFIG_CPU_*_ENDIAN defines
-	to Kconfig
+Cc: Nick Desaulniers <ndesaulniers@google.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)" <linux-xtensa@linux-xtensa.org>
+Subject: Re: [Linux-Xtensa] [PATCH v2 1/2] xtensa: move CONFIG_CPU_*_ENDIAN
+	defines to Kconfig
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -70,7 +70,7 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Fri, Mar 12, 2021 at 7:14 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
+On Sat, Mar 13, 2021 at 4:24 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
 >
 > Move the definition of CONFIG_CPU_*_ENDIAN to Kconfig, the best place
 > for CONFIG options.
@@ -90,33 +90,41 @@ On Fri, Mar 12, 2021 at 7:14 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
 >
 > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
 > ---
-
-> If I understood correctly, xtensa compilers can support either
-> big-endian or little-endian. We cannot change it via a command option.
-> Actually, it does not understand -mbig-endian or -mlittle-endian.
-> (Is this correct?)
-
-This is correct. The idea is that specific xtensa core has fixed endianness,
-but it can be either little or big. The toolchain is configured for the specific
-xtensa core at build time, so there's no need for a runtime endian switch.
-
->   $ xtensa-linux-gcc   -mbig-endian  /dev/null  -c -o /dev/null
->   xtensa-linux-gcc: error: unrecognized command-line option '-mbig-endian'
 >
-> I see -mbig-endian / -mlittle-endian in old GCC manual.
->   https://gcc.gnu.org/onlinedocs/gcc-3.3.5/gcc/Xtensa-Options.html
-> But, I cannot see them in recent gcc manuals.
-> So, I have no idea better than checking __XTENSA_EB__ or __XTENSA_EL__.
-> I just moved the logic to Kconfig from Makefile.
+> Changes in v2:
+>  - more cleanups
 >
->
->  arch/xtensa/Kconfig  | 6 ++++++
->  arch/xtensa/Makefile | 9 +--------
->  2 files changed, 7 insertions(+), 8 deletions(-)
+>  arch/xtensa/Kconfig                    | 6 ++++++
+>  arch/xtensa/Makefile                   | 9 +--------
+>  arch/xtensa/boot/Makefile              | 4 ----
+>  arch/xtensa/boot/boot-elf/Makefile     | 6 +-----
+>  arch/xtensa/boot/boot-redboot/Makefile | 6 +-----
+>  5 files changed, 9 insertions(+), 22 deletions(-)
 
-Acked-by: Max Filippov <jcmvbkbc@gmail.com>
-Please let me know if I should take it into the xtensa tree or you will
-carry it in the kbuild tree.
+Thanks. I've made one change and applied both patches to my xtensa tree.
+
+[...]
+
+> diff --git a/arch/xtensa/Makefile b/arch/xtensa/Makefile
+> index cf0940708702..f43c731dec89 100644
+> --- a/arch/xtensa/Makefile
+> +++ b/arch/xtensa/Makefile
+> @@ -52,14 +52,7 @@ ifneq ($(CONFIG_LD_NO_RELAX),)
+>  KBUILD_LDFLAGS := --no-relax
+>  endif
+>
+> -ifeq ($(shell echo __XTENSA_EB__ | $(CC) -E - | grep -v "\#"),1)
+> -CHECKFLAGS += -D__XTENSA_EB__
+> -KBUILD_CPPFLAGS += -DCONFIG_CPU_BIG_ENDIAN
+> -endif
+> -ifeq ($(shell echo __XTENSA_EL__ | $(CC) -E - | grep -v "\#"),1)
+> -CHECKFLAGS += -D__XTENSA_EL__
+> -KBUILD_CPPFLAGS += -DCONFIG_CPU_LITTLE_ENDIAN
+> -endif
+> +CHECKFLAGS += -D $(if $(CONFIG_CPU_BIG_ENDIAN),__XTENSA_EB__,__XTENSA_EL__)
+
+I've removed the space between -D and the $(if ...) to make the result
+look like the rest of -D options.
 
 -- 
 Thanks.
