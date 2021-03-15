@@ -2,58 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B3CF33A9F2
-	for <lists+linux-xtensa@lfdr.de>; Mon, 15 Mar 2021 04:21:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B476B33AA19
+	for <lists+linux-xtensa@lfdr.de>; Mon, 15 Mar 2021 04:45:43 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 73B2D4263;
-	Mon, 15 Mar 2021 02:57:26 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 3E95E5289;
+	Mon, 15 Mar 2021 03:21:26 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com
- [209.85.215.169])
- by linux-xtensa.org (Postfix) with ESMTPS id AC5E54237
- for <linux-xtensa@linux-xtensa.org>; Mon, 15 Mar 2021 02:57:25 +0000 (UTC)
-Received: by mail-pg1-f169.google.com with SMTP id n9so18680158pgi.7
- for <linux-xtensa@linux-xtensa.org>; Sun, 14 Mar 2021 20:21:42 -0700 (PDT)
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
+ [209.85.214.180])
+ by linux-xtensa.org (Postfix) with ESMTPS id E76CD2634
+ for <linux-xtensa@linux-xtensa.org>; Mon, 15 Mar 2021 03:21:24 +0000 (UTC)
+Received: by mail-pl1-f180.google.com with SMTP id e2so9353222pld.9
+ for <linux-xtensa@linux-xtensa.org>; Sun, 14 Mar 2021 20:45:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=eBf/sk5E7J2NnRI5SQxV/VesLFcwwvK7iLArpCnMv5Y=;
- b=kLHUejzbCkynKeZB5k+q9YBW0BTGkqZBrTTsvPj4kkRehDzf+E58x5BAv3KBiM1fHA
- 7L+yXusaDWv0yIR1AlCDDoy+i6N7aMZ3MjGh3NGjV+myjeE0b0qAFZQaal/EZSZmjctA
- LhyZrJ3DjcF5jbuuhGqwP8J4e8FrsCYKYeUxeACCIecDAiAsh0Gag5gCpxN0tsaoHLOM
- p2C44jQY/kScUlEGgkfphE6bt/90VGzauhSFCiafHIf1uiiFWcaXWwp0z+eDF8DKdRT+
- A0dEDpK28iGmVIvSVK02/P5zQeqsUnwmlTZGiAhm8yu1VRU/ma3ikF96pAcJoXAzl/YM
- Ylhw==
+ bh=AZXwTrKTQx/OD6J1Cdgr6noLCkJcjXYe7PmZkNPxSLw=;
+ b=GW+3M0F4XTrVee2/9JkZlTXDDFvjDx9LnhyGu3Fz7YcGkOtCZjg6/M345D7nHUgOxv
+ RMb9CEfp4fuasgYTcW9hx/wI5G9vJN0G3L0Az6g7Dtlyys6soNQ+Rp7Wk8FvocVSBIxG
+ tOg8Mijm6o7NzOt8q74VMyruY3+LxGhRTsVjgxAHVYm0ytdPNgVICCtufQ16aXgUr6VI
+ Eq//xgdPhgfXbmaz+wct4yZKow3TIn4pdG07xNjmv0hpLMFMGJ74iAvWeSOa53XL0o3A
+ 5cgYRKcP55NJRyPcNQXcWFUP6y4ZjDfCuDlLUNl+twexj/oCBufOGaVVYmTnTqjkyqhz
+ 5hWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=eBf/sk5E7J2NnRI5SQxV/VesLFcwwvK7iLArpCnMv5Y=;
- b=pR81oOi07My1E4bt4A4wKp9TGsmu+6bzK4EMiMqkuTmxTm45LO0OR1Q4ZEOrZODLYy
- kA9FUYLbrmAjDpwRZSITLvDy/5bfmELSH/uQPvk0Xl5b0B+857TTj5VGvclUvZaRJ/RU
- /r8S9Q7hPw6pOWyUEpKLysAKXsVGfDD6VQUEFHFMSGvRYsOf17GFzRHW+wwPtckXXrTU
- vibE8nIJ+VOnbuQKK8gCVXeQlwd0CaoMAYDhVQmkTYcJeVGjo2JCjfn9niS3+XC1BFEO
- KM8qQ9verhwcNNXA721ds6iGizes7sWpMLaFFvn//zJa5/ZTWtBGCgbu7/UcFDPAlT6q
- 0FAQ==
-X-Gm-Message-State: AOAM531KL/fEgWRcKC103VCgUgDp0m507EKqMugCsQ2kLOIolY8H+htL
- eYa4SQwn+EK1MjrNvZuQ//nR9KLBckA=
-X-Google-Smtp-Source: ABdhPJy3srCuCO8feKWf1LX18wu+f14F7eeV9Ldp8g3AfJIwOCCU4/klkIDE0PpKNngrRSbxocHYVw==
-X-Received: by 2002:a63:fa52:: with SMTP id g18mr21409341pgk.193.1615778501164; 
- Sun, 14 Mar 2021 20:21:41 -0700 (PDT)
+ bh=AZXwTrKTQx/OD6J1Cdgr6noLCkJcjXYe7PmZkNPxSLw=;
+ b=URGoPa8NGbYxcIqeP/D1W+A5lvz1k+JEMfHZezHh8QNy1VqTrvKFwlJ4SwGzvq9VMG
+ 7SWzZQZ6FgSdGEzSuqJ3wW36+IFHfyxd2RDosuN6VkwJISruWvTjllBJXd8xp8ext8Vy
+ 8fhZGJWpBRVyX49NaUm4kl3C8hyoozWGUYnjRAXlQwsM7hs/D6VvRPZLrn0CAg6HbXHS
+ 6TWqhHtMoxuqE6zeJTKo19kVfc8a4ugRmW+5k9cVsbmkOTgw0bjkTGt2JF71WJTI0ZXj
+ o8TmZwNo0zD3daE/4BdVOfjFrKsfpe3jR83KWgKDGac6ADjbyfGVLRHzlhXvxgWVSVeC
+ pyXw==
+X-Gm-Message-State: AOAM530CBaycCd45L48REMOyNIa+YX9I/MB7WGSkRqET40cazzfD3rNa
+ IJxAofIoPeZvwrETTs8j1T9XCGnhVUY=
+X-Google-Smtp-Source: ABdhPJzPpq5RIU2aIz5fDXpDTCJ1X17Eoipi87SCTLHI72uyBaqOG78NBM2kPoYCy8F5mcqtwbzYdQ==
+X-Received: by 2002:a17:90a:7045:: with SMTP id
+ f63mr10517644pjk.35.1615779940495; 
+ Sun, 14 Mar 2021 20:45:40 -0700 (PDT)
 Received: from octofox.hsd1.ca.comcast.net
  ([2601:641:400:9e10:6493:2d45:37bd:648d])
- by smtp.gmail.com with ESMTPSA id i2sm10781030pgs.82.2021.03.14.20.21.40
+ by smtp.gmail.com with ESMTPSA id e11sm11761771pfm.24.2021.03.14.20.45.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 14 Mar 2021 20:21:40 -0700 (PDT)
+ Sun, 14 Mar 2021 20:45:40 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Sun, 14 Mar 2021 20:21:28 -0700
-Message-Id: <20210315032128.11145-1-jcmvbkbc@gmail.com>
+Date: Sun, 14 Mar 2021 20:45:33 -0700
+Message-Id: <20210315034533.20643-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Cc: linux-kernel@vger.kernel.org, Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: fix pgprot_noncached assumptions
+Subject: [Linux-Xtensa] [PATCH] xtensa: drop extraneous register load from
+	initialize_mmu
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -71,30 +73,28 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-pgprot_noncached assumes that cache bypass attribute is represented as
-zero. This may not always be true. Fix pgprot_noncached definition by
-adding _PAGE_CA_BYPASS to the result.
+Commit a9f2fc628e3a ("xtensa: cleanup MMU setup and kernel layout macros")
+removed the use of a2 in the beginning of the initialize_mmu macro, but
+left the register load that is no longer used. Remove it as well.
 
 Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
 ---
- arch/xtensa/include/asm/pgtable.h | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ arch/xtensa/include/asm/initialize_mmu.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/xtensa/include/asm/pgtable.h b/arch/xtensa/include/asm/pgtable.h
-index 4dc04e6c01d7..d7fc45c920c2 100644
---- a/arch/xtensa/include/asm/pgtable.h
-+++ b/arch/xtensa/include/asm/pgtable.h
-@@ -280,7 +280,9 @@ static inline pte_t pte_mkyoung(pte_t pte)
- static inline pte_t pte_mkwrite(pte_t pte)
- 	{ pte_val(pte) |= _PAGE_WRITABLE; return pte; }
+diff --git a/arch/xtensa/include/asm/initialize_mmu.h b/arch/xtensa/include/asm/initialize_mmu.h
+index 05cb13dfe6f4..9793b49fc641 100644
+--- a/arch/xtensa/include/asm/initialize_mmu.h
++++ b/arch/xtensa/include/asm/initialize_mmu.h
+@@ -73,7 +73,7 @@
+ 	_j	2f
  
--#define pgprot_noncached(prot) (__pgprot(pgprot_val(prot) & ~_PAGE_CA_MASK))
-+#define pgprot_noncached(prot) \
-+		((__pgprot((pgprot_val(prot) & ~_PAGE_CA_MASK) | \
-+			   _PAGE_CA_BYPASS)))
+ 	.align	4
+-1:	movi	a2, 0x10000000
++1:
  
- /*
-  * Conversion functions: convert a page and protection to a page entry,
+ #if CONFIG_KERNEL_LOAD_ADDRESS < 0x40000000ul
+ #define TEMP_MAPPING_VADDR 0x40000000
 -- 
 2.20.1
 
