@@ -2,57 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 5662034ACEC
-	for <lists+linux-xtensa@lfdr.de>; Fri, 26 Mar 2021 17:56:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73E7134AF5C
+	for <lists+linux-xtensa@lfdr.de>; Fri, 26 Mar 2021 20:31:58 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 93C2E349D;
-	Fri, 26 Mar 2021 16:31:31 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 32D1E52C9;
+	Fri, 26 Mar 2021 19:07:18 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com
- [209.85.208.52])
- by linux-xtensa.org (Postfix) with ESMTPS id E0D282629
- for <linux-xtensa@linux-xtensa.org>; Fri, 26 Mar 2021 16:31:29 +0000 (UTC)
-Received: by mail-ed1-f52.google.com with SMTP id x21so7085754eds.4
- for <linux-xtensa@linux-xtensa.org>; Fri, 26 Mar 2021 09:56:09 -0700 (PDT)
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com
+ [209.85.215.175])
+ by linux-xtensa.org (Postfix) with ESMTPS id 275F54264
+ for <linux-xtensa@linux-xtensa.org>; Fri, 26 Mar 2021 19:07:16 +0000 (UTC)
+Received: by mail-pg1-f175.google.com with SMTP id f10so5274759pgl.9
+ for <linux-xtensa@linux-xtensa.org>; Fri, 26 Mar 2021 12:31:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=bCYUHEJOOmAYGk1u0DJXlBrrHde9W54rxGamO+7985Q=;
- b=HDrGqW6dLSVa8fiG+befjHX77BN+C2c40r3vBuGfH7daUarEnQFO3rLCwf6ufadDS8
- y2dxq3h1ka6Y1YOFuK/ISSnioapWJhjES5XO3YS8JGR/CJcaBNznr1hX++rMJyQpeLr0
- w551pfbWKacC0BLsIZqCyJZaLSepEVbxXEN06+tRAW2ovYNj3xtWtvrN1w7gyjLUrGmg
- uszYR+zDWnMF5gu7RqDWQBxuGdCbML/bLlfGI6lftZ5Tn50hAeOVfrPVskQKtUyzjrC0
- SwG0c664JBu8PDzFTFVBIzwl306jL2pGji2hVkjgvTYiMYf84Gpp75+mMaVRo91UWD3Z
- zitA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=5y4wrxyxaQbz2q52vNwehIEYnHf9nDITQlvj4U6GzGU=;
+ b=KNeFUcGH6ynyK/I5cDYOwaA7AFBqlhTHFC/F6YAVNrY1ctngEm6TyxY4RfczcdmL1D
+ BqCGN2BWY+Wj8G9dZbyMjX5X5nc221ASn7OC7xD1FCuO66r8BJ0XacL8hSpT47vU+thN
+ 5RtG+L2mI426nSsSE6mumL/B979em8FBaQf1bG7CbLkNBcCaVS11OZx0q+LSC8Dxb9SH
+ ordZe6AmQnh8YYDED7ugAF6puzcoEa9wvH0PgydBSRKMcuvzFJsOeifpdBcgbZzhWLxn
+ 6xknOrAr+HMgflZaBmngy3kxnJaT7uUoUjLAtxfUDYJUg+4ShxEntMEgCrpui8ZXkcj2
+ 4t/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=bCYUHEJOOmAYGk1u0DJXlBrrHde9W54rxGamO+7985Q=;
- b=WXBMMx7ri2RpnzO753JWW+yKffsvkQ4PI56u2JgRVNeC5xR5p9ZAqcrcMYpNIRxU7S
- apApAuXNOJvX7rTQdD1dP6/U7O4BiGWQNkgGZ0seAB7Ba44aIl66yUiu1h8AYveQCT5D
- jbMdko4Bco4se/ifP3fR+/l+QVt8Npg5vGF7N59Lywl/mbxrg7DFv0jTSKkls0VG7gjZ
- a3PsVrYLmN1q4oXK1Yztmxb4Sfoqs6sNo810nS/qrqnrOGERu7qZ75rrAShX6Ss+pyOz
- 5K9MndOYed6RutDvB0gz7lH2H0ybAPQW+GgReE8ZLSN826m+xQDbxs1vpfAHf2zn5bWB
- Gbyw==
-X-Gm-Message-State: AOAM533aLFOdp7n1lHKmaWeZKLSWNhDVXDsJwkWoai8cXvEH2/CB0o7w
- Tsn0Xs/E7TB3YpfdEAPxdua38G7ND0+UHVvZ5OQ=
-X-Google-Smtp-Source: ABdhPJzHoc1Mn8WK2QJ07wL/A3pZkPV+pPANFtEm9eqfe7IddcVdMgszY0WNzNDlt8vUr6dE2+NV03oC7FcBVx+sndY=
-X-Received: by 2002:a05:6402:26d3:: with SMTP id
- x19mr4248449edd.349.1616777768362; 
- Fri, 26 Mar 2021 09:56:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210326012739.18038-1-unixbhaskar@gmail.com>
-In-Reply-To: <20210326012739.18038-1-unixbhaskar@gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=5y4wrxyxaQbz2q52vNwehIEYnHf9nDITQlvj4U6GzGU=;
+ b=rfHy/Gov6ZnkgoIHJ3pifpWt+J+QvaDyZVP7MmJgd3GUVAO1TeWx8uhYLnsmEdEhVb
+ llRYYchCn0kmiiBq4j6xWczzQwzBcYoaHOxSEb07nnrORT3oSnTZGSeprlB5te28jdLB
+ ecb1a4oBg0GI2hM1AYNdHo0ZTfPn4PNhYvZbYVe7DBKt6jhzYulnZxsGihbqD+7TBm+i
+ tWZS01I2UNp1xuumCKrjRXKdCW7/1HPBM8lRcMJqev9ujpaxhMd+DjRygx4kbe8gnrVO
+ fdzXXNBYMu8XfDwagCrNkHRfltVPBgI/oepYVHLwzRVkMHmAkkxsWE+lgzXK7nmdFHdL
+ qP3Q==
+X-Gm-Message-State: AOAM533Zw0Z+/zP+0fl9LjUTg/71J4kGdLhsV33anX0HsqKXwKncomlS
+ ZTVV2U/EdQCGY+XJY/oko574UD1q7mM=
+X-Google-Smtp-Source: ABdhPJxQU5pDeMpZPb16W8XI/PtKmWycv3J/AOTFb84Yme1HRFGiuykBtcdBea8vw2M7vel/hCfZ6A==
+X-Received: by 2002:aa7:9521:0:b029:1f1:b27f:1a43 with SMTP id
+ c1-20020aa795210000b02901f1b27f1a43mr14388370pfp.4.1616787114363; 
+ Fri, 26 Mar 2021 12:31:54 -0700 (PDT)
+Received: from octofox.hsd1.ca.comcast.net
+ ([2601:641:400:9e10:2d94:bd34:41ff:d945])
+ by smtp.gmail.com with ESMTPSA id q10sm9086789pgs.44.2021.03.26.12.31.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 26 Mar 2021 12:31:53 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Fri, 26 Mar 2021 09:55:57 -0700
-Message-ID: <CAMo8BfKFa7cuogeA4uNV+i-iudEwk+SnL+HGm+iK8POSZEi4nA@mail.gmail.com>
-To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
-Cc: Randy Dunlap <rdunlap@infradead.org>, LKML <linux-kernel@vger.kernel.org>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>
-Subject: Re: [Linux-Xtensa] [PATCH] platforms/iss/simcall.h: Change
-	compitible to compatible
+To: linux-xtensa@linux-xtensa.org
+Date: Fri, 26 Mar 2021 12:31:41 -0700
+Message-Id: <20210326193143.21016-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: linux-kernel@vger.kernel.org, Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH 0/2] xtensa: add GDBIO implementation to
+	semihosting interface
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -70,21 +73,29 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Thu, Mar 25, 2021 at 6:29 PM Bhaskar Chowdhury <unixbhaskar@gmail.com> wrote:
->
->
-> s/compitible/compatible/
->
-> Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
-> ---
->  arch/xtensa/platforms/iss/include/platform/simcall.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Hello,
 
-Thanks, applied to my xtensa tree with minor adjustment of the subject line.
+this series adds GDBIO implementation to the semihosting interface and
+makes it a configuration time choice. GDBIO interface is useful for
+development hardware platforms that don't offer any peripherals and only
+accessible via JTAG. xtensa kernel built for ISS may be run on such
+platforms using GDBIO implementation of the semihosting interface.
+
+Max Filippov (2):
+  xtensa: ISS: split simcall implementation from semihosting interface
+  xtensa: ISS: add GDBIO implementation to semihosting interface
+
+ arch/xtensa/Kconfig                           |  22 ++++
+ .../iss/include/platform/simcall-gdbio.h      |  34 ++++++
+ .../iss/include/platform/simcall-iss.h        |  73 ++++++++++++
+ .../platforms/iss/include/platform/simcall.h  | 104 +++++++-----------
+ 4 files changed, 166 insertions(+), 67 deletions(-)
+ create mode 100644 arch/xtensa/platforms/iss/include/platform/simcall-gdbio.h
+ create mode 100644 arch/xtensa/platforms/iss/include/platform/simcall-iss.h
 
 -- 
-Thanks.
--- Max
+2.20.1
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
