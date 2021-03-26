@@ -2,56 +2,57 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id F10C634ACE0
-	for <lists+linux-xtensa@lfdr.de>; Fri, 26 Mar 2021 17:52:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5662034ACEC
+	for <lists+linux-xtensa@lfdr.de>; Fri, 26 Mar 2021 17:56:11 +0100 (CET)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id CA4D6348C;
-	Fri, 26 Mar 2021 16:28:11 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 93C2E349D;
+	Fri, 26 Mar 2021 16:31:31 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
 Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com
  [209.85.208.52])
- by linux-xtensa.org (Postfix) with ESMTPS id C4AC52621
- for <linux-xtensa@linux-xtensa.org>; Fri, 26 Mar 2021 16:28:07 +0000 (UTC)
-Received: by mail-ed1-f52.google.com with SMTP id e7so7031163edu.10
- for <linux-xtensa@linux-xtensa.org>; Fri, 26 Mar 2021 09:52:46 -0700 (PDT)
+ by linux-xtensa.org (Postfix) with ESMTPS id E0D282629
+ for <linux-xtensa@linux-xtensa.org>; Fri, 26 Mar 2021 16:31:29 +0000 (UTC)
+Received: by mail-ed1-f52.google.com with SMTP id x21so7085754eds.4
+ for <linux-xtensa@linux-xtensa.org>; Fri, 26 Mar 2021 09:56:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=cDbl67tvF8OovMe6VinvfdUCa6x5BHz6kSSiYldWfJk=;
- b=Qbs0yBiRKtLJ2KCXp+J5GjFs4U7GpBFybUduP+k8nrWQYJgbtVExVU4UwQR4b8omfK
- IhQtGNsPwO5LMmxMomfTaoid94NJ48p0lr1aamzf8/ZKeFpZ1gozChEU1I1LnbfV8hP4
- q+MArBckr3rjae6N8Io62zJ1K6quOqC+kwsDboStUB5TCtsuaZOg+vBI5Sh2FQbZ+e2G
- E54wiErhTqoQfRBfjBdh9xg3qicNLT0hQfdZifnzg8nZYoFxkDcmgIpdQSB8VEF8tfM5
- wUfvWNap/TrQ5ZCUz5nguKaNP2x+voyxKym/BW3wv+6Jd1nscxtX8VHc9xPjP+YIomdn
- Gltg==
+ :cc; bh=bCYUHEJOOmAYGk1u0DJXlBrrHde9W54rxGamO+7985Q=;
+ b=HDrGqW6dLSVa8fiG+befjHX77BN+C2c40r3vBuGfH7daUarEnQFO3rLCwf6ufadDS8
+ y2dxq3h1ka6Y1YOFuK/ISSnioapWJhjES5XO3YS8JGR/CJcaBNznr1hX++rMJyQpeLr0
+ w551pfbWKacC0BLsIZqCyJZaLSepEVbxXEN06+tRAW2ovYNj3xtWtvrN1w7gyjLUrGmg
+ uszYR+zDWnMF5gu7RqDWQBxuGdCbML/bLlfGI6lftZ5Tn50hAeOVfrPVskQKtUyzjrC0
+ SwG0c664JBu8PDzFTFVBIzwl306jL2pGji2hVkjgvTYiMYf84Gpp75+mMaVRo91UWD3Z
+ zitA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=cDbl67tvF8OovMe6VinvfdUCa6x5BHz6kSSiYldWfJk=;
- b=lk6mPoIlg4y8Fkg5Xq1eIeLRj4hd/5beEn4upLTSDSCk/vCgqw2JDS36kLvFmMV+ij
- 6Yb3VcAax1ii7XjG9uGKoHzlC3XSO6d3fWzrH0sLxZyCWRvlp3RsrDwY18cmTeejZUaT
- +Uy/fnFyL4rSy5PANR0JL8SK/Fc0FqNKUe8fZ7trimvT81KyZ4fWU81ofnsJqE27cNJ+
- yjKN/O63zVGhUoE5WKdCdzwysNhqMGESeAuT9PZNiakFl2AtkBvcjFUIwytEgEVTXLxg
- K0JpF2hqJrEnykNxO7rrq4oy4wi0qr3cIHPuANnSrT0qgm2OomKZkjHu6bF0fv34dmPM
- 27pw==
-X-Gm-Message-State: AOAM533cGPwqSaDQN6VfxzVSlcfm8BH4R0s27IWB6Jvk+XUW5XhX4dTZ
- 85kAS6qnj9MecZPgqlx8nE7VrE6czoMZquBlWKU=
-X-Google-Smtp-Source: ABdhPJxG5L4xR1xkmSPVaNGmo7Cuk/Ev2JHNRDjqvio+PhFTxUUSX39pjPdtuUkWh8A714ubgmde0lHlDX6qUzKtj0s=
-X-Received: by 2002:a05:6402:2552:: with SMTP id
- l18mr15875581edb.71.1616777566087; 
- Fri, 26 Mar 2021 09:52:46 -0700 (PDT)
+ bh=bCYUHEJOOmAYGk1u0DJXlBrrHde9W54rxGamO+7985Q=;
+ b=WXBMMx7ri2RpnzO753JWW+yKffsvkQ4PI56u2JgRVNeC5xR5p9ZAqcrcMYpNIRxU7S
+ apApAuXNOJvX7rTQdD1dP6/U7O4BiGWQNkgGZ0seAB7Ba44aIl66yUiu1h8AYveQCT5D
+ jbMdko4Bco4se/ifP3fR+/l+QVt8Npg5vGF7N59Lywl/mbxrg7DFv0jTSKkls0VG7gjZ
+ a3PsVrYLmN1q4oXK1Yztmxb4Sfoqs6sNo810nS/qrqnrOGERu7qZ75rrAShX6Ss+pyOz
+ 5K9MndOYed6RutDvB0gz7lH2H0ybAPQW+GgReE8ZLSN826m+xQDbxs1vpfAHf2zn5bWB
+ Gbyw==
+X-Gm-Message-State: AOAM533aLFOdp7n1lHKmaWeZKLSWNhDVXDsJwkWoai8cXvEH2/CB0o7w
+ Tsn0Xs/E7TB3YpfdEAPxdua38G7ND0+UHVvZ5OQ=
+X-Google-Smtp-Source: ABdhPJzHoc1Mn8WK2QJ07wL/A3pZkPV+pPANFtEm9eqfe7IddcVdMgszY0WNzNDlt8vUr6dE2+NV03oC7FcBVx+sndY=
+X-Received: by 2002:a05:6402:26d3:: with SMTP id
+ x19mr4248449edd.349.1616777768362; 
+ Fri, 26 Mar 2021 09:56:08 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210325040832.26018-1-unixbhaskar@gmail.com>
-In-Reply-To: <20210325040832.26018-1-unixbhaskar@gmail.com>
+References: <20210326012739.18038-1-unixbhaskar@gmail.com>
+In-Reply-To: <20210326012739.18038-1-unixbhaskar@gmail.com>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Fri, 26 Mar 2021 09:52:34 -0700
-Message-ID: <CAMo8BfJarLtN1mU3MMSeRik17k13MAFK8fP+E2SHkcHdLnLfUg@mail.gmail.com>
+Date: Fri, 26 Mar 2021 09:55:57 -0700
+Message-ID: <CAMo8BfKFa7cuogeA4uNV+i-iudEwk+SnL+HGm+iK8POSZEi4nA@mail.gmail.com>
 To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
 Cc: Randy Dunlap <rdunlap@infradead.org>, LKML <linux-kernel@vger.kernel.org>,
  "open list:TENSILICA XTENSA PORT \(xtensa\)"
  <linux-xtensa@linux-xtensa.org>
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: Couple of typo fixes
+Subject: Re: [Linux-Xtensa] [PATCH] platforms/iss/simcall.h: Change
+	compitible to compatible
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -69,20 +70,19 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Wed, Mar 24, 2021 at 9:09 PM Bhaskar Chowdhury <unixbhaskar@gmail.com> wrote:
+On Thu, Mar 25, 2021 at 6:29 PM Bhaskar Chowdhury <unixbhaskar@gmail.com> wrote:
 >
-> s/contans/contains/
-> s/desination/destination/
+>
+> s/compitible/compatible/
 >
 > Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
 > ---
->  arch/xtensa/kernel/head.S | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  arch/xtensa/platforms/iss/include/platform/simcall.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks, applied to my xtensa tree.
+Thanks, applied to my xtensa tree with minor adjustment of the subject line.
 
-
---
+-- 
 Thanks.
 -- Max
 _______________________________________________
