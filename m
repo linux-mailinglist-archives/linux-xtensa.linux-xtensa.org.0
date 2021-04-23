@@ -2,60 +2,59 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id E091C34D765
-	for <lists+linux-xtensa@lfdr.de>; Mon, 29 Mar 2021 20:37:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61FBE36906D
+	for <lists+linux-xtensa@lfdr.de>; Fri, 23 Apr 2021 12:34:07 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id B305F6812;
-	Mon, 29 Mar 2021 18:12:26 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id BA6426FDC;
+	Fri, 23 Apr 2021 10:08:31 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
- [209.85.214.176])
- by linux-xtensa.org (Postfix) with ESMTPS id 194DE6810
- for <linux-xtensa@linux-xtensa.org>; Mon, 29 Mar 2021 18:12:25 +0000 (UTC)
-Received: by mail-pl1-f176.google.com with SMTP id g10so4826127plt.8
- for <linux-xtensa@linux-xtensa.org>; Mon, 29 Mar 2021 11:37:10 -0700 (PDT)
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
+ [209.85.208.172])
+ by linux-xtensa.org (Postfix) with ESMTPS id D2FAF6A09
+ for <linux-xtensa@linux-xtensa.org>; Fri, 23 Apr 2021 10:08:25 +0000 (UTC)
+Received: by mail-lj1-f172.google.com with SMTP id u4so55173275ljo.6
+ for <linux-xtensa@linux-xtensa.org>; Fri, 23 Apr 2021 03:34:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=2vX47kNAbuQ6iB1dL8WXUv9iCpp8Rvoq9MaFH5UQI38=;
- b=pCAl0bSL/I5WQtZov9ySDbJXFGEJH8fmLrqtdxAvKbwMitCZ26kUfZ/iiDtktj5fJJ
- G9u8iihtEvHzjpgsQsB1skcXCj7ckkpINKKLrZC50ESwZRbAfe5upG1TO620D/ia0l70
- +y65rDOOMlpjygsHtnzmfOZuiw8Q5FOcnTXvjlfzh58aIKQzifsBiE918rijmVwcFKjq
- qyveWaNE6k/FMI++0MMnDPHsq3bWWUIO6HhMnjIFeF+A/AAG47PqjjHPnxcLPXWECrCV
- fj3rPSTkhELMWV7e7H7xI0cCDkToNlOLSniYWz+7BM/sFm++gvxDcPR7e1BgWU+isk16
- Fm/g==
+ bh=OfPcggF+aJwacONjauNdfDvXV40ZI8XOTwHOnfJ3TaY=;
+ b=M0DmtLZWAEkW3P4cDmoUnFibXVq/gUOjtRqM6avYnxClqRvLXBPp6ddH1S1ysvrPW3
+ xxolM9Mq3PDwOhkCNJhKB44ZL39rlcuLQC8vkdI3KRJiWLHMmPJkLQFTH4Nk8zruyRU2
+ HV4zHoyd5UweAGyEJiKoNNqIRPxlnEnxzQzOHONAdDvgY4S+WkgPwLGHMUh34RP+hPr8
+ 4ZeG7ksJTamcblLArlbkIHm0SmU1vrkx0XYjg8f6wVgK+tn8mv+tGsq3UJwQje1En9uY
+ 3L94Q07xJwRXykjkpbdk4DWnebJhPVa+//T+3yzcXKlRDfvQuJijMUfd/Q3Z5Edn5KX5
+ 3b/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=2vX47kNAbuQ6iB1dL8WXUv9iCpp8Rvoq9MaFH5UQI38=;
- b=Skw1Hnwxlu8/xsg5b0zz42RuF1696tpGWf2o9AN8+q4q0WtjXzodi7qD+5P5I8mTKi
- nJn2DAwzP4cvzpRkQtZCYfuPHQHLIEt+IHKqpRKbloI6nUfK7w4D5U59IsWE03nPhFhs
- G0Nv46oID3oOas1dLVjtbXlgIsN/RrfEK9OFe6c45t4i7VIdKga+yrGVzv/nFHQ7eGmZ
- s+TZgQdnwNG8LiGaXw/Dzodv7b8ixgiC2bLX2tZZ/N5YYSXYq4Sw44ccDVg8bg3rA6mm
- 43jucMt50swM3UnZz8Nsq81XLh55w6NcWRvw2ki5N+Uoh00tgcObkVtI+oy4PiTCbJUI
- 8t8Q==
-X-Gm-Message-State: AOAM530SpRkVLqH18zMBZxCEuiIEEAPzMrmuUO6O0w8jNin9rV0/her3
- ejdO/VL5G87gwjx4knSXhQQ=
-X-Google-Smtp-Source: ABdhPJzOcjK8lse5dwGxec+1eCDIQXd22D1u4X0NONkPKF2eV/Cystg/J5MADzJZ6P69Jy7JK7CjWA==
-X-Received: by 2002:a17:902:c48d:b029:e6:f7d:a76d with SMTP id
- n13-20020a170902c48db02900e60f7da76dmr29563498plx.66.1617043029628; 
- Mon, 29 Mar 2021 11:37:09 -0700 (PDT)
-Received: from octofox.hsd1.ca.comcast.net
- ([2601:641:400:9e10:2d94:bd34:41ff:d945])
- by smtp.gmail.com with ESMTPSA id f2sm18348117pfq.129.2021.03.29.11.37.08
+ bh=OfPcggF+aJwacONjauNdfDvXV40ZI8XOTwHOnfJ3TaY=;
+ b=kyfVVVNkpiYcR+kg261a/X8KFsD5AjrD9RA0uPNoLaE2YMur2ndtw9aJwjv42IIz88
+ JQ9L43QVYUfy8eLBowxNIKeERoFoKHqew7YFrKwLoLxrxTh4vurJ3wwAHivmBFDiwCwM
+ fFGQ5/8e86IefgdwNy57beASXfjaQBoB5LwmGyBEgKDbYASrqkwIEK2EuGfkHjG+omGL
+ QIowImjSG6LJBZi+qHueyNgGWsC9mDhkaL7ZzkzrtDZS9PGcR+25K7lHT6MMgKYB44WB
+ +/Q+9hEfOq3sO0AwJB1K2AL7h4qSH+mk4J+q8TwJPQ+0AB/KrdW4FhfaTb0w2zCUQkYz
+ lEHA==
+X-Gm-Message-State: AOAM532UBqPZugenlRytPn/Om9H9l9DPAiTI7mvODoY/Th9ZYYFUKqLY
+ UH9MHbgn1LSOzYbnYi3qdHE=
+X-Google-Smtp-Source: ABdhPJzIX29mG0nBBXjJhh6HOoKolfXa9ZzaIKXh6vX27Y/XcJEbSCZ+4RoQjZEFvxt0t9iHaa/sgg==
+X-Received: by 2002:a2e:7119:: with SMTP id m25mr2324840ljc.231.1619174039271; 
+ Fri, 23 Apr 2021 03:33:59 -0700 (PDT)
+Received: from octofox.metropolis ([5.18.202.173])
+ by smtp.gmail.com with ESMTPSA id v5sm514014lfp.298.2021.04.23.03.33.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Mar 2021 11:37:09 -0700 (PDT)
+ Fri, 23 Apr 2021 03:33:58 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 29 Mar 2021 11:36:48 -0700
-Message-Id: <20210329183648.2277-1-jcmvbkbc@gmail.com>
+To: binutils@sourceware.org
+Date: Fri, 23 Apr 2021 03:33:30 -0700
+Message-Id: <20210423103330.29008-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
- linux-kernel@vger.kernel.org
-Subject: [Linux-Xtensa] [PULL 0/2] xtensa fixes for 5.12
+Cc: Sterling Augustine <augustine.sterling@gmail.com>,
+ Eric Tsai <erictsai@cadence.com>, Max Filippov <jcmvbkbc@gmail.com>,
+ linux-xtensa@linux-xtensa.org
+Subject: [Linux-Xtensa] [COMMITTED] opcodes: xtensa: improve literal output
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -73,41 +72,31 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Hi Linus,
+Output literals as 4-byte words, not as separate bytes.
 
-please pull the following fixes for the xtensa architecture for v5.12.
+2021-04-23  Max Filippov  <jcmvbkbc@gmail.com>
+opcodes/
+	* xtensa-dis.c (print_insn_xtensa): Set info->bytes_per_chunk
+	to 4 for literal disassembly.
+---
+ opcodes/xtensa-dis.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-The following changes since commit a38fd8748464831584a19438cbb3082b5a2dab15:
-
-  Linux 5.12-rc2 (2021-03-05 17:33:41 -0800)
-
-are available in the Git repository at:
-
-  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20210329
-
-for you to fetch changes up to 7b9acbb6aad4f54623dcd4bd4b1a60fe0c727b09:
-
-  xtensa: fix uaccess-related livelock in do_page_fault (2021-03-29 11:25:11 -0700)
-
-----------------------------------------------------------------
-Xtensa fixes for v5.12:
-
-- fix build with separate exception vectors when they are placed too far
-  from the rest of the kernel;
-- fix uaccess-related livelock in do_page_fault.
-
-----------------------------------------------------------------
-Max Filippov (2):
-      xtensa: move coprocessor_flush to the .text section
-      xtensa: fix uaccess-related livelock in do_page_fault
-
- arch/xtensa/kernel/coprocessor.S | 64 +++++++++++++++++++++-------------------
- arch/xtensa/mm/fault.c           |  5 +++-
- 2 files changed, 37 insertions(+), 32 deletions(-)
-
+diff --git a/opcodes/xtensa-dis.c b/opcodes/xtensa-dis.c
+index 64c9a4ed4e05..e38fc39f4e7e 100644
+--- a/opcodes/xtensa-dis.c
++++ b/opcodes/xtensa-dis.c
+@@ -381,6 +381,7 @@ print_insn_xtensa (bfd_vma memaddr, struct disassemble_info *info)
+       if (insn_block && (insn_block->flags & XTENSA_PROP_LITERAL)
+ 	  && (memaddr & 3) == 0 && bytes_fetched >= 4)
+ 	{
++	  info->bytes_per_chunk = 4;
+ 	  return 4;
+ 	}
+       else
 -- 
-Thanks.
--- Max
+2.20.1
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
