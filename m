@@ -2,61 +2,58 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A5D936906F
-	for <lists+linux-xtensa@lfdr.de>; Fri, 23 Apr 2021 12:34:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A650136F084
+	for <lists+linux-xtensa@lfdr.de>; Thu, 29 Apr 2021 21:34:33 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 620346FDC;
-	Fri, 23 Apr 2021 10:08:50 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 50BD06C07;
+	Thu, 29 Apr 2021 19:08:45 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com
- [209.85.167.46])
- by linux-xtensa.org (Postfix) with ESMTPS id C3C7D6A09
- for <linux-xtensa@linux-xtensa.org>; Fri, 23 Apr 2021 10:08:47 +0000 (UTC)
-Received: by mail-lf1-f46.google.com with SMTP id 12so76554426lfq.13
- for <linux-xtensa@linux-xtensa.org>; Fri, 23 Apr 2021 03:34:22 -0700 (PDT)
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
+ [209.85.208.172])
+ by linux-xtensa.org (Postfix) with ESMTPS id 876E96C05
+ for <linux-xtensa@linux-xtensa.org>; Thu, 29 Apr 2021 19:08:43 +0000 (UTC)
+Received: by mail-lj1-f172.google.com with SMTP id a5so40874920ljk.0
+ for <linux-xtensa@linux-xtensa.org>; Thu, 29 Apr 2021 12:34:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=DfsbGcYIWSkCpm7rPZ8rRnvaFvLPxfbq9QgjNcS+KEE=;
- b=BY63zKDlL/G7ooKKbxer1umb6DksCzRFsu79NIQcia7Td90b/OKhuCc0T8RQemlzYT
- dufXTVkbUinaUwHGSztQcHjp0kgc2RHZ2LDM/bK7GHL6gRDQ4NNAoJ8CJnM0z0Ad8eAx
- jW2TVtH1v9kw838QAtmcXkB9c+K8ryn1t4Jewg9YsP3blyPXyT9gr/40ShjftvWn+tMO
- aEkco7mCAu/DQOxY3qzocaUUPcmJoNG9ILjkaBVzvM8hpHGbVZw2UJfHiL1y/b2KZHw1
- GoPCtk3kl/nGxHR35/XOsigh2ELRFCLC7QVObtFf3J2Wj/7rYGm0ddVzybpARP5ms8E9
- e2Sw==
+ bh=tyNtVUM7TJO4Y2MIU/RlvtsyLuW2eANi7CNPOMUEFlg=;
+ b=TZoYPuAmO/+Eys0DIlZP56S2yT2i4l3DhcNwzaQGQTawDgk7G6qh1j7xZGAIoT4nZe
+ B3x3eRmEslzz2JzVO9kT+DYkmFpU+zZaqoB/KewKy0wtMW/68bupWPL/flaOAHhzk1ms
+ 0R/qad6A4PVv/AsmLsDSBMJTu5WSXL82mIdDIHp/RWbXeWSb96JNPDVoxeCGHDn1h912
+ tnud2eA0UGjiVj0wK67iFIySHBHJ4G6ssv3KwK2jhqZ+D9J+wwIzmNNxYRzHx+rWMZkO
+ TYv9cFNTYVK3bMG6G9rhEaoPhro/6vFVwO0LVGscDQ1Ic4/eB3NZoUtgG7GRdQ4eNkT9
+ CUxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=DfsbGcYIWSkCpm7rPZ8rRnvaFvLPxfbq9QgjNcS+KEE=;
- b=Zd3oc4yjrXtC+hcXDZzjQz3zBIPyEk80qaW0bbZjgn63xXKziFcdj5kjw/b4vGM7Z+
- 7kbUXkRAfLd5KRIH0cumQZNjnam1Gey4gkIYYCkBANv/CUQMLs+aimKMyi8FqHaOh8i7
- N6nwhV3ot3Z/KLfF+VD9Te43Mz6q2yGwo+vjpic0z81VxnRbmRMSniLSi5NthS5lk/LM
- 7Fw4tZG/bEJYanotx+Y/rB06o3DW1YE8x3RGcemDIW6dT8D2Gzoy8FBz6Dz6p6g/wjM/
- 3Fx9tnI43RMypNIU0YktHIAjyX1HMbJiCF6TwIiKDLSfTQ8/o9pqiv65Kr5E3JK+Sfbc
- 4W9Q==
-X-Gm-Message-State: AOAM530qrmYhCr8htI13ej/+8dyHt9DurxgQ/p6BbZoYH4JsEBwWycTQ
- DIn5xBmj4dj0u4wKtthVAfA=
-X-Google-Smtp-Source: ABdhPJz88buspzfQgowac5bLrplTFA94puRAlIQdSAWtZSpygoUXdmdi4Ins/fuXC6I4RWSFr5aYlg==
-X-Received: by 2002:a05:6512:21a5:: with SMTP id
- c5mr2308097lft.534.1619174061507; 
- Fri, 23 Apr 2021 03:34:21 -0700 (PDT)
+ bh=tyNtVUM7TJO4Y2MIU/RlvtsyLuW2eANi7CNPOMUEFlg=;
+ b=XjUt2BJFHZZwP0UD4X5i6csFj2kYnMFPJRMGv60w/cl01g/12us+TTgQsv6FOKlDZj
+ DZ7UuNU4e54YXu0vYwIXQ+enMej7wXx/5NYMZX2Yo00rLC9sHSqMN5+ADbSce2aDqBB2
+ UTJQzwK5iKQlRncy+uEKVaCXPqP6FxjCH2ZZLOjA4a11KilbApIAA429Q/CmDuzJJvQH
+ b0reYM/l+YmyTqwtX4O2t0iOyyLYKGD3Wgzdshqr/mvCQ3l7dwUscunPkoQn4WmVxiz+
+ xKfZUNzonw+oAXtSQZrcmAxryZwfTLp1pkczVJyYWtbRGHSw2xvfhoGPP58OlayWoltr
+ wR5A==
+X-Gm-Message-State: AOAM531q7GhEXzMQnqna730q0lhLOlbVmv6g7HVtwrsA4kPyvI93xp0a
+ iIMd/hR9sYvC4IqTDU3Ct4o=
+X-Google-Smtp-Source: ABdhPJwVRxrXaamHuNvA2Ya+4m3QmjCouVYhaILSlVT7zreoNg1+DdqDUqtkhz7HfzE0hgJGE3s2Qw==
+X-Received: by 2002:a2e:a793:: with SMTP id c19mr965247ljf.75.1619724869694;
+ Thu, 29 Apr 2021 12:34:29 -0700 (PDT)
 Received: from octofox.metropolis ([5.18.202.173])
- by smtp.gmail.com with ESMTPSA id z28sm515235lfq.72.2021.04.23.03.34.20
+ by smtp.gmail.com with ESMTPSA id t14sm597465ljk.107.2021.04.29.12.34.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 23 Apr 2021 03:34:21 -0700 (PDT)
+ Thu, 29 Apr 2021 12:34:29 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: binutils@sourceware.org
-Date: Fri, 23 Apr 2021 03:34:08 -0700
-Message-Id: <20210423103408.29069-1-jcmvbkbc@gmail.com>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Thu, 29 Apr 2021 12:34:06 -0700
+Message-Id: <20210429193406.12947-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: Sterling Augustine <augustine.sterling@gmail.com>,
- Eric Tsai <erictsai@cadence.com>, Max Filippov <jcmvbkbc@gmail.com>,
- linux-xtensa@linux-xtensa.org
-Subject: [Linux-Xtensa] [COMMITTED] opcodes: xtensa: display loaded literal
-	value
+Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
+ linux-kernel@vger.kernel.org
+Subject: [Linux-Xtensa] [PULL 00/14] xtensa updates for v5.13
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -74,58 +71,82 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Display literal value loaded with l32r opcode as a part of disassembly.
-This significantly simplifies reading of disassembly output.
+Hi Linus,
 
-2020-04-23  Max Filippov  <jcmvbkbc@gmail.com>
-opcodes/
-	* xtensa-dis.c (print_xtensa_operand): For PC-relative operand
-	of l32r fetch and display referenced literal value.
----
- opcodes/xtensa-dis.c | 20 +++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
+please pull the following Xtensa architecture updates for v5.13:
 
-diff --git a/opcodes/xtensa-dis.c b/opcodes/xtensa-dis.c
-index e38fc39f4e7e..cfa058f96c71 100644
---- a/opcodes/xtensa-dis.c
-+++ b/opcodes/xtensa-dis.c
-@@ -194,7 +194,8 @@ print_xtensa_operand (bfd_vma memaddr,
- 		      unsigned operand_val)
- {
-   xtensa_isa isa = xtensa_default_isa;
--  int signed_operand_val;
-+  int signed_operand_val, status;
-+  bfd_byte litbuf[4];
- 
-   if (show_raw_fields)
-     {
-@@ -216,6 +217,23 @@ print_xtensa_operand (bfd_vma memaddr,
- 					    &operand_val, memaddr);
- 	  info->target = operand_val;
- 	  (*info->print_address_func) (info->target, info);
-+	  /*  Also display value loaded by L32R (but not if reloc exists,
-+	      those tend to be wrong):  */
-+	  if ((info->flags & INSN_HAS_RELOC) == 0
-+	      && !strcmp ("l32r", xtensa_opcode_name (isa, opc)))
-+	    status = (*info->read_memory_func) (operand_val, litbuf, 4, info);
-+	  else
-+	    status = -1;
-+
-+	  if (status == 0)
-+	    {
-+	      unsigned literal = bfd_get_bits (litbuf, 32,
-+					       info->endian == BFD_ENDIAN_BIG);
-+
-+	      (*info->fprintf_func) (info->stream, " (");
-+	      (*info->print_address_func) (literal, info);
-+	      (*info->fprintf_func) (info->stream, ")");
-+	    }
- 	}
-       else
- 	{
--- 
-2.20.1
+The following changes since commit e49d033bddf5b565044e2abe4241353959bc9120:
 
+  Linux 5.12-rc6 (2021-04-04 14:15:36 -0700)
+
+are available in the Git repository at:
+
+  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20210429
+
+for you to fetch changes up to 6a8eb99e130f3f7658de2776934374fe1c41279e:
+
+  xtensa: ISS: add GDBIO implementation to semihosting interface (2021-04-04 15:39:04 -0700)
+
+----------------------------------------------------------------
+Xtensa updates for v5.13:
+
+- switch to generic syscall generation scripts
+- new GDBIO implementation for xtensa semihosting interface
+- various small code fixes and cleanups
+- a few typo fixes in comments and Kconfig help text
+
+----------------------------------------------------------------
+Bhaskar Chowdhury (2):
+      xtensa: Couple of typo fixes
+      xtensa: simcall.h: Change compitible to compatible
+
+Colin Ian King (1):
+      xtensa: fix spelling mistake in Kconfig "wont" -> "won't"
+
+Jiapeng Chong (1):
+      xtensa: fix warning comparing pointer to 0
+
+Masahiro Yamada (5):
+      xtensa: move CONFIG_CPU_*_ENDIAN defines to Kconfig
+      xtensa: remove unneeded export in boot-elf/Makefile
+      xtensa: stop filling syscall array with sys_ni_syscall
+      xtensa: syscalls: switch to generic syscalltbl.sh
+      xtensa: syscalls: switch to generic syscallhdr.sh
+
+Max Filippov (5):
+      xtensa: simplify coherent_kvaddr logic
+      xtensa: fix pgprot_noncached assumptions
+      xtensa: drop extraneous register load from initialize_mmu
+      xtensa: ISS: split simcall implementation from semihosting interface
+      xtensa: ISS: add GDBIO implementation to semihosting interface
+
+ arch/xtensa/Kconfig                                |  30 +++++-
+ arch/xtensa/Makefile                               |   9 +-
+ arch/xtensa/boot/Makefile                          |   4 -
+ arch/xtensa/boot/boot-elf/Makefile                 |  11 +--
+ arch/xtensa/boot/boot-redboot/Makefile             |   6 +-
+ arch/xtensa/include/asm/initialize_mmu.h           |   2 +-
+ arch/xtensa/include/asm/pgtable.h                  |   4 +-
+ arch/xtensa/kernel/head.S                          |   4 +-
+ arch/xtensa/kernel/pci.c                           |   2 +-
+ arch/xtensa/kernel/syscall.c                       |   8 +-
+ arch/xtensa/kernel/syscalls/Makefile               |  14 +--
+ arch/xtensa/kernel/syscalls/syscallhdr.sh          |  36 -------
+ arch/xtensa/kernel/syscalls/syscalltbl.sh          |  32 -------
+ arch/xtensa/mm/cache.c                             |   9 +-
+ arch/xtensa/mm/misc.S                              |  36 +------
+ .../platforms/iss/include/platform/simcall-gdbio.h |  34 +++++++
+ .../platforms/iss/include/platform/simcall-iss.h   |  73 +++++++++++++++
+ .../platforms/iss/include/platform/simcall.h       | 104 ++++++++-------------
+ 18 files changed, 198 insertions(+), 220 deletions(-)
+ delete mode 100644 arch/xtensa/kernel/syscalls/syscallhdr.sh
+ delete mode 100644 arch/xtensa/kernel/syscalls/syscalltbl.sh
+ create mode 100644 arch/xtensa/platforms/iss/include/platform/simcall-gdbio.h
+ create mode 100644 arch/xtensa/platforms/iss/include/platform/simcall-iss.h
+
+ -- 
+ Thanks.
+ -- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
