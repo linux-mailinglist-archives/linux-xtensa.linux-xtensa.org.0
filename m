@@ -2,58 +2,61 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id A650136F084
-	for <lists+linux-xtensa@lfdr.de>; Thu, 29 Apr 2021 21:34:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6078B3706B7
+	for <lists+linux-xtensa@lfdr.de>; Sat,  1 May 2021 11:49:11 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 50BD06C07;
-	Thu, 29 Apr 2021 19:08:45 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 08FC96FB9;
+	Sat,  1 May 2021 09:23:20 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
- [209.85.208.172])
- by linux-xtensa.org (Postfix) with ESMTPS id 876E96C05
- for <linux-xtensa@linux-xtensa.org>; Thu, 29 Apr 2021 19:08:43 +0000 (UTC)
-Received: by mail-lj1-f172.google.com with SMTP id a5so40874920ljk.0
- for <linux-xtensa@linux-xtensa.org>; Thu, 29 Apr 2021 12:34:30 -0700 (PDT)
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com
+ [209.85.208.180])
+ by linux-xtensa.org (Postfix) with ESMTPS id B2C996FB7
+ for <linux-xtensa@linux-xtensa.org>; Sat,  1 May 2021 09:23:16 +0000 (UTC)
+Received: by mail-lj1-f180.google.com with SMTP id o16so1087102ljp.3
+ for <linux-xtensa@linux-xtensa.org>; Sat, 01 May 2021 02:49:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=tyNtVUM7TJO4Y2MIU/RlvtsyLuW2eANi7CNPOMUEFlg=;
- b=TZoYPuAmO/+Eys0DIlZP56S2yT2i4l3DhcNwzaQGQTawDgk7G6qh1j7xZGAIoT4nZe
- B3x3eRmEslzz2JzVO9kT+DYkmFpU+zZaqoB/KewKy0wtMW/68bupWPL/flaOAHhzk1ms
- 0R/qad6A4PVv/AsmLsDSBMJTu5WSXL82mIdDIHp/RWbXeWSb96JNPDVoxeCGHDn1h912
- tnud2eA0UGjiVj0wK67iFIySHBHJ4G6ssv3KwK2jhqZ+D9J+wwIzmNNxYRzHx+rWMZkO
- TYv9cFNTYVK3bMG6G9rhEaoPhro/6vFVwO0LVGscDQ1Ic4/eB3NZoUtgG7GRdQ4eNkT9
- CUxA==
+ bh=DCVQ+16A2LqNBmv6L42lkk2RqVOjkhO5zhwRq0FFss0=;
+ b=MVYtWx5CIzlc+cMY2PoyhMNMhLYL+w9gSPCFTqosW4hU4WKfHAPNvZy7iUe9I13amB
+ YZKR+KuFpW2E1PQDEjbzynRPkTi7HCDRp1LWASuNFzo4IFahL8/b0tuBuAaqAHTNfAqu
+ oSU+2RYjMochgtmlECMiNWLUBdkVWgkchkvnhJhSsde4k9Szhw0J4uToss/5eVYg8OkA
+ QRVmmPY5fifG1B9pipwvOL+h+EZbZGBecIF4FPE8JAWZY+a7Sq+oE9em0gt+3c8a3HOC
+ y+VkGDz0zdlj8cuLJ8bEFGmk7MF2YILC0hiymIaLmiIpsSmC+FY0MCVGtn5y++F1nF20
+ vYsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=tyNtVUM7TJO4Y2MIU/RlvtsyLuW2eANi7CNPOMUEFlg=;
- b=XjUt2BJFHZZwP0UD4X5i6csFj2kYnMFPJRMGv60w/cl01g/12us+TTgQsv6FOKlDZj
- DZ7UuNU4e54YXu0vYwIXQ+enMej7wXx/5NYMZX2Yo00rLC9sHSqMN5+ADbSce2aDqBB2
- UTJQzwK5iKQlRncy+uEKVaCXPqP6FxjCH2ZZLOjA4a11KilbApIAA429Q/CmDuzJJvQH
- b0reYM/l+YmyTqwtX4O2t0iOyyLYKGD3Wgzdshqr/mvCQ3l7dwUscunPkoQn4WmVxiz+
- xKfZUNzonw+oAXtSQZrcmAxryZwfTLp1pkczVJyYWtbRGHSw2xvfhoGPP58OlayWoltr
- wR5A==
-X-Gm-Message-State: AOAM531q7GhEXzMQnqna730q0lhLOlbVmv6g7HVtwrsA4kPyvI93xp0a
- iIMd/hR9sYvC4IqTDU3Ct4o=
-X-Google-Smtp-Source: ABdhPJwVRxrXaamHuNvA2Ya+4m3QmjCouVYhaILSlVT7zreoNg1+DdqDUqtkhz7HfzE0hgJGE3s2Qw==
-X-Received: by 2002:a2e:a793:: with SMTP id c19mr965247ljf.75.1619724869694;
- Thu, 29 Apr 2021 12:34:29 -0700 (PDT)
+ bh=DCVQ+16A2LqNBmv6L42lkk2RqVOjkhO5zhwRq0FFss0=;
+ b=cPSbKZHMjuX32pR63Wb7MkdveUo7Gjx/E58ZbqTiqG1ccvMPkFhScP3nNXzVm9uaLz
+ pBNDur2knmc6CvyYWMInPaZ4ru6HJnFzlDnGCYCaRGmMy2BnOccPDzt+zzVARais26o0
+ fhoBeY+eaeJv10WYoMcLB5ZyTDt8IIty6+DfRmW6A97cLpaVs5zVy4/r6XDZ5xTDeOcv
+ xUJbkzYyPxpg2u9f5Ul5r/MsxrT00aGJeQjPa6lrvkginIPOPC25fnROMe9J2gVxAz86
+ 34U3LPn+ENlymS5kWDJXOBF1Cr624yS9Aha3plMBG0hg+hxNVrmom+oqkr9meMaXTeNz
+ NiOw==
+X-Gm-Message-State: AOAM532nncxM77WnV5Ry9rRFpbeK/M2TihlbM3ZEo6B6LyJnG1uZ+ZLg
+ L1uItDtVcWbvvLKL6bPEOmI=
+X-Google-Smtp-Source: ABdhPJwSuZ71aGMpOyTeZCO+N94i8WkYOFEq86HJPWdoJzCZNIVlV3SQ8NmLSBbi7mCCo0L6BKeYWw==
+X-Received: by 2002:a05:651c:210:: with SMTP id
+ y16mr6599118ljn.210.1619862545966; 
+ Sat, 01 May 2021 02:49:05 -0700 (PDT)
 Received: from octofox.metropolis ([5.18.202.173])
- by smtp.gmail.com with ESMTPSA id t14sm597465ljk.107.2021.04.29.12.34.29
+ by smtp.gmail.com with ESMTPSA id m13sm505896ljb.10.2021.05.01.02.49.05
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 29 Apr 2021 12:34:29 -0700 (PDT)
+ Sat, 01 May 2021 02:49:05 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Thu, 29 Apr 2021 12:34:06 -0700
-Message-Id: <20210429193406.12947-1-jcmvbkbc@gmail.com>
+To: binutils@sourceware.org
+Date: Sat,  1 May 2021 02:48:55 -0700
+Message-Id: <20210501094855.19423-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: Max Filippov <jcmvbkbc@gmail.com>, linux-xtensa@linux-xtensa.org,
- linux-kernel@vger.kernel.org
-Subject: [Linux-Xtensa] [PULL 00/14] xtensa updates for v5.13
+Cc: Sterling Augustine <augustine.sterling@gmail.com>,
+ Eric Tsai <erictsai@cadence.com>, Max Filippov <jcmvbkbc@gmail.com>,
+ linux-xtensa@linux-xtensa.org
+Subject: [Linux-Xtensa] [COMMITTED] opcodes: xtensa: support branch
+	visualization
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -71,82 +74,45 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Hi Linus,
+2021-05-01  Max Filippov  <jcmvbkbc@gmail.com>
+opcodes/
+	* xtensa-dis.c (print_insn_xtensa): Fill in info->insn_type and
+	info->insn_info_valid.
+---
+ opcodes/xtensa-dis.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-please pull the following Xtensa architecture updates for v5.13:
+diff --git a/opcodes/xtensa-dis.c b/opcodes/xtensa-dis.c
+index cfa058f96c71..c1cf4c82d608 100644
+--- a/opcodes/xtensa-dis.c
++++ b/opcodes/xtensa-dis.c
+@@ -412,6 +412,9 @@ print_insn_xtensa (bfd_vma memaddr, struct disassemble_info *info)
+   if (nslots > 1)
+     (*info->fprintf_func) (info->stream, "{ ");
+ 
++  info->insn_type = dis_nonbranch;
++  info->insn_info_valid = 1;
++
+   first_slot = 1;
+   for (n = 0; n < nslots; n++)
+     {
+@@ -425,6 +428,13 @@ print_insn_xtensa (bfd_vma memaddr, struct disassemble_info *info)
+       (*info->fprintf_func) (info->stream, "%s",
+ 			     xtensa_opcode_name (isa, opc));
+ 
++      if (xtensa_opcode_is_branch (isa, opc))
++	info->insn_type = dis_condbranch;
++      else if (xtensa_opcode_is_jump (isa, opc))
++	info->insn_type = dis_branch;
++      else if (xtensa_opcode_is_call (isa, opc))
++	info->insn_type = dis_jsr;
++
+       /* Print the operands (if any).  */
+       noperands = xtensa_opcode_num_operands (isa, opc);
+       first = 1;
+-- 
+2.20.1
 
-The following changes since commit e49d033bddf5b565044e2abe4241353959bc9120:
-
-  Linux 5.12-rc6 (2021-04-04 14:15:36 -0700)
-
-are available in the Git repository at:
-
-  git://github.com/jcmvbkbc/linux-xtensa.git tags/xtensa-20210429
-
-for you to fetch changes up to 6a8eb99e130f3f7658de2776934374fe1c41279e:
-
-  xtensa: ISS: add GDBIO implementation to semihosting interface (2021-04-04 15:39:04 -0700)
-
-----------------------------------------------------------------
-Xtensa updates for v5.13:
-
-- switch to generic syscall generation scripts
-- new GDBIO implementation for xtensa semihosting interface
-- various small code fixes and cleanups
-- a few typo fixes in comments and Kconfig help text
-
-----------------------------------------------------------------
-Bhaskar Chowdhury (2):
-      xtensa: Couple of typo fixes
-      xtensa: simcall.h: Change compitible to compatible
-
-Colin Ian King (1):
-      xtensa: fix spelling mistake in Kconfig "wont" -> "won't"
-
-Jiapeng Chong (1):
-      xtensa: fix warning comparing pointer to 0
-
-Masahiro Yamada (5):
-      xtensa: move CONFIG_CPU_*_ENDIAN defines to Kconfig
-      xtensa: remove unneeded export in boot-elf/Makefile
-      xtensa: stop filling syscall array with sys_ni_syscall
-      xtensa: syscalls: switch to generic syscalltbl.sh
-      xtensa: syscalls: switch to generic syscallhdr.sh
-
-Max Filippov (5):
-      xtensa: simplify coherent_kvaddr logic
-      xtensa: fix pgprot_noncached assumptions
-      xtensa: drop extraneous register load from initialize_mmu
-      xtensa: ISS: split simcall implementation from semihosting interface
-      xtensa: ISS: add GDBIO implementation to semihosting interface
-
- arch/xtensa/Kconfig                                |  30 +++++-
- arch/xtensa/Makefile                               |   9 +-
- arch/xtensa/boot/Makefile                          |   4 -
- arch/xtensa/boot/boot-elf/Makefile                 |  11 +--
- arch/xtensa/boot/boot-redboot/Makefile             |   6 +-
- arch/xtensa/include/asm/initialize_mmu.h           |   2 +-
- arch/xtensa/include/asm/pgtable.h                  |   4 +-
- arch/xtensa/kernel/head.S                          |   4 +-
- arch/xtensa/kernel/pci.c                           |   2 +-
- arch/xtensa/kernel/syscall.c                       |   8 +-
- arch/xtensa/kernel/syscalls/Makefile               |  14 +--
- arch/xtensa/kernel/syscalls/syscallhdr.sh          |  36 -------
- arch/xtensa/kernel/syscalls/syscalltbl.sh          |  32 -------
- arch/xtensa/mm/cache.c                             |   9 +-
- arch/xtensa/mm/misc.S                              |  36 +------
- .../platforms/iss/include/platform/simcall-gdbio.h |  34 +++++++
- .../platforms/iss/include/platform/simcall-iss.h   |  73 +++++++++++++++
- .../platforms/iss/include/platform/simcall.h       | 104 ++++++++-------------
- 18 files changed, 198 insertions(+), 220 deletions(-)
- delete mode 100644 arch/xtensa/kernel/syscalls/syscallhdr.sh
- delete mode 100644 arch/xtensa/kernel/syscalls/syscalltbl.sh
- create mode 100644 arch/xtensa/platforms/iss/include/platform/simcall-gdbio.h
- create mode 100644 arch/xtensa/platforms/iss/include/platform/simcall-iss.h
-
- -- 
- Thanks.
- -- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
