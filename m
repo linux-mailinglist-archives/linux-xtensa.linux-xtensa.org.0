@@ -2,57 +2,56 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A47B37FE24
-	for <lists+linux-xtensa@lfdr.de>; Thu, 13 May 2021 21:32:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82F833922A3
+	for <lists+linux-xtensa@lfdr.de>; Thu, 27 May 2021 00:20:57 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id CB9A6706F;
-	Thu, 13 May 2021 19:06:01 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 48FFC67B9;
+	Wed, 26 May 2021 21:54:13 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com
- [209.85.218.49])
- by linux-xtensa.org (Postfix) with ESMTPS id 97A94706D
- for <linux-xtensa@linux-xtensa.org>; Thu, 13 May 2021 19:05:58 +0000 (UTC)
-Received: by mail-ej1-f49.google.com with SMTP id j14so87298ejy.1
- for <linux-xtensa@linux-xtensa.org>; Thu, 13 May 2021 12:32:14 -0700 (PDT)
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
+ [209.85.218.52])
+ by linux-xtensa.org (Postfix) with ESMTPS id B995A678E
+ for <linux-xtensa@linux-xtensa.org>; Wed, 26 May 2021 21:54:09 +0000 (UTC)
+Received: by mail-ej1-f52.google.com with SMTP id lg14so4873121ejb.9
+ for <linux-xtensa@linux-xtensa.org>; Wed, 26 May 2021 15:20:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+PFEMK3YaHztEuLX/0qHNhPRBEmn2XvXgUGBhkca4xE=;
- b=K25CsnCq077r/r4B1m2yh81D9qgKhQYnf99ghLEffSrrY380rLAFfdixlvEpKlaY5j
- oWn0+BYK8RcQPQiQ/TEgcdTJUspxoafxOK2/prjgh5vpSgzu0pabQYjUdMMHdfoe2QwX
- anfuESWtWPR+nGAI1F2edxjQpghAyY0r7KS6OKQD3Ez4jY6bFBHyzQmP6LJBV+TscYi8
- I64AsH/yHsdcDnFOHIZaE1PRR5sMlZDFr4j/VIPwYLNM8qSH7fpsyQzuzXgowY9pYTLv
- UqYwvySdodmLWy4JyoPMkmYEGtjasdEmyo8z6dKbp7DWWea2GlSM1B+CVHvxBwToisXx
- XP5w==
+ :cc; bh=iIpBLIMzGRYvskHBSahQGRziaVdJQLwsrKUZiZHBGVk=;
+ b=sJxFyrkXldH5SDQNfUiH3m80MZZYTYScL+8UQVlYN92NY+S2dLSv/m5JlEYjjr+Oon
+ gUak3e0jxOXERLqev5c149Djka1Hz3R+JLCpc1kXbqUtoBHlCSU3RVUSrAT7xZejuh5L
+ CuhIO86R2EYoaMduis1UissveAXkNi32/Q7OJOrtaTdrOErRmS3RsE6Ibp3ZD4zs0Y5p
+ 8WFIu+E0xyLi0mWugdIm/R3uSzeJIh1F/wxXA9MVg39UU19ZglB0WgQ66V79q6fOEdRn
+ 6uTNRG2lSuh0tLBMzdYVUUacnAaCADGsUzgOHLyZRs9XvS35PRB0Ua7V+GKLmqi5Ek1v
+ gcQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=+PFEMK3YaHztEuLX/0qHNhPRBEmn2XvXgUGBhkca4xE=;
- b=VWzYBNnVGzTtqfuMjHGt50xlNmHZJ9QEB3shfYkvZeyvg8q4SU2vEsmaDq6swi0Gha
- /T3LiMKAkFCebX0PoDgzJfdPBb1ulvK4qFlSZXQlL03IlyKtrzrCJrh0h49Os/0VnHUX
- YoGfvgS9Ossv51BXj7P3uFFJGqwyiABNYTPzwN9adIblO8BKAhvUximQzEYbzzjtBzLM
- ktZi8JC5QL59KGEwpOgz9SvdjCI54BEwLE6uj7NcF3hE9Bya0v+EzgIo2hmHYo0koVoZ
- H6z8aFOWeqm1u47z5eqELK80yb2dkL/VXedLjGa2K1efQpXB2y24ZKwlou46bzx5kCVg
- jlDA==
-X-Gm-Message-State: AOAM5339jpqqCGwRMRIpjhfX7nfY9CDovlTC+VuFD/de/mb502AjSs95
- xiV7ewb8tQfx9MmhVbXSGBUX08u5cIyOiAdl080v0rXtDl3/0A==
-X-Google-Smtp-Source: ABdhPJxfxbrOoBqYhgwMN1FHd94U/QcMTZqsbypSB9DP59c8nitHkqyv7qIslc0RVVZ1JUKtd5OUx2KRWGCZ6L17hxU=
-X-Received: by 2002:a17:906:90d6:: with SMTP id
- v22mr1608070ejw.98.1620934333317; 
- Thu, 13 May 2021 12:32:13 -0700 (PDT)
+ bh=iIpBLIMzGRYvskHBSahQGRziaVdJQLwsrKUZiZHBGVk=;
+ b=BsORhsm6sMzUn+Ma8G55db2jNzZP2B5amQDz99YYeyODtKTW5n0asMgDSz6rew7+ff
+ LdTo2suZ3nLYLDKdq0K3BX6hLwUAvSKoTHbeTJSfvihPPRftkZUnXLHGuaB/ziBs/DNm
+ zFzzdhqdX133M5TmiHO1QMFK08Okp2VGAJ93LYlRbue+xPMmuRo3TuBfE8hsDXW0qAYP
+ /G7PjUwMT3+9YkZrMxpNsgJHqX4oE2ZuBLLqITfg0vVt3L4wZN7uf9VrxKlAFkuBAfUe
+ GAMjYAy22QsfJkevvltgYBtpkeM0+SFkqpGpAMkn6y2NpESwo2ORgtkvU0k8fAvGKN0G
+ b4Bw==
+X-Gm-Message-State: AOAM530eodXpR1dseMcuu/jSCAFGJK6pJ60Ugck6HpwdgzoD2HIb6jNE
+ BIKoxrvi4B1kdpV72Q370ymq6L9OgG4n+nx3LqE=
+X-Google-Smtp-Source: ABdhPJx2Sn/rqiuYPzYo2n3PVEm7ktU/RhgCvCnZ3syyFNw9yyA2/11QenPl2PtDbZx3f34Ft1v+g5xmanRJlGqiOGQ=
+X-Received: by 2002:a17:906:7c9:: with SMTP id m9mr493331ejc.98.1622067651563; 
+ Wed, 26 May 2021 15:20:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <1620904043-71858-1-git-send-email-jiapeng.chong@linux.alibaba.com>
-In-Reply-To: <1620904043-71858-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+References: <20210526070337.28130-1-rdunlap@infradead.org>
+In-Reply-To: <20210526070337.28130-1-rdunlap@infradead.org>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Thu, 13 May 2021 12:32:02 -0700
-Message-ID: <CAMo8BfLAsoADU_9G9ZB4PRbw7b98vkRzXpgiB12RkXx1g5aGqA@mail.gmail.com>
-To: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+Date: Wed, 26 May 2021 15:20:40 -0700
+Message-ID: <CAMo8Bf+2GMnsaxKCKKWHDNDGA9MpyTcKzf9LTLhEXPtT9CBCxg@mail.gmail.com>
+To: Randy Dunlap <rdunlap@infradead.org>
 Cc: LKML <linux-kernel@vger.kernel.org>,
  "open list:TENSILICA XTENSA PORT \(xtensa\)"
  <linux-xtensa@linux-xtensa.org>
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: Fix duplicate included
-	linux/unaligned/generic.h
+Subject: Re: [Linux-Xtensa] [PATCH] xtensa: fix kconfig unmet dependency
+	warning for HAVE_FUTEX_CMPXCHG
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -70,32 +69,27 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Hi Jiapeng,
-
-On Thu, May 13, 2021 at 4:07 AM Jiapeng Chong
-<jiapeng.chong@linux.alibaba.com> wrote:
+On Wed, May 26, 2021 at 12:03 AM Randy Dunlap <rdunlap@infradead.org> wrote:
 >
-> Clean up the following includecheck warning:
+> XTENSA should only select HAVE_FUTEX_CMPXCHG when FUTEX is
+> set/enabled. This prevents a kconfig warning.
 >
-> ./arch/xtensa/include/asm/unaligned.h: linux/unaligned/generic.h is
-> included more than once.
+> WARNING: unmet direct dependencies detected for HAVE_FUTEX_CMPXCHG
+>   Depends on [n]: FUTEX [=n]
+>   Selected by [y]:
+>   - XTENSA [=y] && !MMU [=n]
 >
-> No functional change.
->
-> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-> Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+> Fixes: d951ba21b959 ("xtensa: nommu: select HAVE_FUTEX_CMPXCHG")
+> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+> Cc: Max Filippov <jcmvbkbc@gmail.com>
+> Cc: Chris Zankel <chris@zankel.net>
+> Cc: linux-xtensa@linux-xtensa.org
 > ---
->  arch/xtensa/include/asm/unaligned.h | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  arch/xtensa/Kconfig |    2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-There's a patch series from Arnd Bergman that reworks unaligned
-access posted here:
-https://lore.kernel.org/lkml/20210507220813.365382-14-arnd@kernel.org/
-resulting in removal of this file. I don't think it's worth doing this cleanup
-in the meantime.
+Thanks, applied to my xtensa tree.
 
---
-Thanks.
 -- Max
 _______________________________________________
 linux-xtensa mailing list
