@@ -2,56 +2,57 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 82F833922A3
-	for <lists+linux-xtensa@lfdr.de>; Thu, 27 May 2021 00:20:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31DBC3C2345
+	for <lists+linux-xtensa@lfdr.de>; Fri,  9 Jul 2021 14:06:18 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 48FFC67B9;
-	Wed, 26 May 2021 21:54:13 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id DA2736543;
+	Fri,  9 Jul 2021 11:38:00 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
- [209.85.218.52])
- by linux-xtensa.org (Postfix) with ESMTPS id B995A678E
- for <linux-xtensa@linux-xtensa.org>; Wed, 26 May 2021 21:54:09 +0000 (UTC)
-Received: by mail-ej1-f52.google.com with SMTP id lg14so4873121ejb.9
- for <linux-xtensa@linux-xtensa.org>; Wed, 26 May 2021 15:20:52 -0700 (PDT)
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com
+ [209.85.167.43])
+ by linux-xtensa.org (Postfix) with ESMTPS id 4BF9D6541
+ for <linux-xtensa@linux-xtensa.org>; Fri,  9 Jul 2021 11:37:40 +0000 (UTC)
+Received: by mail-lf1-f43.google.com with SMTP id x25so10066719lfu.13
+ for <linux-xtensa@linux-xtensa.org>; Fri, 09 Jul 2021 05:05:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=iIpBLIMzGRYvskHBSahQGRziaVdJQLwsrKUZiZHBGVk=;
- b=sJxFyrkXldH5SDQNfUiH3m80MZZYTYScL+8UQVlYN92NY+S2dLSv/m5JlEYjjr+Oon
- gUak3e0jxOXERLqev5c149Djka1Hz3R+JLCpc1kXbqUtoBHlCSU3RVUSrAT7xZejuh5L
- CuhIO86R2EYoaMduis1UissveAXkNi32/Q7OJOrtaTdrOErRmS3RsE6Ibp3ZD4zs0Y5p
- 8WFIu+E0xyLi0mWugdIm/R3uSzeJIh1F/wxXA9MVg39UU19ZglB0WgQ66V79q6fOEdRn
- 6uTNRG2lSuh0tLBMzdYVUUacnAaCADGsUzgOHLyZRs9XvS35PRB0Ua7V+GKLmqi5Ek1v
- gcQg==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=HC3TFVQETt12BDyl6iqYoB6JjOT22n0xQEi68NzER/g=;
+ b=JDqPMkLoBFDWAiSLbbp0X/e5Rlas72BS6rdCol34Q2vhzGcDTwlajprSXKrPx7K5Ul
+ SwglmConpphoedvpXxkfRbbcG8HOkIFMTjWSpOrKJf9wP5cqIJcpn8FSXBw1TN3Tjjfq
+ uStED7FFYE+Z71LZEfnMMKi/h1jekeLjkU5JFTeF2TP1ixOMmaoIKrh1etQN/3V0+wKT
+ +oQq0P+NonXAaDXdu6L//bIjy6J49pgNCTtn5q6LUbUnOxRTV5m1sFpXJDmICtkDVcoJ
+ mfZ1bYegJf+1FpiofhelbxKmTRtMfCuroik1yJ0qEyRYBWTwSIZTC53rHd4nObvn8Y4h
+ c5mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=iIpBLIMzGRYvskHBSahQGRziaVdJQLwsrKUZiZHBGVk=;
- b=BsORhsm6sMzUn+Ma8G55db2jNzZP2B5amQDz99YYeyODtKTW5n0asMgDSz6rew7+ff
- LdTo2suZ3nLYLDKdq0K3BX6hLwUAvSKoTHbeTJSfvihPPRftkZUnXLHGuaB/ziBs/DNm
- zFzzdhqdX133M5TmiHO1QMFK08Okp2VGAJ93LYlRbue+xPMmuRo3TuBfE8hsDXW0qAYP
- /G7PjUwMT3+9YkZrMxpNsgJHqX4oE2ZuBLLqITfg0vVt3L4wZN7uf9VrxKlAFkuBAfUe
- GAMjYAy22QsfJkevvltgYBtpkeM0+SFkqpGpAMkn6y2NpESwo2ORgtkvU0k8fAvGKN0G
- b4Bw==
-X-Gm-Message-State: AOAM530eodXpR1dseMcuu/jSCAFGJK6pJ60Ugck6HpwdgzoD2HIb6jNE
- BIKoxrvi4B1kdpV72Q370ymq6L9OgG4n+nx3LqE=
-X-Google-Smtp-Source: ABdhPJx2Sn/rqiuYPzYo2n3PVEm7ktU/RhgCvCnZ3syyFNw9yyA2/11QenPl2PtDbZx3f34Ft1v+g5xmanRJlGqiOGQ=
-X-Received: by 2002:a17:906:7c9:: with SMTP id m9mr493331ejc.98.1622067651563; 
- Wed, 26 May 2021 15:20:51 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210526070337.28130-1-rdunlap@infradead.org>
-In-Reply-To: <20210526070337.28130-1-rdunlap@infradead.org>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=HC3TFVQETt12BDyl6iqYoB6JjOT22n0xQEi68NzER/g=;
+ b=r1VKZmvVAcVnMuIFdl6WWTNUUYVkd0k/OIPe2QpeDRixK7SIcyQY6qnLmPZFeLuFFA
+ Pzn1uuVxDaZ69eL0hTxh6z17BZq2zRkWlNLH2pXl1sIR0QDzY0lCdnxV0akhF9/v1Ix6
+ MFpgPK2SZE7nGN9UTSE48Z8SvsXYjm5CeKFLIZJs4Uou3BdnUbtSWM/+bBsH6uQEPuDv
+ tnBnbpqjfqAt0pEMhTlrDwmc9/pNO9mCRAAUZFGUnHeq4lSLPklGLl4kq6nNWpHqwRb1
+ i1/PCJTYuV3oOd+lykAXFtXAMKbZLQvyKEd6djAxjWoMF2q5w65TP/lLIK1wDF8wrwls
+ NsVg==
+X-Gm-Message-State: AOAM533ViVYnefWtRzk+KzA6t4USYTMz8AAlnmafl2kcazaMoCydKs7x
+ N3Bwgmm7A9nEWaLwbOTK3c2Wep3vj68zeA==
+X-Google-Smtp-Source: ABdhPJzAegaVvFnJ0lgzhNSBk18tRRuAn1UZGgi0QGaqH00c4Y2Y60YTShTgw+5NWGIpKQod6qkwQA==
+X-Received: by 2002:a19:e05c:: with SMTP id g28mr28826388lfj.299.1625832352025; 
+ Fri, 09 Jul 2021 05:05:52 -0700 (PDT)
+Received: from octofox.metropolis ([5.18.185.11])
+ by smtp.gmail.com with ESMTPSA id q15sm583586ljg.126.2021.07.09.05.05.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 09 Jul 2021 05:05:51 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Wed, 26 May 2021 15:20:40 -0700
-Message-ID: <CAMo8Bf+2GMnsaxKCKKWHDNDGA9MpyTcKzf9LTLhEXPtT9CBCxg@mail.gmail.com>
-To: Randy Dunlap <rdunlap@infradead.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>
-Subject: Re: [Linux-Xtensa] [PATCH] xtensa: fix kconfig unmet dependency
-	warning for HAVE_FUTEX_CMPXCHG
+To: linux-xtensa@linux-xtensa.org
+Date: Fri,  9 Jul 2021 05:05:42 -0700
+Message-Id: <20210709120542.11551-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: linux-kernel@vger.kernel.org, Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: add fairness to IRQ handling
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -69,28 +70,49 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Wed, May 26, 2021 at 12:03 AM Randy Dunlap <rdunlap@infradead.org> wrote:
->
-> XTENSA should only select HAVE_FUTEX_CMPXCHG when FUTEX is
-> set/enabled. This prevents a kconfig warning.
->
-> WARNING: unmet direct dependencies detected for HAVE_FUTEX_CMPXCHG
->   Depends on [n]: FUTEX [=n]
->   Selected by [y]:
->   - XTENSA [=y] && !MMU [=n]
->
-> Fixes: d951ba21b959 ("xtensa: nommu: select HAVE_FUTEX_CMPXCHG")
-> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-> Cc: Max Filippov <jcmvbkbc@gmail.com>
-> Cc: Chris Zankel <chris@zankel.net>
-> Cc: linux-xtensa@linux-xtensa.org
-> ---
->  arch/xtensa/Kconfig |    2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Track which IRQs have been served at each level to make sure that no IRQ
+is served more than once while other IRQs at the same level are pending.
 
-Thanks, applied to my xtensa tree.
+Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+---
+ arch/xtensa/kernel/traps.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
--- Max
+diff --git a/arch/xtensa/kernel/traps.c b/arch/xtensa/kernel/traps.c
+index efc3a29cde80..874b6efc6fb3 100644
+--- a/arch/xtensa/kernel/traps.c
++++ b/arch/xtensa/kernel/traps.c
+@@ -268,6 +268,7 @@ void do_interrupt(struct pt_regs *regs)
+ 		XCHAL_INTLEVEL7_MASK,
+ 	};
+ 	struct pt_regs *old_regs;
++	unsigned unhandled = ~0u;
+ 
+ 	trace_hardirqs_off();
+ 
+@@ -283,6 +284,10 @@ void do_interrupt(struct pt_regs *regs)
+ 		for (level = LOCKLEVEL; level > 0; --level) {
+ 			if (int_at_level & int_level_mask[level]) {
+ 				int_at_level &= int_level_mask[level];
++				if (int_at_level & unhandled)
++					int_at_level &= unhandled;
++				else
++					unhandled |= int_level_mask[level];
+ 				break;
+ 			}
+ 		}
+@@ -290,6 +295,8 @@ void do_interrupt(struct pt_regs *regs)
+ 		if (level == 0)
+ 			break;
+ 
++		/* clear lowest pending irq in the unhandled mask */
++		unhandled ^= (int_at_level & -int_at_level);
+ 		do_IRQ(__ffs(int_at_level), regs);
+ 	}
+ 
+-- 
+2.20.1
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
