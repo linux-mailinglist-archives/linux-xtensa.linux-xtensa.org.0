@@ -2,57 +2,57 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 31DBC3C2345
-	for <lists+linux-xtensa@lfdr.de>; Fri,  9 Jul 2021 14:06:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D349A3D387E
+	for <lists+linux-xtensa@lfdr.de>; Fri, 23 Jul 2021 12:18:25 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id DA2736543;
-	Fri,  9 Jul 2021 11:38:00 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 17DB466C4;
+	Fri, 23 Jul 2021 09:49:41 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com
- [209.85.167.43])
- by linux-xtensa.org (Postfix) with ESMTPS id 4BF9D6541
- for <linux-xtensa@linux-xtensa.org>; Fri,  9 Jul 2021 11:37:40 +0000 (UTC)
-Received: by mail-lf1-f43.google.com with SMTP id x25so10066719lfu.13
- for <linux-xtensa@linux-xtensa.org>; Fri, 09 Jul 2021 05:05:54 -0700 (PDT)
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com
+ [209.85.208.45])
+ by linux-xtensa.org (Postfix) with ESMTPS id 8233566C2
+ for <linux-xtensa@linux-xtensa.org>; Fri, 23 Jul 2021 09:49:34 +0000 (UTC)
+Received: by mail-ed1-f45.google.com with SMTP id df26so1082390edb.9
+ for <linux-xtensa@linux-xtensa.org>; Fri, 23 Jul 2021 03:18:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=HC3TFVQETt12BDyl6iqYoB6JjOT22n0xQEi68NzER/g=;
- b=JDqPMkLoBFDWAiSLbbp0X/e5Rlas72BS6rdCol34Q2vhzGcDTwlajprSXKrPx7K5Ul
- SwglmConpphoedvpXxkfRbbcG8HOkIFMTjWSpOrKJf9wP5cqIJcpn8FSXBw1TN3Tjjfq
- uStED7FFYE+Z71LZEfnMMKi/h1jekeLjkU5JFTeF2TP1ixOMmaoIKrh1etQN/3V0+wKT
- +oQq0P+NonXAaDXdu6L//bIjy6J49pgNCTtn5q6LUbUnOxRTV5m1sFpXJDmICtkDVcoJ
- mfZ1bYegJf+1FpiofhelbxKmTRtMfCuroik1yJ0qEyRYBWTwSIZTC53rHd4nObvn8Y4h
- c5mQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=FBPRKY3kAU7k5qQgFJyXkiaf1woJOD/WKKAjcqGHd5U=;
+ b=hkYhqb+jNLAqV05N76rJ81VuMYz8g6RicGw00y/l3CFcIHdn7GaLggMFnHYy70sZYJ
+ mTeZZ1a1OKe5GW27ABJqWKTACATxk+3V8P9iAvSzg9xzq/gBGNRKcwNqpTj2s6H/Ydgj
+ 1OUxVyw/RkETRVb8coSDiE+5+XAI0jfpXpZ2yDTfHbLDqdlhW8v/xFD/SXy+N+pWLo8c
+ FaNFz4yBP2VA8LwWSZciw/W8B68pJn/ZSVph6OwF3So7crEVZXeatwvUszBzXqnllAaF
+ TYgMrz/PxzIt0uVjJjALEiSTnm094dd1RtbaCPinu9Wr8EW9YqeOJJ88yvqVep5mv3Yc
+ iixg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=HC3TFVQETt12BDyl6iqYoB6JjOT22n0xQEi68NzER/g=;
- b=r1VKZmvVAcVnMuIFdl6WWTNUUYVkd0k/OIPe2QpeDRixK7SIcyQY6qnLmPZFeLuFFA
- Pzn1uuVxDaZ69eL0hTxh6z17BZq2zRkWlNLH2pXl1sIR0QDzY0lCdnxV0akhF9/v1Ix6
- MFpgPK2SZE7nGN9UTSE48Z8SvsXYjm5CeKFLIZJs4Uou3BdnUbtSWM/+bBsH6uQEPuDv
- tnBnbpqjfqAt0pEMhTlrDwmc9/pNO9mCRAAUZFGUnHeq4lSLPklGLl4kq6nNWpHqwRb1
- i1/PCJTYuV3oOd+lykAXFtXAMKbZLQvyKEd6djAxjWoMF2q5w65TP/lLIK1wDF8wrwls
- NsVg==
-X-Gm-Message-State: AOAM533ViVYnefWtRzk+KzA6t4USYTMz8AAlnmafl2kcazaMoCydKs7x
- N3Bwgmm7A9nEWaLwbOTK3c2Wep3vj68zeA==
-X-Google-Smtp-Source: ABdhPJzAegaVvFnJ0lgzhNSBk18tRRuAn1UZGgi0QGaqH00c4Y2Y60YTShTgw+5NWGIpKQod6qkwQA==
-X-Received: by 2002:a19:e05c:: with SMTP id g28mr28826388lfj.299.1625832352025; 
- Fri, 09 Jul 2021 05:05:52 -0700 (PDT)
-Received: from octofox.metropolis ([5.18.185.11])
- by smtp.gmail.com with ESMTPSA id q15sm583586ljg.126.2021.07.09.05.05.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 09 Jul 2021 05:05:51 -0700 (PDT)
-From: Max Filippov <jcmvbkbc@gmail.com>
-To: linux-xtensa@linux-xtensa.org
-Date: Fri,  9 Jul 2021 05:05:42 -0700
-Message-Id: <20210709120542.11551-1-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.20.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=FBPRKY3kAU7k5qQgFJyXkiaf1woJOD/WKKAjcqGHd5U=;
+ b=boizvSvG1FoS21MPVG0jzTgK0WpmraZWfszxPKUpbUvYrqsvRSI5hWKip25Wefc3ih
+ iUO83UgqCBgs3gACzBVuQhqGiSmdXPvGEBXfSdcZKPJ0rc4/0nbA92Krd4GiXlR5cy/U
+ IOqjLURGp0Z/xOo+N8D770HUI5P0CQWz/gzmYxfROluN6rp/SHml5g4hMy4htfRkWqPA
+ Az757cs6L6oWbXmpP1h4X2NAVtWsmyNu5r9RqpL+VdUqggJfdqvrXH4Odzp/hx0uA29T
+ cftaDemY5ORmyfha3X8tErBzwvzkaXPaJQJ01yl1PxdSJtVssXtPFv81n+2JDOTuLLbL
+ tBOw==
+X-Gm-Message-State: AOAM533xWMvb9y9FQSROkcEWMNpAbVa1v958/hsMbbAPJLKRjnr7PDQz
+ ysBf43YesFlMX0VcEJ282xFWuPPcif88X/Mq2ZM=
+X-Google-Smtp-Source: ABdhPJw2Ynvl7onUFB8T7RfBl9YWi2ELmdwKrnUPYTZpXvVDDoy4Uf6lMGaBkm6qck3YoWSYv+Eb+kS9i2d9p7EoC8w=
+X-Received: by 2002:aa7:c1ca:: with SMTP id d10mr4479428edp.107.1627035497315; 
+ Fri, 23 Jul 2021 03:18:17 -0700 (PDT)
 MIME-Version: 1.0
-Cc: linux-kernel@vger.kernel.org, Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: add fairness to IRQ handling
+References: <20210723074317.32690-1-jslaby@suse.cz>
+ <20210723074317.32690-2-jslaby@suse.cz>
+In-Reply-To: <20210723074317.32690-2-jslaby@suse.cz>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Fri, 23 Jul 2021 03:18:05 -0700
+Message-ID: <CAMo8Bf+Hm+qg_oUjN6P8ATOqXxHFBPnXA3D9SG+X4P3+wDzPjw@mail.gmail.com>
+To: Jiri Slaby <jslaby@suse.cz>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>, LKML <linux-kernel@vger.kernel.org>,
+ linux-serial@vger.kernel.org
+Subject: Re: [Linux-Xtensa] [PATCH 1/8] xtensa: ISS: don't panic in rs_init
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -70,49 +70,33 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Track which IRQs have been served at each level to make sure that no IRQ
-is served more than once while other IRQs at the same level are pending.
+On Fri, Jul 23, 2021 at 12:43 AM Jiri Slaby <jslaby@suse.cz> wrote:
+>
+> While alloc_tty_driver failure in rs_init would mean we have much bigger
+> problem, there is no reason to panic when tty_register_driver fails
+> there. It can fail for various reasons.
+>
+> So handle the failure gracefully. Actually handle them both while at it.
+> This will make at least the console functional as it was enabled earlier
+> by console_initcall in iss_console_init. Instead of shooting down the
+> whole system.
+>
+> We move tty_port_init() after alloc_tty_driver(), so that we don't need
+> to destroy the port in case the latter function fails.
+>
+> Signed-off-by: Jiri Slaby <jslaby@suse.cz>
+> Cc: Chris Zankel <chris@zankel.net>
+> Cc: Max Filippov <jcmvbkbc@gmail.com>
+> Cc: linux-xtensa@linux-xtensa.org
+> ---
+>  arch/xtensa/platforms/iss/console.c | 17 ++++++++++++++---
+>  1 file changed, 14 insertions(+), 3 deletions(-)
 
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
----
- arch/xtensa/kernel/traps.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+Acked-by: Max Filippov <jcmvbkbc@gmail.com>
 
-diff --git a/arch/xtensa/kernel/traps.c b/arch/xtensa/kernel/traps.c
-index efc3a29cde80..874b6efc6fb3 100644
---- a/arch/xtensa/kernel/traps.c
-+++ b/arch/xtensa/kernel/traps.c
-@@ -268,6 +268,7 @@ void do_interrupt(struct pt_regs *regs)
- 		XCHAL_INTLEVEL7_MASK,
- 	};
- 	struct pt_regs *old_regs;
-+	unsigned unhandled = ~0u;
- 
- 	trace_hardirqs_off();
- 
-@@ -283,6 +284,10 @@ void do_interrupt(struct pt_regs *regs)
- 		for (level = LOCKLEVEL; level > 0; --level) {
- 			if (int_at_level & int_level_mask[level]) {
- 				int_at_level &= int_level_mask[level];
-+				if (int_at_level & unhandled)
-+					int_at_level &= unhandled;
-+				else
-+					unhandled |= int_level_mask[level];
- 				break;
- 			}
- 		}
-@@ -290,6 +295,8 @@ void do_interrupt(struct pt_regs *regs)
- 		if (level == 0)
- 			break;
- 
-+		/* clear lowest pending irq in the unhandled mask */
-+		unhandled ^= (int_at_level & -int_at_level);
- 		do_IRQ(__ffs(int_at_level), regs);
- 	}
- 
 -- 
-2.20.1
-
+Thanks.
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
