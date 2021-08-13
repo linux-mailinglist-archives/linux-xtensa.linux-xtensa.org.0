@@ -2,57 +2,58 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 333923EAFB4
-	for <lists+linux-xtensa@lfdr.de>; Fri, 13 Aug 2021 07:37:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 612FB3EAFB6
+	for <lists+linux-xtensa@lfdr.de>; Fri, 13 Aug 2021 07:37:50 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id F094665E5;
-	Fri, 13 Aug 2021 05:07:50 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 83C3965E6;
+	Fri, 13 Aug 2021 05:08:21 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
- [209.85.218.51])
- by linux-xtensa.org (Postfix) with ESMTPS id 6FAF165E0
- for <linux-xtensa@linux-xtensa.org>; Fri, 13 Aug 2021 05:07:44 +0000 (UTC)
-Received: by mail-ej1-f51.google.com with SMTP id h9so16233131ejs.4
- for <linux-xtensa@linux-xtensa.org>; Thu, 12 Aug 2021 22:37:12 -0700 (PDT)
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
+ [209.85.208.50])
+ by linux-xtensa.org (Postfix) with ESMTPS id 5051765E4
+ for <linux-xtensa@linux-xtensa.org>; Fri, 13 Aug 2021 05:08:16 +0000 (UTC)
+Received: by mail-ed1-f50.google.com with SMTP id v2so3235913edq.10
+ for <linux-xtensa@linux-xtensa.org>; Thu, 12 Aug 2021 22:37:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=kbfFIzCXJXm2mb2HL21fYHsJzsbToxStao3lrf8Xu6s=;
- b=RsSxJ35HiHNogTvJHfC/o7Or10a/19DXuVUr9aKlkfAdrL/E8CpzheEeOKgWyoEu1Z
- m5QXB+VZKQSifYBy6s8OyL85N5LK7DyNURyYguM5wkB4twxScIw0zexGnXlYYjjgrKQ0
- BXZolhKgYbABSxKr3YZEAMroumpYhGg2EbAAlu27lpyFOSrj3EWxdEMignmwM/1iqGOs
- psJdgmxtiBUS5O6CJO9GnPa8pxHjJqCRg5G7NqWfwcsF2T9IRTtH5YSo+eV+Jk87rO77
- JUfzyYNOTGptWPD0shv//P6WHY/ZELmU6lEQ7ETlNH8yuAqOSYLA9Oc0hog4jyw+9vZe
- 6TPw==
+ :cc; bh=suCL3YjNMQtPKfchSOwl+0iVVLdItZKK5YO5Elt5gzk=;
+ b=V2IzV5wVWW4PnkBRNTdsopX/EN275oF7xJoSfShS+A+HQSV3OLa5Ao8iZRH2PG3Ql0
+ r1anD56lxiruOvse43iSGyFJ89UKdzZGk+Bi742mY/FniDILLejY2uTsjKDAYbr1TiO/
+ SWh3lUgqR7CPZ32qRt+nRWBE8ADij6T5gg6G7Uy2TurX8oih7D/B/VC3gh1lqvWyH9Eu
+ fTkexNcmI1ZP2EbWI2ihVFFyJahXspLANbDlB6j0ir5WTUsNPV3e7BcgxVK5naqBOigd
+ JOKYpxkfFc+oAL13GHPQnMSYKGDpcT0ALaDO93KSpoBupEPzO4g2aJr9bW+iDFaUf0um
+ j0UA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=kbfFIzCXJXm2mb2HL21fYHsJzsbToxStao3lrf8Xu6s=;
- b=WUAkJIvJQ0snfhq5YmHXkj6SmY+H6sHvphSk/a/OEmZ5r1PotJBu0HuvOE5Oy3L55o
- lFifK65h2fkmG1+ljQErIKFE8EDYS/S3AIPmJ9+oX6G10Z/Cxm88TZUXKN1BiiAvFUai
- u5/OYIGWeYtVmAivKei9qfAkM8UX5JrX1T8Det/5Arp4SxifdY1WR2BJFMd28UNfcaYe
- bqADmX06byeGtJ8rKem/YbsYBCxHpAWAsYwfYTW+2HXllhhIjc9fFFEGekC/tV1qHf+4
- 8YanEO8o//izZWS+HjcvZSVCb6S8rq8Q6KQ1jklu5CBK9jViBw6BN5Akzy9/LqG0jgOb
- xM/g==
-X-Gm-Message-State: AOAM531eSOXdbba6UxudMd24O6F0GiWWiFCEdrtQlHMjCyrZ93F2t26h
- A2W6bXuAt2lFEc/Oxfa4rvVb0vgBgohHaYJkr80=
-X-Google-Smtp-Source: ABdhPJzgVjmdjPAB+6bo7s+LzEpblcSMEA5+lydV8hrMyCB6P2Ti2ivVZ0/O9/YwPU2BNNizrVGSMx8i1nIle47EqcA=
-X-Received: by 2002:a17:906:5d6:: with SMTP id t22mr811797ejt.98.1628833031203; 
- Thu, 12 Aug 2021 22:37:11 -0700 (PDT)
+ bh=suCL3YjNMQtPKfchSOwl+0iVVLdItZKK5YO5Elt5gzk=;
+ b=uE/hniZ+HJ1BtDalxfvRoaBWiUnH8Sf8G/Z+zq09SiSHAMdkw6y/ALmRagx6Y6zXNv
+ siCCipwzK0GqNj5UYx5jHmVrLw5RM3sONRD5XGukynNxOE7dfJakU7YPIo5L9+Am5LTK
+ Gz2+i91OQgqE3Imt1Tb4H72GMQgi/nRCtyCUay8g2Bd1igam8yvnw+ipaZUD/87PVM2A
+ okkm8LgBLeIEw3l32AuH+td2qh2uetcB0XB1fjpHgCIhRgnN6Fi4/w3bhTMkoxI1v2Dc
+ viLTAD2y5+oqi755cgbRmGPcvCemhczizwvbDrwgZFooay/CwkR09tDQlSgAvcrSlhG2
+ Cp4A==
+X-Gm-Message-State: AOAM530xHMQOth0Xm0lp7TKVe3U2PtegXWjDmE4yl7aWp6a5FPCliLdB
+ V8lCABqHWrAwPbAUIvP97KVWVBLKEbhii/A1x/U=
+X-Google-Smtp-Source: ABdhPJwb3oq+7vDZvlVLZdbZGxduYUGJhdL9mgmIQyKqz21mL1JsvAenurz17ab15RXLl5j7hXIaWhHO3cdDfvW5yeI=
+X-Received: by 2002:a05:6402:10d9:: with SMTP id
+ p25mr851140edu.51.1628833063070; 
+ Thu, 12 Aug 2021 22:37:43 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210811163731.186125-1-masahiroy@kernel.org>
- <20210811163731.186125-2-masahiroy@kernel.org>
-In-Reply-To: <20210811163731.186125-2-masahiroy@kernel.org>
+ <20210811163731.186125-3-masahiroy@kernel.org>
+In-Reply-To: <20210811163731.186125-3-masahiroy@kernel.org>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Thu, 12 Aug 2021 22:36:59 -0700
-Message-ID: <CAMo8BfJSfxQtDFknb8Zs-DzUMbpB3OCk+02Hq03bGzAJagQ65Q@mail.gmail.com>
+Date: Thu, 12 Aug 2021 22:37:31 -0700
+Message-ID: <CAMo8BfKh=bh_Hfo=dZT6urNPBkXVJ_kNXu=a7ZdtwR1RMOV7qw@mail.gmail.com>
 To: Masahiro Yamada <masahiroy@kernel.org>
 Cc: LKML <linux-kernel@vger.kernel.org>,
  "open list:TENSILICA XTENSA PORT \(xtensa\)"
  <linux-xtensa@linux-xtensa.org>
-Subject: Re: [Linux-Xtensa] [PATCH 2/4] xtensa: do not build variants
-	directory
+Subject: Re: [Linux-Xtensa] [PATCH 3/4] xtensa: build platform directories
+	unconditionally
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -72,18 +73,14 @@ Sender: linux-xtensa-bounces@linux-xtensa.org
 
 On Wed, Aug 11, 2021 at 9:38 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
 >
-> None of arch/xtensa/variants/*/ has Makefile, so 'buildvar' is always
-> empty.
->
-> Perhaps, downstream variant code might be dropped in, but given the
-> fact that none of upstream variants builds anything in their variant
-> directory, I doubt this is needed.
+> All of arch/xtensa/platforms/*/ have Makefile. You do not need to
+> check the presence of Makefile.
 >
 > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
 > ---
 >
->  arch/xtensa/Makefile | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
+>  arch/xtensa/Makefile | 7 +------
+>  1 file changed, 1 insertion(+), 6 deletions(-)
 
 Thanks, applied to my xtensa tree.
 
