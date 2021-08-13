@@ -2,58 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 612FB3EAFB6
-	for <lists+linux-xtensa@lfdr.de>; Fri, 13 Aug 2021 07:37:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C8C53EB1FC
+	for <lists+linux-xtensa@lfdr.de>; Fri, 13 Aug 2021 09:52:07 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 83C3965E6;
-	Fri, 13 Aug 2021 05:08:21 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 76C876545;
+	Fri, 13 Aug 2021 07:22:35 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
- [209.85.208.50])
- by linux-xtensa.org (Postfix) with ESMTPS id 5051765E4
- for <linux-xtensa@linux-xtensa.org>; Fri, 13 Aug 2021 05:08:16 +0000 (UTC)
-Received: by mail-ed1-f50.google.com with SMTP id v2so3235913edq.10
- for <linux-xtensa@linux-xtensa.org>; Thu, 12 Aug 2021 22:37:44 -0700 (PDT)
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
+ [209.85.218.45])
+ by linux-xtensa.org (Postfix) with ESMTPS id 8FDF16538
+ for <linux-xtensa@linux-xtensa.org>; Fri, 13 Aug 2021 07:22:27 +0000 (UTC)
+Received: by mail-ej1-f45.google.com with SMTP id h9so16778601ejs.4
+ for <linux-xtensa@linux-xtensa.org>; Fri, 13 Aug 2021 00:51:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=suCL3YjNMQtPKfchSOwl+0iVVLdItZKK5YO5Elt5gzk=;
- b=V2IzV5wVWW4PnkBRNTdsopX/EN275oF7xJoSfShS+A+HQSV3OLa5Ao8iZRH2PG3Ql0
- r1anD56lxiruOvse43iSGyFJ89UKdzZGk+Bi742mY/FniDILLejY2uTsjKDAYbr1TiO/
- SWh3lUgqR7CPZ32qRt+nRWBE8ADij6T5gg6G7Uy2TurX8oih7D/B/VC3gh1lqvWyH9Eu
- fTkexNcmI1ZP2EbWI2ihVFFyJahXspLANbDlB6j0ir5WTUsNPV3e7BcgxVK5naqBOigd
- JOKYpxkfFc+oAL13GHPQnMSYKGDpcT0ALaDO93KSpoBupEPzO4g2aJr9bW+iDFaUf0um
- j0UA==
+ :cc; bh=GK8wq/IOiIxJgDvCUYvsZ+KqziS3kB0R8RP8IZKkltI=;
+ b=LdtOhIxb3CQdyFtsCx0t8s7ZbjdhMVfRroj6e9Bu0C5sIfiz3QfG18dDkFFOms71X7
+ YzdoijNa4rlLVY35Q8Q9s4USIA8xIwu701vncDGBzNCTS9TmPv5S2gNXY3FjysdKL8Bm
+ BfQexaZb9NyOxuE4q+vCMX88srriox7DrdTY68dNcshfDwzcBGveIfAOpXyjtMXwcwyD
+ hrzt+SofXy3JYCi0qad59fBxLsVOiC0ebfeig7sY1mIc43y1VmxVWG6xdi8FyUOG4u2g
+ yEzYIZ9AqqGAWVS7GcokAufeK3LczPFuW+EfClBOx+45MhjdS3xB+xxh0uIzfavVVzqQ
+ JSJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=suCL3YjNMQtPKfchSOwl+0iVVLdItZKK5YO5Elt5gzk=;
- b=uE/hniZ+HJ1BtDalxfvRoaBWiUnH8Sf8G/Z+zq09SiSHAMdkw6y/ALmRagx6Y6zXNv
- siCCipwzK0GqNj5UYx5jHmVrLw5RM3sONRD5XGukynNxOE7dfJakU7YPIo5L9+Am5LTK
- Gz2+i91OQgqE3Imt1Tb4H72GMQgi/nRCtyCUay8g2Bd1igam8yvnw+ipaZUD/87PVM2A
- okkm8LgBLeIEw3l32AuH+td2qh2uetcB0XB1fjpHgCIhRgnN6Fi4/w3bhTMkoxI1v2Dc
- viLTAD2y5+oqi755cgbRmGPcvCemhczizwvbDrwgZFooay/CwkR09tDQlSgAvcrSlhG2
- Cp4A==
-X-Gm-Message-State: AOAM530xHMQOth0Xm0lp7TKVe3U2PtegXWjDmE4yl7aWp6a5FPCliLdB
- V8lCABqHWrAwPbAUIvP97KVWVBLKEbhii/A1x/U=
-X-Google-Smtp-Source: ABdhPJwb3oq+7vDZvlVLZdbZGxduYUGJhdL9mgmIQyKqz21mL1JsvAenurz17ab15RXLl5j7hXIaWhHO3cdDfvW5yeI=
-X-Received: by 2002:a05:6402:10d9:: with SMTP id
- p25mr851140edu.51.1628833063070; 
- Thu, 12 Aug 2021 22:37:43 -0700 (PDT)
+ bh=GK8wq/IOiIxJgDvCUYvsZ+KqziS3kB0R8RP8IZKkltI=;
+ b=KolezvLcVkGNDcIF1EEbc6tvzwDjH7PZ9fs2PmW1dcEDD4pgx+9kDKdNXFvOgaOPOC
+ 0SPVhi7V6uILEorLosA+pdwDpGE9gqHfZJ42FUKrC+uVhFg6XoMnHL+H9EnCaT5hgKZI
+ tlEFkXzutLjdcII8r1Uq+q6lWCchY1oTxjTQippfRFI+2wsL3BL/d/9oImNNxwzbIIIT
+ f0/umCjv2CumixYR2MxcqMCbMRtaGQ/x8pll0a8Ak0XF6geu/eb3dA8cb8QWb4wURbG2
+ Xn1p75Oq0AIFBVQcFrTMe0WfCjh6qQHcQzuxdjDDMd4Ev6XTMSLAAIcFs6+R0FI3SDiU
+ /YvA==
+X-Gm-Message-State: AOAM5332bJrJNpIqrL1UUhXp3kVgrITF2CkMRXoKiaMyDQ/HbMt/QM1V
+ mrUyCoWyAzNZcrx+ZUU6YFgOKoOmKCc5+kPdiTw=
+X-Google-Smtp-Source: ABdhPJwJ5SOLW9apRli3AOrXFL4cVQnh9RqbRN4V3vvm8P4Vzvjl97S95ccpuX4P4FSx16PZBSKVvs7RWqZ+8VFbLCU=
+X-Received: by 2002:a17:907:2096:: with SMTP id
+ pv22mr1220682ejb.443.1628841114413; 
+ Fri, 13 Aug 2021 00:51:54 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210811163731.186125-1-masahiroy@kernel.org>
- <20210811163731.186125-3-masahiroy@kernel.org>
-In-Reply-To: <20210811163731.186125-3-masahiroy@kernel.org>
+ <20210811163731.186125-4-masahiroy@kernel.org>
+ <CAMo8BfJtpUY-FC-cwU5HXSqOSwUwn15kTYWOhx-tsgybPe8mpw@mail.gmail.com>
+ <CAK7LNATERCrQc1gDfJTqGNvFPpS3Xyzk9VErQyaj0kvc10oDeA@mail.gmail.com>
+In-Reply-To: <CAK7LNATERCrQc1gDfJTqGNvFPpS3Xyzk9VErQyaj0kvc10oDeA@mail.gmail.com>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Thu, 12 Aug 2021 22:37:31 -0700
-Message-ID: <CAMo8BfKh=bh_Hfo=dZT6urNPBkXVJ_kNXu=a7ZdtwR1RMOV7qw@mail.gmail.com>
+Date: Fri, 13 Aug 2021 00:51:43 -0700
+Message-ID: <CAMo8Bf+0r7z=ueD571AFyHphcsb2hB3dLo5wMmLF_ELn8Dm_Qg@mail.gmail.com>
 To: Masahiro Yamada <masahiroy@kernel.org>
 Cc: LKML <linux-kernel@vger.kernel.org>,
  "open list:TENSILICA XTENSA PORT \(xtensa\)"
  <linux-xtensa@linux-xtensa.org>
-Subject: Re: [Linux-Xtensa] [PATCH 3/4] xtensa: build platform directories
-	unconditionally
+Subject: Re: [Linux-Xtensa] [PATCH 4/4] xtensa: move core-y in
+	arch/xtensa/Makefile to arch/xtensa/Kbuild
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -71,18 +73,62 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Wed, Aug 11, 2021 at 9:38 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
+On Fri, Aug 13, 2021 at 12:10 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
 >
-> All of arch/xtensa/platforms/*/ have Makefile. You do not need to
-> check the presence of Makefile.
+> On Fri, Aug 13, 2021 at 2:32 PM Max Filippov <jcmvbkbc@gmail.com> wrote:
+> >
+> > On Wed, Aug 11, 2021 at 9:38 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
+> > >
+> > > Use obj-y to clean up Makefile.
+> > >
+> > > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> > > ---
+> > >
+> > >  arch/xtensa/Kbuild             | 1 +
+> > >  arch/xtensa/Makefile           | 3 ---
+> > >  arch/xtensa/platforms/Makefile | 4 ++++
+> > >  3 files changed, 5 insertions(+), 3 deletions(-)
+> > >  create mode 100644 arch/xtensa/platforms/Makefile
+> > >
+> > > diff --git a/arch/xtensa/Kbuild b/arch/xtensa/Kbuild
+> > > index a4e40e534e6a..fd12f61745ba 100644
+> > > --- a/arch/xtensa/Kbuild
+> > > +++ b/arch/xtensa/Kbuild
+> > > @@ -1 +1,2 @@
+> > >  # SPDX-License-Identifier: GPL-2.0-only
+> > > +obj-y += kernel/ mm/ platforms/ boot/dts/
+> > > diff --git a/arch/xtensa/Makefile b/arch/xtensa/Makefile
+> > > index 093e87b889be..96714ef7c89e 100644
+> > > --- a/arch/xtensa/Makefile
+> > > +++ b/arch/xtensa/Makefile
+> > > @@ -58,9 +58,6 @@ KBUILD_DEFCONFIG := iss_defconfig
+> > >  LIBGCC := $(shell $(CC) $(KBUILD_CFLAGS) -print-libgcc-file-name)
+> > >
+> > >  head-y         := arch/xtensa/kernel/head.o
+> > > -core-y         += arch/xtensa/kernel/ arch/xtensa/mm/
+> > > -core-y         += arch/xtensa/platforms/$(platform-y)/
+> > > -core-y                 += arch/xtensa/boot/dts/
+> > >
+> > >  libs-y         += arch/xtensa/lib/ $(LIBGCC)
+> > >
+> > > diff --git a/arch/xtensa/platforms/Makefile b/arch/xtensa/platforms/Makefile
+> > > new file mode 100644
+> > > index 000000000000..e2e7e0726979
+> > > --- /dev/null
+> > > +++ b/arch/xtensa/platforms/Makefile
+> > > @@ -0,0 +1,4 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only
+> > > +obj-$(CONFIG_XTENSA_PLATFORM_XT2000)   += xt2000/
+> > > +obj-$(CONFIG_XTENSA_PLATFORM_ISS)      += iss/
+> > > +obj-$(CONFIG_XTENSA_PLATFORM_XTFPGA)   += xtfpga/
+> >
+> > With this change platform directory names are duplicated in two
+> > makefiles. Can we move them to Kconfig with something like the
+> > following (on top of this change)?
 >
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> ---
->
->  arch/xtensa/Makefile | 7 +------
->  1 file changed, 1 insertion(+), 6 deletions(-)
+> I do not like the idea much for the following reasons.
 
-Thanks, applied to my xtensa tree.
+Ok, thanks for the explanation. Applied the original patch to my xtensa tree.
 
 -- 
 Thanks.
