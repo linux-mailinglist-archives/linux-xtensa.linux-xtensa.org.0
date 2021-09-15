@@ -2,59 +2,64 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A25D40BE14
-	for <lists+linux-xtensa@lfdr.de>; Wed, 15 Sep 2021 05:16:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1530E40C144
+	for <lists+linux-xtensa@lfdr.de>; Wed, 15 Sep 2021 10:10:47 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 6AB016E24;
-	Wed, 15 Sep 2021 02:45:33 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id B03D26D2A;
+	Wed, 15 Sep 2021 07:40:08 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com
- [209.85.215.170])
- by linux-xtensa.org (Postfix) with ESMTPS id 81CA26E05
- for <linux-xtensa@linux-xtensa.org>; Wed, 15 Sep 2021 02:45:30 +0000 (UTC)
-Received: by mail-pg1-f170.google.com with SMTP id r2so1280097pgl.10
- for <linux-xtensa@linux-xtensa.org>; Tue, 14 Sep 2021 20:16:07 -0700 (PDT)
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com
+ [209.85.218.46])
+ by linux-xtensa.org (Postfix) with ESMTPS id AB56B6CDC
+ for <linux-xtensa@linux-xtensa.org>; Wed, 15 Sep 2021 07:40:05 +0000 (UTC)
+Received: by mail-ej1-f46.google.com with SMTP id hx25so4292442ejc.6
+ for <linux-xtensa@linux-xtensa.org>; Wed, 15 Sep 2021 01:10:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=qCQItLYKjDC4XQNJh08kk8mX9beF2rRIynWYvYsubPU=;
- b=NXU2B91QM1tqoQl7jLyXRnXSv05MIg3mG0g0qKkQ8/b0kCsVv3Lu7D+XR0eHdA3xiR
- VXHKzGVq85EISq3X/+laEkPkTjnjAcSxND0PeP0cBoNkoDpi06JhsVBapspVpYq5kpea
- akgZ4CDVvFOcBIx2SyLBMVxG/ur8XWAofGdjiDWNpStpea0OawD5o/hxfYCiEtwo+hTd
- sh/SknZR6L7MhQtvEfeRlzVxQwhGVwOaiEzIkSC5A23mCcDnv+Zjty6Yzncb+3T1YrLU
- 5lLrGr2eHqKC/cAsg2lvfZQZZLkH0yyyU7LfFLwyJ4grZp97655xsSu49KiwdI45Mtdu
- +Mcg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=AVFyY2V27y/UeArEwcODznJwknUl0TaYdAnTamBxHAw=;
+ b=koAf1/HE5zAgwbf9qStT7LXz8vxwVFIBcA+b43uHnMKR8OxWOtIrdUCrWc4cUTBsqq
+ Bt8cfVOBzIsLlZtILynLGbJLAb6OCqwUGGQh6D/vj0F6AAmkeWUmapF2Sl3SK8pROkzQ
+ iph4GCjiPgqNxBetgFB8izA1B9VI9HCrPHqUw8xOW+lxA+EklwhaVn9l22V+f9L7htnJ
+ FFqkvnSIsGdyuNNAhbxIDcGZaRbg2x8jHFCabFrrXEn4ZxQKFnURIeVsIBT/W1mjiq20
+ h/b4KZho//fRjyvXTuTDM9tthvqrUoVAuzITEUzB77AEgzdssYB+ZVDULwhTihlDSl+z
+ ROGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=qCQItLYKjDC4XQNJh08kk8mX9beF2rRIynWYvYsubPU=;
- b=g20BI64h8My1LfyvztM6q/Rb2yIuiX1TXsiTm0ZrynoxBHOlJRGuHUT8n8wxSDhGHs
- PqaylauyXjIBknn6fI8B5WXyxDtKiVlXWHIt/mnfOGF5VSkNuda00u0Wk9WIqNDi8Rps
- r+4YQrRmLXOrRGnIu8gZ9tCtevYD/wGG576XnZbXaycIOo4rNGAKKEGigxoVxYFqv/FA
- O1V6bkXd39aLPcv6guewPIfmotRSD3jxSTo5+84+xJkNvaMRMuhGRt6+xDinuAzmpY6F
- OXALqK3ZC6c2VLMl0/8ffYzbzwxVSTah77cK7db40TH8k4lgO8a3f6FzVyB0afgeOnAN
- qeOw==
-X-Gm-Message-State: AOAM5311Qh2dLGUF2haeaaZx0xK6RQlUb4oqCVIjLTq688kOVcRkGv3U
- EIk+gHlR3z4P3RpD0TExPr4=
-X-Google-Smtp-Source: ABdhPJzm5aZfo8Tt7xpNy1+Yx24lXryrfYnAdYFGliPAPdQZiCOaCeZqwTp8VcRfAyYJd0joMCRJMA==
-X-Received: by 2002:a05:6a00:1396:b0:40d:bb7c:92d0 with SMTP id
- t22-20020a056a00139600b0040dbb7c92d0mr8280714pfg.38.1631675766782; 
- Tue, 14 Sep 2021 20:16:06 -0700 (PDT)
-Received: from octofox.hsd1.ca.comcast.net
- ([2601:641:401:1d20:cc92:5b36:c2f0:9715])
- by smtp.gmail.com with ESMTPSA id b10sm11453473pfi.122.2021.09.14.20.16.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Sep 2021 20:16:06 -0700 (PDT)
-From: Max Filippov <jcmvbkbc@gmail.com>
-To: gcc-patches@gcc.gnu.org
-Date: Tue, 14 Sep 2021 20:15:51 -0700
-Message-Id: <20210915031551.16548-1-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.20.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=AVFyY2V27y/UeArEwcODznJwknUl0TaYdAnTamBxHAw=;
+ b=QWCAWzB4Cj7K8sLgey8SLiJw85PCAcuelRtGHOuOmO0eQeqrKVwDUs5oU+63rUsygy
+ G/gWdZheGR9hR2cB9ugpgWWg7d3uFV6o+t+QCVYhZkELpe72gLNHkoM3aM9txvBy6aDf
+ /JQwWQO8Tl1Ni51yQP8HWA397KAQMnr5BML2uAvCzBnlvoR6tDA9URETZ2rJG1fT/UvJ
+ CREya/mEJ8mbB5Dklt7EXI/Tk9SG+LIsRiHPRBsan+xmk9yBXgBVxDoyTbCp34cIsYgL
+ QAkU30vW9kKPSaYbiLwwCM8bjmcLy+MHHT2o7fcRWCyrnsTWRH9v7yoa01dRtJaQWWfY
+ Y/lA==
+X-Gm-Message-State: AOAM532CBokmpEtuo7wluAI3ZeXt8Qzch7oDxoE7YSl58ZJWTIV6Was0
+ MlnIWcegaiWsv/hKRWpnLbTMXgvof+1tS9lrt3U=
+X-Google-Smtp-Source: ABdhPJwcmv6EgSdHJnibcbLmqURiWSWrF2pUoqr/JXaT8CAFUkSiBYz/TDLqlzgGEehjVnqwzZsHZ5InM4Y3GGUNsQk=
+X-Received: by 2002:a17:906:7208:: with SMTP id
+ m8mr23644303ejk.82.1631693442497; 
+ Wed, 15 Sep 2021 01:10:42 -0700 (PDT)
 MIME-Version: 1.0
-Cc: linux-xtensa@linux-xtensa.org, Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [COMMITTED] gcc: xtensa: fix PR target/102336
+References: <20210914091134.17426-1-jslaby@suse.cz>
+ <20210914091415.17918-1-jslaby@suse.cz>
+ <20210914091415.17918-5-jslaby@suse.cz>
+In-Reply-To: <20210914091415.17918-5-jslaby@suse.cz>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Wed, 15 Sep 2021 01:10:31 -0700
+Message-ID: <CAMo8BfKasYTwB935oxvuJjpv_yBhkxbo8P3nzxaq1_1QgZHUBw@mail.gmail.com>
+To: Jiri Slaby <jslaby@suse.cz>
+Cc: "open list:PARISC ARCHITECTURE" <linux-parisc@vger.kernel.org>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Helge Deller <deller@gmx.de>,
+ linux-um@lists.infradead.org, LKML <linux-kernel@vger.kernel.org>,
+ "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+ linux-serial@vger.kernel.org, Richard Weinberger <richard@nod.at>,
+ Jeff Dike <jdike@addtoit.com>, Anton Ivanov <anton.ivanov@cambridgegreys.com>
+Subject: Re: [Linux-Xtensa] [PATCH 12/16] tty: arch/,
+	stop using tty_flip_buffer_push
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -72,27 +77,32 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-2021-09-14  Max Filippov  <jcmvbkbc@gmail.com>
-gcc/
-	PR target/102336
-	* config/xtensa/t-xtensa (TM_H): Add include/xtensa-config.h.
----
- gcc/config/xtensa/t-xtensa | 1 +
- 1 file changed, 1 insertion(+)
+On Tue, Sep 14, 2021 at 2:14 AM Jiri Slaby <jslaby@suse.cz> wrote:
+>
+> Since commit a9c3f68f3cd8d (tty: Fix low_latency BUG) in 2014,
+> tty_flip_buffer_push() is only a wrapper to tty_schedule_flip(). We are
+> going to remove the former, so call the latter directly in arch/.
+>
+> Signed-off-by: Jiri Slaby <jslaby@suse.cz>
+> Cc: "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>
+> Cc: Helge Deller <deller@gmx.de>
+> Cc: Jeff Dike <jdike@addtoit.com>
+> Cc: Richard Weinberger <richard@nod.at>
+> Cc: Anton Ivanov <anton.ivanov@cambridgegreys.com>
+> Cc: Chris Zankel <chris@zankel.net>
+> Cc: Max Filippov <jcmvbkbc@gmail.com>
+> Cc: linux-parisc@vger.kernel.org
+> Cc: linux-um@lists.infradead.org
+> Cc: linux-xtensa@linux-xtensa.org
+> ---
 
-diff --git a/gcc/config/xtensa/t-xtensa b/gcc/config/xtensa/t-xtensa
-index 973815c8c2d6..d06e49280545 100644
---- a/gcc/config/xtensa/t-xtensa
-+++ b/gcc/config/xtensa/t-xtensa
-@@ -16,4 +16,5 @@
- # along with GCC; see the file COPYING3.  If not see
- # <http://www.gnu.org/licenses/>.
- 
-+TM_H += $(srcdir)/../include/xtensa-config.h
- $(out_object_file): gt-xtensa.h
+>  arch/xtensa/platforms/iss/console.c | 2 +-
+
+Acked-by: Max Filippov <jcmvbkbc@gmail.com>
+
 -- 
-2.20.1
-
+Thanks.
+-- Max
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
