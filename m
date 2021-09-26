@@ -2,57 +2,61 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 6230E418A93
-	for <lists+linux-xtensa@lfdr.de>; Sun, 26 Sep 2021 20:56:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCF3B418ABE
+	for <lists+linux-xtensa@lfdr.de>; Sun, 26 Sep 2021 21:21:51 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 36CCF6823;
-	Sun, 26 Sep 2021 18:25:22 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 03EFC67DA;
+	Sun, 26 Sep 2021 18:50:46 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com
- [209.85.208.46])
- by linux-xtensa.org (Postfix) with ESMTPS id 1615A681F
- for <linux-xtensa@linux-xtensa.org>; Sun, 26 Sep 2021 18:25:09 +0000 (UTC)
-Received: by mail-ed1-f46.google.com with SMTP id l8so11958216edw.2
- for <linux-xtensa@linux-xtensa.org>; Sun, 26 Sep 2021 11:56:10 -0700 (PDT)
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
+ [209.85.214.169])
+ by linux-xtensa.org (Postfix) with ESMTPS id 0F03B67D3
+ for <linux-xtensa@linux-xtensa.org>; Sun, 26 Sep 2021 18:50:37 +0000 (UTC)
+Received: by mail-pl1-f169.google.com with SMTP id y1so10231653plk.10
+ for <linux-xtensa@linux-xtensa.org>; Sun, 26 Sep 2021 12:21:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=euhjRyQ0dvhOzaWisAQrBRgkNaU3wGFLRW2qXQGz1q8=;
- b=IxZPnAMq/V0yqSjNHnrnmPO58IzCuok1uPDSKG7Gqv7WODWcY1/mqLEBY8qhWMVLoj
- 20PkSsmW5mt0Zq1gjPxWRAnR55SQtyq5/b6NU1W7RSqqU94NjHQhpyJruyKgN7Hg1KI6
- V3E/kDJ31FJNtTvyyAvQpC0d+dwPO5fa1MTE7cIL+ML0LsKZdYQtvnLame7E+GK360Eo
- 4NK8AAH59aDI9ZpWZFNEaDplCStGbvxRyy/Yg39dAmLbQbscLt7VSlnCtTBfTCGbLR9G
- Vx6S34wa+krhh3zIvJm3PhdnuoAp6GO0D6RY5wIRAwTHondg4rtHTzF2I2O0Qf9WT9+1
- 5hXA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=8VoC22VdCllOXZFZ1LpEuBes/M4AcpmZRe4ChismgTw=;
+ b=FB+sD0lH8m3BwjrgcAS4fuDSbMgqQA8XKScYogSP2U9uTMifHqFqUc4+8Z59GBAZSt
+ FOIUXHF5HQaaXgjkAjl7oUmw1jA2RXW0Leb2Vhe+Yyw6Ipy4J+zx5VhfHB8v6XpLYZm+
+ 43L1CIF1yb4YeSfklNS2gBUHAj8arIlU+ZVhywtNDgTIGlGN/GBA7WfDZ7U/UL0wwz4m
+ KW7pLiut9pLXNBcF4YTXSQPa7ABQRBtcuDM+6lUlPYGu6WuLGctFnwED8ai1JYaBJtT4
+ k9bfMvs15P0MXgxywYwBCAO0VNMCB+U5JqpAwuqRsOS0kw7VN+TPBZZKjpTlu2K+MOD6
+ LEaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=euhjRyQ0dvhOzaWisAQrBRgkNaU3wGFLRW2qXQGz1q8=;
- b=uyHNLIjzF4raO8luRP0mNgCsz/dejlevuCIwFElVEvaiKVfXiZ5LNUXT86CjvbzEtC
- VojjweC8QPkXa/OPEKg5AQRERub2yh507uiflytLoG6WsPStWb6wqns1H1zKAGXsT/mK
- P9+F2k2nbEWrsG3id36is3b9TqAgurI3WiL4Z/ZnKBpqcUdHTTW25gGtwdvx3H2XRnlt
- muFcf03BPamRV6MgSaTR5DeXSIuWmjNYx1meRh7lJzT4Hv7zoGBTuwhIALHiK8qSbqy8
- RuLxxZrufqutDYxkuHIjI2U+wj+28KH8RWLGSn2QPGQfYAbgLJMezrvzQL1wHUst4yYI
- NL2A==
-X-Gm-Message-State: AOAM5302RAS97xFflbQVY3s2DK+nESCwepr7VRho6NebZ14cqVc/TNz+
- RTX5jxoc41EnxP0fXr+CNZB1cugvfv5z4CA1BO4=
-X-Google-Smtp-Source: ABdhPJxDX5PpX9LV+llk+yPx86d6jhgF+t80r4FXedvPh9uMo8q8Oa+H7Fz+NT7mJ+ExOflwi23D2D3oooYsnQ2EjmY=
-X-Received: by 2002:a17:906:7208:: with SMTP id
- m8mr22939415ejk.82.1632682568970; 
- Sun, 26 Sep 2021 11:56:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210925032951.6767-1-rdunlap@infradead.org>
-In-Reply-To: <20210925032951.6767-1-rdunlap@infradead.org>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=8VoC22VdCllOXZFZ1LpEuBes/M4AcpmZRe4ChismgTw=;
+ b=5iqc4jzBRCGwTK8M9RcI5a3KJVogb4s1OmUU33i7DtThevqtUc4iMNSjZ2qQ4Pneqh
+ 2Yqp39ikdXmiGyhvEqTxAN9YXBk4rdkgvDV27E4mj9HPzkVFRVe07N814uu/R708R354
+ EI++LMjypzCX/ZwvLxsvzAwXiEBGOMTEHPTgC+hYst7rt7+6FJKqkBfjl6Z+exmD/LH0
+ MhVDOhpBD7EWMJBqgU1E15ixi7y3RVIqSrxmnpKHIbssFrbyMv6r5vtFsh5SaMOg6IXz
+ dVAchEyJjzaNsFCXe5nmjXbRvttAKFb9vPlUQHZEZ4oRRsXuIn8/WbR+3Q7iz+R9hy6K
+ RCyA==
+X-Gm-Message-State: AOAM530e7lo2M62rBla4Ni/68rpy1c9RFFFvL+nsHPcXi9cAofN95RIu
+ KDbxpwW4QCRuhVDw2LTDQl23q7Xhjpg=
+X-Google-Smtp-Source: ABdhPJwnpi0+fpKK+6zgN8PmF3urOWPgkwWq+//M4cZNC4qQJXNUuOudHq5kOWgAJaRlLfPgGuOQEw==
+X-Received: by 2002:a17:90a:1a58:: with SMTP id
+ 24mr15472973pjl.45.1632684097413; 
+ Sun, 26 Sep 2021 12:21:37 -0700 (PDT)
+Received: from octofox.hsd1.ca.comcast.net
+ ([2601:641:401:1d20:794c:d573:9874:654d])
+ by smtp.gmail.com with ESMTPSA id e14sm15862802pga.23.2021.09.26.12.21.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 26 Sep 2021 12:21:36 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Sun, 26 Sep 2021 11:55:57 -0700
-Message-ID: <CAMo8Bf+TE4PX5PBD8bSsF6Cx+LGunExjuB3xXyyRvwzC0iHMDA@mail.gmail.com>
-To: Randy Dunlap <rdunlap@infradead.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>
-Subject: Re: [Linux-Xtensa] [RFC PATCH] xtensa: setup: use CONFIG_USE_OF
-	instead of CONFIG_OF
+To: linux-xtensa@linux-xtensa.org
+Date: Sun, 26 Sep 2021 12:21:06 -0700
+Message-Id: <20210926192106.1943-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org,
+ Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: use CONFIG_USE_OF instead of
+	CONFIG_OF
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -65,54 +69,96 @@ List-Post: <mailto:linux-xtensa@linux-xtensa.org>
 List-Help: <mailto:linux-xtensa-request@linux-xtensa.org?subject=help>
 List-Subscribe: <http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa>, 
  <mailto:linux-xtensa-request@linux-xtensa.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-Hi Randy,
-
-On Fri, Sep 24, 2021 at 8:29 PM Randy Dunlap <rdunlap@infradead.org> wrote:
->
-> CONFIG_OF can be set by a randconfig or by a user -- without setting the
-> early flattree option (OF_EARLY_FLATTREE).  This causes build errors.
-> However, if randconfig or a user sets USE_OF in the Xtensa config,
-> the right kconfig symbols are set to enable xtensa/kernel/setup.c to
-> build.
->
-> Fixes these build errors:
->
-> ../arch/xtensa/kernel/setup.c: In function 'xtensa_dt_io_area':
-> ../arch/xtensa/kernel/setup.c:201:14: error: implicit declaration of function 'of_flat_dt_is_compatible'; did you mean 'of_machine_is_compatible'? [-Werror=implicit-function-declaration]
->   201 |         if (!of_flat_dt_is_compatible(node, "simple-bus"))
-> ../arch/xtensa/kernel/setup.c:204:18: error: implicit declaration of function 'of_get_flat_dt_prop' [-Werror=implicit-function-declaration]
->   204 |         ranges = of_get_flat_dt_prop(node, "ranges", &len);
-> ../arch/xtensa/kernel/setup.c:204:16: error: assignment to 'const __be32 *' {aka 'const unsigned int *'} from 'int' makes pointer from integer without a cast [-Werror=int-conversion]
->   204 |         ranges = of_get_flat_dt_prop(node, "ranges", &len);
->       |                ^
-> ../arch/xtensa/kernel/setup.c: In function 'early_init_devtree':
-> ../arch/xtensa/kernel/setup.c:228:9: error: implicit declaration of function 'early_init_dt_scan'; did you mean 'early_init_devtree'? [-Werror=implicit-function-declaration]
->   228 |         early_init_dt_scan(params);
-> ../arch/xtensa/kernel/setup.c:229:9: error: implicit declaration of function 'of_scan_flat_dt' [-Werror=implicit-function-declaration]
->   229 |         of_scan_flat_dt(xtensa_dt_io_area, NULL);
->
-> Fixes: da844a81779e ("xtensa: add device trees support")
-> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-> Cc: Max Filippov <jcmvbkbc@gmail.com>
-> Cc: Chris Zankel <chris@zankel.net>
-> Cc: linux-xtensa@linux-xtensa.org
-> ---
->  arch/xtensa/kernel/setup.c |    6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-
-Thanks for your RFC. I've tested it and found a couple more places
-where CONFIG_USE_OF should be used instead of CONFIG_OF.
-I'll post the revised version.
-
--- 
-Thanks.
--- Max
-_______________________________________________
-linux-xtensa mailing list
-linux-xtensa@linux-xtensa.org
-http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa
+RnJvbTogUmFuZHkgRHVubGFwIDxyZHVubGFwQGluZnJhZGVhZC5vcmc+CgpDT05GSUdfT0YgY2Fu
+IGJlIHNldCBieSBhIHJhbmRjb25maWcgb3IgYnkgYSB1c2VyIC0tIHdpdGhvdXQgc2V0dGluZyB0
+aGUKZWFybHkgZmxhdHRyZWUgb3B0aW9uIChPRl9FQVJMWV9GTEFUVFJFRSkuICBUaGlzIGNhdXNl
+cyBidWlsZCBlcnJvcnMuCkhvd2V2ZXIsIGlmIHJhbmRjb25maWcgb3IgYSB1c2VyIHNldHMgVVNF
+X09GIGluIHRoZSBYdGVuc2EgY29uZmlnLAp0aGUgcmlnaHQga2NvbmZpZyBzeW1ib2xzIGFyZSBz
+ZXQgdG8gZml4IHRoZSBidWlsZC4KCkZpeGVzIHRoZXNlIGJ1aWxkIGVycm9yczoKCi4uL2FyY2gv
+eHRlbnNhL2tlcm5lbC9zZXR1cC5jOjY3OjE5OiBlcnJvcjog4oCYX19kdGJfc3RhcnTigJkgdW5k
+ZWNsYXJlZCBoZXJlIChub3QgaW4gYSBmdW5jdGlvbik7IGRpZCB5b3UgbWVhbiDigJhkdGJfc3Rh
+cnTigJk/CiAgIDY3IHwgdm9pZCAqZHRiX3N0YXJ0ID0gX19kdGJfc3RhcnQ7CiAgICAgIHwgICAg
+ICAgICAgICAgICAgICAgXn5+fn5+fn5+fn4KLi4vYXJjaC94dGVuc2Eva2VybmVsL3NldHVwLmM6
+IEluIGZ1bmN0aW9uICd4dGVuc2FfZHRfaW9fYXJlYSc6Ci4uL2FyY2gveHRlbnNhL2tlcm5lbC9z
+ZXR1cC5jOjIwMToxNDogZXJyb3I6IGltcGxpY2l0IGRlY2xhcmF0aW9uIG9mIGZ1bmN0aW9uICdv
+Zl9mbGF0X2R0X2lzX2NvbXBhdGlibGUnOyBkaWQgeW91IG1lYW4gJ29mX21hY2hpbmVfaXNfY29t
+cGF0aWJsZSc/IFstV2Vycm9yPWltcGxpY2l0LWZ1bmN0aW9uLWRlY2xhcmF0aW9uXQogIDIwMSB8
+ICAgICAgICAgaWYgKCFvZl9mbGF0X2R0X2lzX2NvbXBhdGlibGUobm9kZSwgInNpbXBsZS1idXMi
+KSkKLi4vYXJjaC94dGVuc2Eva2VybmVsL3NldHVwLmM6MjA0OjE4OiBlcnJvcjogaW1wbGljaXQg
+ZGVjbGFyYXRpb24gb2YgZnVuY3Rpb24gJ29mX2dldF9mbGF0X2R0X3Byb3AnIFstV2Vycm9yPWlt
+cGxpY2l0LWZ1bmN0aW9uLWRlY2xhcmF0aW9uXQogIDIwNCB8ICAgICAgICAgcmFuZ2VzID0gb2Zf
+Z2V0X2ZsYXRfZHRfcHJvcChub2RlLCAicmFuZ2VzIiwgJmxlbik7Ci4uL2FyY2gveHRlbnNhL2tl
+cm5lbC9zZXR1cC5jOjIwNDoxNjogZXJyb3I6IGFzc2lnbm1lbnQgdG8gJ2NvbnN0IF9fYmUzMiAq
+JyB7YWthICdjb25zdCB1bnNpZ25lZCBpbnQgKid9IGZyb20gJ2ludCcgbWFrZXMgcG9pbnRlciBm
+cm9tIGludGVnZXIgd2l0aG91dCBhIGNhc3QgWy1XZXJyb3I9aW50LWNvbnZlcnNpb25dCiAgMjA0
+IHwgICAgICAgICByYW5nZXMgPSBvZl9nZXRfZmxhdF9kdF9wcm9wKG5vZGUsICJyYW5nZXMiLCAm
+bGVuKTsKICAgICAgfCAgICAgICAgICAgICAgICBeCi4uL2FyY2gveHRlbnNhL2tlcm5lbC9zZXR1
+cC5jOiBJbiBmdW5jdGlvbiAnZWFybHlfaW5pdF9kZXZ0cmVlJzoKLi4vYXJjaC94dGVuc2Eva2Vy
+bmVsL3NldHVwLmM6MjI4Ojk6IGVycm9yOiBpbXBsaWNpdCBkZWNsYXJhdGlvbiBvZiBmdW5jdGlv
+biAnZWFybHlfaW5pdF9kdF9zY2FuJzsgZGlkIHlvdSBtZWFuICdlYXJseV9pbml0X2RldnRyZWUn
+PyBbLVdlcnJvcj1pbXBsaWNpdC1mdW5jdGlvbi1kZWNsYXJhdGlvbl0KICAyMjggfCAgICAgICAg
+IGVhcmx5X2luaXRfZHRfc2NhbihwYXJhbXMpOwouLi9hcmNoL3h0ZW5zYS9rZXJuZWwvc2V0dXAu
+YzoyMjk6OTogZXJyb3I6IGltcGxpY2l0IGRlY2xhcmF0aW9uIG9mIGZ1bmN0aW9uICdvZl9zY2Fu
+X2ZsYXRfZHQnIFstV2Vycm9yPWltcGxpY2l0LWZ1bmN0aW9uLWRlY2xhcmF0aW9uXQogIDIyOSB8
+ICAgICAgICAgb2Zfc2Nhbl9mbGF0X2R0KHh0ZW5zYV9kdF9pb19hcmVhLCBOVUxMKTsKCnh0ZW5z
+YS1lbGYtbGQ6IGFyY2gveHRlbnNhL21tL21tdS5vOigudGV4dCsweDApOiB1bmRlZmluZWQgcmVm
+ZXJlbmNlIHRvIGB4dGVuc2Ffa2lvX3BhZGRyJwoKRml4ZXM6IGRhODQ0YTgxNzc5ZSAoInh0ZW5z
+YTogYWRkIGRldmljZSB0cmVlcyBzdXBwb3J0IikKRml4ZXM6IDZjYjk3MTExNGY2MyAoInh0ZW5z
+YTogcmVtYXAgaW8gYXJlYSBkZWZpbmVkIGluIGRldmljZSB0cmVlIikKU2lnbmVkLW9mZi1ieTog
+UmFuZHkgRHVubGFwIDxyZHVubGFwQGluZnJhZGVhZC5vcmc+ClNpZ25lZC1vZmYtYnk6IE1heCBG
+aWxpcHBvdiA8amNtdmJrYmNAZ21haWwuY29tPgotLS0KIGFyY2gveHRlbnNhL2luY2x1ZGUvYXNt
+L2ttZW1fbGF5b3V0LmggfCAgMiArLQogYXJjaC94dGVuc2Eva2VybmVsL3NldHVwLmMgICAgICAg
+ICAgICB8IDEyICsrKysrKy0tLS0tLQogYXJjaC94dGVuc2EvbW0vbW11LmMgICAgICAgICAgICAg
+ICAgICB8ICAyICstCiAzIGZpbGVzIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgOCBkZWxldGlv
+bnMoLSkKCmRpZmYgLS1naXQgYS9hcmNoL3h0ZW5zYS9pbmNsdWRlL2FzbS9rbWVtX2xheW91dC5o
+IGIvYXJjaC94dGVuc2EvaW5jbHVkZS9hc20va21lbV9sYXlvdXQuaAppbmRleCA3Y2JmNjhjYTcx
+MDYuLjZmYzA1Y2JhNjFhMiAxMDA2NDQKLS0tIGEvYXJjaC94dGVuc2EvaW5jbHVkZS9hc20va21l
+bV9sYXlvdXQuaAorKysgYi9hcmNoL3h0ZW5zYS9pbmNsdWRlL2FzbS9rbWVtX2xheW91dC5oCkBA
+IC03OCw3ICs3OCw3IEBACiAjZW5kaWYKICNkZWZpbmUgWENIQUxfS0lPX1NJWkUJCQkweDEwMDAw
+MDAwCiAKLSNpZiAoIVhDSEFMX0hBVkVfUFRQX01NVSB8fCBYQ0hBTF9IQVZFX1NQQU5OSU5HX1dB
+WSkgJiYgZGVmaW5lZChDT05GSUdfT0YpCisjaWYgKCFYQ0hBTF9IQVZFX1BUUF9NTVUgfHwgWENI
+QUxfSEFWRV9TUEFOTklOR19XQVkpICYmIGRlZmluZWQoQ09ORklHX1VTRV9PRikKICNkZWZpbmUg
+WENIQUxfS0lPX1BBRERSCQkJeHRlbnNhX2dldF9raW9fcGFkZHIoKQogI2lmbmRlZiBfX0FTU0VN
+QkxZX18KIGV4dGVybiB1bnNpZ25lZCBsb25nIHh0ZW5zYV9raW9fcGFkZHI7CmRpZmYgLS1naXQg
+YS9hcmNoL3h0ZW5zYS9rZXJuZWwvc2V0dXAuYyBiL2FyY2gveHRlbnNhL2tlcm5lbC9zZXR1cC5j
+CmluZGV4IGVkMTg0MTA2ZTRjZi4uZWU5MDgyYTE0MmZlIDEwMDY0NAotLS0gYS9hcmNoL3h0ZW5z
+YS9rZXJuZWwvc2V0dXAuYworKysgYi9hcmNoL3h0ZW5zYS9rZXJuZWwvc2V0dXAuYwpAQCAtNjMs
+NyArNjMsNyBAQCBleHRlcm4gdW5zaWduZWQgbG9uZyBpbml0cmRfZW5kOwogZXh0ZXJuIGludCBp
+bml0cmRfYmVsb3dfc3RhcnRfb2s7CiAjZW5kaWYKIAotI2lmZGVmIENPTkZJR19PRgorI2lmZGVm
+IENPTkZJR19VU0VfT0YKIHZvaWQgKmR0Yl9zdGFydCA9IF9fZHRiX3N0YXJ0OwogI2VuZGlmCiAK
+QEAgLTEyNSw3ICsxMjUsNyBAQCBfX3RhZ3RhYmxlKEJQX1RBR19JTklUUkQsIHBhcnNlX3RhZ19p
+bml0cmQpOwogCiAjZW5kaWYgLyogQ09ORklHX0JMS19ERVZfSU5JVFJEICovCiAKLSNpZmRlZiBD
+T05GSUdfT0YKKyNpZmRlZiBDT05GSUdfVVNFX09GCiAKIHN0YXRpYyBpbnQgX19pbml0IHBhcnNl
+X3RhZ19mZHQoY29uc3QgYnBfdGFnX3QgKnRhZykKIHsKQEAgLTEzNSw3ICsxMzUsNyBAQCBzdGF0
+aWMgaW50IF9faW5pdCBwYXJzZV90YWdfZmR0KGNvbnN0IGJwX3RhZ190ICp0YWcpCiAKIF9fdGFn
+dGFibGUoQlBfVEFHX0ZEVCwgcGFyc2VfdGFnX2ZkdCk7CiAKLSNlbmRpZiAvKiBDT05GSUdfT0Yg
+Ki8KKyNlbmRpZiAvKiBDT05GSUdfVVNFX09GICovCiAKIHN0YXRpYyBpbnQgX19pbml0IHBhcnNl
+X3RhZ19jbWRsaW5lKGNvbnN0IGJwX3RhZ190KiB0YWcpCiB7CkBAIC0xODMsNyArMTgzLDcgQEAg
+c3RhdGljIGludCBfX2luaXQgcGFyc2VfYm9vdHBhcmFtKGNvbnN0IGJwX3RhZ190ICp0YWcpCiB9
+CiAjZW5kaWYKIAotI2lmZGVmIENPTkZJR19PRgorI2lmZGVmIENPTkZJR19VU0VfT0YKIAogI2lm
+ICFYQ0hBTF9IQVZFX1BUUF9NTVUgfHwgWENIQUxfSEFWRV9TUEFOTklOR19XQVkKIHVuc2lnbmVk
+IGxvbmcgeHRlbnNhX2tpb19wYWRkciA9IFhDSEFMX0tJT19ERUZBVUxUX1BBRERSOwpAQCAtMjMy
+LDcgKzIzMiw3IEBAIHZvaWQgX19pbml0IGVhcmx5X2luaXRfZGV2dHJlZSh2b2lkICpwYXJhbXMp
+CiAJCXN0cmxjcHkoY29tbWFuZF9saW5lLCBib290X2NvbW1hbmRfbGluZSwgQ09NTUFORF9MSU5F
+X1NJWkUpOwogfQogCi0jZW5kaWYgLyogQ09ORklHX09GICovCisjZW5kaWYgLyogQ09ORklHX1VT
+RV9PRiAqLwogCiAvKgogICogSW5pdGlhbGl6ZSBhcmNoaXRlY3R1cmUuIChFYXJseSBzdGFnZSkK
+QEAgLTI1Myw3ICsyNTMsNyBAQCB2b2lkIF9faW5pdCBpbml0X2FyY2goYnBfdGFnX3QgKmJwX3N0
+YXJ0KQogCWlmIChicF9zdGFydCkKIAkJcGFyc2VfYm9vdHBhcmFtKGJwX3N0YXJ0KTsKIAotI2lm
+ZGVmIENPTkZJR19PRgorI2lmZGVmIENPTkZJR19VU0VfT0YKIAllYXJseV9pbml0X2RldnRyZWUo
+ZHRiX3N0YXJ0KTsKICNlbmRpZgogCmRpZmYgLS1naXQgYS9hcmNoL3h0ZW5zYS9tbS9tbXUuYyBi
+L2FyY2gveHRlbnNhL21tL21tdS5jCmluZGV4IDdlNGQ5N2RjOGJkOC4uMzhhY2RhNGYwNGU4IDEw
+MDY0NAotLS0gYS9hcmNoL3h0ZW5zYS9tbS9tbXUuYworKysgYi9hcmNoL3h0ZW5zYS9tbS9tbXUu
+YwpAQCAtMTAxLDcgKzEwMSw3IEBAIHZvaWQgaW5pdF9tbXUodm9pZCkKIAogdm9pZCBpbml0X2tp
+byh2b2lkKQogewotI2lmIFhDSEFMX0hBVkVfUFRQX01NVSAmJiBYQ0hBTF9IQVZFX1NQQU5OSU5H
+X1dBWSAmJiBkZWZpbmVkKENPTkZJR19PRikKKyNpZiBYQ0hBTF9IQVZFX1BUUF9NTVUgJiYgWENI
+QUxfSEFWRV9TUEFOTklOR19XQVkgJiYgZGVmaW5lZChDT05GSUdfVVNFX09GKQogCS8qCiAJICog
+VXBkYXRlIHRoZSBJTyBhcmVhIG1hcHBpbmcgaW4gY2FzZSB4dGVuc2Ffa2lvX3BhZGRyIGhhcyBj
+aGFuZ2VkCiAJICovCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCmxpbnV4LXh0ZW5zYSBtYWlsaW5nIGxpc3QKbGludXgteHRlbnNhQGxp
+bnV4LXh0ZW5zYS5vcmcKaHR0cDovL2xpc3RzLmxpbnV4LXh0ZW5zYS5vcmcvbWFpbG1hbi9saXN0
+aW5mby9saW51eC14dGVuc2EK
