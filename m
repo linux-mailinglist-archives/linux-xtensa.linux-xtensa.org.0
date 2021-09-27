@@ -2,61 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id DCF3B418ABE
-	for <lists+linux-xtensa@lfdr.de>; Sun, 26 Sep 2021 21:21:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 997A34199CA
+	for <lists+linux-xtensa@lfdr.de>; Mon, 27 Sep 2021 18:57:43 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 03EFC67DA;
-	Sun, 26 Sep 2021 18:50:46 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 6B9386975;
+	Mon, 27 Sep 2021 16:26:37 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
- [209.85.214.169])
- by linux-xtensa.org (Postfix) with ESMTPS id 0F03B67D3
- for <linux-xtensa@linux-xtensa.org>; Sun, 26 Sep 2021 18:50:37 +0000 (UTC)
-Received: by mail-pl1-f169.google.com with SMTP id y1so10231653plk.10
- for <linux-xtensa@linux-xtensa.org>; Sun, 26 Sep 2021 12:21:39 -0700 (PDT)
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com
+ [209.85.216.51])
+ by linux-xtensa.org (Postfix) with ESMTPS id B09C26972
+ for <linux-xtensa@linux-xtensa.org>; Mon, 27 Sep 2021 16:26:26 +0000 (UTC)
+Received: by mail-pj1-f51.google.com with SMTP id
+ u1-20020a17090ae00100b0019ec31d3ba2so4663142pjy.1
+ for <linux-xtensa@linux-xtensa.org>; Mon, 27 Sep 2021 09:57:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=8VoC22VdCllOXZFZ1LpEuBes/M4AcpmZRe4ChismgTw=;
- b=FB+sD0lH8m3BwjrgcAS4fuDSbMgqQA8XKScYogSP2U9uTMifHqFqUc4+8Z59GBAZSt
- FOIUXHF5HQaaXgjkAjl7oUmw1jA2RXW0Leb2Vhe+Yyw6Ipy4J+zx5VhfHB8v6XpLYZm+
- 43L1CIF1yb4YeSfklNS2gBUHAj8arIlU+ZVhywtNDgTIGlGN/GBA7WfDZ7U/UL0wwz4m
- KW7pLiut9pLXNBcF4YTXSQPa7ABQRBtcuDM+6lUlPYGu6WuLGctFnwED8ai1JYaBJtT4
- k9bfMvs15P0MXgxywYwBCAO0VNMCB+U5JqpAwuqRsOS0kw7VN+TPBZZKjpTlu2K+MOD6
- LEaw==
+ bh=aVNQ/TSsFCpHmH8roUzHH7XvMBrRFI54b0VHaTyCBAo=;
+ b=H2Xr5yJsBofJ/L/K2Flfee0MrlLW+ZGJJrFO6lbGWTaUDBcZejvtb2ieSHb+Bbw2ZZ
+ Vk4gxdiUZvSLZIs2Le2caEJehi/oaWfRhLnDG4pxebjQmt0k7zkaAXOxpiaFG4rZv3p3
+ hiyXHRhWeepe9Bpde8CGoev4fTdTy/KAzSAMCFJm7YWiJDj52u/dklOyA2ofzWqKC9uN
+ 3u7FjBj3BjGrs9gfk9onOkssEoetu96nAlDI+qzitgSTbEr3LOEuyVIZKVgF0R3h2UYn
+ Z+7ssBzfqMlg/NLIeJwACpOeRZvwjvirJnriJMZjNVKzeD+4XQnvJO6Ug7nRU288Gb/w
+ Zf/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=8VoC22VdCllOXZFZ1LpEuBes/M4AcpmZRe4ChismgTw=;
- b=5iqc4jzBRCGwTK8M9RcI5a3KJVogb4s1OmUU33i7DtThevqtUc4iMNSjZ2qQ4Pneqh
- 2Yqp39ikdXmiGyhvEqTxAN9YXBk4rdkgvDV27E4mj9HPzkVFRVe07N814uu/R708R354
- EI++LMjypzCX/ZwvLxsvzAwXiEBGOMTEHPTgC+hYst7rt7+6FJKqkBfjl6Z+exmD/LH0
- MhVDOhpBD7EWMJBqgU1E15ixi7y3RVIqSrxmnpKHIbssFrbyMv6r5vtFsh5SaMOg6IXz
- dVAchEyJjzaNsFCXe5nmjXbRvttAKFb9vPlUQHZEZ4oRRsXuIn8/WbR+3Q7iz+R9hy6K
- RCyA==
-X-Gm-Message-State: AOAM530e7lo2M62rBla4Ni/68rpy1c9RFFFvL+nsHPcXi9cAofN95RIu
- KDbxpwW4QCRuhVDw2LTDQl23q7Xhjpg=
-X-Google-Smtp-Source: ABdhPJwnpi0+fpKK+6zgN8PmF3urOWPgkwWq+//M4cZNC4qQJXNUuOudHq5kOWgAJaRlLfPgGuOQEw==
-X-Received: by 2002:a17:90a:1a58:: with SMTP id
- 24mr15472973pjl.45.1632684097413; 
- Sun, 26 Sep 2021 12:21:37 -0700 (PDT)
+ bh=aVNQ/TSsFCpHmH8roUzHH7XvMBrRFI54b0VHaTyCBAo=;
+ b=iW+ci37In9bAQftSat6TspvQHaOBciJ/RNTPr4vsVKConwHFMAUQss+HwQhXEmWU8W
+ /D0bOGpX+eu3OqXGSF/mNu/XSZRtkddUslN7+ks3tF8cEI/t+aXSBijQbruq5eYDfYYd
+ YE8UvZNFvmFa/VzaKufcBPk9IXynO3LlWNOdR9xAqG0/c5G0RU2/50lFqfXBFB256ZDQ
+ 8JD9pOHeOvHYddxyud0dW+iVmaqhMD6B50r5zPECCh6rLmvO4yWX1J5MziTHgWrosY6T
+ oOFAsFoCLXEJJ9uTewKCMNKE3plWFZUe7DvmKM+FSmxc3o3pNbNp+vMvG5sT4V1lrnqN
+ e2bQ==
+X-Gm-Message-State: AOAM530DdhhvOq6WIET06X4ohtpL/ogeMbobucwT4y9tlpAOFWg9wBWP
+ hhIc4g4/B5JAeJCV2nSIsKMMCFLFRpE=
+X-Google-Smtp-Source: ABdhPJxJXBOKwYLop10cvnqJmzrtdGdUQxPxtN2GE6+btno8uowYMKey7A3sNNHXf7NdbYYeSdH+dQ==
+X-Received: by 2002:a17:90a:1a19:: with SMTP id 25mr145642pjk.34.1632761847787; 
+ Mon, 27 Sep 2021 09:57:27 -0700 (PDT)
 Received: from octofox.hsd1.ca.comcast.net
- ([2601:641:401:1d20:794c:d573:9874:654d])
- by smtp.gmail.com with ESMTPSA id e14sm15862802pga.23.2021.09.26.12.21.36
+ ([2601:641:401:1d20:ecea:c8ec:ff7b:52])
+ by smtp.gmail.com with ESMTPSA id n22sm2686769pfa.220.2021.09.27.09.57.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 26 Sep 2021 12:21:36 -0700 (PDT)
+ Mon, 27 Sep 2021 09:57:24 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-xtensa@linux-xtensa.org
-Date: Sun, 26 Sep 2021 12:21:06 -0700
-Message-Id: <20210926192106.1943-1-jcmvbkbc@gmail.com>
+Date: Mon, 27 Sep 2021 09:57:06 -0700
+Message-Id: <20210927165706.22938-1-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org,
- Max Filippov <jcmvbkbc@gmail.com>
-Subject: [Linux-Xtensa] [PATCH] xtensa: use CONFIG_USE_OF instead of
-	CONFIG_OF
+Cc: linux-kernel@vger.kernel.org, Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: call irqchip_init only when
+	CONFIG_USE_OF is selected
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -69,96 +68,67 @@ List-Post: <mailto:linux-xtensa@linux-xtensa.org>
 List-Help: <mailto:linux-xtensa-request@linux-xtensa.org?subject=help>
 List-Subscribe: <http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa>, 
  <mailto:linux-xtensa-request@linux-xtensa.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-RnJvbTogUmFuZHkgRHVubGFwIDxyZHVubGFwQGluZnJhZGVhZC5vcmc+CgpDT05GSUdfT0YgY2Fu
-IGJlIHNldCBieSBhIHJhbmRjb25maWcgb3IgYnkgYSB1c2VyIC0tIHdpdGhvdXQgc2V0dGluZyB0
-aGUKZWFybHkgZmxhdHRyZWUgb3B0aW9uIChPRl9FQVJMWV9GTEFUVFJFRSkuICBUaGlzIGNhdXNl
-cyBidWlsZCBlcnJvcnMuCkhvd2V2ZXIsIGlmIHJhbmRjb25maWcgb3IgYSB1c2VyIHNldHMgVVNF
-X09GIGluIHRoZSBYdGVuc2EgY29uZmlnLAp0aGUgcmlnaHQga2NvbmZpZyBzeW1ib2xzIGFyZSBz
-ZXQgdG8gZml4IHRoZSBidWlsZC4KCkZpeGVzIHRoZXNlIGJ1aWxkIGVycm9yczoKCi4uL2FyY2gv
-eHRlbnNhL2tlcm5lbC9zZXR1cC5jOjY3OjE5OiBlcnJvcjog4oCYX19kdGJfc3RhcnTigJkgdW5k
-ZWNsYXJlZCBoZXJlIChub3QgaW4gYSBmdW5jdGlvbik7IGRpZCB5b3UgbWVhbiDigJhkdGJfc3Rh
-cnTigJk/CiAgIDY3IHwgdm9pZCAqZHRiX3N0YXJ0ID0gX19kdGJfc3RhcnQ7CiAgICAgIHwgICAg
-ICAgICAgICAgICAgICAgXn5+fn5+fn5+fn4KLi4vYXJjaC94dGVuc2Eva2VybmVsL3NldHVwLmM6
-IEluIGZ1bmN0aW9uICd4dGVuc2FfZHRfaW9fYXJlYSc6Ci4uL2FyY2gveHRlbnNhL2tlcm5lbC9z
-ZXR1cC5jOjIwMToxNDogZXJyb3I6IGltcGxpY2l0IGRlY2xhcmF0aW9uIG9mIGZ1bmN0aW9uICdv
-Zl9mbGF0X2R0X2lzX2NvbXBhdGlibGUnOyBkaWQgeW91IG1lYW4gJ29mX21hY2hpbmVfaXNfY29t
-cGF0aWJsZSc/IFstV2Vycm9yPWltcGxpY2l0LWZ1bmN0aW9uLWRlY2xhcmF0aW9uXQogIDIwMSB8
-ICAgICAgICAgaWYgKCFvZl9mbGF0X2R0X2lzX2NvbXBhdGlibGUobm9kZSwgInNpbXBsZS1idXMi
-KSkKLi4vYXJjaC94dGVuc2Eva2VybmVsL3NldHVwLmM6MjA0OjE4OiBlcnJvcjogaW1wbGljaXQg
-ZGVjbGFyYXRpb24gb2YgZnVuY3Rpb24gJ29mX2dldF9mbGF0X2R0X3Byb3AnIFstV2Vycm9yPWlt
-cGxpY2l0LWZ1bmN0aW9uLWRlY2xhcmF0aW9uXQogIDIwNCB8ICAgICAgICAgcmFuZ2VzID0gb2Zf
-Z2V0X2ZsYXRfZHRfcHJvcChub2RlLCAicmFuZ2VzIiwgJmxlbik7Ci4uL2FyY2gveHRlbnNhL2tl
-cm5lbC9zZXR1cC5jOjIwNDoxNjogZXJyb3I6IGFzc2lnbm1lbnQgdG8gJ2NvbnN0IF9fYmUzMiAq
-JyB7YWthICdjb25zdCB1bnNpZ25lZCBpbnQgKid9IGZyb20gJ2ludCcgbWFrZXMgcG9pbnRlciBm
-cm9tIGludGVnZXIgd2l0aG91dCBhIGNhc3QgWy1XZXJyb3I9aW50LWNvbnZlcnNpb25dCiAgMjA0
-IHwgICAgICAgICByYW5nZXMgPSBvZl9nZXRfZmxhdF9kdF9wcm9wKG5vZGUsICJyYW5nZXMiLCAm
-bGVuKTsKICAgICAgfCAgICAgICAgICAgICAgICBeCi4uL2FyY2gveHRlbnNhL2tlcm5lbC9zZXR1
-cC5jOiBJbiBmdW5jdGlvbiAnZWFybHlfaW5pdF9kZXZ0cmVlJzoKLi4vYXJjaC94dGVuc2Eva2Vy
-bmVsL3NldHVwLmM6MjI4Ojk6IGVycm9yOiBpbXBsaWNpdCBkZWNsYXJhdGlvbiBvZiBmdW5jdGlv
-biAnZWFybHlfaW5pdF9kdF9zY2FuJzsgZGlkIHlvdSBtZWFuICdlYXJseV9pbml0X2RldnRyZWUn
-PyBbLVdlcnJvcj1pbXBsaWNpdC1mdW5jdGlvbi1kZWNsYXJhdGlvbl0KICAyMjggfCAgICAgICAg
-IGVhcmx5X2luaXRfZHRfc2NhbihwYXJhbXMpOwouLi9hcmNoL3h0ZW5zYS9rZXJuZWwvc2V0dXAu
-YzoyMjk6OTogZXJyb3I6IGltcGxpY2l0IGRlY2xhcmF0aW9uIG9mIGZ1bmN0aW9uICdvZl9zY2Fu
-X2ZsYXRfZHQnIFstV2Vycm9yPWltcGxpY2l0LWZ1bmN0aW9uLWRlY2xhcmF0aW9uXQogIDIyOSB8
-ICAgICAgICAgb2Zfc2Nhbl9mbGF0X2R0KHh0ZW5zYV9kdF9pb19hcmVhLCBOVUxMKTsKCnh0ZW5z
-YS1lbGYtbGQ6IGFyY2gveHRlbnNhL21tL21tdS5vOigudGV4dCsweDApOiB1bmRlZmluZWQgcmVm
-ZXJlbmNlIHRvIGB4dGVuc2Ffa2lvX3BhZGRyJwoKRml4ZXM6IGRhODQ0YTgxNzc5ZSAoInh0ZW5z
-YTogYWRkIGRldmljZSB0cmVlcyBzdXBwb3J0IikKRml4ZXM6IDZjYjk3MTExNGY2MyAoInh0ZW5z
-YTogcmVtYXAgaW8gYXJlYSBkZWZpbmVkIGluIGRldmljZSB0cmVlIikKU2lnbmVkLW9mZi1ieTog
-UmFuZHkgRHVubGFwIDxyZHVubGFwQGluZnJhZGVhZC5vcmc+ClNpZ25lZC1vZmYtYnk6IE1heCBG
-aWxpcHBvdiA8amNtdmJrYmNAZ21haWwuY29tPgotLS0KIGFyY2gveHRlbnNhL2luY2x1ZGUvYXNt
-L2ttZW1fbGF5b3V0LmggfCAgMiArLQogYXJjaC94dGVuc2Eva2VybmVsL3NldHVwLmMgICAgICAg
-ICAgICB8IDEyICsrKysrKy0tLS0tLQogYXJjaC94dGVuc2EvbW0vbW11LmMgICAgICAgICAgICAg
-ICAgICB8ICAyICstCiAzIGZpbGVzIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgOCBkZWxldGlv
-bnMoLSkKCmRpZmYgLS1naXQgYS9hcmNoL3h0ZW5zYS9pbmNsdWRlL2FzbS9rbWVtX2xheW91dC5o
-IGIvYXJjaC94dGVuc2EvaW5jbHVkZS9hc20va21lbV9sYXlvdXQuaAppbmRleCA3Y2JmNjhjYTcx
-MDYuLjZmYzA1Y2JhNjFhMiAxMDA2NDQKLS0tIGEvYXJjaC94dGVuc2EvaW5jbHVkZS9hc20va21l
-bV9sYXlvdXQuaAorKysgYi9hcmNoL3h0ZW5zYS9pbmNsdWRlL2FzbS9rbWVtX2xheW91dC5oCkBA
-IC03OCw3ICs3OCw3IEBACiAjZW5kaWYKICNkZWZpbmUgWENIQUxfS0lPX1NJWkUJCQkweDEwMDAw
-MDAwCiAKLSNpZiAoIVhDSEFMX0hBVkVfUFRQX01NVSB8fCBYQ0hBTF9IQVZFX1NQQU5OSU5HX1dB
-WSkgJiYgZGVmaW5lZChDT05GSUdfT0YpCisjaWYgKCFYQ0hBTF9IQVZFX1BUUF9NTVUgfHwgWENI
-QUxfSEFWRV9TUEFOTklOR19XQVkpICYmIGRlZmluZWQoQ09ORklHX1VTRV9PRikKICNkZWZpbmUg
-WENIQUxfS0lPX1BBRERSCQkJeHRlbnNhX2dldF9raW9fcGFkZHIoKQogI2lmbmRlZiBfX0FTU0VN
-QkxZX18KIGV4dGVybiB1bnNpZ25lZCBsb25nIHh0ZW5zYV9raW9fcGFkZHI7CmRpZmYgLS1naXQg
-YS9hcmNoL3h0ZW5zYS9rZXJuZWwvc2V0dXAuYyBiL2FyY2gveHRlbnNhL2tlcm5lbC9zZXR1cC5j
-CmluZGV4IGVkMTg0MTA2ZTRjZi4uZWU5MDgyYTE0MmZlIDEwMDY0NAotLS0gYS9hcmNoL3h0ZW5z
-YS9rZXJuZWwvc2V0dXAuYworKysgYi9hcmNoL3h0ZW5zYS9rZXJuZWwvc2V0dXAuYwpAQCAtNjMs
-NyArNjMsNyBAQCBleHRlcm4gdW5zaWduZWQgbG9uZyBpbml0cmRfZW5kOwogZXh0ZXJuIGludCBp
-bml0cmRfYmVsb3dfc3RhcnRfb2s7CiAjZW5kaWYKIAotI2lmZGVmIENPTkZJR19PRgorI2lmZGVm
-IENPTkZJR19VU0VfT0YKIHZvaWQgKmR0Yl9zdGFydCA9IF9fZHRiX3N0YXJ0OwogI2VuZGlmCiAK
-QEAgLTEyNSw3ICsxMjUsNyBAQCBfX3RhZ3RhYmxlKEJQX1RBR19JTklUUkQsIHBhcnNlX3RhZ19p
-bml0cmQpOwogCiAjZW5kaWYgLyogQ09ORklHX0JMS19ERVZfSU5JVFJEICovCiAKLSNpZmRlZiBD
-T05GSUdfT0YKKyNpZmRlZiBDT05GSUdfVVNFX09GCiAKIHN0YXRpYyBpbnQgX19pbml0IHBhcnNl
-X3RhZ19mZHQoY29uc3QgYnBfdGFnX3QgKnRhZykKIHsKQEAgLTEzNSw3ICsxMzUsNyBAQCBzdGF0
-aWMgaW50IF9faW5pdCBwYXJzZV90YWdfZmR0KGNvbnN0IGJwX3RhZ190ICp0YWcpCiAKIF9fdGFn
-dGFibGUoQlBfVEFHX0ZEVCwgcGFyc2VfdGFnX2ZkdCk7CiAKLSNlbmRpZiAvKiBDT05GSUdfT0Yg
-Ki8KKyNlbmRpZiAvKiBDT05GSUdfVVNFX09GICovCiAKIHN0YXRpYyBpbnQgX19pbml0IHBhcnNl
-X3RhZ19jbWRsaW5lKGNvbnN0IGJwX3RhZ190KiB0YWcpCiB7CkBAIC0xODMsNyArMTgzLDcgQEAg
-c3RhdGljIGludCBfX2luaXQgcGFyc2VfYm9vdHBhcmFtKGNvbnN0IGJwX3RhZ190ICp0YWcpCiB9
-CiAjZW5kaWYKIAotI2lmZGVmIENPTkZJR19PRgorI2lmZGVmIENPTkZJR19VU0VfT0YKIAogI2lm
-ICFYQ0hBTF9IQVZFX1BUUF9NTVUgfHwgWENIQUxfSEFWRV9TUEFOTklOR19XQVkKIHVuc2lnbmVk
-IGxvbmcgeHRlbnNhX2tpb19wYWRkciA9IFhDSEFMX0tJT19ERUZBVUxUX1BBRERSOwpAQCAtMjMy
-LDcgKzIzMiw3IEBAIHZvaWQgX19pbml0IGVhcmx5X2luaXRfZGV2dHJlZSh2b2lkICpwYXJhbXMp
-CiAJCXN0cmxjcHkoY29tbWFuZF9saW5lLCBib290X2NvbW1hbmRfbGluZSwgQ09NTUFORF9MSU5F
-X1NJWkUpOwogfQogCi0jZW5kaWYgLyogQ09ORklHX09GICovCisjZW5kaWYgLyogQ09ORklHX1VT
-RV9PRiAqLwogCiAvKgogICogSW5pdGlhbGl6ZSBhcmNoaXRlY3R1cmUuIChFYXJseSBzdGFnZSkK
-QEAgLTI1Myw3ICsyNTMsNyBAQCB2b2lkIF9faW5pdCBpbml0X2FyY2goYnBfdGFnX3QgKmJwX3N0
-YXJ0KQogCWlmIChicF9zdGFydCkKIAkJcGFyc2VfYm9vdHBhcmFtKGJwX3N0YXJ0KTsKIAotI2lm
-ZGVmIENPTkZJR19PRgorI2lmZGVmIENPTkZJR19VU0VfT0YKIAllYXJseV9pbml0X2RldnRyZWUo
-ZHRiX3N0YXJ0KTsKICNlbmRpZgogCmRpZmYgLS1naXQgYS9hcmNoL3h0ZW5zYS9tbS9tbXUuYyBi
-L2FyY2gveHRlbnNhL21tL21tdS5jCmluZGV4IDdlNGQ5N2RjOGJkOC4uMzhhY2RhNGYwNGU4IDEw
-MDY0NAotLS0gYS9hcmNoL3h0ZW5zYS9tbS9tbXUuYworKysgYi9hcmNoL3h0ZW5zYS9tbS9tbXUu
-YwpAQCAtMTAxLDcgKzEwMSw3IEBAIHZvaWQgaW5pdF9tbXUodm9pZCkKIAogdm9pZCBpbml0X2tp
-byh2b2lkKQogewotI2lmIFhDSEFMX0hBVkVfUFRQX01NVSAmJiBYQ0hBTF9IQVZFX1NQQU5OSU5H
-X1dBWSAmJiBkZWZpbmVkKENPTkZJR19PRikKKyNpZiBYQ0hBTF9IQVZFX1BUUF9NTVUgJiYgWENI
-QUxfSEFWRV9TUEFOTklOR19XQVkgJiYgZGVmaW5lZChDT05GSUdfVVNFX09GKQogCS8qCiAJICog
-VXBkYXRlIHRoZSBJTyBhcmVhIG1hcHBpbmcgaW4gY2FzZSB4dGVuc2Ffa2lvX3BhZGRyIGhhcyBj
-aGFuZ2VkCiAJICovCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCmxpbnV4LXh0ZW5zYSBtYWlsaW5nIGxpc3QKbGludXgteHRlbnNhQGxp
-bnV4LXh0ZW5zYS5vcmcKaHR0cDovL2xpc3RzLmxpbnV4LXh0ZW5zYS5vcmcvbWFpbG1hbi9saXN0
-aW5mby9saW51eC14dGVuc2EK
+During boot time kernel configured with OF=y but USE_OF=n displays the
+following warnings and hangs shortly after starting userspace:
+
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 0 at kernel/irq/irqdomain.c:695 irq_create_mapping_affinity+0x29/0xc0
+irq_create_mapping_affinity(, 6) called with NULL domain
+CPU: 0 PID: 0 Comm: swapper Not tainted 5.15.0-rc3-00001-gd67ed2510d28 #30
+Call Trace:
+  __warn+0x69/0xc4
+  warn_slowpath_fmt+0x6c/0x94
+  irq_create_mapping_affinity+0x29/0xc0
+  local_timer_setup+0x40/0x88
+  time_init+0xb1/0xe8
+  start_kernel+0x31d/0x3f4
+  _startup+0x13b/0x13b
+---[ end trace 1e6630e1c5eda35b ]---
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 0 at arch/xtensa/kernel/time.c:141 local_timer_setup+0x58/0x88
+error: can't map timer irq
+CPU: 0 PID: 0 Comm: swapper Tainted: G        W         5.15.0-rc3-00001-gd67ed2510d28 #30
+Call Trace:
+  __warn+0x69/0xc4
+  warn_slowpath_fmt+0x6c/0x94
+  local_timer_setup+0x58/0x88
+  time_init+0xb1/0xe8
+  start_kernel+0x31d/0x3f4
+  _startup+0x13b/0x13b
+---[ end trace 1e6630e1c5eda35c ]---
+Failed to request irq 0 (timer)
+
+Fix that by calling irqchip_init only when CONFIG_USE_OF is selected and
+calling legacy interrupt controller init otherwise.
+
+Fixes: da844a81779e ("xtensa: add device trees support")
+Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+---
+ arch/xtensa/kernel/irq.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/xtensa/kernel/irq.c b/arch/xtensa/kernel/irq.c
+index 764b54bef701..15051a8a1539 100644
+--- a/arch/xtensa/kernel/irq.c
++++ b/arch/xtensa/kernel/irq.c
+@@ -143,7 +143,7 @@ unsigned xtensa_get_ext_irq_no(unsigned irq)
+ 
+ void __init init_IRQ(void)
+ {
+-#ifdef CONFIG_OF
++#ifdef CONFIG_USE_OF
+ 	irqchip_init();
+ #else
+ #ifdef CONFIG_HAVE_SMP
+-- 
+2.20.1
+
+_______________________________________________
+linux-xtensa mailing list
+linux-xtensa@linux-xtensa.org
+http://lists.linux-xtensa.org/mailman/listinfo/linux-xtensa
