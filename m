@@ -2,66 +2,60 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B54041A355
-	for <lists+linux-xtensa@lfdr.de>; Tue, 28 Sep 2021 00:51:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 804EC41F7F0
+	for <lists+linux-xtensa@lfdr.de>; Sat,  2 Oct 2021 00:59:42 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 2582568ED;
-	Mon, 27 Sep 2021 22:19:54 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 9DFF852A6;
+	Fri,  1 Oct 2021 22:28:26 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com
- [209.85.208.45])
- by linux-xtensa.org (Postfix) with ESMTPS id CBEF968E8
- for <linux-xtensa@linux-xtensa.org>; Mon, 27 Sep 2021 22:19:45 +0000 (UTC)
-Received: by mail-ed1-f45.google.com with SMTP id dj4so75675141edb.5
- for <linux-xtensa@linux-xtensa.org>; Mon, 27 Sep 2021 15:50:49 -0700 (PDT)
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com
+ [209.85.208.54])
+ by linux-xtensa.org (Postfix) with ESMTPS id 86FB368B3
+ for <linux-xtensa@linux-xtensa.org>; Fri,  1 Oct 2021 22:28:13 +0000 (UTC)
+Received: by mail-ed1-f54.google.com with SMTP id b8so5408008edk.2
+ for <linux-xtensa@linux-xtensa.org>; Fri, 01 Oct 2021 15:59:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=lbtHxjRemmXiBIhG0GW8nlURXNpwyPs370Xxo7AeQQk=;
- b=YZ2VTmSCUUUwt9GaX+TF009NFPIKAVOBMPTgS3jayY1GsTxjk0eyD6zyo3KSDp2ffd
- 15/G6kf8ngNImvfP+WO3GwmQFWGvbVqsojWS5PsZGnhvbMFfwNf8hSswllXfjJWH5bOE
- iuZL52rFsekbaWI4lIXdwtbN7zFzDlTDgpjQpSXSpN15NE9HDPayoVqneLYjbtMi9s4X
- ps/Z9ps2NUVxdYW6SyynTklGHbpuzsS5CawTlfWbAl6o8ozZlHhvGY0lDmYlvpfHfCUs
- GD4OE0hwIQQOcnCDaiwMPQ95SiG9tHFH0M56s31hXESkpNn5z5fJT/O3fmOeyg3xh3Pb
- IunQ==
+ :cc; bh=YA12nK83s/TNYLDvQwUFF9PY5FM7hou6RsLv5OdhbxM=;
+ b=bm/wO19DYmJWBUdZP9xxncVfqB6iNgJZredpzXZSB21J2YFKEaJzMrEl+hBmitM96x
+ 8594UGy041h6SjDS5W8vXYue3MYSoXxiimvB5F6taMnVfvAWT/0e28ehG20FStAaJT/e
+ ZYgL0jSmxOGW1QTivg8FLAS/E+hFNf3c4W94P3nlXvkvf/A5w1Ul4j+E7KGLz6O8qdbR
+ jlLkyaLVPA4KtiFkxK2c5Czuyg4JSdJ9/LBgY1E+jCBYZ2RFZ6syqkr9xYRFoI8i6yYJ
+ 95D8qpQXN8kGF0VROtIkgpqWt2/wf0x/bFlGsfH2+w7Ru2kkfwvxRlGusb7UKSIWD4nZ
+ 0h4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=lbtHxjRemmXiBIhG0GW8nlURXNpwyPs370Xxo7AeQQk=;
- b=wFKM76yogN+h3oyJojgMQ5BdySnb07TK6xcHFu3973Ec27wsHQGN2doG1hWD1o5ysP
- SvmJlKy5JmjbkBNw/250L9kZXDHwJ3xgQmeRw9a6jn8px4CPnH2pOlEEhpJsxpVZq58D
- 84tRnpAn1wDxSwPSscouAUs4KtE925D/v60sUaXwBWNU5RnJJWWBE9DClB0UMHqGZ5nx
- HLo6KiRpErQ24VTcu1DQIbUWHncs0jNKPcpyEoXimBIeSw0qJPi94o7WFXs4CScK+K7x
- AOi1pOEjX00lLmj28uVyPd/uLnB14rdjpBn4hxGI3JqvTUL+Zv4TJjgIR5jGGM9AMgQ6
- 1mBw==
-X-Gm-Message-State: AOAM530wf/VcAF0mxBxcKmYL7zEgEiGhRFKdeegrM2uLIOq59ZeKP5SH
- cSJSvELQD9qED+GU+Uos9Tpi7jVARi+3osZIJXY=
-X-Google-Smtp-Source: ABdhPJxqWtQBQk+q3MXvQ7lymGiQEolFkglJxXrWFsK3GxDKn2WvP9KOWmJHtaEmST6By7Czy4V78fbFN5iEYd3RzYA=
-X-Received: by 2002:aa7:d592:: with SMTP id r18mr3465274edq.172.1632783048036; 
- Mon, 27 Sep 2021 15:50:48 -0700 (PDT)
+ bh=YA12nK83s/TNYLDvQwUFF9PY5FM7hou6RsLv5OdhbxM=;
+ b=TJJUxswSPBYRzzHsvmlCXszmLrhYxB3BaGKs+iOeCvBAG+jB6WE4TVDA6mskTKOULm
+ p29hj9L4NNPwym0Efa6psIbwGJuSYNUFHWovuKemNSc5ZZlzMng4CEfmwCJe8nWIJyLq
+ 7fT7KrM1wLAvp2Z0eNPlMJV+8u2GYRxkia0LOwFvPzG6IiuG/Zj9y6E9vajaYM914v8N
+ OYjzq0+KsZCkZf8EDp/E17ciYzR/VP7704RkF4M7HDKWrpEJjzUt8dBo2stqt/IR3DOD
+ Mp1sLac422NWpnfKNvs9VwPN1maeEwzSWdQejLULo5GxyOeSiJEIYPRfSlFBsrK5tsQZ
+ a0cg==
+X-Gm-Message-State: AOAM532PWgU7MhS/OWIYPdLd4yuydw+Du4TCgsRRjO5OklmC/GM9vfhG
+ 46E+TtTHs6vfgNhKW2u1GGU0wYOImzffQJJ5I6s=
+X-Google-Smtp-Source: ABdhPJwWpDj5kHygwCCXM/715fS54f0YYUA5tYC9om9/vZhii3Qu5fpOpoaBBnG6byRP+Sm5G02E3QFHQIArOY0rCmw=
+X-Received: by 2002:a17:906:3157:: with SMTP id
+ e23mr683027eje.29.1633129163457; 
+ Fri, 01 Oct 2021 15:59:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210927220110.1066271-1-mcgrof@kernel.org>
- <20210927220110.1066271-7-mcgrof@kernel.org>
-In-Reply-To: <20210927220110.1066271-7-mcgrof@kernel.org>
+References: <20211001213228.1735079-1-kuba@kernel.org>
+ <20211001213228.1735079-2-kuba@kernel.org>
+In-Reply-To: <20211001213228.1735079-2-kuba@kernel.org>
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Mon, 27 Sep 2021 15:50:36 -0700
-Message-ID: <CAMo8BfLX84HBuVe=FyqWkVU5Ek-aKFk++omnqsmf9wO6fdVpMQ@mail.gmail.com>
-To: Luis Chamberlain <mcgrof@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, justin@coraid.com,
- LKML <linux-kernel@vger.kernel.org>, krisman@collabora.com, tim@cyberelk.net,
- drbd-dev@lists.linbit.com, Richard Weinberger <richard@nod.at>,
+Date: Fri, 1 Oct 2021 15:59:12 -0700
+Message-ID: <CAMo8BfJja6c+Pppygk7kkuoALJqEcKZAkjpinO5Y7SRj9c1vow@mail.gmail.com>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
+ <linux-xtensa@linux-xtensa.org>, netdev <netdev@vger.kernel.org>,
+ "open list:M68K ARCHITECTURE" <linux-m68k@lists.linux-m68k.org>,
  Geert Uytterhoeven <geert@linux-m68k.org>,
- Anton Ivanov <anton.ivanov@cambridgegreys.com>,
- "open list:TENSILICA XTENSA PORT \(xtensa\)" <linux-xtensa@linux-xtensa.org>,
- johannes.berg@intel.com, Jeff Dike <jdike@addtoit.com>,
- linux-um@lists.infradead.org, linux-block@vger.kernel.org,
- "open list:M68K ARCHITECTURE" <linux-m68k@lists.linux-m68k.org>, hare@suse.de,
- Jens Axboe <axboe@kernel.dk>, philipp.reisner@linbit.com,
- chris.obbard@collabora.com, Tejun Heo <tj@kernel.org>,
- lars.ellenberg@linbit.com, thehajime@gmail.com, zhuyifei1999@gmail.com
-Subject: Re: [Linux-Xtensa] [PATCH v2 06/15] xtensa/platforms/iss/simdisk:
- add error handling support for add_disk()
+ "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Linux-Xtensa] [PATCH net-next 01/11] arch: use
+	eth_hw_addr_set()
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -79,17 +73,34 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Mon, Sep 27, 2021 at 3:01 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
+On Fri, Oct 1, 2021 at 2:32 PM Jakub Kicinski <kuba@kernel.org> wrote:
 >
-> We never checked for errors on add_disk() as this function
-> returned void. Now that this is fixed, use the shiny new
-> error handling.
+> Commit 406f42fa0d3c ("net-next: When a bond have a massive amount
+> of VLANs...") introduced a rbtree for faster Ethernet address look
+> up. To maintain netdev->dev_addr in this tree we need to make all
+> the writes to it got through appropriate helpers.
 >
-> Signed-off-by: Luis Chamberlain <mcgrof@kernel.org>
+> Convert misc arch drivers from memcpy(... ETH_ADDR) to eth_hw_addr_set():
+>
+>   @@
+>   expression dev, np;
+>   @@
+>   - memcpy(dev->dev_addr, np, ETH_ALEN)
+>   + eth_hw_addr_set(dev, np)
+>
+> Signed-off-by: Jakub Kicinski <kuba@kernel.org>
+> --
+> CC: Geert Uytterhoeven <geert@linux-m68k.org>
+> CC: linux-m68k@lists.linux-m68k.org
+> CC: Chris Zankel <chris@zankel.net>
+> CC: Max Filippov <jcmvbkbc@gmail.com>
+> CC: linux-xtensa@linux-xtensa.org
 > ---
->  arch/xtensa/platforms/iss/simdisk.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
+>  arch/m68k/emu/nfeth.c               | 2 +-
+>  arch/xtensa/platforms/iss/network.c | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 
+For xtensa:
 Acked-by: Max Filippov <jcmvbkbc@gmail.com>
 
 -- 
