@@ -2,60 +2,61 @@ Return-Path: <linux-xtensa-bounces@linux-xtensa.org>
 X-Original-To: lists+linux-xtensa@lfdr.de
 Delivered-To: lists+linux-xtensa@lfdr.de
 Received: from linux-xtensa.org (linux-xtensa.org [54.208.7.158])
-	by mail.lfdr.de (Postfix) with ESMTP id 804EC41F7F0
-	for <lists+linux-xtensa@lfdr.de>; Sat,  2 Oct 2021 00:59:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EE0B42050D
+	for <lists+linux-xtensa@lfdr.de>; Mon,  4 Oct 2021 05:14:19 +0200 (CEST)
 Received: from linux-xtensa.org (localhost [127.0.0.1])
-	by linux-xtensa.org (Postfix) with ESMTP id 9DFF852A6;
-	Fri,  1 Oct 2021 22:28:26 +0000 (UTC)
+	by linux-xtensa.org (Postfix) with ESMTP id 774167191;
+	Mon,  4 Oct 2021 02:43:02 +0000 (UTC)
 X-Original-To: linux-xtensa@linux-xtensa.org
 Delivered-To: linux-xtensa@linux-xtensa.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com
- [209.85.208.54])
- by linux-xtensa.org (Postfix) with ESMTPS id 86FB368B3
- for <linux-xtensa@linux-xtensa.org>; Fri,  1 Oct 2021 22:28:13 +0000 (UTC)
-Received: by mail-ed1-f54.google.com with SMTP id b8so5408008edk.2
- for <linux-xtensa@linux-xtensa.org>; Fri, 01 Oct 2021 15:59:24 -0700 (PDT)
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
+ [209.85.214.169])
+ by linux-xtensa.org (Postfix) with ESMTPS id 81705718F
+ for <linux-xtensa@linux-xtensa.org>; Mon,  4 Oct 2021 02:42:59 +0000 (UTC)
+Received: by mail-pl1-f169.google.com with SMTP id y1so10128567plk.10
+ for <linux-xtensa@linux-xtensa.org>; Sun, 03 Oct 2021 20:14:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=YA12nK83s/TNYLDvQwUFF9PY5FM7hou6RsLv5OdhbxM=;
- b=bm/wO19DYmJWBUdZP9xxncVfqB6iNgJZredpzXZSB21J2YFKEaJzMrEl+hBmitM96x
- 8594UGy041h6SjDS5W8vXYue3MYSoXxiimvB5F6taMnVfvAWT/0e28ehG20FStAaJT/e
- ZYgL0jSmxOGW1QTivg8FLAS/E+hFNf3c4W94P3nlXvkvf/A5w1Ul4j+E7KGLz6O8qdbR
- jlLkyaLVPA4KtiFkxK2c5Czuyg4JSdJ9/LBgY1E+jCBYZ2RFZ6syqkr9xYRFoI8i6yYJ
- 95D8qpQXN8kGF0VROtIkgpqWt2/wf0x/bFlGsfH2+w7Ru2kkfwvxRlGusb7UKSIWD4nZ
- 0h4w==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=RKnjjVOVAOCInl/nMgbxZfi/GBeRFnh4ynzj/tmEXRI=;
+ b=kpLA465SHWMY05MKq0WxlBMzhIp3REP3vUwciyH55Un7boa2U2LWarStF9LHxVzvVI
+ fJuobPWki3xq7eiK2VHUwVkqAbYp2F0yf/fov8LuiD35leNWSFTchCM04SQim4ymMSHC
+ Pxpkl7SFe9cUZOGEglSBtHh8PD2WpCUDt3FfMfbSZnB4Ow5ok6SDlKZNJF9TVugsRUry
+ +Tr8SWeq4e6PeSJJqoblTg69kQi2FCQu5LOmID/wZccTAs3r5YDOD7MyKkywbHhV9iJt
+ wViCUeKWHj9JSoVmv5w+/+VTCvCZlifbS4GDLAbm6Ktgl6sKKj38htMuaIrXNKg9CipJ
+ ZDvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=YA12nK83s/TNYLDvQwUFF9PY5FM7hou6RsLv5OdhbxM=;
- b=TJJUxswSPBYRzzHsvmlCXszmLrhYxB3BaGKs+iOeCvBAG+jB6WE4TVDA6mskTKOULm
- p29hj9L4NNPwym0Efa6psIbwGJuSYNUFHWovuKemNSc5ZZlzMng4CEfmwCJe8nWIJyLq
- 7fT7KrM1wLAvp2Z0eNPlMJV+8u2GYRxkia0LOwFvPzG6IiuG/Zj9y6E9vajaYM914v8N
- OYjzq0+KsZCkZf8EDp/E17ciYzR/VP7704RkF4M7HDKWrpEJjzUt8dBo2stqt/IR3DOD
- Mp1sLac422NWpnfKNvs9VwPN1maeEwzSWdQejLULo5GxyOeSiJEIYPRfSlFBsrK5tsQZ
- a0cg==
-X-Gm-Message-State: AOAM532PWgU7MhS/OWIYPdLd4yuydw+Du4TCgsRRjO5OklmC/GM9vfhG
- 46E+TtTHs6vfgNhKW2u1GGU0wYOImzffQJJ5I6s=
-X-Google-Smtp-Source: ABdhPJwWpDj5kHygwCCXM/715fS54f0YYUA5tYC9om9/vZhii3Qu5fpOpoaBBnG6byRP+Sm5G02E3QFHQIArOY0rCmw=
-X-Received: by 2002:a17:906:3157:: with SMTP id
- e23mr683027eje.29.1633129163457; 
- Fri, 01 Oct 2021 15:59:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211001213228.1735079-1-kuba@kernel.org>
- <20211001213228.1735079-2-kuba@kernel.org>
-In-Reply-To: <20211001213228.1735079-2-kuba@kernel.org>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=RKnjjVOVAOCInl/nMgbxZfi/GBeRFnh4ynzj/tmEXRI=;
+ b=Uk20aMJ/x8JcxM2hWrAclfUxAAZS9bUtSQ0Trl2qaeBWhPfANVyWBdUBz/VsC0Khzs
+ 5Zp/vq4ANxGGZ5E8MtJK9dIBoluWjXdo/1pXkv7BuIpp3pw2OG6tjHk5IEg1SqJok85W
+ 8ZY/kUdZQdwSaPthfbr2e6lQA7mNiOCy9nzDYrVdvqIxCrAjtmcjrFoW7aulgEcXxe47
+ ddCOEiG2ZXuwf2d8LiuXs2YZr9P43O+N62G1wplo9x8PDbZ1vZNZ0nEY1nPU0GJlbQu7
+ yCwnQqBcGDi8c4Uy0bsHIrxSRBZLQ+4txAJ8GKFAE8I/+oF/JzZWzlF+2POEVtEOgIP4
+ T1gQ==
+X-Gm-Message-State: AOAM531wkohOy4kGDhJbQAW4tSrjIN3jjDBewRk2t9UhVvvrTRkeUqsV
+ bED6IgWn//LA62Vh++G1ZCBSd7NsnG8=
+X-Google-Smtp-Source: ABdhPJy8WjH+EK+vaTNiU+WotRSwzTTUkUu4dhGqhndTit+hx8sYVCPmpILJIvG5KBYU0nsZHCnvOw==
+X-Received: by 2002:a17:902:6947:b0:13e:8e8d:cc34 with SMTP id
+ k7-20020a170902694700b0013e8e8dcc34mr12787700plt.88.1633317254581; 
+ Sun, 03 Oct 2021 20:14:14 -0700 (PDT)
+Received: from octofox.hsd1.ca.comcast.net
+ ([2601:641:401:1d20:ecea:c8ec:ff7b:52])
+ by smtp.gmail.com with ESMTPSA id h2sm11035776pjk.44.2021.10.03.20.14.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 03 Oct 2021 20:14:13 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Fri, 1 Oct 2021 15:59:12 -0700
-Message-ID: <CAMo8BfJja6c+Pppygk7kkuoALJqEcKZAkjpinO5Y7SRj9c1vow@mail.gmail.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: "open list:TENSILICA XTENSA PORT \(xtensa\)"
- <linux-xtensa@linux-xtensa.org>, netdev <netdev@vger.kernel.org>,
- "open list:M68K ARCHITECTURE" <linux-m68k@lists.linux-m68k.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Linux-Xtensa] [PATCH net-next 01/11] arch: use
-	eth_hw_addr_set()
+To: linux-xtensa@linux-xtensa.org
+Date: Sun,  3 Oct 2021 20:13:41 -0700
+Message-Id: <20211004031341.20297-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Cc: linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+ Max Filippov <jcmvbkbc@gmail.com>
+Subject: [Linux-Xtensa] [PATCH] xtensa: xtfpga: Try software restart before
+	simulating CPU reset
 X-BeenThere: linux-xtensa@linux-xtensa.org
 X-Mailman-Version: 2.1.14
 Precedence: list
@@ -73,39 +74,54 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-xtensa-bounces@linux-xtensa.org
 Sender: linux-xtensa-bounces@linux-xtensa.org
 
-On Fri, Oct 1, 2021 at 2:32 PM Jakub Kicinski <kuba@kernel.org> wrote:
->
-> Commit 406f42fa0d3c ("net-next: When a bond have a massive amount
-> of VLANs...") introduced a rbtree for faster Ethernet address look
-> up. To maintain netdev->dev_addr in this tree we need to make all
-> the writes to it got through appropriate helpers.
->
-> Convert misc arch drivers from memcpy(... ETH_ADDR) to eth_hw_addr_set():
->
->   @@
->   expression dev, np;
->   @@
->   - memcpy(dev->dev_addr, np, ETH_ALEN)
->   + eth_hw_addr_set(dev, np)
->
-> Signed-off-by: Jakub Kicinski <kuba@kernel.org>
-> --
-> CC: Geert Uytterhoeven <geert@linux-m68k.org>
-> CC: linux-m68k@lists.linux-m68k.org
-> CC: Chris Zankel <chris@zankel.net>
-> CC: Max Filippov <jcmvbkbc@gmail.com>
-> CC: linux-xtensa@linux-xtensa.org
-> ---
->  arch/m68k/emu/nfeth.c               | 2 +-
->  arch/xtensa/platforms/iss/network.c | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+From: Guenter Roeck <linux@roeck-us.net>
 
-For xtensa:
-Acked-by: Max Filippov <jcmvbkbc@gmail.com>
+Rebooting xtensa images loaded with the '-kernel' option in qemu does
+not work. When executing a reboot command, the qemu session either hangs
+or experiences an endless sequence of error messages.
 
+  Kernel panic - not syncing: Unrecoverable error in exception handler
+
+Reset code jumps to the CPU restart address, but Linux can not recover
+from there because code and data in the kernel init sections have been
+discarded and overwritten at this point.
+
+XTFPGA platforms have a means to reset the CPU by writing 0xdead into a
+specific FPGA IO address. When used in QEMU the kernel image loaded with
+the '-kernel' option gets restored to its original state allowing the
+machine to boot successfully.
+
+Use that mechanism to attempt a platform reset. If it does not work,
+fall back to the existing mechanism.
+
+Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+---
+ arch/xtensa/platforms/xtfpga/setup.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/arch/xtensa/platforms/xtfpga/setup.c b/arch/xtensa/platforms/xtfpga/setup.c
+index 4f7d6142d41f..9b1e36b06530 100644
+--- a/arch/xtensa/platforms/xtfpga/setup.c
++++ b/arch/xtensa/platforms/xtfpga/setup.c
+@@ -51,8 +51,12 @@ void platform_power_off(void)
+ 
+ void platform_restart(void)
+ {
+-	/* Flush and reset the mmu, simulate a processor reset, and
+-	 * jump to the reset vector. */
++	/* Try software reset first. */
++	*((unsigned int *)XTFPGA_SWRST_VADDR) = 0xdead;
++
++	/* If software reset did not work, flush and reset the mmu,
++	 * simulate a processor reset, and jump to the reset vector.
++	 */
+ 	cpu_reset();
+ 	/* control never gets here */
+ }
 -- 
-Thanks.
--- Max
+2.20.1
+
 _______________________________________________
 linux-xtensa mailing list
 linux-xtensa@linux-xtensa.org
